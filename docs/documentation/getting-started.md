@@ -78,10 +78,10 @@ LiteGraph provides a lightweight yet powerful solution that combines the best of
 
 ## vs Traditional Graph Databases
 
-Embedded Operation: No separate server required; runs in-process with your application\
-SQLite Foundation: Leverages proven SQLite reliability and performance
-Vector Integration: Native vector support without extensions or plugins
-Simplified Deployment: Single file database with no complex configuration
+* **Embedded Operation**: No separate server required; runs in-process with your application
+* **SQLite Foundation**: Leverages proven SQLite reliability and performance
+* **Vector Integration**: Native vector support without extensions or plugins
+* **Simplified Deployment**: Single file database with no complex configuration
 
 # 📈 Know your users
 
