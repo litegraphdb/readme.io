@@ -83,17 +83,75 @@ LiteGraph provides a lightweight yet powerful solution that combines the best of
 * **Vector Integration**: Native vector support without extensions or plugins
 * **Simplified Deployment**: Single file database with no complex configuration
 
-# 📈 Know your users
+# Getting Started
 
-One of the best ways to know if you're nailing the dev experience is checking out how your users are interacting with both your docs and API.
+## Installation
 
-* **Documentation Metrics** let you see who's using your docs, what your best and worst pages are, what people are searching for and more!
-* **API Metrics** are a bit harder to set up (I promise we do our best to make it painless!), but once you set this up you'll know *everything* that's going on with your users!
+### Install via NuGet:
 
-# 💬 We're here to help!
+`dotnet add package LiteGraph`
 
-ReadMe has a *ton* of ways to make your docs the envy of any <Glossary>parliament</Glossary> (like that mouseover!). If you get stuck, [shoot us an email](mailto:support@readme.io) or use the Intercom widget on the bottom right of any page.
+### Basic Usage
 
-We're excited you're here! :blue_heart:
+```Text csharp
+using LiteGraph;
 
-![This won't be fun to clean up...](https://owlbert.io/images/popper.gif)
+LiteGraphClient graph = new LiteGraphClient(new SqliteRepository("litegraph.db"));
+graph.InitializeRepository();
+
+// Create a tenant
+TenantMetadata tenant = graph.CreateTenant(new TenantMetadata { Name = "My tenant" });
+
+// Create a graph
+Graph graph = graph.CreateGraph(new Graph { TenantGUID = tenant.GUID, Name = "This is my graph!" });
+
+// Create nodes
+Node node1 = graph.CreateNode(new Node { TenantGUID = tenant.GUID, GraphGUID = graph.GUID, Name = "node1" });
+Node node2 = graph.CreateNode(new Node { TenantGUID = tenant.GUID, GraphGUID = graph.GUID, Name = "node2" });
+Node node3 = graph.CreateNode(new Node { TenantGUID = tenant.GUID, GraphGUID = graph.GUID, Name = "node3" });
+
+// Create edges
+Edge edge1 = graph.CreateEdge(new Edge { TenantGUID = tenant.GUID, GraphGUID = graph.GUID, From = node1.GUID, To = node2.GUID, Name = "Node 1 to node 2" });
+Edge edge2 = graph.CreateEdge(new Edge { TenantGUID = tenant.GUID, GraphGUID = graph.GUID, From = node2.GUID, To = node3.GUID, Name = "Node 2 to node 3" });
+
+// Find routes
+foreach (RouteDetail route in graph.GetRoutes(
+	SearchTypeEnum.DepthFirstSearch,
+  tenant.GUID,
+	graph.GUID,
+	node1.GUID,
+	node2.GUID))
+{
+  Console.WriteLine(...);
+}
+```
+
+## Getting Started with Docker
+
+Using Docker Hub Image\
+A Docker image is available in Docker Hub under jchristn/litegraph.
+
+### Quick Start with Docker Compose
+
+Navigate to the Docker directory in the repository\
+Use the Docker Compose start (`compose-up.sh` and `compose-up.bat`) and stop (`compose-down.sh` and `compose-down.bat`) scripts
+
+### Manual Docker Setup
+
+`docker pull jchristn/litegraph`
+
+### Run with volume mounts for database and configuration
+
+```
+docker run -d \
+-p 8701:8701 \
+-v /path/to/litegraph.db:/app/litegraph.db \
+-v /path/to/litegraph.json:/app/litegraph.json \
+jchristn/litegraph
+```
+
+Ensure that you have a valid database file (e.g. litegraph.db) and configuration file (e.g. litegraph.json) exposed into your container.
+
+## REST API Server
+
+By default, `LiteGraph.Server` (and by consequence, the Docker image) listens on [http://localhost:8701](http://localhost:8701) and is only accessible to localhost. Modify the `litegraph.json` file to change settings including hostname and port.
