@@ -1,15 +1,30 @@
 ---
-title: Getting Started with LiteGraph
+title: LiteGraph Overview
 excerpt: >-
-  This page will help you get started with LiteGraph. You'll be up and running
-  in a jiffy!
+  LiteGraph is a property graph database with support for graph relationships,
+  tags, labels, metadata, data, and vectors. LiteGraph is intended to be a
+  unified database for providing persistence and retrieval for knowledge and
+  artificial intelligence applications.
 hidden: false
 ---
-Welcome to ReadMe! :owlbert:
+# What is LiteGraph?
 
-You're on your way to building an awesome developer hub! Here's some of the things you'll want to check out.
+LiteGraph is a property graph database with support for graph relationships, tags, labels, metadata, data, and vectors. LiteGraph is intended to be a unified database for providing persistence and retrieval for knowledge and artificial intelligence applications.
 
-# 📝 Customize your docs
+LiteGraph provides a lightweight yet powerful solution that combines the best of multiple database paradigms - graph databases for relationship modeling, vector databases for AI/ML embeddings, and document stores for flexible metadata storage.
+
+# Key Features
+
+* **Multi-modal Database**: Supports graph structures, relational data, vectors, and metadata in a single system
+* **Property Graph Model**: Full support for nodes, edges, labels, tags, and custom data properties
+* **Vector Support**: Native vector storage and similarity search capabilities for AI applications
+* **Flexible Deployment**: Can be run in-process (using LiteGraphClient) or as a standalone RESTful server (using LiteGraph.Server)
+* **In-Memory Operation**: Optional in-memory mode with controlled flushing to disk
+* **Multi-tenancy**: Built-in support for multiple tenants and graph isolation
+* **Export Capabilities**: Export graphs to GEXF format for visualization
+* **No Dependencies**: Leverages SQLite for a zero-configuration embedded database
+
+# Use Cases
 
 What you're looking at right now is what we call our **Guides**. It's a free-form place to write to your heart's content! And the best part is... you aren't alone! Your users can contribute (with your approval, don't worry!) using the **[Suggested Edits](https://docs.readme.com/main/docs/suggested-edits)** feature on every page. It's like GitHub Pull Requests, but for text!
 
