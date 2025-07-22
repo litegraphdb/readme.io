@@ -150,7 +150,7 @@ docker run -d \
 jchristn/litegraph
 ```
 
-Ensure that you have a valid database file (e.g. litegraph.db) and configuration file (e.g. litegraph.json) exposed into your container.
+Ensure that you have a valid database file (e.g. `litegraph.db`) and configuration file (e.g. `litegraph.json`) exposed into your container.
 
 ## REST API Server
 
