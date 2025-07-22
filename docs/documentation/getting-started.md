@@ -26,17 +26,62 @@ LiteGraph provides a lightweight yet powerful solution that combines the best of
 
 # Use Cases
 
-What you're looking at right now is what we call our **Guides**. It's a free-form place to write to your heart's content! And the best part is... you aren't alone! Your users can contribute (with your approval, don't worry!) using the **[Suggested Edits](https://docs.readme.com/main/docs/suggested-edits)** feature on every page. It's like GitHub Pull Requests, but for text!
+## Knowledge Management
 
-Want to ease your users into it with some fancy marketing pages? You can enable a **[Landing Page](https://docs.readme.com/main/docs/landing-page)**, and write as much HTML as you want to make it look like your brand.
+* Build knowledge graphs for organizing complex information
+* Create semantic networks for content relationships
+* Implement recommendation systems based on graph traversal
 
-# 🚦 Interactive API Docs
+## Artificial Intelligence Applications
 
-If you don't have an API, then no worries! ReadMe is great for any sort of documentation. But if you have an API, there are a few features to make your experience with ReadMe (and your users' experience with your developer hub!) a magical one:
+* Store and query vector embeddings from LLMs
+* Build RAG (Retrieval-Augmented Generation) systems
+* Implement similarity search for semantic content matching
+* Create hybrid search combining graph relationships and vector similarity
 
-* **Upload your OpenAPI file:** First step is to describe your API to us! If you already have an OpenAPI file, there's lots of ways to upload it in the *API Reference* section. Our favorite is the GitHub Action, but you can use our CLI or you can upload it directly to the UI!
-* **Add API Keys:** Don't make your users hunt around for API keys. You can surface their API key [right in the docs](https://docs.readme.com/main/docs/personalized-docs), so they can play around with your API right inside ReadMe.
-* **Add Logs:** The coolest thing about ReadMe is you can add [real-time API Logs](https://docs.readme.com/main/docs/developer-dashboard) right to your docs, so you and your users can both see what's going on with their API. Trust us, it's magical!
+## Application Development
+
+* Embed a graph database directly into applications without external dependencies
+* Build networks with detailed, rich relationships
+* Model organizational hierarchies and permissions
+* Track dependencies and relationships in complex systems
+
+## Research and Analysis
+
+* Network analysis and graph algorithms
+* Pattern detection in connected data
+* Path finding and route optimization
+* Community detection and clustering
+
+# Comparing LiteGraph
+
+## vs Traditional Relational Databases
+
+* **Native Graph Support**: First-class support for nodes, edges, and graph traversal
+* **Flexible Schema**: No rigid table structures; properties can be added dynamically
+* **Relationship-Centric: Optimized** for querying connected data rather than tabular data
+* **Multi-modal**: Combines relational, graph, and vector capabilities
+
+## vs Vector Databases
+
+* **Graph Context**: Vectors are enriched with graph relationships and metadata
+* **Unified Storage**: No need for separate graph and vector databases
+* **Flexible Filtering**: Use labels, tags, and expressions (data filters) when performing a vector search
+* **Lightweight**: Built on SQLite rather than requiring specialized infrastructure
+
+## vs Metadata/Feature Stores
+
+* **Relationship Modeling**: Goes beyond key-value storage to model complex relationships
+* **Type Flexibility**: The Data property is an object and can be attached to any Graph, Node, or Edge. Data supports any object serializable to JSON
+* **Built-in Search**: Native support for graph traversal and vector similarity search
+* **Version History**: Timestamps for creation and updates on all entities
+
+## vs Traditional Graph Databases
+
+Embedded Operation: No separate server required; runs in-process with your application\
+SQLite Foundation: Leverages proven SQLite reliability and performance
+Vector Integration: Native vector support without extensions or plugins
+Simplified Deployment: Single file database with no complex configuration
 
 # 📈 Know your users
 
