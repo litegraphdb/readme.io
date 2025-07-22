@@ -85,13 +85,11 @@ LiteGraph provides a lightweight yet powerful solution that combines the best of
 
 # Getting Started
 
-## Installation
-
-### Install via NuGet:
+## Install via NuGet:
 
 `dotnet add package LiteGraph`
 
-### Basic Usage
+## Basic Usage
 
 ```Text csharp
 using LiteGraph;
