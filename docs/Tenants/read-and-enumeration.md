@@ -5,6 +5,8 @@ hidden: false
 metadata:
   robots: index
 ---
+## Read
+
 When reading a tenant, use the following structure:
 
 ```curl
@@ -28,10 +30,6 @@ const readTenant = async () => {
 };
 ```
 
-## Response properties
+<br />
 
-- **`GUID`** - A globally unique identifier for the tenant, represented as a UUID string.
-- **`Name`** - The display name of the tenant.
-- **`Active`** - A boolean flag indicating whether the tenant is currently active (`true`) or inactive (`false`).
-- **`CreatedUtc`** - The date and time (in UTC) when the tenant was initially created.
-- **`LastUpdateUtc`** - The date and time (in UTC) when the tenant object was last updated.
+## Enumeration
