@@ -1,5 +1,5 @@
 ---
-title: Create (COPY) (COPY) (COPY)
+title: Create
 deprecated: false
 hidden: false
 metadata:
