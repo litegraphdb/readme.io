@@ -257,34 +257,14 @@ curl -H "Authorization: Bearer default" \
      http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs
 ```
 
-### Create a New Node
+<br />
 
-```bash
-curl -X PUT \
-     -H "Authorization: Bearer default" \
-     -H "Content-Type: application/json" \
-     -d '{"Name": "Test Node", "Data": {"type": "example"}}' \
-     http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/nodes
-```
-
-## In-Memory Operation
-
-For high-performance scenarios, run the database entirely in memory:
-
-1. Set `InMemory` to `true` in `litegraph.json`:
-   ```json
-   {
-     "LiteGraph": {
-       "InMemory": true
-     }
-   }
-   ```
-
-2. **Important**: When running in-memory, you must manually flush data to disk:
-   ```bash
+1. ```bash
    curl -X POST -H "Authorization: Bearer litegraphadmin" \
         http://localhost:8701/v1.0/flush
    ```
+
+<br />
 
 ## Backup and Restore
 
