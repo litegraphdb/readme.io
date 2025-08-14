@@ -264,10 +264,6 @@ curl -H "Authorization: Bearer default" \
         http://localhost:8701/v1.0/flush
    ```
 
-<br />
-
-<br />
-
 ## Troubleshooting
 
 ### Build Errors
@@ -303,62 +299,6 @@ curl -H "Authorization: Bearer default" \
 * For in-memory mode, ensure sufficient RAM
 * Check database file isn't corrupted
 
-## Performance Tuning
-
-### Configuration Options
-
-```json
-{
-  "LiteGraph": {
-    "MaxConcurrentOperations": 4,  // Adjust based on CPU cores
-    "InMemory": true               // For maximum performance
-  },
-  "Caching": {
-    "Enable": true,
-    "Capacity": 1000,
-    "EvictCount": 100
-  }
-}
-```
-
-### Monitoring
-
-Enable detailed logging for debugging:
-
-```json
-{
-  "Debug": {
-    "DatabaseQueries": true,
-    "Requests": true,
-    "Exceptions": true
-  }
-}
-```
-
-## API Documentation
-
-For complete API documentation, refer to:
-
-* `REST_API.md` - Detailed endpoint documentation
-* Postman collection: `LiteGraph.postman_collection.json`
-
-Import the Postman collection for easy API testing:
-
-1. Open Postman
-2. Import → File → Select `LiteGraph.postman_collection.json`
-3. Configure variables for your environment
-
-## Default Endpoints
-
-Once running, the server provides RESTful endpoints at:
-
-* Base URL: `http://localhost:8701`
-* API version: `/v1.0`
-* Health check: `HEAD /`
-* Graphs: `/v1.0/tenants/[tenant-guid]/graphs`
-* Nodes: `/v1.0/tenants/[tenant-guid]/graphs/[graph-guid]/nodes`
-* Edges: `/v1.0/tenants/[tenant-guid]/graphs/[graph-guid]/edges`
-
 ## Stopping the Server
 
 Press `Ctrl+C` to gracefully shut down the server.
@@ -368,12 +308,3 @@ Press `Ctrl+C` to gracefully shut down the server.
 ```bash
 curl -X POST -H "Authorization: Bearer litegraphadmin" http://localhost:8701/v1.0/flush
 ```
-
-## Next Steps
-
-* Review `REST_API.md` for complete API documentation
-* Import and explore the Postman collection
-* Configure SSL/TLS for production deployments
-* Set up proper authentication tokens and remove defaults
-* Configure syslog servers for centralized logging
-* Implement backup strategies for your database
