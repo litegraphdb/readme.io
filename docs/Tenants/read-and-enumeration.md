@@ -32,4 +32,11 @@ const readTenant = async () => {
 
 <br />
 
-## Enumeration
+## Enumeration (GET)
+
+Enumeration via `GET`
+
+```curl
+curl --location 'http://view.homedns.org:8701/v2.0/tenants' \
+--header 'Authorization: Bearer litegraphadmin'
+```
