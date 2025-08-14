@@ -5,3 +5,4 @@ hidden: false
 metadata:
   robots: index
 ---
+Include bulk creation
