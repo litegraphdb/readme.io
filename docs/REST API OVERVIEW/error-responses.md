@@ -169,9 +169,7 @@ curl -X PUT \
   "Error": "BadRequest",
   "Message": "We were unable to discern your request. Please check your URL, query, and request body.",
   "StatusCode": 400,
-  "Context": {
-    "MissingFields": ["From", "To"]
-  },
+  "Context": null,
   "Description": "Required fields are missing"
 }
 ```
@@ -197,9 +195,7 @@ curl -X PUT \
   "Error": "Conflict",
   "Message": "Operation failed as it would create a conflict with an existing resource.",
   "StatusCode": 409,
-  "Context": {
-    "ConflictingGUID": "00000000-0000-0000-0000-000000000000"
-  },
+  "Context": null,
   "Description": "A graph with this GUID already exists"
 }
 ```
@@ -222,10 +218,7 @@ curl -H "Authorization: Bearer default" \
   "Error": "NotFound",
   "Message": "The requested resource was not found.",
   "StatusCode": 404,
-  "Context": {
-    "ResourceType": "Graph",
-    "GUID": "invalid-guid-here"
-  },
+  "Context": null,
   "Description": "Graph not found"
 }
 ```
@@ -249,9 +242,7 @@ curl -X DELETE \
   "Error": "InUse",
   "Message": "The requested resource is in use.",
   "StatusCode": 409,
-  "Context": {
-    "EdgeCount": 5
-  },
+  "Context": null,
   "Description": "Cannot delete node with existing edges"
 }
 ```
@@ -275,161 +266,9 @@ curl -X DELETE \
   "Error": "NotEmpty",
   "Message": "The requested resource is not empty.",
   "StatusCode": 400,
-  "Context": {
-    "NodeCount": 10,
-    "EdgeCount": 15
-  },
+  "Context": null,
   "Description": "Graph contains nodes and edges. Use ?force to delete"
 }
-```
-
-## Error Handling Best Practices
-
-### Client-Side Error Handling
-
-#### JavaScript Example
-
-```javascript
-async function makeApiCall(url, options) {
-  try {
-    const response = await fetch(url, options);
-    
-    if (!response.ok) {
-      const error = await response.json();
-      
-      switch (error.Error) {
-        case 'AuthenticationFailed':
-          // Redirect to login
-          window.location.href = '/login';
-          break;
-          
-        case 'AuthorizationFailed':
-          // Show permission denied message
-          showError('You do not have permission to perform this action');
-          break;
-          
-        case 'NotFound':
-          // Handle missing resource
-          showError('The requested resource was not found');
-          break;
-          
-        case 'Conflict':
-          // Handle conflict
-          showError('This operation conflicts with existing data');
-          break;
-          
-        case 'InternalError':
-          // Retry or show server error
-          showError('Server error. Please try again later');
-          break;
-          
-        default:
-          // Generic error handling
-          showError(error.Message);
-      }
-      
-      return null;
-    }
-    
-    return await response.json();
-    
-  } catch (err) {
-    // Network or parsing error
-    console.error('Request failed:', err);
-    showError('Network error. Please check your connection');
-  }
-}
-```
-
-#### Python Example
-
-```python
-import requests
-import json
-
-class LiteGraphClient:
-    def handle_error(self, response):
-        """Handle API error responses"""
-        if response.status_code == 200:
-            return response.json()
-        
-        try:
-            error = response.json()
-            error_code = error.get('Error')
-            message = error.get('Message')
-            
-            if error_code == 'AuthenticationFailed':
-                raise AuthenticationError(message)
-            elif error_code == 'AuthorizationFailed':
-                raise AuthorizationError(message)
-            elif error_code == 'NotFound':
-                raise ResourceNotFoundError(message)
-            elif error_code == 'Conflict':
-                raise ConflictError(message)
-            elif error_code == 'BadRequest':
-                raise BadRequestError(message)
-            elif error_code == 'InternalError':
-                raise ServerError(message)
-            else:
-                raise APIError(f"Unknown error: {error_code} - {message}")
-                
-        except json.JSONDecodeError:
-            raise APIError(f"Invalid response: {response.text}")
-    
-    def make_request(self, method, url, **kwargs):
-        """Make API request with error handling"""
-        response = requests.request(method, url, **kwargs)
-        return self.handle_error(response)
-
-# Custom exception classes
-class APIError(Exception):
-    pass
-
-class AuthenticationError(APIError):
-    pass
-
-class AuthorizationError(APIError):
-    pass
-
-class ResourceNotFoundError(APIError):
-    pass
-
-class ConflictError(APIError):
-    pass
-
-class BadRequestError(APIError):
-    pass
-
-class ServerError(APIError):
-    pass
-```
-
-### Retry Logic
-
-For transient errors, implement retry logic:
-
-```python
-import time
-import random
-
-def retry_request(func, max_retries=3, backoff_factor=2):
-    """Retry failed requests with exponential backoff"""
-    
-    retryable_errors = ['InternalError']
-    
-    for attempt in range(max_retries):
-        try:
-            return func()
-        except ServerError as e:
-            if attempt == max_retries - 1:
-                raise
-            
-            # Exponential backoff with jitter
-            wait_time = (backoff_factor ** attempt) + random.uniform(0, 1)
-            time.sleep(wait_time)
-        except Exception as e:
-            # Don't retry other errors
-            raise
 ```
 
 ## HTTP Status Code Summary
