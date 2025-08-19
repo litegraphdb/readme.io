@@ -7,7 +7,7 @@ metadata:
 ---
 ## Read
 
-When reading a tenant, use the following structure:
+Read a single tenant: `GET: /v1.0/tenants/{{tenant}}`
 
 ```curl
 curl --location --request GET 'http://view.homedns.org:8701/v1.0/tenants/<Tenant-GUID>' \
@@ -29,11 +29,79 @@ const readTenant = async () => {
 };
 ```
 
-<br />
+## Read tenant stats
+
+To read a single tenant call `GET:/v1.0/tenants/{{tenant-id}}/stats `
+
+```curl
+curl --location 'http://view.homedns.org:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/stats' \
+--header 'Authorization: Bearer litegraphadmin'
+```
+```javascript
+import { LiteGraphSdk } from 'litegraphdb';
+
+var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
+
+const readTenantStatistic = async () => {
+  try {
+    const data = await api.Tenant.readStatistic(guid);
+    console.log(data, 'chk data');
+  } catch (err) {
+    console.log('err:', JSON.stringify(err));
+  }
+};
+```
+
+## Read all
+
+To read all tenants call `GET:/v1.0/tenants/ `
+
+```curl
+curl --location 'http://view.homedns.org:8701/v1.0/tenants' \
+--header 'Authorization: Bearer litegraphadmin'
+```
+```javascript
+import { LiteGraphSdk } from 'litegraphdb';
+
+var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
+
+const readTenants = async () => {
+  try {
+    const data = await api.Tenant.readAll();
+    console.log(data, 'chk data');
+  } catch (err) {
+    console.log('err:', JSON.stringify(err));
+  }
+};
+
+```
+
+## Read all tenant stats
+
+To read all tenants call `GET:/v1.0/tenants/stats `
+
+```curl
+curl --location 'http://view.homedns.org:8701/v1.0/tenants/stats' \
+--header 'Authorization: Bearer litegraphadmin'
+```
+```javascript
+import { LiteGraphSdk } from 'litegraphdb';
+
+var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
+
+const readAllTenantStatistics = async () => {
+  try {
+    const data = await api.Tenant.readStatistics();
+    console.log(data, 'chk data');
+  } catch (err) {
+    console.log('err:', JSON.stringify(err));
+  }
+};
+```
 
 ## Enumeration (GET)
 
-Enumeration via `GET` allows to enumerate response
+Enumeration via `GET:/v2.0/tenants` allows to enumerate response
 
 ```curl
 curl --location 'http://view.homedns.org:8701/v2.0/tenants' \
@@ -82,7 +150,9 @@ const enumerateTenants = async () => {
 }
 ```
 
-## Enumeration (POST)
+## Enumeration and search (POST)
+
+Enumeration via `POST :/v2.0/tenants` allows to enumerate and search response
 
 ```curl
 curl --location 'http://view.homedns.org:8701/v2.0/tenants' \
