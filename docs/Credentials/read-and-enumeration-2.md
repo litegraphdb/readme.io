@@ -31,11 +31,11 @@ const readManyCredentials = async () => {
 
 ## Read by GUIDs
 
-To Read multiple credentials call `GET: /v1.0/tenants/{tenant-guid}/credentials?guids=<user1-guid>,<user2-guid>`
+To Read multiple credentials call `GET: /v1.0/tenants/{tenant-guid}/credentials?guids=<credential1-guid>,<credential2-guid>`
 
 ```curl
-curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/users?guids=00000000-0000-0000-0000-000000000000%2C00000000-0000-0000-0000-000000000001' \
---header 'Authorization: Bearer ********'
+curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/credentials?guids=00000000-0000-0000-0000-000000000000%2C00000000-0000-0000-0000-000000000001' \
+--header 'Authorization: ••••••'
 ```
 ```javascript
 import { LiteGraphSdk } from 'litegraphdb';
