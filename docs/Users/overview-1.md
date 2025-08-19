@@ -8,7 +8,7 @@ metadata:
 ---
 ## Structure
 
-Tenant objects have the following structure:
+User objects have the following structure:
 
 ```json
 {
