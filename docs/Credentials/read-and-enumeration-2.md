@@ -18,9 +18,10 @@ import { LiteGraphSdk } from 'litegraphdb';
 
 var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
 
-const readCredential = async () => {
+
+const readManyCredentials = async () => {
   try {
-    const data = await api.Credential.read('8882bae3-abb1-4d4a-8671-fa7b80e18515');
+    const data = await api.Credential.readMany([<credential-guid>]);
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err));
