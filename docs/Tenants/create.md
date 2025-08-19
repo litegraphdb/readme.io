@@ -11,7 +11,7 @@ To create tenants call: `PUT /v1.0/tenants`
 ```curl
 curl --location --request PUT 'http://view.homedns.org:8701/v1.0/tenants' \
 --header 'content-type: application/json' \
---header 'Authorization: Bearer litegraphadmin' \
+--header 'Authorization: Bearer ********' \
 --data '{
     "Name": "Another tenant",
     "Active": true
