@@ -1,5 +1,6 @@
 ---
 title: Update
+excerpt: Update existing tenant.
 deprecated: false
 hidden: false
 metadata:
