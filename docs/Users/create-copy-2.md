@@ -1,6 +1,6 @@
 ---
 title: Create
-excerpt: To create uset object
+excerpt: To create user object.
 deprecated: false
 hidden: false
 metadata:
