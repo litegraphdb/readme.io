@@ -81,3 +81,47 @@ const enumerateTenants = async () => {
     ]
 }
 ```
+
+## Enumeration (POST)
+
+```curl
+curl --location 'http://view.homedns.org:8701/v2.0/tenants' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: ••••••' \
+--data '{
+    "Ordering": "CreatedDescending",
+    "IncludeData": false,
+    "IncludeSubordinates": false,
+    "MaxResults": 5,
+    "Skip": 0,
+    "ContinuationToken": null,
+    "Labels": [ ],
+    "Tags": { },
+    "Expr": { }
+}'
+```
+```javascript
+import { LiteGraphSdk } from 'litegraphdb';
+
+var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
+
+const enumerateAndSearchTenants = async () => {
+  try {
+    const data = await api.Tenant.enumerateAndSearch({
+      Ordering: 'CreatedDescending',
+      IncludeData: false,
+      IncludeSubordinates: false,
+      MaxResults: 5,
+      ContinuationToken: null,
+      Labels: [],
+      Tags: {},
+      Expr: {},
+    });
+    console.log(data);
+  } catch (err) {
+    console.log('err:', JSON.stringify(err));
+  }
+};
+
+
+```
