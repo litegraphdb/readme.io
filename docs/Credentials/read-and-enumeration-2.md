@@ -10,9 +10,8 @@ metadata:
 Read a single credential: `GET: /v1.0/tenants/{tenant-guid}/credentials/{credential-guid}`
 
 ```curl
-curl --location --request GET 'http://view.homedns.org:8701/v1.0/tenants/<Tenant-GUID>' \
---header 'content-type: application/json' \
---header 'Authorization: Bearer ********'
+curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/credentials?guids=00000000-0000-0000-0000-000000000000%2C00000000-0000-0000-0000-000000000001' \
+--header 'Authorization: ••••••'
 ```
 ```javascript
 import { LiteGraphSdk } from 'litegraphdb';
@@ -31,7 +30,7 @@ const readCredential = async () => {
 
 ## Read by GUIDs
 
-To Read multiple users call `GET: /v1.0/tenants/{tenant-guid}/credentials?guids=<user1-guid>,<user2-guid>`
+To Read multiple credentials call `GET: /v1.0/tenants/{tenant-guid}/credentials?guids=<user1-guid>,<user2-guid>`
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/users?guids=00000000-0000-0000-0000-000000000000%2C00000000-0000-0000-0000-000000000001' \
@@ -54,7 +53,7 @@ const readManyUsers = async () => {
 
 ## Read all
 
-To read all users call `GET:/v1.0/tenants/{tenant-guid}/credentials `
+To read all credentials call `GET:/v1.0/tenants/{tenant-guid}/credentials `
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/users' \
