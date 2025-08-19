@@ -11,7 +11,7 @@ To update existing user call `PUT: /v1.0/tenants/{tenant-guid}/users/{user-guid}
 ```curl
 curl --location --request PUT 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/users/00000000-0000-0000-0000-000000000000' \
 --header 'content-type: application/json' \
---header 'Authorization: Bearer litegraphadmin' \
+--header 'Authorization: Bearer ********' \
 --data-raw '{
     "FirstName": "Again Updated",
     "LastName": "User",
