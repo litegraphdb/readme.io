@@ -77,32 +77,7 @@ const enumerateUsers = async () => {
 
 ```
 
-### Response
-
-```json
-{
-    "Success": true,
-    "Timestamp": {
-        "Start": "2025-08-14T13:40:37.667042Z",
-        "End": "2025-08-14T13:40:37.676703Z",
-        "TotalMs": 9.66,
-        "Messages": {}
-    },
-    "MaxResults": 1000,
-    "EndOfResults": true,
-    "TotalRecords": 1,
-    "RecordsRemaining": 0,
-    "Objects": [
-        {
-            "GUID": "00000000-0000-0000-0000-000000000000",
-            "Name": "Default tenant",
-            "Active": true,
-            "CreatedUtc": "2025-01-20T02:51:11.325726Z",
-            "LastUpdateUtc": "2025-01-20T02:51:11.325727Z"
-        }
-    ]
-}
-```
+<br />
 
 ## Enumeration and search (POST)
 
