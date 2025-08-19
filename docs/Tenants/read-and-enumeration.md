@@ -12,7 +12,7 @@ Read a single tenant: `GET: /v1.0/tenants/{tenant}`
 ```curl
 curl --location --request GET 'http://view.homedns.org:8701/v1.0/tenants/<Tenant-GUID>' \
 --header 'content-type: application/json' \
---header 'Authorization: Bearer litegraphadmin'
+--header 'Authorization: Bearer ********'
 ```
 ```javascript
 import { LiteGraphSdk } from 'litegraphdb';
@@ -35,7 +35,7 @@ To read a single tenant call `GET:/v1.0/tenants/{tenant-id}/stats `
 
 ```curl
 curl --location 'http://view.homedns.org:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/stats' \
---header 'Authorization: Bearer litegraphadmin'
+--header 'Authorization: Bearer ********'
 ```
 ```javascript
 import { LiteGraphSdk } from 'litegraphdb';
@@ -58,7 +58,7 @@ Read a multiple tenant: `/v1.0/tenants?guids=<tenant1-guid>,<tenant2-guid>`
 
 ```curl
 curl --location 'http://view.homedns.org:8701/v1.0/tenants?guids=00000000-0000-0000-0000-000000000000%2C00000000-0000-0000-0000-000000000001' \
---header 'Authorization: Bearer litegraphadmin'
+--header 'Authorization: Bearer ********'
 ```
 ```javascript
 import { LiteGraphSdk } from 'litegraphdb';
@@ -83,7 +83,7 @@ To read all tenants call `GET:/v1.0/tenants/ `
 
 ```curl
 curl --location 'http://view.homedns.org:8701/v1.0/tenants' \
---header 'Authorization: Bearer litegraphadmin'
+--header 'Authorization: Bearer ********'
 ```
 ```javascript
 import { LiteGraphSdk } from 'litegraphdb';
@@ -107,7 +107,7 @@ To read all tenants call `GET:/v1.0/tenants/stats `
 
 ```curl
 curl --location 'http://view.homedns.org:8701/v1.0/tenants/stats' \
---header 'Authorization: Bearer litegraphadmin'
+--header 'Authorization: Bearer ********'
 ```
 ```javascript
 import { LiteGraphSdk } from 'litegraphdb';
@@ -130,7 +130,7 @@ Enumeration via `GET:/v2.0/tenants` allows to enumerate response
 
 ```curl
 curl --location 'http://view.homedns.org:8701/v2.0/tenants' \
---header 'Authorization: Bearer litegraphadmin'
+--header 'Authorization: Bearer ********'
 ```
 ```javascript
 import { LiteGraphSdk } from 'litegraphdb';
