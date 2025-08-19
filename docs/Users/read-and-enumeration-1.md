@@ -19,10 +19,10 @@ import { LiteGraphSdk } from 'litegraphdb';
 
 var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
 
-const readTenant = async () => {
+const readUser = async () => {
   try {
-    const tenant = await api.Tenant.get('<Tenant-GUID>');
-    console.log(tenant);
+    const data = await api.User.read('199eb859-5857-4313-b487-5b0a5fb2abf8');
+    console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err));
   }
