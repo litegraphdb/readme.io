@@ -7,7 +7,7 @@ metadata:
 ---
 ## Read
 
-Read a single user: `GET: /v1.0/users/{{tenant}}`
+Read a single user: `GET: /v1.0/tenants/{tenant-guid}/users/{user-guid}`
 
 ```curl
 curl --location --request GET 'http://view.homedns.org:8701/v1.0/tenants/<Tenant-GUID>' \
@@ -29,35 +29,12 @@ const readUser = async () => {
 };
 ```
 
-## Read tenant stats
-
-To read a single tenant call `GET:/v1.0/tenants/{{tenant-id}}/stats `
-
-```curl
-curl --location 'http://view.homedns.org:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/stats' \
---header 'Authorization: Bearer litegraphadmin'
-```
-```javascript
-import { LiteGraphSdk } from 'litegraphdb';
-
-var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
-
-const readTenantStatistic = async () => {
-  try {
-    const data = await api.Tenant.readStatistic(guid);
-    console.log(data, 'chk data');
-  } catch (err) {
-    console.log('err:', JSON.stringify(err));
-  }
-};
-```
-
 ## Read all
 
-To read all tenants call `GET:/v1.0/tenants/ `
+To read all tenants call `GET:/v1.0/tenants/{tenant-guid}/users/ `
 
 ```curl
-curl --location 'http://view.homedns.org:8701/v1.0/tenants' \
+curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/users' \
 --header 'Authorization: Bearer litegraphadmin'
 ```
 ```javascript
@@ -65,9 +42,9 @@ import { LiteGraphSdk } from 'litegraphdb';
 
 var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
 
-const readTenants = async () => {
+const readAllUsers = async () => {
   try {
-    const data = await api.Tenant.readAll();
+    const data = await api.User.readAll();
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err));
