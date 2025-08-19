@@ -12,7 +12,7 @@ Read a single user: `GET: /v1.0/tenants/{tenant-guid}/users/{user-guid}`
 ```curl
 curl --location --request GET 'http://view.homedns.org:8701/v1.0/tenants/<Tenant-GUID>' \
 --header 'content-type: application/json' \
---header 'Authorization: Bearer litegraphadmin'
+--header 'Authorization: Bearer ********'
 ```
 ```javascript
 import { LiteGraphSdk } from 'litegraphdb';
@@ -35,7 +35,7 @@ To Read multiple users call `GET: /v1.0/tenants/{tenant-guid}/users?guids=<user1
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/users?guids=00000000-0000-0000-0000-000000000000%2C00000000-0000-0000-0000-000000000001' \
---header 'Authorization: Bearer litegraphadmin'
+--header 'Authorization: Bearer ********'
 ```
 ```javascript
 import { LiteGraphSdk } from 'litegraphdb';
@@ -60,7 +60,7 @@ To read all tenants call `GET:/v1.0/tenants/{tenant-guid}/users/ `
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/users' \
---header 'Authorization: Bearer litegraphadmin'
+--header 'Authorization: Bearer ********'
 ```
 ```javascript
 import { LiteGraphSdk } from 'litegraphdb';
@@ -84,7 +84,7 @@ Enumeration via `GET:/v2.0/tenants/{tenant-guid}/users/` allows to enumerate res
 
 ```curl
 curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/users' \
---header 'Authorization: Bearer litegraphadmin'
+--header 'Authorization: Bearer ********'
 ```
 ```javascript
 import { LiteGraphSdk } from 'litegraphdb';
