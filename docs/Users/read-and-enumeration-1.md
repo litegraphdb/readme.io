@@ -29,6 +29,31 @@ const readUser = async () => {
 };
 ```
 
+## Read by GUIDs
+
+To Read multiple users call `GET: /v1.0/tenants/{tenant-guid}/users?guids=<user1-guid>,<user2-guid>`
+
+```curl
+curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/users?guids=00000000-0000-0000-0000-000000000000%2C00000000-0000-0000-0000-000000000001' \
+--header 'Authorization: Bearer litegraphadmin'
+```
+```javascript
+import { LiteGraphSdk } from 'litegraphdb';
+
+var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
+
+const readManyUsers = async () => {
+  try {
+    const data = await api.User.readMany([userGuid]);
+    console.log(data, 'chk data');
+  } catch (err) {
+    console.log('err:', JSON.stringify(err));
+  }
+};
+```
+
+<br />
+
 ## Read all
 
 To read all tenants call `GET:/v1.0/tenants/{tenant-guid}/users/ `
