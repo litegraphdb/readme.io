@@ -57,17 +57,17 @@ const readManyUsers = async () => {
 To read all credentials call `GET:/v1.0/tenants/{tenant-guid}/credentials `
 
 ```curl
-curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/users' \
---header 'Authorization: Bearer ********'
+curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/credentials' \
+--header 'Authorization: ••••••'
 ```
 ```javascript
 import { LiteGraphSdk } from 'litegraphdb';
 
 var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
 
-const readAllUsers = async () => {
+const readAllCredentials = async () => {
   try {
-    const data = await api.User.readAll();
+    const data = await api.Credential.readAll();
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err));
@@ -81,22 +81,23 @@ const readAllUsers = async () => {
 Enumeration via `GET:/v2.0/tenants/{tenant-guid}/credentials/` allows to enumerate response
 
 ```curl
-curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/users' \
---header 'Authorization: Bearer ********'
+curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/credentials' \
+--header 'Authorization: ••••••'
 ```
 ```javascript
 import { LiteGraphSdk } from 'litegraphdb';
 
 var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
 
-const enumerateUsers = async () => {
+const enumerateCredentials = async () => {
   try {
-    const data = await api.User.enumerate();
+    const data = await api.Credential.enumerate();
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err));
   }
 };
+
 
 ```
 
@@ -105,7 +106,9 @@ const enumerateUsers = async () => {
 Enumeration via `POST :/v2.0/tenants/{tenant-guid}/credentials` allows to enumerate and search response
 
 ```curl
-curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/users' \
+curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/credentials' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: ••••••' \
 --data '{
     "Ordering": "CreatedDescending",
     "IncludeData": false,
@@ -123,9 +126,9 @@ import { LiteGraphSdk } from 'litegraphdb';
 
 var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
 
-const enumerateAndSearchUsers = async () => {
+const enumerateAndSearchCredentials = async () => {
   try {
-    const data = await api.User.enumerateAndSearch({
+    const data = await api.Credential.enumerateAndSearch({
       Ordering: 'CreatedDescending',
       IncludeData: false,
       IncludeSubordinates: false,
