@@ -11,6 +11,9 @@ curl --location --head 'http://view.homedns.org:8701/v1.0/tenants/00000000-0000-
 --header 'Authorization: Bearer litegraphadmin'
 ```
 ```javascript
+import { LiteGraphSdk } from 'litegraphdb';
+
+var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
 
 const tenantExists = async () => {
   try {
