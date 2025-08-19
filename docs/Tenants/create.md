@@ -1,11 +1,12 @@
 ---
 title: Create
+excerpt: Creating tenats.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-When creating a tenant, provide the following structure:
+To create tenants call: `PUT /v1.0/tenants`
 
 ```curl
 curl --location --request PUT 'http://view.homedns.org:8701/v1.0/tenants' \
