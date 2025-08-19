@@ -7,7 +7,7 @@ metadata:
 ---
 ## Read
 
-Read a single tenant: `GET: /v1.0/tenants/{{tenant}}`
+Read a single tenant: `GET: /v1.0/tenants/{tenant}`
 
 ```curl
 curl --location --request GET 'http://view.homedns.org:8701/v1.0/tenants/<Tenant-GUID>' \
