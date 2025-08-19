@@ -1,10 +1,6 @@
 ---
 title: Overview
-excerpt: >-
-  LiteGraph is a multi-tenant system allowing you to configure separate virtual
-  deployments within the same physical deployment.  Each virtual deployment is
-  contained within a tenant, and each object within LiteGraph has a tenant
-  identifier (GUID) attached to it.
+excerpt: This section covers api abd sdk methods related to Tenant object.
 deprecated: false
 hidden: false
 metadata:
