@@ -1,12 +1,12 @@
 ---
-title: Exist (COPY)
-excerpt: To check if given tannat exist by id.
+title: 'Exist '
+excerpt: To check if given user exist by id.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-To check if a tenant exist call `HEAD: /v1.0/tenants/{tenant-guid}`
+To check if a user exist call `HEAD: /v1.0/tenants/{tenant-guid}/users/{user-guid}`
 
 ```curl
 curl --location --head 'http://view.homedns.org:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000' \
