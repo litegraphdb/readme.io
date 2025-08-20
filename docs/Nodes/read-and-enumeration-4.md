@@ -93,7 +93,7 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 
 const enumerateNodes = async () => {
   try {
-    const data = await api.Node.enumerate('00000000-0000-0000-0000-000000000000');
+    const data = await api.Node.enumerate(grapGuid);
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err));
@@ -128,7 +128,7 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 
 const enumerateAndSearchNodes = async () => {
   try {
-    const data = await api.Node.enumerateAndSearch('00000000-0000-0000-0000-000000000000', {
+    const data = await api.Node.enumerateAndSearch(grapGuid, {
       Ordering: 'CreatedDescending',
       IncludeData: false,
       IncludeSubordinates: false,
