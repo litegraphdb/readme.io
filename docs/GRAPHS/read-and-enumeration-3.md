@@ -30,7 +30,7 @@ const getGraphById = async () => {
 
 ## Read tenant stats
 
-To read a single tenant call `GET:/v1.0/tenants/{tenant-id}/stats `
+To read a single tenant call `GET:/v1.0/tenants/{tenant-id}/graphs/{graph-guid}/stats `
 
 ```curl
 curl --location 'http://view.homedns.org:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/stats' \
@@ -56,17 +56,17 @@ const readTenantStatistic = async () => {
 Read a multiple tenant: `/v1.0/tenants?guids=<tenant1-guid>,<tenant2-guid>`
 
 ```curl
-curl --location 'http://view.homedns.org:8701/v1.0/tenants?guids=00000000-0000-0000-0000-000000000000%2C00000000-0000-0000-0000-000000000001' \
---header 'Authorization: Bearer ********'
+curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/stats' \
+--header 'Authorization: ••••••'
 ```
 ```javascript
 import { LiteGraphSdk } from 'litegraphdb';
 
 var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
 
-const readManyTenants = async () => {
+const readGraphStatistic = async () => {
   try {
-    const data = await api.Tenant.readMany([tenantGuid]);
+    const data = await api.Graph.readStatistic(guid);
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err));
