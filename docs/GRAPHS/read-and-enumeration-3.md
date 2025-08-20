@@ -97,13 +97,13 @@ const getGraphList = async () => {
 };
 ```
 
-## Read all tenant stats
+## Read all graph stats
 
-To read all tenants call `GET:/v1.0/tenants/stats `
+To read all graph stats call `GET:/v1.0/tenants/{tenant-id}/graphs/stats `
 
 ```curl
-curl --location 'http://view.homedns.org:8701/v1.0/tenants/stats' \
---header 'Authorization: Bearer ********'
+curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/stats' \
+--header 'Authorization: ••••••'
 ```
 ```javascript
 import { LiteGraphSdk } from 'litegraphdb';
@@ -122,20 +122,20 @@ const readAllTenantStatistics = async () => {
 
 ## Enumeration (GET)
 
-Enumeration via `GET:/v2.0/tenants` allows to enumerate response
+Enumeration via `GET:/v2.0/tenants/{tenant-id}/graphs` allows to enumerate response
 
 ```curl
-curl --location 'http://view.homedns.org:8701/v2.0/tenants' \
---header 'Authorization: Bearer ********'
+curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/graphs' \
+--header 'Authorization: ••••••'
 ```
 ```javascript
 import { LiteGraphSdk } from 'litegraphdb';
 
 var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
 
-const enumerateTenants = async () => {
+const enumerateGraphs = async () => {
   try {
-    const data = await api.Tenant.enumerate();
+    const data = await api.Graph.enumerate();
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err));
@@ -144,39 +144,12 @@ const enumerateTenants = async () => {
 
 ```
 
-### Response
-
-```json
-{
-    "Success": true,
-    "Timestamp": {
-        "Start": "2025-08-14T13:40:37.667042Z",
-        "End": "2025-08-14T13:40:37.676703Z",
-        "TotalMs": 9.66,
-        "Messages": {}
-    },
-    "MaxResults": 1000,
-    "EndOfResults": true,
-    "TotalRecords": 1,
-    "RecordsRemaining": 0,
-    "Objects": [
-        {
-            "GUID": "00000000-0000-0000-0000-000000000000",
-            "Name": "Default tenant",
-            "Active": true,
-            "CreatedUtc": "2025-01-20T02:51:11.325726Z",
-            "LastUpdateUtc": "2025-01-20T02:51:11.325727Z"
-        }
-    ]
-}
-```
-
 ## Enumeration and search (POST)
 
-Enumeration via `POST :/v2.0/tenants` allows to enumerate and search response
+Enumeration via `POST :/v2.0/tenants/{tenant-id}/graphs` allows to enumerate and search response
 
 ```curl
-curl --location 'http://view.homedns.org:8701/v2.0/tenants' \
+curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/graphs' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: ••••••' \
 --data '{
@@ -196,9 +169,9 @@ import { LiteGraphSdk } from 'litegraphdb';
 
 var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
 
-const enumerateAndSearchTenants = async () => {
+const enumerateAndSearchGraphs = async () => {
   try {
-    const data = await api.Tenant.enumerateAndSearch({
+    const data = await api.Graph.enumerateAndSearch({
       Ordering: 'CreatedDescending',
       IncludeData: false,
       IncludeSubordinates: false,
@@ -208,11 +181,12 @@ const enumerateAndSearchTenants = async () => {
       Tags: {},
       Expr: {},
     });
-    console.log(data);
+    console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err));
   }
 };
+
 
 
 ```
