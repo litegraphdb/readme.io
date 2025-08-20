@@ -28,9 +28,9 @@ const getGraphById = async () => {
 };
 ```
 
-## Read tenant stats
+## Read graph stats
 
-To read a single tenant call `GET:/v1.0/tenants/{tenant-id}/graphs/{graph-guid}/stats `
+To read a single graph call `GET:/v1.0/tenants/{tenant-id}/graphs/{graph-guid}/stats `
 
 ```curl
 curl --location 'http://view.homedns.org:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/stats' \
