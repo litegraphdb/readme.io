@@ -8,7 +8,7 @@ metadata:
 ---
 ## Structure
 
-User objects have the following structure:
+Credential objects have the following structure:
 
 ```json
  {
