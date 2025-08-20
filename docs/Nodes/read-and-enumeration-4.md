@@ -32,10 +32,10 @@ const getNodeById = async () => {
 
 ## Read first
 
-Read a first graph: `/v1.0/tenants/{tenant-id}/graphs/first`
+Read a first graph: `/v1.0/tenants/{tenant-id}/graphs/{graph-guid}/nodes/first`
 
 ```curl
-curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/first' \
+curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/nodes/first' \
 --header 'content-type: application/json' \
 --header 'Authorization: ••••••' \
 --data '{
@@ -50,12 +50,12 @@ import { LiteGraphSdk } from 'litegraphdb';
 
 var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
 
-const readFirstGraph = async () => {
+const readFirstNode = async () => {
   try {
-    const data = await api.Graph.readFirst({});
+    const data = await api.Node.readFirst('8e72e2b7-86fe-4f94-8483-547c23c8a833', {});
     console.log(data, 'chk data');
   } catch (err) {
-    console.log('err:', JSON.stringify(err));
+    console.log('err:', JSON.stringify(err), err);
   }
 };
 ```
