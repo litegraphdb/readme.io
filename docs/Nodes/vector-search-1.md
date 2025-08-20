@@ -1,5 +1,5 @@
 ---
-title: Vector Search
+title: Search
 excerpt: Perform vector search.
 deprecated: false
 hidden: false
@@ -9,17 +9,23 @@ metadata:
 To perform vector search call `POST: v1.0/tenants/{tenant-guid}/vectors`
 
 ```curl
-curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/vectors' \
+curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/nodes/search' \
 --header 'content-type: application/json' \
 --header 'Authorization: ••••••' \
 --data '{
-    "GraphGUID": "00000000-0000-0000-0000-000000000000",
-    "Domain": "Node",
-    "SearchType": "CosineSimilarity",
-    "Labels": [],
-    "Tags": {},
-    "Expr": {},
-    "Embeddings": [ 0.1, 0.2, 0.3, 0.5 ]
+  "Ordering": "CreatedDescending",
+  "Name": null,
+  "Labels": [
+    "test"
+  ],
+  "Tags": {
+    "Foo": "Bar"
+  },
+  "Expr": {
+    "Left": "Key",
+    "Operator": "Equals",
+    "Right": "Value"
+  }
 }'
 ```
 ```javascript
