@@ -1,12 +1,12 @@
 ---
-title: Exist (COPY)
-excerpt: To check if given credential exist by id.
+title: Exist
+excerpt: To check if given graph exist by id.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-To check if a credential exist call `HEAD : /v1.0/tenants/{tenant-guid}/credentials/{credential-guid}`
+To check if a graph exist call `HEAD : /v1.0/tenants/{tenant-guid}/credentials/{credential-guid}`
 
 ```curl
 curl --location --head 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/credentials/00000000-0000-0000-0000-000000000000' \
