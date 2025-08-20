@@ -32,7 +32,7 @@ const getNodeById = async () => {
 
 ## Read first
 
-Read a first graph: `/v1.0/tenants/{tenant-id}/graphs/fitrst`
+Read a first graph: `/v1.0/tenants/{tenant-id}/graphs/first`
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/first' \
