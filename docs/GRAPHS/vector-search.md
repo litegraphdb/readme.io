@@ -1,5 +1,5 @@
 ---
-title: Vector Search
+title: Search
 excerpt: Perform vector search.
 deprecated: false
 hidden: false
