@@ -31,7 +31,7 @@ const getNodeById = async () => {
 
 ## Read by GUIDs
 
-To Read multiple credentials call `GET: /v1.0/tenants/{tenant-guid}/graphs/{graph-guid}/nodes?guids=<node1-guid>,<node2-guid>`
+To Read multiple nodes call `GET: /v1.0/tenants/{tenant-guid}/graphs/{graph-guid}/nodes?guids=<node1-guid>,<node2-guid>`
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/nodes?guids=00000000-0000-0000-0000-000000000000,00000000-0000-0000-0000-000000000001' \
@@ -55,10 +55,10 @@ const readManyNodes = async () => {
 
 ## Read all
 
-To read all credentials call `GET:/v1.0/tenants/{tenant-guid}/graphs/{graph-guid}/nodes`
+To read all nodes call `GET:/v1.0/tenants/{tenant-guid}/graphs/{graph-guid}/nodes`
 
 ```curl
-curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/credentials' \
+curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/nodes' \
 --header 'Authorization: ••••••'
 ```
 ```javascript
@@ -66,12 +66,12 @@ import { LiteGraphSdk } from 'litegraphdb';
 
 var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
 
-const readAllCredentials = async () => {
+const getNodeList = async () => {
   try {
-    const data = await api.Credential.readAll();
+    const data = await api.Node.readAll(guid);
     console.log(data, 'chk data');
   } catch (err) {
-    console.log('err:', JSON.stringify(err));
+    console.log('err:', JSON.stringify(err), err);
   }
 };
 
@@ -82,7 +82,7 @@ const readAllCredentials = async () => {
 Enumeration via `GET:/v2.0/tenants/{tenant-guid}/graphs/{graph-guid}/nodes` allows to enumerate response
 
 ```curl
-curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/credentials' \
+curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/nodes' \
 --header 'Authorization: ••••••'
 ```
 ```javascript
@@ -90,16 +90,14 @@ import { LiteGraphSdk } from 'litegraphdb';
 
 var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
 
-const enumerateCredentials = async () => {
+const enumerateNodes = async () => {
   try {
-    const data = await api.Credential.enumerate();
+    const data = await api.Node.enumerate('00000000-0000-0000-0000-000000000000');
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err));
   }
 };
-
-
 ```
 
 ## Enumeration and search (POST)
@@ -107,13 +105,13 @@ const enumerateCredentials = async () => {
 Enumeration via `POST :/v2.0/tenants/{tenant-guid}/graphs/{graph-guid}/nodes` allows to enumerate and search response
 
 ```curl
-curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/credentials' \
+curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/nodes' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: ••••••' \
 --data '{
     "Ordering": "CreatedDescending",
-    "IncludeData": false,
-    "IncludeSubordinates": false,
+    "IncludeData": true,
+    "IncludeSubordinates": true,
     "MaxResults": 5,
     "Skip": 0,
     "ContinuationToken": null,
@@ -127,9 +125,9 @@ import { LiteGraphSdk } from 'litegraphdb';
 
 var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
 
-const enumerateAndSearchCredentials = async () => {
+const enumerateAndSearchNodes = async () => {
   try {
-    const data = await api.Credential.enumerateAndSearch({
+    const data = await api.Node.enumerateAndSearch('00000000-0000-0000-0000-000000000000', {
       Ordering: 'CreatedDescending',
       IncludeData: false,
       IncludeSubordinates: false,
@@ -144,5 +142,6 @@ const enumerateAndSearchCredentials = async () => {
     console.log('err:', JSON.stringify(err));
   }
 };
+
 
 ```
