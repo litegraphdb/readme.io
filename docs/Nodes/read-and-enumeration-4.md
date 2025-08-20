@@ -22,7 +22,7 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 
 const getNodeById = async () => {
   try {
-    const data = await api.Node.read(guid, nodeGuid);
+    const data = await api.Node.read(grapGuid, nodeGuid);
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err));
@@ -45,7 +45,7 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 
 const readManyNodes = async () => {
   try {
-    const data = await api.Node.readMany(guid, [nodeGuid]);
+    const data = await api.Node.readMany(grapGuid, [nodeGuid]);
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err));
@@ -69,7 +69,7 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 
 const getNodeList = async () => {
   try {
-    const data = await api.Node.readAll(guid);
+    const data = await api.Node.readAll(grapGuid);
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err), err);
