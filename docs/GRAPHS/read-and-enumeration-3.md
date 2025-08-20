@@ -29,7 +29,7 @@ const getGraphById = async () => {
 };
 ```
 
-## Read graph stats
+### Read graph stats
 
 To read a single graph call `GET:/v1.0/tenants/{tenant-id}/graphs/{graph-guid}/stats `
 
@@ -51,6 +51,38 @@ const readGraphStatistic = async () => {
   }
 };
 ```
+
+## Read first
+
+Read a first graph: `/v1.0/tenants/{tenant-id}/graphs/fitrst`
+
+```curl
+curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/first' \
+--header 'content-type: application/json' \
+--header 'Authorization: ••••••' \
+--data '{
+  "Ordering": "CreatedDescending",
+  "Labels": [ ],
+  "Tags": { },
+  "Expr": { }
+}'
+```
+```javascript
+import { LiteGraphSdk } from 'litegraphdb';
+
+var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
+
+const readFirstGraph = async () => {
+  try {
+    const data = await api.Graph.readFirst({});
+    console.log(data, 'chk data');
+  } catch (err) {
+    console.log('err:', JSON.stringify(err));
+  }
+};
+```
+
+<br />
 
 ## Read by GUIDs
 
@@ -98,7 +130,7 @@ const getGraphList = async () => {
 };
 ```
 
-## Read all graph stats
+### Read all graph stats
 
 To read all graph stats call `GET:/v1.0/tenants/{tenant-id}/graphs/stats `
 
