@@ -1,5 +1,6 @@
 ---
 title: Read and Enumeration
+excerpt: Read and Enumerate graphs
 deprecated: false
 hidden: false
 metadata:
@@ -53,7 +54,7 @@ const readGraphStatistic = async () => {
 
 ## Read by GUIDs
 
-Read a multiple graph: `/v1.0/tenants/{tenant-id}/graphs?guids=<tenant1-guid>,<tenant2-guid>`
+Read a multiple graph: `/v1.0/tenants/{tenant-id}/graphs?guids=<graph1-guid>,<graph2-guid>`
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs?guids=00000000-0000-0000-0000-000000000000%2C00000000-0000-0000-0000-000000000001' \
