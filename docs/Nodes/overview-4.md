@@ -8,7 +8,7 @@ metadata:
 ---
 ## Structure
 
-Graph objects have the following structure:
+Nodeobjects have the following structure:
 
 ```json
 {
