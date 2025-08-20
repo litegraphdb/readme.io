@@ -11,34 +11,35 @@ metadata:
 To create single node call `PUT: /v1.0/tenants/{tenant-guid}/graphs/{graph-guid}/nodes`
 
 ```curl
-curl --location --request PUT 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/nodes' \
+curl --location --request PUT 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/nodes/bulk' \
 --header 'content-type: application/json' \
 --header 'Authorization: ••••••' \
---data '{
-    "Name": "My test node",
-    "Labels": [
-        "test",
-        "hello"
-    ],
-    "Tags": {
-        "Foo": "Bar",
-        "Bar": "Baz"
-    },
-    "Data": {
-        "Hello": "World",
-        "Foo": {
-            "Data": "hello"
+--data '[
+    {
+        "Name": "Active Directory",
+        "Labels": [
+            "test"
+        ],
+        "Tags": {
+            "Type": "ActiveDirectory"
+        },
+        "Data": {
+            "Name": "Active Directory"
         }
     },
-    "Vectors": [
-        {
-            "Model": "all-MiniLM-L6-v2",
-            "Dimensionality": 384,
-            "Content": "test",
-            "Vectors": [ 0.1, 0.2, 0.3 ]
+    {
+        "Name": "Website",
+        "Labels": [
+            "test"
+        ],
+        "Tags": {
+            "Type": "Website"
+        },
+        "Data": {
+            "Name": "Website"
         }
-    ]
-}'
+    }
+]'
 ```
 ```javascript
 import { LiteGraphSdk } from 'litegraphdb';
