@@ -11,7 +11,7 @@ metadata:
 To create single label call `PUT: /v1.0/tenants/{tenant-guid}/labels`
 
 ```curl
-curl --location --request PUT 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/labels' \
+curl --location --request PUT 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/labels' \
 --header 'content-type: application/json' \
 --header 'Authorization: ••••••' \
 --data '{
@@ -47,7 +47,7 @@ const createLabel = async () => {
 To create multiple edge call `PUT: /v1.0/tenants/{tenant-guid}/labels/bulk`
 
 ```curl
-curl --location --request PUT 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/edges/bulk' \
+curl --location --request PUT 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/labels/bulk' \
 --header 'content-type: application/json' \
 --header 'Authorization: ••••••' \
 --data '[
