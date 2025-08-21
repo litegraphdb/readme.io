@@ -10,7 +10,7 @@ Include bulk creation
 
 ## Create single edge
 
-To create single node call `PUT: /v1.0/tenants/{tenant-guid}/graphs/{graph-guid}/edges`
+To create single edge call `PUT: /v1.0/tenants/{tenant-guid}/graphs/{graph-guid}/edges`
 
 ```curl
 curl --location --request PUT 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/edges' \
@@ -71,7 +71,7 @@ const createEdge = async () => {
 
 ## Create multiple edge
 
-To create multiple node call `PUT: /v1.0/tenants/{tenant-guid}/graphs/{graph-guid}/edges/bulk`
+To create multiple edge call `PUT: /v1.0/tenants/{tenant-guid}/graphs/{graph-guid}/edges/bulk`
 
 ```curl
 curl --location --request PUT 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/edges/bulk' \
