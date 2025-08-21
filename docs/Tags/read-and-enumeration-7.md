@@ -32,7 +32,7 @@ const readTag = async () => {
 
 ## Read by GUIDs
 
-To Read multiple edges call `GET: /v1.0/tenants/{tenant-guid}/tags?guids=<tag1-guid>,<tag2-guid>`
+To Read multiple tags call `GET: /v1.0/tenants/{tenant-guid}/tags?guids=<tag1-guid>,<tag2-guid>`
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/tags?guids=00000000-0000-0000-0000-000000000000,00000000-0000-0000-0000-000000000001' \
@@ -56,7 +56,7 @@ const readManyTags = async () => {
 
 ## Read all
 
-To read all edges call `GET:/v1.0/tenants/{tenant-guid}/tags`
+To read all tags call `GET:/v1.0/tenants/{tenant-guid}/tags`
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/tags' \
