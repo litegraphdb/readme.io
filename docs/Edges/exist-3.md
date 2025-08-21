@@ -1,5 +1,6 @@
 ---
 title: Exist
+excerpt: Check if node exist.
 deprecated: false
 hidden: false
 metadata:
