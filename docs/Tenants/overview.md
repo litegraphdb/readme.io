@@ -1,6 +1,6 @@
 ---
 title: Overview
-excerpt: This section covers api abd sdk methods related to Tenant object.
+excerpt: This section covers API and SDK methods related to the tenant object.
 deprecated: false
 hidden: false
 metadata:
