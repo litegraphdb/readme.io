@@ -6,8 +6,6 @@ hidden: false
 metadata:
   robots: index
 ---
-Include bulk creation
-
 ## Create single edge
 
 To create single edge call `PUT: /v1.0/tenants/{tenant-guid}/graphs/{graph-guid}/edges`
