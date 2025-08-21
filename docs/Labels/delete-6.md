@@ -8,7 +8,7 @@ metadata:
 ---
 ## Delete single label
 
-To delete existing edge call `DELETE: /v1.0/tenants/{tenant-guid}/labels/{label-guid}`
+To delete existing label call `DELETE: /v1.0/tenants/{tenant-guid}/labels/{label-guid}`
 
 ```curl
 curl --location --request DELETE 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/labels/00000000-0000-0000-0000-000000000000' \
@@ -34,7 +34,7 @@ const deleteLabel = async () => {
 
 ## Delete multiple labels
 
-To delete multiple edges call `DELETE: /v1.0/tenants/{tenant-guid}/labels/bulk`
+To delete multiple labels call `DELETE: /v1.0/tenants/{tenant-guid}/labels/bulk`
 
 ```curl
 curl --location --request DELETE 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/labels/bulk' \
@@ -49,10 +49,11 @@ import { LiteGraphSdk } from 'litegraphdb';
 
 var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
 
-const deleteMultipleEdges = async () => {
+const deleteMultipleLabels = async () => {
   try {
-    const data = await api.Edge.deleteBulk('00900db5-c9b7-4631-b250-c9e635a9036e', [
-      '934c11b3-61df-4fc5-972c-6e9d0ee3aa19',
+    const data = await api.Label.deleteBulk([
+      '23513268-7fe7-4867-ab3e-c7a5dc4b2e57',
+      '9f8d49e0-031a-4de0-b643-ce48dc3774fe',
     ]);
     console.log(data, 'chk data');
   } catch (err) {
