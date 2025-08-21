@@ -8,7 +8,7 @@ metadata:
 ---
 ## Structure
 
-Label objects have the following structure:
+tag objects have the following structure:
 
 ```json
 {
