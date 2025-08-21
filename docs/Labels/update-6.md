@@ -6,7 +6,7 @@ hidden: false
 metadata:
   robots: index
 ---
-To update existing edge call `PUT: /v1.0/tenants/{tenant-guid}/labels/{label-guid}`
+To update existing label call `PUT: /v1.0/tenants/{tenant-guid}/labels/{label-guid}`
 
 ```curl
 curl --location --request PUT 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/labels/00000000-0000-0000-0000-000000000000' \
