@@ -34,7 +34,7 @@ const deleteTag = async () => {
 
 ## Delete multiple labels
 
-To delete multiple edges call `DELETE: /v1.0/tenants/{tenant-guid}/tags/bulk`
+To delete multiple tags call `DELETE: /v1.0/tenants/{tenant-guid}/tags/bulk`
 
 ```curl
 curl --location --request DELETE 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/tags/bulk' \
