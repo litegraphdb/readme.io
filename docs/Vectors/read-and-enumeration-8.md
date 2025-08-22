@@ -8,7 +8,7 @@ metadata:
 ---
 ## Read
 
-Read a single tag: `GET: /v1.0/tenants/{tenant-guid}/vectors/{vector-guid}`
+Read a single vector: `GET: /v1.0/tenants/{tenant-guid}/vectors/{vector-guid}`
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/vectors/00000000-0000-0000-0000-000000000000' \
