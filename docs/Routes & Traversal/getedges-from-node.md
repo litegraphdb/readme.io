@@ -19,7 +19,7 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 
 const getEdgesFromNode = async () => {
   try {
-    const data = await api.Route.getEdgesFromNode(guid, nodeGuid);
+    const data = await api.Route.getEdgesFromNode(graphGuid, nodeGuid);
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err), err);
