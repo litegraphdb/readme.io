@@ -17,9 +17,9 @@ import { LiteGraphSdk } from 'litegraphdb';
 
 var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
 
-const getAllNodeEdges = async () => {
+const getNodeNeighbors = async () => {
   try {
-    const data = await api.Route.getAllNodeEdges(graphGuid, nodeGuid);
+    const data = await api.Route.getNodeNeighbors(graphGuid, nodeGuid);
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err), err);
