@@ -44,7 +44,7 @@ const createLabel = async () => {
 
 ## Create multiple label
 
-To create multiple edge call `PUT: /v1.0/tenants/{tenant-guid}/labels/bulk`
+To create multiple label call `PUT: /v1.0/tenants/{tenant-guid}/labels/bulk`
 
 ```curl
 curl --location --request PUT 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/labels/bulk' \
