@@ -104,7 +104,7 @@ const deleteBackup = async () => {
 };
 ```
 
-### exist a Backup
+### Exist
 
 ```bash
 curl -H "Authorization: Bearer litegraphadmin" \
