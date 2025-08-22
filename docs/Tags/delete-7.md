@@ -32,7 +32,7 @@ const deleteTag = async () => {
 
 ```
 
-## Delete multiple labels
+## Delete multiple tags
 
 To delete multiple tags call `DELETE: /v1.0/tenants/{tenant-guid}/tags/bulk`
 
