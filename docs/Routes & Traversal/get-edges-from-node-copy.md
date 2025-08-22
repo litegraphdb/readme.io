@@ -1,12 +1,12 @@
 ---
 title: Get edges to node
-excerpt: Get all edges raching towards a node.
+excerpt: Get all edges reaching towards a node.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-To find all route between nodes call `PUT: /v1.0/tenants/{tenant-guid}/graphs/{graph-guid}/nodes/{node-guid}/edges/to`
+To find all edges reaching towards a node. call `PUT: /v1.0/tenants/{tenant-guid}/graphs/{graph-guid}/nodes/{node-guid}/edges/to`
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/nodes/64058009-3ff7-40e0-b6d8-02252137fb55/edges/to' \
