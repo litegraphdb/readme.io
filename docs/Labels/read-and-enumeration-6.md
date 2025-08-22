@@ -8,7 +8,7 @@ metadata:
 ---
 ## Read
 
-Read a single edge: `GET: /v1.0/tenants/{tenant-guid}/labels/{label-guid}`
+Read a single label: `GET: /v1.0/tenants/{tenant-guid}/labels/{label-guid}`
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/labels/00000000-0000-0000-0000-000000000000' \
@@ -106,7 +106,7 @@ const enumerateLabels = async () => {
 Enumeration via `POST :/v2.0/tenants/{tenant-guid}/labels` allows to enumerate and search response
 
 ```curl
-curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/edges' \
+curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/labels' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: ••••••' \
 --data '{
