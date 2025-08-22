@@ -15,13 +15,43 @@ curl -X POST -H "Authorization: Bearer litegraphadmin" \
      http://localhost:8701/v1.0/backups
 ```
 ```javascript
+import { LiteGraphSdk } from 'litegraphdb';
+
+var api = new LiteGraphSdk('http://localhost:8701/','<Tenant-Guid>', '*******');
+
+const createBackup = async () => {
+  try {
+    const data = await api.Backup.create({
+      Filename: 'test2.db',
+    });
+    console.log(data, 'chk data');
+  } catch (err) {
+    console.log('err:', JSON.stringify(err));
+  }
+};
 ```
 
 ### List Backups
 
 ```bash
 curl -H "Authorization: Bearer litegraphadmin" \
+ 		 -H "Content-Type: application/json" \
+     -d '{"Filename": "backup-2025.db"}' \
      http://localhost:8701/v1.0/backups
+```
+```
+import { LiteGraphSdk } from 'litegraphdb';
+
+var api = new LiteGraphSdk('http://localhost:8701/','<Tenant-Guid>', '*******');
+
+const readAllBackups = async () => {
+  try {
+    const data = await api.Backup.readAll();
+    console.log(data, 'chk data');
+  } catch (err) {
+    console.log('err:', JSON.stringify(err));
+  }
+};
 ```
 
 ### Restore from Backup
