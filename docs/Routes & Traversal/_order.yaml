@@ -2,4 +2,4 @@
 - getedges-from-node
 - get-edges-to-node
 - get-edges-between-nodes
-- get-edges-between-nodes-copy
+- get-node-edges
