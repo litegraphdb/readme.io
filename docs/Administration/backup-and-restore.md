@@ -14,6 +14,8 @@ curl -X POST -H "Authorization: Bearer litegraphadmin" \
      -d '{"Filename": "backup-2025.db"}' \
      http://localhost:8701/v1.0/backups
 ```
+```javascript
+```
 
 ### List Backups
 
