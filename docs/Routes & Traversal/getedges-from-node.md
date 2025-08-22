@@ -1,12 +1,12 @@
 ---
 title: Get edges from node
-excerpt: Get all edges oroginating from node.
+excerpt: Get all edges originatingfrom node.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-To find all route between nodes call `PUT: /v1.0/tenants/{tenant-guid}/graphs/{graph-guid}/nodes/{node-guid}/edges/from`
+To find all edges originating from node. call `PUT: /v1.0/tenants/{tenant-guid}/graphs/{graph-guid}/nodes/{node-guid}/edges/from`
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/nodes/1f56dc61-55d3-48e3-b4a9-d54b864f1763/edges/from' \
