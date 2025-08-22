@@ -21,30 +21,12 @@ import { LiteGraphSdk } from 'litegraphdb';
 
 var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
 
-const updateNode = async () => {
-  // Node object to update
-  const node: Node = {
-    TenantGUID: '00000000-0000-0000-0000-000000000000',
-    GUID: 'ab31cc6e-000f-4e31-8068-372d1b038d3d',
-    GraphGUID: '00900db5-c9b7-4631-b250-c9e635a9036e',
-    Name: 'Sample Node',
-    Data: {
-      key1: 'value2',
-    },
-    CreatedUtc: '2024-10-19T14:35:20.351Z',
-    Labels: ['test'],
-    Tags: {
-      Type: 'ActiveDirectory',
-    },
-    Vectors: [],
-    LastUpdateUtc: '2024-10-19T14:35:20.351Z',
-  };
-
+const deleteNodeById = async () => {
   try {
-    const updatedNode = await api.Node.update(node);
-    console.log(updatedNode, 'Node updated successfully');
+    const data = await api.Node.delete(guid, nodeGuid);
+    console.log(data, 'chk data');
   } catch (err) {
-    console.log('Error creating node:', JSON.stringify(err));
+    console.log('err:', JSON.stringify(err));
   }
 };
 
