@@ -1,5 +1,5 @@
 ---
-title: Get node edges (COPY)
+title: Get node edges
 excerpt: Get all edges of a node
 deprecated: false
 hidden: false
