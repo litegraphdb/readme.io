@@ -1,5 +1,5 @@
 ---
-title: Get edges to node (COPY)
+title: Get edges to node
 excerpt: Get all edges raching towards a node.
 deprecated: false
 hidden: false
@@ -20,7 +20,7 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 
 const getEdgesToNode = async () => {
   try {
-    const data = await api.Route.getEdgesToNode(graph, nodeGuid);
+    const data = await api.Route.getEdgesToNode(graphGuid, nodeGuid);
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err), err);
