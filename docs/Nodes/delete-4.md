@@ -73,3 +73,17 @@ curl --location --request DELETE 'http://localhost:8701/v1.0/tenants/00000000-00
 --header 'Authorization: ••••••' \
 --data ''
 ```
+```javascript
+import { LiteGraphSdk } from 'litegraphdb';
+
+var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
+
+const deleteAllNodes = async () => {
+  try {
+    const data = await api.Node.deleteAll(<graph-guid>);
+    console.log(data, 'chk data');
+  } catch (err) {
+    console.log('err:', JSON.stringify(err), err);
+  }
+};
+```
