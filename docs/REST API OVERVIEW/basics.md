@@ -60,3 +60,7 @@ LiteGraph uses standard HTTP status codes, including:
 * `500`: Internal Server Error
 * `501`: Not Implemented
 * `503`: Service Unavailable
+
+## Healthcheck
+
+LiteGraph will always return a `200` to a request made using `HEAD /`.  Using `GET /` will also return a `200`, along with a simple HTML page.  These endpoints are commonly used as healthcheck endpoints to validate connectivity to LiteGraph.
