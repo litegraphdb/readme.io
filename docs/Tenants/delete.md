@@ -39,7 +39,7 @@ const deleteTenant = async () => {
 To delete forcefully. pass `?force` in the URL query parameters.
 
 ```curl
-curl --location --request DELETE 'http://view.homedns.org:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000?force=null' \
+curl --location --request DELETE 'http://view.homedns.org:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000?force' \
 --header 'content-type: application/json' \
 --header 'Authorization: Bearer ********' \
 --data ''
