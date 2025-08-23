@@ -11,7 +11,7 @@ hidden: false
 
 LiteGraph is a property graph database with support for graph relationships, tags, labels, metadata, data, and vectors. LiteGraph is intended to be a unified database for providing persistence and retrieval for knowledge and artificial intelligence applications.
 
-LiteGraph provides a lightweight yet powerful solution that combines the best of multiple database paradigms - graph databases for relationship modeling, vector databases for AI/ML embeddings, and document stores for flexible metadata storage.
+LiteGraph provides a lightweight yet powerful solution that combines the best of multiple database paradigms - graph databases for relationship modeling, vector databases for AI/ML embeddings, and document stores for flexible metadata storage. 
 
 # Key Features
 
@@ -126,12 +126,12 @@ foreach (RouteDetail route in graph.GetRoutes(
 
 ## Getting Started with Docker
 
-Using Docker Hub Image\
+Using Docker Hub Image
 A Docker image is available in Docker Hub under jchristn/litegraph.
 
 ### Quick Start with Docker Compose
 
-Navigate to the Docker directory in the repository\
+Navigate to the Docker directory in the repository
 Use the Docker Compose start (`compose-up.sh` and `compose-up.bat`) and stop (`compose-down.sh` and `compose-down.bat`) scripts
 
 ### Manual Docker Setup
