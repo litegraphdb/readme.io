@@ -1,12 +1,15 @@
 ---
 title: Exist
-excerpt: To check if given tannat exist by id.
+excerpt: >-
+  Check existence of a tenant object.  Each tenant is a separate, isolated
+  domain of data within LiteGraph.  Tenant APIs require use of the LiteGraph
+  administrative bearer token.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-To check if a tenant exist call `HEAD: /v1.0/tenants/{tenant-guid}`
+To check if a tenant exists, call `HEAD: /v1.0/tenants/{tenant-guid}`
 
 ```curl
 curl --location --head 'http://view.homedns.org:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000' \
