@@ -1,6 +1,9 @@
 ---
 title: Delete
-excerpt: To delete a tenant.
+excerpt: >-
+  Delete a tenant object.  Each tenant is a separate, isolated domain of data
+  within LiteGraph.  Tenant APIs require use of the LiteGraph administrative
+  bearer token.
 deprecated: false
 hidden: false
 metadata:
@@ -33,7 +36,7 @@ const deleteTenant = async () => {
 
 ### Delete Forcefully
 
-To delete forcefully. pass `force=null` in query parameters.
+To delete forcefully. pass `?force` in the URL query parameters.
 
 ```curl
 curl --location --request DELETE 'http://view.homedns.org:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000?force=null' \
