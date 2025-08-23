@@ -33,7 +33,7 @@ const readTenant = async () => {
 };
 ```
 
-## Read tenant stats
+## Read tenant statistics
 
 To read a single tenant call `GET:/v1.0/tenants/{tenant-id}/stats `
 
@@ -79,11 +79,9 @@ const readManyTenants = async () => {
 };
 ```
 
-<br />
-
 ## Read all
 
-To read all tenants call `GET:/v1.0/tenants/ `
+To read all tenants, call `GET:/v1.0/tenants/ `
 
 ```curl
 curl --location 'http://view.homedns.org:8701/v1.0/tenants' \
@@ -105,9 +103,9 @@ const readTenants = async () => {
 
 ```
 
-## Read all tenant stats
+## Read all tenant statistics
 
-To read all tenants call `GET:/v1.0/tenants/stats `
+To read all tenants, call `GET:/v1.0/tenants/stats `
 
 ```curl
 curl --location 'http://view.homedns.org:8701/v1.0/tenants/stats' \
@@ -128,9 +126,9 @@ const readAllTenantStatistics = async () => {
 };
 ```
 
-## Enumeration (GET)
+## Enumeration
 
-Enumeration via `GET:/v2.0/tenants` allows to enumerate response
+Enumeration can be performed using `GET:/v2.0/tenants`, which allows for a paginated listing of tenant objects.
 
 ```curl
 curl --location 'http://view.homedns.org:8701/v2.0/tenants' \
@@ -181,7 +179,7 @@ const enumerateTenants = async () => {
 
 ## Enumeration and search (POST)
 
-Enumeration via `POST :/v2.0/tenants` allows to enumerate and search response
+Enumeration via `POST :/v2.0/tenants` allows you to enumerate and search tenant objects.
 
 ```curl
 curl --location 'http://view.homedns.org:8701/v2.0/tenants' \
