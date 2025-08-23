@@ -9,7 +9,7 @@ hidden: false
 metadata:
   robots: index
 ---
-to update tenant call `PUT: /v1.0/tenants/{tenant-guid}`
+To update a tenant, call `PUT: /v1.0/tenants/{tenant-guid}`
 
 ```curl
 curl --location --request PUT 'http://view.homedns.org:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000' \
