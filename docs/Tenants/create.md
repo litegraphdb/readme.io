@@ -1,12 +1,14 @@
 ---
 title: Create
-excerpt: Creating tenats.
+excerpt: >-
+  Creating tenant objects.  Each tenant is a separate, isolated domain of data
+  within LiteGraph.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-To create tenants call: `PUT /v1.0/tenants`
+To create tenants call: `PUT /v1.0/tenants` using the LiteGraph admin API key.
 
 ```curl
 curl --location --request PUT 'http://view.homedns.org:8701/v1.0/tenants' \
