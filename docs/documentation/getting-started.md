@@ -9,9 +9,9 @@ hidden: false
 ---
 # What is LiteGraph?
 
-LiteGraph is a property graph database with support for graph relationships, tags, labels, metadata, data, and vectors. LiteGraph is intended to be a unified database for providing persistence and retrieval for knowledge and artificial intelligence applications.
+LiteGraph is a property graph database with support for graph relationships, tags, labels, metadata, data, and vectors. LiteGraph is intended to be a unified database for providing persistence and retrieval for knowledge and artificial intelligence applications. 
 
-LiteGraph provides a lightweight yet powerful solution that combines the best of multiple database paradigms - graph databases for relationship modeling, vector databases for AI/ML embeddings, and document stores for flexible metadata storage. 
+LiteGraph provides a lightweight yet powerful solution that combines the best of multiple database paradigms - graph databases for relationship modeling, vector databases for AI/ML embeddings, and document stores for flexible metadata storage.
 
 # Key Features
 
