@@ -1,11 +1,13 @@
 ---
 title: Overview
-excerpt: This section covers API and SDK methods related to the tenant object.
+excerpt: This section covers API and SDK methods related to the tenants.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
+LiteGraph is an inherently multi-tenant platform, that is, isolation is provided between tenants such that each tenant can enjoy a virtual, isolated experience without concern over data, users, or other assets crossing tenant boundaries.  The `Tenant` object is the top-level object representing an isolated instance within LiteGraph.
+
 ## Structure
 
 Tenant objects have the following structure:
