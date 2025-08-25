@@ -22,7 +22,7 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 
 const readVector = async () => {
   try {
-    const data = await api.Vector.read('8efc5ca4-52a4-4344-a856-db2fb198c617');
+    const data = await api.Vector.read('<vector-guid>');
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err));
