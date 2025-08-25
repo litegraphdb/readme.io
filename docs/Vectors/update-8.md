@@ -34,10 +34,10 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 const updateVector = async () => {
   try {
     const data = await api.Vector.update({
-      GUID: '70cd93dd-0f38-435d-b57d-f5d1bc1b4481',
-      GraphGUID: '00900db5-c9b7-4631-b250-c9e635a9036e',
-      NodeGUID: 'dce18cf8-6443-4d14-b4a3-c72dcc28d6d8',
-      EdgeGUID: '53b94bd9-98ea-47e6-9e5a-4fe346298717',
+      GUID: '<vector-guid>',
+      GraphGUID: '<graph-guid>',
+      NodeGUID: '<node-guid>',
+      EdgeGUID: '<edge-guid>',
       Model: 'all-MiniLM-L6-v2',
       Dimensionality: 388,
       Content: 'test',
