@@ -47,10 +47,10 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 const createEdge = async () => {
   // Edge object to create
   const edge = {
-    GraphGUID: '00900db5-c9b7-4631-b250-c9e635a9036e',
+    GraphGUID: '<graph-guid>',
     Name: 'My test edge',
-    From: '2b1520be-d285-4f22-8c74-f296047162b9',
-    To: '784cfa37-fb06-4f81-b10d-f1167dfe2b22',
+    From: '<from-node-guid>',
+    To: '<to-node-guid>',
     Cost: 10,
     Data: {
       Hello: 'World',
@@ -101,11 +101,11 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 
 const createMultipleEdges = async () => {
   try {
-    const data = await api.Edge.createBulk('00900db5-c9b7-4631-b250-c9e635a9036e', [
+    const data = await api.Edge.createBulk('<graph-guid>', [
       {
         Name: 'DigitalOcean to Control Plane',
-        From: 'dce18cf8-6443-4d14-b4a3-c72dcc28d6d8',
-        To: '38eff321-7eaa-457e-b5e0-5f7fa7041e63',
+        From: '<from-node-guid>',
+        To: '<to-node-guid>',
         Cost: 100,
         Labels: ['test'],
         Tags: {
@@ -115,7 +115,7 @@ const createMultipleEdges = async () => {
         Data: {
           hello: 'world',
         },
-        GraphGUID: '00900db5-c9b7-4631-b250-c9e635a9036e',
+        GraphGUID: '<graph-guid>',
       },
     ]);
     console.log(createdNode, 'Node created successfully');;
