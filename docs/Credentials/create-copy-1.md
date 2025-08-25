@@ -27,7 +27,7 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 const createCredential = async () => {
   try {
     const data = await api.Credential.create({
-      UserGUID: 'a2b230c7-c57f-4194-b042-1333102226b1',
+      UserGUID: '<user-guid>',
       Name: 'New credential',
       BearerToken: 'foobar',
       Active: true,
