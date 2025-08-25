@@ -30,9 +30,9 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 const createTag = async () => {
   try {
     const data = await api.Tag.create({
-      GraphGUID: '00900db5-c9b7-4631-b250-c9e635a9036e',
-      NodeGUID: 'b8837eb9-b180-479f-b09e-d3ad8adab9ee',
-      EdgeGUID: 'e9702f09-cd73-413b-8e00-5f871472a02d',
+      GraphGUID: '<graph-guid>',
+      NodeGUID: '<node-guid>',
+      EdgeGUID: '<edge-guid>',
       Key: 'mykey',
       Value: 'myvalue',
     });
@@ -71,16 +71,16 @@ const createMultipleTags = async () => {
   try {
     const data = await api.Tag.createBulk([
       {
-        GraphGUID: '00900db5-c9b7-4631-b250-c9e635a9036e',
-        NodeGUID: 'dce18cf8-6443-4d14-b4a3-c72dcc28d6d8',
-        EdgeGUID: '53b94bd9-98ea-47e6-9e5a-4fe346298717',
+        GraphGUID: '<graph-guid>',
+        NodeGUID: '<node-guid>',
+        EdgeGUID: '<edge-guid>',
         Key: 'mykey test',
         Value: 'myvalue test',
       },
       {
-        GraphGUID: '00900db5-c9b7-4631-b250-c9e635a9036e',
-        NodeGUID: 'dce18cf8-6443-4d14-b4a3-c72dcc28d6d8',
-        EdgeGUID: '53b94bd9-98ea-47e6-9e5a-4fe346298717',
+        GraphGUID: '<graph-guid>',
+        NodeGUID: '<node-guid>',
+        EdgeGUID: '<edge-guid>',
         Key: 'mykey test 2',
         Value: 'myvalue test 2',
       },
