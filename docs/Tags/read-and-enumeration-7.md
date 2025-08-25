@@ -22,7 +22,7 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 
 const readTag = async () => {
   try {
-    const data = await api.Tag.read('c1328564-c700-4e43-b17a-056cf36fd62b');
+    const data = await api.Tag.read('<tag-guid>');
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err));
