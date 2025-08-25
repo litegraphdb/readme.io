@@ -52,7 +52,7 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 
 const readFirstEdge = async () => {
   try {
-    const data = await api.Edge.readFirst('8e72e2b7-86fe-4f94-8483-547c23c8a833', {});
+    const data = await api.Edge.readFirst(guid, {});
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err), err);
@@ -158,7 +158,7 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 
 const enumerateAndSearchEdges = async () => {
   try {
-    const data = await api.Edge.enumerateAndSearch('00000000-0000-0000-0000-000000000000', {
+    const data = await api.Edge.enumerateAndSearch(guid, {
       Ordering: 'CreatedDescending',
       IncludeData: false,
       IncludeSubordinates: false,
