@@ -23,7 +23,7 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 
 const deleteTag = async () => {
   try {
-    const data = await api.Tag.delete('51e84292-8be4-468e-b9af-5e44c10dc551');
+    const data = await api.Tag.delete('<tag-guid>');
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err));
@@ -51,10 +51,7 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 
 const deleteMultipleTags = async () => {
   try {
-    const data = await api.Tag.deleteBulk([
-      '5ab74644-888b-4215-90ba-23a01b1fdbe3',
-      'd842fa4b-163f-4edd-85b1-df38facb9bed',
-    ]);
+    const data = await api.Tag.deleteBulk([tag-guid]);
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err));
