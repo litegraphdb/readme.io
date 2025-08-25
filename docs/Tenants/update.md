@@ -28,7 +28,7 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 const updateTenant = async () => {
   try {
     const data = await api.Tenant.update({
-      GUID: '029b9092-3a4c-4f5e-8527-b1b947494e32',
+      GUID: '<tenant-guid>',
       Name: 'Updated tenant',
       Active: true,
       CreatedUtc: '2024-12-27T18:12:38.653402Z',
