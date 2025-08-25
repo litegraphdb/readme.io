@@ -21,7 +21,7 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 
 const deleteCredential = async () => {
   try {
-    const data = await api.Credential.delete('fba86eda-21ea-4095-852c-5f5c542f0ffc');
+    const data = await api.Credential.delete('<credential-guid>');
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err));
