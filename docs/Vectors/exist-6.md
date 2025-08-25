@@ -19,7 +19,7 @@ var api = new LiteGraphSdk('http://localhost:8701/','<Tenant-Guid>', '*******');
 
 const existsVector = async () => {
   try {
-    const data = await api.Vector.exists('70cd93dd-0f38-435d-b57d-f5d1bc1b4481');
+    const data = await api.Vector.exists('<vector-guid>');
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err));
