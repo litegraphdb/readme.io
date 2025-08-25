@@ -48,8 +48,8 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 const createNode = async () => {
   // Node object to create
   const node = {
-    GUID: '00900db5-c9b7-4631-b250-c9e635a9036e',
-    GraphGUID: '00900db5-c9b7-4631-b250-c9e635a9036e',
+    GUID: '<tenant-guid>',
+    GraphGUID: '<graph-guid>',
     Name: 'Sample Node',
     Data: {
       key1: 'value2',
@@ -119,7 +119,7 @@ const crateMultipleNodes = async () => {
       Data: {
         Name: 'Active Directory',
       },
-      GraphGUID: '8e72e2b7-86fe-4f94-8483-547c23c8a833',
+      GraphGUID: '<graph-guid>',
     },
     {
       Name: 'Website',
@@ -130,7 +130,7 @@ const crateMultipleNodes = async () => {
       Data: {
         Name: 'Website',
       },
-      GraphGUID: '8e72e2b7-86fe-4f94-8483-547c23c8a833',
+      GraphGUID: '<graph-guid>',
     },
   ];
 
