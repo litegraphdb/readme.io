@@ -1,6 +1,7 @@
 - documentation
 - Deployment
 - REST API OVERVIEW
+- Authentication
 - Tenants
 - Users
 - Credentials
@@ -12,4 +13,3 @@
 - Tags
 - Vectors
 - Administration
-- Authentication
