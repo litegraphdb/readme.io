@@ -38,7 +38,7 @@ curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-0000
   "Ordering": "CreatedDescending",
 const searchEdges = async () => {
   const searchRequest = {
-    GraphGUID: '01010101-0101-0101-0101-010101010101',
+    GraphGUID: '<graph-guid>',
     Ordering: 'CreatedDescending',
     Expr: {
       Left: 'Hello',
@@ -83,7 +83,7 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 const edgeVectorSearch = async () => {
   try {
     const data = await api.Vector.search({
-    GraphGUID: "00000000-0000-0000-0000-000000000000",
+    GraphGUID: "<graph-guid>",
     Domain: "Edge",
     SearchType: "CosineSimliarity",
     Labels: [],
