@@ -51,9 +51,7 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 
 const deleteMultipleEdges = async () => {
   try {
-    const data = await api.Edge.deleteBulk('00900db5-c9b7-4631-b250-c9e635a9036e', [
-      '934c11b3-61df-4fc5-972c-6e9d0ee3aa19',
-    ]);
+    const data = await api.Edge.deleteBulk(guid, [edge-guid]);
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err));
