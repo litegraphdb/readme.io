@@ -21,7 +21,7 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 
 const readUser = async () => {
   try {
-    const data = await api.User.read('199eb859-5857-4313-b487-5b0a5fb2abf8');
+    const data = await api.User.read('<user-guid>');
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err));
