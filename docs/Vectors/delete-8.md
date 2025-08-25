@@ -23,7 +23,7 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 
 const deleteVector = async () => {
   try {
-    const data = await api.Vector.delete('70cd93dd-0f38-435d-b57d-f5d1bc1b4481');
+    const data = await api.Vector.delete('<vector-guid>');
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err));
@@ -51,10 +51,7 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 
 const deleteMultipleVectors = async () => {
   try {
-    const data = await api.Vector.deleteBulk([
-      '64ee007a-14f5-43b0-99a0-9a22fb4a24b9',
-      '9823faa0-a8ae-4479-a87d-56cf18d27696',
-    ]);
+    const data = await api.Vector.deleteBulk([vector-guid]);
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err));
