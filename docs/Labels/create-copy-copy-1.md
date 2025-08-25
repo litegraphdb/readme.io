@@ -29,8 +29,8 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 const createLabel = async () => {
   try {
     const data = await api.Label.create({
-      GraphGUID: '5de4ba59-cd38-4ed5-a4cc-09b2532e65b2',
-      NodeGUID: 'dce18cf8-6443-4d14-b4a3-c72dcc28d6d8',
+      GraphGUID: '<graph-guid>',
+      NodeGUID: '<node-guid>',
       Label: 'test',
       EdgeGUID: null,
     });
@@ -68,15 +68,15 @@ const createMultipleLabels = async () => {
   try {
     const data = await api.Label.createBulk([
       {
-        GraphGUID: '8e72e2b7-86fe-4f94-8483-547c23c8a833',
-        NodeGUID: 'dce18cf8-6443-4d14-b4a3-c72dcc28d6d8',
-        EdgeGUID: '53b94bd9-98ea-47e6-9e5a-4fe346298717',
+        GraphGUID: '<graph-guid>',
+        NodeGUID: '<node-guid>',
+        EdgeGUID: '<edge-guid>',
         Label: 'label multiple',
       },
       {
-        GraphGUID: '8e72e2b7-86fe-4f94-8483-547c23c8a833',
-        NodeGUID: 'dce18cf8-6443-4d14-b4a3-c72dcc28d6d8',
-        EdgeGUID: '53b94bd9-98ea-47e6-9e5a-4fe346298717',
+        GraphGUID: '<graph-guid>',
+        NodeGUID: '<node-guid>',
+        EdgeGUID: '<edge-guid>',
         Label: 'label multiple 2',
       },
     ]);
