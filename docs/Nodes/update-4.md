@@ -34,9 +34,9 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 const updateNode = async () => {
   // Node object to update
   const node: Node = {
-    TenantGUID: '00000000-0000-0000-0000-000000000000',
-    GUID: 'ab31cc6e-000f-4e31-8068-372d1b038d3d',
-    GraphGUID: '00900db5-c9b7-4631-b250-c9e635a9036e',
+    TenantGUID: '<tenant-guid>',
+    GUID: '<node-guid>',
+    GraphGUID: '<graph-guid>',
     Name: 'Sample Node',
     Data: {
       key1: 'value2',
