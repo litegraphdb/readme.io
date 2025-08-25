@@ -26,7 +26,7 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 
 const deleteTenant = async () => {
   try {
-    const data = await api.Tenant.delete('029b9092-3a4c-4f5e-8527-b1b947494e32');
+    const data = await api.Tenant.delete('<tenant-guid>');
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err));
@@ -47,7 +47,7 @@ curl --location --request DELETE 'http://view.homedns.org:8701/v1.0/tenants/0000
 ```javascript
 const deleteTenant = async () => {
   try {
-    const data = await api.Tenant.delete('029b9092-3a4c-4f5e-8527-b1b947494e32', true);
+    const data = await api.Tenant.delete('<tenant-guid>', true);
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err));
