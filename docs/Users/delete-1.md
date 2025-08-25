@@ -21,7 +21,7 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 
 const deleteUser = async () => {
   try {
-    const data = await api.User.delete('8ac86e7e-5612-4193-95d6-2f217dbaeedf');
+    const data = await api.User.delete('<user-guid>');
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err));
