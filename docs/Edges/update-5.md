@@ -39,12 +39,12 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 
 const updateEdge = async () => {
   const edge: Edge = {
-    TenantGUID: '00000000-0000-0000-0000-000000000000',
-    GUID: '01010101-0101-0101-0101-010101010101',
-    GraphGUID: '01010101-0101-0101-0101-010101010101',
+    TenantGUID: '<tenant-guid>',
+    GUID: guid,
+    GraphGUID: '<graph-guid>',
     Name: 'My test edge',
-    From: '2b1520be-d285-4f22-8c74-f296047162b9',
-    To: '784cfa37-fb06-4f81-b10d-f1167dfe2b22',
+    From: '<from-node-guid>',
+    To: '<to-node-guid>',
     Cost: 10,
     Data: {
       Hello: 'World',
