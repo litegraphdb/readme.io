@@ -14,6 +14,10 @@ curl --location --request GET 'http://localhost:8701/v1.0/token/tenants' \
 --header 'Authorization: Bearer litegraphadmin'
 ```
 ```javascript
+import { LiteGraphSdk } from 'litegraphdb';
+
+var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
+
 const getTenantsForEmail = async () => {
   try {
     const data = await api.Authentication.getTenantsForEmail('user@example.com');
