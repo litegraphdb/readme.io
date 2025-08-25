@@ -6,7 +6,7 @@ hidden: false
 metadata:
   robots: index
 ---
-To generate authentication token (using password), call GET /v1.0/token
+To generate authentication token (using password), call `GET /v1.0/token`
 
 ```curl
 curl --location --request GET 'http://localhost:8701/v1.0/token' \
