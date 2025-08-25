@@ -33,7 +33,7 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 const vectorSearch = async () => {
   try {
     const data = await api.Vector.search({
-    GraphGUID: "00000000-0000-0000-0000-000000000000",
+    GraphGUID: "<graph-guid>",
     Domain: "Edge",
     SearchType: "CosineSimliarity",
     Labels: [],
