@@ -19,7 +19,7 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 
 const exportGraphToGexf = async () => {
   try {
-    const data = await api.Graph.exportGexf('00900db5-c9b7-4631-b250-c9e635a9036e');
+    const data = await api.Graph.exportGexf('<graph-guid>');
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err));
