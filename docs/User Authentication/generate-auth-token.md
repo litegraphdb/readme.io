@@ -24,8 +24,8 @@ const generateToken = async () => {
   try {
     const data = await api.Authentication.generateToken(
       'user@example.com',
-      'password123',
-      '00000000-0000-0000-0000-000000000000'
+      'pass****',
+      '<tenanat-guid>'
     );
     console.log(data, 'Token generated successfully');
   } catch (err) {
