@@ -36,9 +36,9 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 const createVector = async () => {
   try {
     const data = await api.Vector.create({
-      GraphGUID: '00900db5-c9b7-4631-b250-c9e635a9036e',
-      NodeGUID: 'dce18cf8-6443-4d14-b4a3-c72dcc28d6d8',
-      EdgeGUID: '53b94bd9-98ea-47e6-9e5a-4fe346298717',
+      GraphGUID: '<graph-guid>',
+      NodeGUID: '<node-guid>',
+      EdgeGUID: '<edge-guid>',
       Model: 'all-MiniLM-L6-v2',
       Dimensionality: 384,
       Content: 'test',
@@ -85,21 +85,21 @@ const createMultipleVectors = async () => {
   try {
     const data = await api.Vector.createBulk([
       {
-        GraphGUID: '00900db5-c9b7-4631-b250-c9e635a9036e',
-        NodeGUID: 'dce18cf8-6443-4d14-b4a3-c72dcc28d6d8',
-        EdgeGUID: '53b94bd9-98ea-47e6-9e5a-4fe346298717',
+        GraphGUID: '<graph-guid>',
+        NodeGUID: '<node-guid>',
+        EdgeGUID: '<edge-guid>',
         Model: 'all-MiniLM-L6-v2',
         Dimensionality: 384,
-        Content: 'test Ash',
+        Content: 'test 1',
         Vectors: [0.1, 0.2, 0.3],
       },
       {
-        GraphGUID: '00900db5-c9b7-4631-b250-c9e635a9036e',
-        NodeGUID: 'dce18cf8-6443-4d14-b4a3-c72dcc28d6d8',
-        EdgeGUID: '53b94bd9-98ea-47e6-9e5a-4fe346298717',
+        GraphGUID: '<graph-guid>',
+        NodeGUID: '<node-guid>',
+        EdgeGUID: '<edge-guid>',
         Model: 'all-MiniLM-L6-v2',
         Dimensionality: 390,
-        Content: 'test Ashish',
+        Content: 'test 2',
         Vectors: [0.5, 0.7, 0.9],
       },
     ]);
