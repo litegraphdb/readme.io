@@ -19,7 +19,7 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 
 const tenantExists = async () => {
   try {
-    const data = await api.Tenant.exists('029b9092-3a4c-4f5e-8527-b1b947494e32');
+    const data = await api.Tenant.exists('<user-guid>');
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err));
