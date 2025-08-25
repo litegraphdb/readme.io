@@ -51,10 +51,7 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 
 const deleteMultipleNodes = async () => {
   try {
-    const data = await api.Node.deleteBulk(grapGuid, [
-      '2221ee97-41ea-45f2-a3f4-48f63e490c16',
-      'e8fad9e1-ccfb-41a3-a871-df07f382ad98',
-    ]);
+    const data = await api.Node.deleteBulk(grapGuid, [node-guid]);
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err), err);
