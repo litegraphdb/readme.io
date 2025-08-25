@@ -31,7 +31,7 @@ const createUser = async () => {
       FirstName: 'Another',
       LastName: 'User',
       Email: 'another@user.com',
-      Password: 'password',
+      Password: 'pass****',
       Active: true,
     });
     console.log(data, 'chk data');
