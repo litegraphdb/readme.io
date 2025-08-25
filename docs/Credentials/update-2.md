@@ -27,13 +27,13 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 const updateCredential = async () => {
   try {
     const data = await api.Credential.update({
-      UserGUID: 'a2b230c7-c57f-4194-b042-1333102226b1',
+      UserGUID: '<user-guid>',
       Name: 'Updated credential',
       BearerToken: 'default',
       Active: true,
       LastUpdateUtc: '2024-12-27T18:12:38.653402Z',
       CreatedUtc: '2024-12-27T18:12:38.653402Z',
-      GUID: 'fba86eda-21ea-4095-852c-5f5c542f0ffc',
+      GUID: '<credential-guid>',
       TenantGUID: '',
     });
     console.log(data, 'chk data');
