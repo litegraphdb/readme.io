@@ -38,7 +38,7 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 
 const searchGraph = async () => {
   const searchRequest : GraphSearchRequest = {
-    GraphGUID: '00900db5-c9b7-4631-b250-c9e635a9036e',
+    GraphGUID: '<graph-guid>',
     Ordering: 'CreatedDescending',
     Expr: {
       Left: 'Hello',
@@ -89,7 +89,7 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 const nodeVectorSearch = async () => {
   try {
     const data = await api.Vector.search({
-      GraphGUID: '00900db5-c9b7-4631-b250-c9e635a9036e',
+      GraphGUID: '<graph-guid>',
       Domain: 'Node',
       SearchType: 'Vector',
       Labels: [],
@@ -128,7 +128,7 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 const graphVectorSearch = async () => {
   try {
     const data = await api.Vector.search({
-      GraphGUID: '00900db5-c9b7-4631-b250-c9e635a9036e',
+      GraphGUID: '<graph-guid>',
       Domain: 'Graph',
       SearchType: 'Vector',
       Labels: [],
