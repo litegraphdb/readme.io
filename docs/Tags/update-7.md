@@ -25,14 +25,14 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 const updateTag = async () => {
   try {
     const data = await api.Tag.update({
-      GraphGUID: '00900db5-c9b7-4631-b250-c9e635a9036e',
-      NodeGUID: 'dce18cf8-6443-4d14-b4a3-c72dcc28d6d8',
-      EdgeGUID: '53b94bd9-98ea-47e6-9e5a-4fe346298717',
+      GraphGUID: '<graph-guid>',
+      NodeGUID: '<node-guid>',
+      EdgeGUID: '<edge-guid>',
       Key: 'updatedkey',
       Value: 'myvalue',
       CreatedUtc: '2024-12-27T18:12:38.653402Z',
       LastUpdateUtc: '2024-12-27T18:12:38.653402Z',
-      GUID: '51e84292-8be4-468e-b9af-5e44c10dc551',
+      GUID: guid,
       TenantGUID: '',
     });
     console.log(data, 'chk data');
