@@ -28,7 +28,7 @@ var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******')
 const updateUser = async () => {
   try {
     const data = await api.User.update({
-      GUID: '8ac86e7e-5612-4193-95d6-2f217dbaeedf',
+      GUID: '<user-guid>',
       FirstName: 'Again Updated',
       LastName: 'User',
       Email: 'anotherbbb@user.com',
