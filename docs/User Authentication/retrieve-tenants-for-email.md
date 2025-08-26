@@ -1,5 +1,5 @@
 ---
-title: Retrieve tenants for email
+title: Retrieve Tenants for an Email Address
 excerpt: Retrieve the list of tenants in which an email address exists.
 deprecated: false
 hidden: false
