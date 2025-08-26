@@ -6,7 +6,7 @@ hidden: false
 metadata:
   robots: index
 ---
-When authenticating using user credentials, you must also include the GUID of the tenant within which you wish to generate a security token on behalf of the user.
+When authenticating using user credentials, you must also include the GUID of the tenant in which the user resides.
 
 To retrieve the list of tenants that hold a user based on a given email address, call `GET /v1.0/token/tenants`
 
