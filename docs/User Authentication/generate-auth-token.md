@@ -1,6 +1,6 @@
 ---
-title: Generate Auth Token
-excerpt: Generate authentication token
+title: Generate Authentication Token
+excerpt: Generate authentication token using email address, password, and tenant GUID.
 deprecated: false
 hidden: false
 metadata:
@@ -12,8 +12,7 @@ To generate authentication token (using password), call `GET /v1.0/token`
 curl --location --request GET 'http://localhost:8701/v1.0/token' \
 --header 'x-email: default@user.com' \
 --header 'x-password: password' \
---header 'x-tenant-guid: 00000000-0000-0000-0000-000000000000' \
---header 'Authorization: Bearer litegraphadmin'
+--header 'x-tenant-guid: 00000000-0000-0000-0000-000000000000'
 ```
 ```javascript
 import { LiteGraphSdk } from 'litegraphdb';
