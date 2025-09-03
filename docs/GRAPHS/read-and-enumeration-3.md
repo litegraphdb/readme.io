@@ -81,6 +81,15 @@ const readFirstGraph = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+def read_first_graph():
+    graph = litegraph.Graph.read_first(ordering="CreatedDescending")
+    print(graph)
+
+read_first_graph()
+```
 
 <br />
 
