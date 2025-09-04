@@ -3,3 +3,4 @@
 - get-edges-to-node
 - get-edges-between-nodes
 - get-node-edges
+- get-node-neighbors
