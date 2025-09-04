@@ -1,29 +1,19 @@
 ---
 title: Update
-excerpt: Update existing vectors.
+excerpt: Update existing label.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-To update existing vector call `PUT: /v1.0/tenants/{tenant-guid}/vectors/{vector-guid}`
+To update existing label call `PUT: /v1.0/tenants/{tenant-guid}/labels/{label-guid}`
 
 ```curl
-curl --location --request PUT 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/vectors/00000000-0000-0000-0000-000000000000' \
+curl --location --request PUT 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/labels/00000000-0000-0000-0000-000000000000' \
 --header 'content-type: application/json' \
 --header 'Authorization: ••••••' \
 --data '{
-    "GraphGUID": "00000000-0000-0000-0000-000000000000",
-    "NodeGUID": null,
-    "EdgeGUID": null,
-    "Model": "all-MiniLM-L6-v2",
-    "Dimensionality": 384,
-    "Content": "test",
-    "Vectors": [
-        0.1,
-        0.2,
-        0.3
-    ]
+    "Label": "updatedlabel"
 }'
 ```
 ```javascript
@@ -31,26 +21,22 @@ import { LiteGraphSdk } from 'litegraphdb';
 
 var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
 
-const updateVector = async () => {
+const updateLabel = async () => {
   try {
-    const data = await api.Vector.update({
-      GUID: '<vector-guid>',
+    const data = await api.Label.update({
+      GUID: guid,
       GraphGUID: '<graph-guid>',
       NodeGUID: '<node-guid>',
+      Label: 'updatedkey',
       EdgeGUID: '<edge-guid>',
-      Model: 'all-MiniLM-L6-v2',
-      Dimensionality: 388,
-      Content: 'test',
-      Vectors: [0.5, 0.7, 0.9],
+      CreatedUtc: '2024-12-27T18:12:38.653402Z',
+      LastUpdateUtc: '2024-12-27T18:12:38.653402Z',
       TenantGUID: '',
-      CreatedUtc: '',
-      LastUpdateUtc: '',
     });
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err));
   }
 };
-
 
 ```
