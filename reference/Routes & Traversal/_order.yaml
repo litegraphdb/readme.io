@@ -5,3 +5,4 @@
 - get-node-edges
 - get-node-neighbors
 - get-node-parents
+- get-node-children
