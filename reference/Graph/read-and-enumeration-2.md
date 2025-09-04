@@ -21,6 +21,10 @@ The Read and Enumeration endpoints provide comprehensive functionality for retri
 
 Retrieve a specific graph by its unique identifier using the `GET: /v1.0/tenants/{tenant-guid}/graphs/{graph-guid}` endpoint.
 
+ To include additional information in the response, such as custom data fields and subordinate (child) graphs, use the `incldata` and `inclsub` query parameters in your request. 
+- `incldata=true` will include the `Data` property for each graph in the response.
+- `inclsub=true` will include subordinate (child) graphs in the response.
+
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000' \
 --header 'Authorization: ••••••'
