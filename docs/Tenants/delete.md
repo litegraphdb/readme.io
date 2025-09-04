@@ -54,3 +54,5 @@ const deleteTenant = async () => {
   }
 };
 ```
+
+<br />
