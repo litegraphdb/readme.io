@@ -1,12 +1,27 @@
 ---
-title: Create
-excerpt: Create graph.
+title: Create Graph
+excerpt: Create a new graph in your tenant with optional labels, tags, data, and vector embeddings.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-To create graph call `PUT: /v1.0/tenants/{tenant-guid}/graphs`
+
+## Overview
+
+The Create Graph endpoint allows you to create a new graph within your tenant. A graph serves as a container for nodes, edges, and their associated data, providing the foundation for your knowledge graph structure.
+
+To create a graph, make a `PUT` request to `/v1.0/tenants/{tenant-guid}/graphs` with the graph configuration in the request body.
+
+## Request Parameters
+
+When creating a graph, you can specify the following optional parameters:
+
+- **Name**: A descriptive name for your graph
+- **Labels**: An array of string labels to categorize and organize your graph
+- **Tags**: Key-value pairs for additional metadata and organization
+- **Data**: Custom data object to store application-specific information
+- **Vectors**: Array of vector embeddings with model information and dimensionality
 
 ```curl
 curl --location --request PUT 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs' \
@@ -33,26 +48,48 @@ curl --location --request PUT 'http://localhost:8701/v1.0/tenants/00000000-0000-
     ]
 }'
 ```
-```javascript
-import { LiteGraphSdk } from 'litegraphdb';
 
-var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
+```javascript
+import { LiteGraphSdk } from "litegraphdb";
+
+var api = new LiteGraphSdk(
+  "http://localhost:8701/",
+  "<Tenant-Guid>",
+  "*******"
+);
 
 const createGraph = async () => {
   // Graph object to create
   try {
-    const createdGraph = await api.Graph.create({ Name: 'New Graph' });
-    console.log(createdGraph, 'Graph created successfully');
+    const createdGraph = await api.Graph.create({ Name: "New Graph" });
+    console.log(createdGraph, "Graph created successfully");
   } catch (err) {
-    console.log('err: ', err);
-    console.log('Error creating graph:', JSON.stringify(err));
+    console.log("err: ", err);
+    console.log("Error creating graph:", JSON.stringify(err));
   }
 };
 ```
 
+## Examples
+
+### cURL Example
+
+The following example demonstrates how to create a graph using cURL with various optional parameters:
+
+### JavaScript SDK Example
+
+The JavaScript SDK provides a convenient way to create graphs programmatically:
+
 ## Response
 
-Upon successful creation, the API returns a `201 Created` status with the created graph object containing:
+## Next Steps
+
+After successfully creating a graph, you can:
+
+- Add nodes to populate your graph with entities
+- Create edges to establish relationships between nodes
+- Perform vector searches for similarity-based queries
+- Configure vector indexing for improved search performance
 
 ```curl
 {
