@@ -69,26 +69,7 @@ const createGraph = async () => {
 };
 ```
 
-## Examples
-
-### cURL Example
-
-The following example demonstrates how to create a graph using cURL with various optional parameters:
-
-### JavaScript SDK Example
-
-The JavaScript SDK provides a convenient way to create graphs programmatically:
-
 ## Response
-
-## Next Steps
-
-After successfully creating a graph, you can:
-
-- Add nodes to populate your graph with entities
-- Create edges to establish relationships between nodes
-- Perform vector searches for similarity-based queries
-- Configure vector indexing for improved search performance
 
 ```curl
 {
@@ -129,3 +110,12 @@ After successfully creating a graph, you can:
     ]
 }
 ```
+
+## Next Steps
+
+After successfully creating a graph, you can:
+
+- Add nodes to populate your graph with entities
+- Create edges to establish relationships between nodes
+- Perform vector searches for similarity-based queries
+- Configure vector indexing for improved search performance
