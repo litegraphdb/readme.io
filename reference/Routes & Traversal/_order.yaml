@@ -1,3 +1,4 @@
 - get-routes
 - get-edges-from-node
 - get-edges-to-node
+- get-edges-between-nodes
