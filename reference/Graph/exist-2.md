@@ -6,10 +6,10 @@ hidden: false
 metadata:
   robots: index
 ---
-To check if a graph exist call `HEAD : /v1.0/tenants/{tenant-guid}/credentials/{credential-guid}`
+To check if a graph exist call `HEAD : /v1.0/tenants/{tenant-guid}/graphs/{graph-guid}`
 
 ```curl
-curl --location --head 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/credentials/00000000-0000-0000-0000-000000000000' \
+curl --location --head 'http://view.homedns.org:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000' \
 --header 'Authorization: ••••••'
 ```
 ```javascript
@@ -17,12 +17,13 @@ import { LiteGraphSdk } from 'litegraphdb';
 
 var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
 
-const existsCredential = async () => {
+const checkIfGraphExistsById = async () => {
   try {
-    const data = await api.Credential.exists('<graph-guid>');
+    const data = await api.Graph.exists(guid);
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err));
   }
 };
+
 ```
