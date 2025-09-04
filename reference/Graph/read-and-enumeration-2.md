@@ -1,14 +1,25 @@
 ---
-title: Read and Enumeration
-excerpt: Read and Enumerate graphs
+title: Read and Enumerate Graphs
+excerpt: Read individual graphs, retrieve graph statistics, and enumerate multiple graphs with filtering and search capabilities.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-## Read
 
-Read a single graph: `GET: /v1.0/tenants/{tenant-guid}/graphs/{graph-guid}`
+## Overview
+
+The Read and Enumeration endpoints provide comprehensive functionality for retrieving graph data from your tenant. These endpoints allow you to:
+
+- Read individual graphs by their unique identifier
+- Retrieve graph statistics and metadata
+- Enumerate multiple graphs with various filtering options
+- Search and filter graphs based on labels, tags, and custom expressions
+- Implement pagination for large result sets
+
+## Read Individual Graph
+
+Retrieve a specific graph by its unique identifier using the `GET: /v1.0/tenants/{tenant-guid}/graphs/{graph-guid}` endpoint.
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000' \
@@ -29,9 +40,9 @@ const getGraphById = async () => {
 };
 ```
 
-### Read graph stats
+### Read Graph Statistics
 
-To read a single graph call `GET:/v1.0/tenants/{tenant-id}/graphs/{graph-guid}/stats `
+Retrieve statistical information about a specific graph using `GET: /v1.0/tenants/{tenant-id}/graphs/{graph-guid}/stats`. This endpoint provides metrics such as node count, edge count etc.
 
 ```curl
 curl --location 'http://view.homedns.org:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/stats' \
@@ -52,9 +63,9 @@ const readGraphStatistic = async () => {
 };
 ```
 
-## Read first
+## Read First Graph
 
-Read a first graph: `/v1.0/tenants/{tenant-id}/graphs/first`
+Retrieve the first graph that matches your specified criteria using `GET: /v1.0/tenants/{tenant-id}/graphs/first`. This endpoint is useful when you need to get a single graph result based on ordering, labels, tags, or custom expressions. The request body allows you to specify filtering criteria and ordering preferences.
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/first' \
@@ -91,9 +102,9 @@ def read_first_graph():
 read_first_graph()
 ```
 
-## Read by GUIDs
+## Read Multiple Graphs by GUIDs
 
-Read a multiple graph: `/v1.0/tenants/{tenant-id}/graphs?guids=<graph1-guid>,<graph2-guid>`
+Retrieve multiple specific graphs by providing their GUIDs as query parameters using `GET: /v1.0/tenants/{tenant-id}/graphs?guids=<graph1-guid>,<graph2-guid>`. This endpoint allows you to fetch several graphs in a single request by specifying comma-separated GUIDs in the URL query string.
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs?guids=00000000-0000-0000-0000-000000000000%2C00000000-0000-0000-0000-000000000001' \
@@ -114,9 +125,9 @@ const readManyTenants = async () => {
 };
 ```
 
-## Read all
+## Read All Graphs
 
-To read all graphs call `GET:/v1.0/tenants/{tenant-id}/graphs `
+Retrieve all graphs within your tenant using `GET: /v1.0/tenants/{tenant-id}/graphs`. This endpoint returns a complete list of all graphs associated with the specified tenant.
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs' \
@@ -137,9 +148,9 @@ const getGraphList = async () => {
 };
 ```
 
-### Read all graph stats
+### Read All Graph Statistics
 
-To read all graph stats call `GET:/v1.0/tenants/{tenant-id}/graphs/stats `
+Retrieve statistical information for all graphs in your tenant using `GET: /v1.0/tenants/{tenant-id}/graphs/stats`. This endpoint provides aggregated statistics across all graphs, including total node counts, edge counts etc.
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/stats' \
@@ -162,7 +173,7 @@ const readAllTenantStatistics = async () => {
 
 ## Enumeration (GET)
 
-Enumeration via `GET:/v2.0/tenants/{tenant-id}/graphs` allows to enumerate response
+The v2.0 enumeration endpoint `GET: /v2.0/tenants/{tenant-id}/graphs` provides enhanced enumeration capabilities with improved response formatting and additional metadata. This endpoint is designed for efficient enumeration of large graph collections with optimized response structures.
 
 ```curl
 curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/graphs' \
@@ -184,9 +195,23 @@ const enumerateGraphs = async () => {
 
 ```
 
-## Enumeration and search (POST)
+## Enumeration and Search (POST)
 
-Enumeration via `POST :/v2.0/tenants/{tenant-id}/graphs` allows to enumerate and search response
+The advanced enumeration endpoint `POST: /v2.0/tenants/{tenant-id}/graphs` provides powerful search and filtering capabilities along with enumeration. This endpoint supports complex query parameters including ordering, pagination, label filtering, tag matching, and custom expressions. It's ideal for applications that need to implement sophisticated graph discovery and search functionality.
+
+### Search Parameters
+
+The POST request body supports the following parameters:
+
+- **Ordering**: Sort results by creation date (CreatedAscending, CreatedDescending)
+- **IncludeData**: Whether to include custom data in the response
+- **IncludeSubordinates**: Whether to include subordinate graph information
+- **MaxResults**: Maximum number of results to return (for pagination)
+- **Skip**: Number of results to skip (for pagination)
+- **ContinuationToken**: Token for continuing pagination from a previous request
+- **Labels**: Array of labels to filter graphs
+- **Tags**: Key-value pairs for tag-based filtering
+- **Expr**: Custom expression for advanced filtering
 
 ```curl
 curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/graphs' \
