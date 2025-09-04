@@ -25,7 +25,6 @@ Retrieve a specific graph by its unique identifier using the `GET: /v1.0/tenants
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000' \
 --header 'Authorization: ••••••'
 ```
-
 ```javascript
 import { LiteGraphSdk } from "litegraphdb";
 
@@ -53,7 +52,6 @@ Retrieve statistical information about a specific graph using `GET: /v1.0/tenant
 curl --location 'http://view.homedns.org:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/stats' \
 --header 'Authorization: Bearer ********'
 ```
-
 ```javascript
 import { LiteGraphSdk } from "litegraphdb";
 
@@ -92,7 +90,6 @@ curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-0000
   "Expr": { }
 }'
 ```
-
 ```javascript
 import { LiteGraphSdk } from "litegraphdb";
 
@@ -134,7 +131,6 @@ Retrieve multiple specific graphs by providing their GUIDs as query parameters u
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs?guids=00000000-0000-0000-0000-000000000000%2C00000000-0000-0000-0000-000000000001' \
 --header 'Authorization: ••••••'
 ```
-
 ```javascript
 import { LiteGraphSdk } from "litegraphdb";
 
@@ -167,7 +163,6 @@ Retrieve all graphs within your tenant using `GET: /v1.0/tenants/{tenant-id}/gra
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs' \
 --header 'Authorization: ••••••'
 ```
-
 ```javascript
 import { LiteGraphSdk } from "litegraphdb";
 
@@ -195,7 +190,6 @@ Retrieve statistical information for all graphs in your tenant using `GET: /v1.0
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/stats' \
 --header 'Authorization: ••••••'
 ```
-
 ```javascript
 import { LiteGraphSdk } from "litegraphdb";
 
@@ -230,7 +224,6 @@ To include additional information in the response, such as custom data fields an
 curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/graphs' \
 --header 'Authorization: ••••••'
 ```
-
 ```javascript
 import { LiteGraphSdk } from "litegraphdb";
 
@@ -284,7 +277,6 @@ curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-0000
     "Expr": { }
 }'
 ```
-
 ```javascript
 import { LiteGraphSdk } from "litegraphdb";
 
