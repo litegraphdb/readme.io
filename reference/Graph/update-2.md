@@ -84,7 +84,7 @@ const deleteGraphById = async () => {
 
 ## Response
 
-Upon successful deletion, the API returns a `204 No Content` status code, indicating that the graph has been successfully removed. No response body is returned for successful deletions.
+Upon successful deletion, the API returns a `200 No Content` status code, indicating that the graph has been successfully removed. No response body is returned for successful deletions.
 
 ## Best Practices
 
