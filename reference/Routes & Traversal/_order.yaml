@@ -4,3 +4,4 @@
 - get-edges-between-nodes
 - get-node-edges
 - get-node-neighbors
+- get-node-parents
