@@ -1,6 +1,6 @@
 ---
-title: Update
-excerpt: Update existing graph.
+title: Delete
+excerpt: Delete existing  graph.
 deprecated: false
 hidden: false
 metadata:
