@@ -12,43 +12,12 @@ Label objects have the following structure:
 
 ```json
 {
+    "GUID": "5a8dd56f-bb32-4ddb-b63f-c1a9cff49652",
     "TenantGUID": "00000000-0000-0000-0000-000000000000",
-    "GUID": "afae4095-1838-40e6-83b7-895601685b92",
     "GraphGUID": "00000000-0000-0000-0000-000000000000",
-    "Name": "My test edge",
-    "From": "f05b8a07-a6c6-4726-bf82-b381cf3cec1b",
-    "To": "1f56dc61-55d3-48e3-b4a9-d54b864f1763",
-    "Cost": 10,
-    "CreatedUtc": "2025-08-20T13:28:33.572723Z",
-    "LastUpdateUtc": "2025-08-20T13:28:33.572723Z",
-    "Labels": [
-        "test"
-    ],
-    "Tags": {
-        "test": "true",
-        "type": "edge"
-    },
-    "Data": {
-        "Hello": "World"
-    },
-    "Vectors": [
-        {
-            "GUID": "a22c8e41-cc90-49ca-8140-54e31a18dcad",
-            "TenantGUID": "00000000-0000-0000-0000-000000000000",
-            "GraphGUID": "00000000-0000-0000-0000-000000000000",
-            "EdgeGUID": "afae4095-1838-40e6-83b7-895601685b92",
-            "Model": "all-MiniLM-L6-v2",
-            "Dimensionality": 384,
-            "Content": "test",
-            "Vectors": [
-                0.1,
-                0.2,
-                0.3
-            ],
-            "CreatedUtc": "2025-08-20T13:28:33.574024Z",
-            "LastUpdateUtc": "2025-08-20T13:28:33.574024Z"
-        }
-    ]
+    "Label": "label",
+    "CreatedUtc": "2025-09-04T07:54:42.223701Z",
+    "LastUpdateUtc": "2025-09-04T07:54:42.223701Z"
 }
 ```
 
