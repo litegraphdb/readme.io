@@ -25,17 +25,22 @@ Retrieve a specific graph by its unique identifier using the `GET: /v1.0/tenants
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000' \
 --header 'Authorization: ••••••'
 ```
-```javascript
-import { LiteGraphSdk } from 'litegraphdb';
 
-var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
+```javascript
+import { LiteGraphSdk } from "litegraphdb";
+
+var api = new LiteGraphSdk(
+  "http://localhost:8701/",
+  "<Tenant-Guid>",
+  "*******"
+);
 
 const getGraphById = async () => {
   try {
     const data = await api.Graph.read(guid);
-    console.log(data, 'chk data');
+    console.log(data, "chk data");
   } catch (err) {
-    console.log('err:', JSON.stringify(err));
+    console.log("err:", JSON.stringify(err));
   }
 };
 ```
@@ -48,17 +53,22 @@ Retrieve statistical information about a specific graph using `GET: /v1.0/tenant
 curl --location 'http://view.homedns.org:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/stats' \
 --header 'Authorization: Bearer ********'
 ```
-```javascript
-import { LiteGraphSdk } from 'litegraphdb';
 
-var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
+```javascript
+import { LiteGraphSdk } from "litegraphdb";
+
+var api = new LiteGraphSdk(
+  "http://localhost:8701/",
+  "<Tenant-Guid>",
+  "*******"
+);
 
 const readGraphStatistic = async () => {
   try {
     const data = await api.Graph.readStatistic(guid);
-    console.log(data, 'chk data');
+    console.log(data, "chk data");
   } catch (err) {
-    console.log('err:', JSON.stringify(err));
+    console.log("err:", JSON.stringify(err));
   }
 };
 ```
@@ -66,6 +76,10 @@ const readGraphStatistic = async () => {
 ## Read First Graph
 
 Retrieve the first graph that matches your specified criteria using `GET: /v1.0/tenants/{tenant-id}/graphs/first`. This endpoint is useful when you need to get a single graph result based on ordering, labels, tags, or custom expressions. The request body allows you to specify filtering criteria and ordering preferences.
+
+ To include additional information in the response, such as custom data fields and subordinate (child) graphs, use the `incldata` and `inclsub` query parameters in your request. 
+- `incldata=true` will include the `Data` property for each graph in the response.
+- `inclsub=true` will include subordinate (child) graphs in the response.
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/first' \
@@ -78,20 +92,26 @@ curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-0000
   "Expr": { }
 }'
 ```
-```javascript
-import { LiteGraphSdk } from 'litegraphdb';
 
-var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
+```javascript
+import { LiteGraphSdk } from "litegraphdb";
+
+var api = new LiteGraphSdk(
+  "http://localhost:8701/",
+  "<Tenant-Guid>",
+  "*******"
+);
 
 const readFirstGraph = async () => {
   try {
     const data = await api.Graph.readFirst({});
-    console.log(data, 'chk data');
+    console.log(data, "chk data");
   } catch (err) {
-    console.log('err:', JSON.stringify(err));
+    console.log("err:", JSON.stringify(err));
   }
 };
 ```
+
 ```python
 import litegraph
 
@@ -106,21 +126,30 @@ read_first_graph()
 
 Retrieve multiple specific graphs by providing their GUIDs as query parameters using `GET: /v1.0/tenants/{tenant-id}/graphs?guids=<graph1-guid>,<graph2-guid>`. This endpoint allows you to fetch several graphs in a single request by specifying comma-separated GUIDs in the URL query string.
 
+ To include additional information in the response, such as custom data fields and subordinate (child) graphs, use the `incldata` and `inclsub` query parameters in your request. 
+- `incldata=true` will include the `Data` property for each graph in the response.
+- `inclsub=true` will include subordinate (child) graphs in the response.
+
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs?guids=00000000-0000-0000-0000-000000000000%2C00000000-0000-0000-0000-000000000001' \
 --header 'Authorization: ••••••'
 ```
-```javascript
-import { LiteGraphSdk } from 'litegraphdb';
 
-var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
+```javascript
+import { LiteGraphSdk } from "litegraphdb";
+
+var api = new LiteGraphSdk(
+  "http://localhost:8701/",
+  "<Tenant-Guid>",
+  "*******"
+);
 
 const readManyTenants = async () => {
   try {
     const data = await api.Tenant.readMany([tenantGuid]);
-    console.log(data, 'chk data');
+    console.log(data, "chk data");
   } catch (err) {
-    console.log('err:', JSON.stringify(err));
+    console.log("err:", JSON.stringify(err));
   }
 };
 ```
@@ -129,21 +158,31 @@ const readManyTenants = async () => {
 
 Retrieve all graphs within your tenant using `GET: /v1.0/tenants/{tenant-id}/graphs`. This endpoint returns a complete list of all graphs associated with the specified tenant.
 
+ To include additional information in the response, such as custom data fields and subordinate (child) graphs, use the `incldata` and `inclsub` query parameters in your request. 
+- `incldata=true` will include the `Data` property for each graph in the response.
+- `inclsub=true` will include subordinate (child) graphs in the response.
+
+
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs' \
 --header 'Authorization: ••••••'
 ```
-```javascript
-import { LiteGraphSdk } from 'litegraphdb';
 
-var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
+```javascript
+import { LiteGraphSdk } from "litegraphdb";
+
+var api = new LiteGraphSdk(
+  "http://localhost:8701/",
+  "<Tenant-Guid>",
+  "*******"
+);
 
 const getGraphList = async () => {
   try {
     const data = await api.Graph.readAll();
-    console.log(data, 'chk data');
+    console.log(data, "chk data");
   } catch (err) {
-    console.log('err:', JSON.stringify(err), err);
+    console.log("err:", JSON.stringify(err), err);
   }
 };
 ```
@@ -156,17 +195,22 @@ Retrieve statistical information for all graphs in your tenant using `GET: /v1.0
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/stats' \
 --header 'Authorization: ••••••'
 ```
-```javascript
-import { LiteGraphSdk } from 'litegraphdb';
 
-var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
+```javascript
+import { LiteGraphSdk } from "litegraphdb";
+
+var api = new LiteGraphSdk(
+  "http://localhost:8701/",
+  "<Tenant-Guid>",
+  "*******"
+);
 
 const readAllTenantStatistics = async () => {
   try {
     const data = await api.Tenant.readStatistics();
-    console.log(data, 'chk data');
+    console.log(data, "chk data");
   } catch (err) {
-    console.log('err:', JSON.stringify(err));
+    console.log("err:", JSON.stringify(err));
   }
 };
 ```
@@ -175,24 +219,35 @@ const readAllTenantStatistics = async () => {
 
 The v2.0 enumeration endpoint `GET: /v2.0/tenants/{tenant-id}/graphs` provides enhanced enumeration capabilities with improved response formatting and additional metadata. This endpoint is designed for efficient enumeration of large graph collections with optimized response structures.
 
+To include additional information in the response, such as custom data fields and subordinate (child) graphs.
+- `incldata=true` will include the `Data` property for each graph in the response.
+- `inclsub=true` will include subordinate (child) graphs in the response.
+- `max-keys=<number>` will limit the maximum number of graphs returned in the response.
+- `skip=<number>` will skip the specified number of graphs in the result set (useful for pagination).
+- `continuationToken=<graphGUID>` will return results starting after the specified graph GUID (useful for pagination).
+
 ```curl
 curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/graphs' \
 --header 'Authorization: ••••••'
 ```
-```javascript
-import { LiteGraphSdk } from 'litegraphdb';
 
-var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
+```javascript
+import { LiteGraphSdk } from "litegraphdb";
+
+var api = new LiteGraphSdk(
+  "http://localhost:8701/",
+  "<Tenant-Guid>",
+  "*******"
+);
 
 const enumerateGraphs = async () => {
   try {
     const data = await api.Graph.enumerate();
-    console.log(data, 'chk data');
+    console.log(data, "chk data");
   } catch (err) {
-    console.log('err:', JSON.stringify(err));
+    console.log("err:", JSON.stringify(err));
   }
 };
-
 ```
 
 ## Enumeration and Search (POST)
@@ -229,15 +284,20 @@ curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-0000
     "Expr": { }
 }'
 ```
-```javascript
-import { LiteGraphSdk } from 'litegraphdb';
 
-var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
+```javascript
+import { LiteGraphSdk } from "litegraphdb";
+
+var api = new LiteGraphSdk(
+  "http://localhost:8701/",
+  "<Tenant-Guid>",
+  "*******"
+);
 
 const enumerateAndSearchGraphs = async () => {
   try {
     const data = await api.Graph.enumerateAndSearch({
-      Ordering: 'CreatedDescending',
+      Ordering: "CreatedDescending",
       IncludeData: false,
       IncludeSubordinates: false,
       MaxResults: 5,
@@ -246,12 +306,9 @@ const enumerateAndSearchGraphs = async () => {
       Tags: {},
       Expr: {},
     });
-    console.log(data, 'chk data');
+    console.log(data, "chk data");
   } catch (err) {
-    console.log('err:', JSON.stringify(err));
+    console.log("err:", JSON.stringify(err));
   }
 };
-
-
-
 ```
