@@ -75,6 +75,21 @@ const readFirstNode = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def retrieve_first_node():
+    node = litegraph.Node.retrieve_first(graph_guid="graph-guid")
+    print(node)
+    
+retrieve_first_node()
+```
 
 ## Read by GUIDs
 
