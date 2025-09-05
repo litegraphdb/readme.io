@@ -153,6 +153,23 @@ const getNodeList = async () => {
 };
 
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    graph_guid="Graph-Guid",
+    access_key="******",
+)
+
+def retrieve_all_node():
+    nodes = litegraph.Node.retrieve_all()
+    print(nodes)
+
+retrieve_all_node()
+
+```
 
 ## Enumeration (GET)
 
