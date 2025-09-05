@@ -366,6 +366,22 @@ const enumerateAndSearchTenants = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def enumerate_with_query_tenant():
+    tenants = litegraph.Tenant.enumerate_with_query(ordering="CreatedDescending",MaxResults=10,Skip=0,IncludeData=True,IncludeSubordinates=True,Expr=litegraph.ExprModel(Left="Name",Operator="Equals",Right="Test"))
+    print(tenants)
+
+enumerate_with_query_tenant()
+
+```
 
 ## Best Practices
 
