@@ -1,21 +1,22 @@
 ---
 title: Create User
-excerpt: Create new user objects within a tenant with authentication credentials, personal information, and access control settings.
+excerpt: >-
+  Create new user objects within a tenant with authentication credentials,
+  personal information, and access control settings.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Create User endpoint allows you to create new user objects within a specific tenant. Each user represents an individual who can access and interact with the tenant's data and resources. This functionality is essential for:
 
-- Setting up user authentication and access control
-- Managing user accounts within tenant boundaries
-- Establishing user permissions and roles
-- Creating user profiles with personal information
-- Enabling multi-user collaboration within tenants
+* Setting up user authentication and access control
+* Managing user accounts within tenant boundaries
+* Establishing user permissions and roles
+* Creating user profiles with personal information
+* Enabling multi-user collaboration within tenants
 
 ## Create User
 
@@ -57,16 +58,31 @@ const createUser = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def create_user():
+    user = litegraph.User.create(email="test@test.com", password="password", first_name="Test", last_name="User")
+    print(user)
+
+create_user()
+```
 
 ## Request Parameters
 
 The user creation request supports the following parameters:
 
-- **`FirstName`**: The user's first name (required)
-- **`LastName`**: The user's last name (required)
-- **`Email`**: The user's email address, used for authentication and communication (required)
-- **`Password`**: The user's initial password for authentication (required)
-- **`Active`**: A boolean flag indicating whether the user should be active (`true`) or inactive (`false`) upon creation. Defaults to `true` if not specified
+* **`FirstName`**: The user's first name (required)
+* **`LastName`**: The user's last name (required)
+* **`Email`**: The user's email address, used for authentication and communication (required)
+* **`Password`**: The user's initial password for authentication (required)
+* **`Active`**: A boolean flag indicating whether the user should be active (`true`) or inactive (`false`) upon creation. Defaults to `true` if not specified
 
 ## Response
 
@@ -98,8 +114,8 @@ When creating users, consider the following recommendations:
 
 After successfully creating a user, you can:
 
-- Set up user roles and permissions within the tenant
-- Configure user-specific settings and preferences
-- Send welcome emails or notifications to the new user
-- Implement user authentication and login workflows
-- Begin adding user-specific data and configurations
+* Set up user roles and permissions within the tenant
+* Configure user-specific settings and preferences
+* Send welcome emails or notifications to the new user
+* Implement user authentication and login workflows
+* Begin adding user-specific data and configurations
