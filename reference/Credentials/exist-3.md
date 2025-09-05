@@ -1,12 +1,13 @@
 ---
 title: Check Credential Existence
-excerpt: Check if a specific credential exists in a tenant by its unique identifier using lightweight HEAD requests with proper authentication.
+excerpt: >-
+  Check if a specific credential exists in a tenant by its unique identifier
+  using lightweight HEAD requests with proper authentication.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Check Credential Existence endpoint allows you to efficiently verify whether a specific credential exists within a tenant without retrieving the full credential data.
@@ -39,10 +40,25 @@ const existsCredential = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def exists_credential():
+    exists = litegraph.Credential.exists(guid="credential-guid")
+    print(exists)
+
+exists_credential()
+```
 
 ## Response
 
 The HEAD request returns only HTTP status codes without any response body:
 
-- **200 OK**: The credential exists and is accessible
-- **404 Not Found**: The credential does not exist
+* **200 OK**: The credential exists and is accessible
+* **404 Not Found**: The credential does not exist
