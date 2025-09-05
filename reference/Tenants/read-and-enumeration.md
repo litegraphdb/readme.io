@@ -58,7 +58,7 @@ sdk = litegraph.configure(
 )
 
 def retrieve_tenant():
-    tenant = litegraph.Tenant.retrieve(guid="00000000-0000-0000-0000-000000000000")
+    tenant = litegraph.Tenant.retrieve(guid="tenanat-guid")
     print(tenant)
 
 retrieve_tenant()
