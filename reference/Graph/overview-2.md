@@ -1,6 +1,6 @@
 ---
 title: Overview
-excerpt: This section covers api abd sdk methods related to Graph object.
+excerpt: This section covers API and SDK methods related to Graph objects.
 deprecated: false
 hidden: false
 metadata:
