@@ -420,7 +420,18 @@ sdk = litegraph.configure(
 )
 
 def enumerate_with_query_graph():
-    graphs = litegraph.Graph.enumerate_with_query(ordering="CreatedDescending",MaxResults=10,Skip=0,IncludeData=True,IncludeSubordinates=True,Expr=litegraph.ExprModel(Left="Name",Operator="Equals",Right="Test"))
+    graphs = litegraph.Graph.enumerate_with_query(
+        ordering="CreatedDescending",
+        MaxResults=10,
+        Skip=0,
+        IncludeData=True,
+        IncludeSubordinates=True,
+        Expr=litegraph.ExprModel(
+            Left="Name",
+            Operator="Equals",
+            Right="Test"
+        )
+    )
     print(graphs)
 
 enumerate_with_query_graph()
