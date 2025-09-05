@@ -1,20 +1,21 @@
 ---
 title: Check Graph Existence
-excerpt: Check if a specific graph exists in your tenant by its unique identifier using lightweight HEAD requests.
+excerpt: >-
+  Check if a specific graph exists in your tenant by its unique identifier using
+  lightweight HEAD requests.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Graph Existence endpoint allows you to efficiently check whether a specific graph exists in your tenant without retrieving the full graph data. This is particularly useful for:
 
-- Validating graph IDs before performing operations
-- Implementing conditional logic based on graph existence
-- Optimizing applications by avoiding unnecessary data retrieval
-- Performing lightweight existence checks in bulk operations
+* Validating graph IDs before performing operations
+* Implementing conditional logic based on graph existence
+* Optimizing applications by avoiding unnecessary data retrieval
+* Performing lightweight existence checks in bulk operations
 
 ## Check Graph Existence
 
@@ -42,10 +43,25 @@ const checkIfGraphExistsById = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def exists_graph():
+    exists = litegraph.Graph.exists(guid="graph-guid")
+    print(exists)
+
+exists_graph()
+```
 
 ## Response
 
 The HEAD request returns only HTTP status codes without any response body:
 
-- **200 OK**: The graph exists and is accessible
-- **404 Not Found**: The graph does not exist or you don't have access to it
+* **200 OK**: The graph exists and is accessible
+* **404 Not Found**: The graph does not exist or you don't have access to it
