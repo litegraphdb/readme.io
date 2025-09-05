@@ -207,7 +207,7 @@ def retrieve_multiple_graph():
     graphs = litegraph.Graph.retrieve_many(["graph-guid","graph-guid-2"])
     print(graphs)
 
-# retrieve_multiple_graph()
+retrieve_multiple_graph()
 ```
 
 ## Read All Graphs
