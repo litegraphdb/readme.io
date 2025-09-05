@@ -85,6 +85,21 @@ const readManyCredentials = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def retrieve_multiple_credential():
+    credentials = litegraph.Credential.retrieve_many(guids=["credential-guid","credential-guid2"])
+    print(credentials)
+
+retrieve_multiple_credential()
+```
 
 ## Read All Credentials
 
@@ -112,6 +127,21 @@ const readAllCredentials = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def retrieve_all_credential():
+    credentials = litegraph.Credential.retrieve_all()
+    print(credentials)
+
+retrieve_all_credential()
+```
 
 ## Enumeration (GET)
 
@@ -138,6 +168,21 @@ const enumerateCredentials = async () => {
     console.log("err:", JSON.stringify(err));
   }
 };
+```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def enumerate_credential():
+    credentials = litegraph.Credential.enumerate()
+    print(credentials)
+
+enumerate_credential()
 ```
 
 ## Enumeration and Search (POST)
@@ -186,6 +231,21 @@ const enumerateAndSearchCredentials = async () => {
     console.log("err:", JSON.stringify(err));
   }
 };
+```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def enumerate_with_query_credential():
+    credentials = litegraph.Credential.enumerate_with_query(ordering="CreatedDescending",MaxResults=10,Skip=0,IncludeData=True,IncludeSubordinates=True,Expr=litegraph.ExprModel(Left="Name",Operator="Equals",Right="Test"))
+    print(credentials)
+
+enumerate_with_query_credential()
 ```
 
 ## Search Parameters
