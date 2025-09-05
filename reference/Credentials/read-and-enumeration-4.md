@@ -1,21 +1,23 @@
 ---
 title: Read and Enumerate Credentials
-excerpt: Read individual credentials, multiple credentials by GUIDs, all credentials, and perform advanced enumeration with search capabilities using various API endpoints.
+excerpt: >-
+  Read individual credentials, multiple credentials by GUIDs, all credentials,
+  and perform advanced enumeration with search capabilities using various API
+  endpoints.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Read and Enumerate Credentials endpoints provide comprehensive functionality for retrieving credential data from a tenant. These endpoints support various retrieval patterns including:
 
-- Reading individual credentials by their unique identifier
-- Reading multiple credentials simultaneously by providing a list of GUIDs
-- Reading all credentials within a tenant
-- Advanced enumeration with pagination and filtering capabilities
-- Search-based enumeration with complex query expressions
+* Reading individual credentials by their unique identifier
+* Reading multiple credentials simultaneously by providing a list of GUIDs
+* Reading all credentials within a tenant
+* Advanced enumeration with pagination and filtering capabilities
+* Search-based enumeration with complex query expressions
 
 **Important**: All read operations require appropriate permissions within the tenant and must use a valid authentication token.
 
@@ -44,6 +46,21 @@ const readCredential = async () => {
     console.log("err:", JSON.stringify(err));
   }
 };
+```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def retrieve_credential():
+    credential = litegraph.Credential.retrieve(guid="credential-guid")
+    print(credential)
+
+retrieve_credential()
 ```
 
 ## Read Multiple Credentials by GUIDs
@@ -175,24 +192,24 @@ const enumerateAndSearchCredentials = async () => {
 
 The POST enumeration endpoint supports the following search parameters:
 
-- **Ordering**: Sort order for results (`CreatedAscending`, `CreatedDescending`, `ModifiedAscending`, `ModifiedDescending`)
-- **IncludeData**: Whether to include full credential data in the response (boolean)
-- **IncludeSubordinates**: Whether to include subordinate credentials (boolean)
-- **MaxResults**: Maximum number of results to return (integer)
-- **Skip**: Number of results to skip for pagination (integer)
-- **ContinuationToken**: Token for continuing pagination from previous request (string)
-- **Labels**: Array of label filters to apply (array of strings)
-- **Tags**: Object containing tag-based filters (object)
-- **Expr**: Complex expression for advanced filtering (object with Left, Operator, Right properties)
+* **Ordering**: Sort order for results (`CreatedAscending`, `CreatedDescending`, `ModifiedAscending`, `ModifiedDescending`)
+* **IncludeData**: Whether to include full credential data in the response (boolean)
+* **IncludeSubordinates**: Whether to include subordinate credentials (boolean)
+* **MaxResults**: Maximum number of results to return (integer)
+* **Skip**: Number of results to skip for pagination (integer)
+* **ContinuationToken**: Token for continuing pagination from previous request (string)
+* **Labels**: Array of label filters to apply (array of strings)
+* **Tags**: Object containing tag-based filters (object)
+* **Expr**: Complex expression for advanced filtering (object with Left, Operator, Right properties)
 
 ## Response
 
 All read and enumeration endpoints return JSON responses containing credential data. The response structure varies based on the endpoint:
 
-- **Individual Credential**: Returns a single credential object with all properties
-- **Multiple Credentials**: Returns an array of credential objects
-- **All Credentials**: Returns an array of all credential objects in the tenant
-- **Enumeration**: Returns paginated results with metadata including continuation tokens
+* **Individual Credential**: Returns a single credential object with all properties
+* **Multiple Credentials**: Returns an array of credential objects
+* **All Credentials**: Returns an array of all credential objects in the tenant
+* **Enumeration**: Returns paginated results with metadata including continuation tokens
 
 ## Best Practices
 
@@ -210,10 +227,10 @@ When reading and enumerating credentials, consider the following recommendations
 
 After reading credential data, you can:
 
-- Display credential information in your application interface
-- Implement credential management and administration features
-- Perform credential-specific operations based on retrieved data
-- Update credential information using the update endpoints
-- Implement credential search and filtering functionality
-- Build credential analytics and reporting features
-- Integrate credential data with other system components
+* Display credential information in your application interface
+* Implement credential management and administration features
+* Perform credential-specific operations based on retrieved data
+* Update credential information using the update endpoints
+* Implement credential search and filtering functionality
+* Build credential analytics and reporting features
+* Integrate credential data with other system components
