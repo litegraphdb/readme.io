@@ -32,3 +32,19 @@ const generateToken = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="00000000-0000-0000-0000-000000000000",
+    access_key="litegraphadmin",
+)
+
+def generate_authentication_token():
+    token = litegraph.Authentication.generate_authentication_token(email="default@user.com", password="password", tenant_guid="00000000-0000-0000-0000-000000000000")
+    print(token)
+    
+generate_authentication_token()
+
+```
