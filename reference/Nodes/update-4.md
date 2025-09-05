@@ -59,3 +59,19 @@ const updateNode = async () => {
 };
 
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    graph_guid="Graph-Guid",
+    access_key="******",
+)
+
+def update_node():
+    node = litegraph.Node.update(guid="node-guid",name="Sample Node")
+    print(node)
+    
+update_node()
+```
