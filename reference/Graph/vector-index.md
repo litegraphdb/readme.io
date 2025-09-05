@@ -116,7 +116,7 @@ sdk = litegraph.configure(
 )
 
 def get_stats():
-    stats = litegraph.VectorIndex.get_stats(graph_guid="00000000-0000-0000-0000-000000000000")
+    stats = litegraph.VectorIndex.get_stats(graph_guid="graph-guid")
     print(stats)
 
 get_stats()
