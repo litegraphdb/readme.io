@@ -1,21 +1,23 @@
 ---
 title: Read and Enumerate Tenants
-excerpt: Read individual tenants, retrieve tenant statistics, and enumerate multiple tenants with filtering and search capabilities using administrative authentication.
+excerpt: >-
+  Read individual tenants, retrieve tenant statistics, and enumerate multiple
+  tenants with filtering and search capabilities using administrative
+  authentication.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Read and Enumeration endpoints provide comprehensive functionality for retrieving tenant data from your LiteGraph instance. These endpoints allow you to:
 
-- Read individual tenants by their unique identifier
-- Retrieve tenant statistics and metadata
-- Enumerate multiple tenants with various filtering options
-- Search and filter tenants based on labels, tags, and custom expressions
-- Implement pagination for large result sets
+* Read individual tenants by their unique identifier
+* Retrieve tenant statistics and metadata
+* Enumerate multiple tenants with various filtering options
+* Search and filter tenants based on labels, tags, and custom expressions
+* Implement pagination for large result sets
 
 **Important**: All tenant read and enumeration operations require administrative privileges and must use the LiteGraph administrative bearer token for authentication.
 
@@ -45,6 +47,22 @@ const readTenant = async () => {
     console.log("err:", JSON.stringify(err));
   }
 };
+```
+```
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def retrieve_tenant():
+    tenant = litegraph.Tenant.retrieve(guid="00000000-0000-0000-0000-000000000000")
+    print(tenant)
+
+retrieve_tenant()
+
 ```
 
 ## Read Tenant Statistics
@@ -217,15 +235,15 @@ The advanced enumeration endpoint `POST: /v2.0/tenants` provides powerful search
 
 The POST request body supports the following parameters:
 
-- **Ordering**: Sort results by creation date (CreatedAscending, CreatedDescending)
-- **IncludeData**: Whether to include custom data in the response
-- **IncludeSubordinates**: Whether to include subordinate tenant information
-- **MaxResults**: Maximum number of results to return (for pagination)
-- **Skip**: Number of results to skip (for pagination)
-- **ContinuationToken**: Token for continuing pagination from a previous request
-- **Labels**: Array of labels to filter tenants
-- **Tags**: Key-value pairs for tag-based filtering
-- **Expr**: Custom expression for advanced filtering
+* **Ordering**: Sort results by creation date (CreatedAscending, CreatedDescending)
+* **IncludeData**: Whether to include custom data in the response
+* **IncludeSubordinates**: Whether to include subordinate tenant information
+* **MaxResults**: Maximum number of results to return (for pagination)
+* **Skip**: Number of results to skip (for pagination)
+* **ContinuationToken**: Token for continuing pagination from a previous request
+* **Labels**: Array of labels to filter tenants
+* **Tags**: Key-value pairs for tag-based filtering
+* **Expr**: Custom expression for advanced filtering
 
 ```curl
 curl --location 'http://view.homedns.org:8701/v2.0/tenants' \
@@ -283,9 +301,9 @@ When reading and enumerating tenants, consider the following recommendations:
 
 After reading and enumerating tenants, you can:
 
-- Analyze tenant statistics to understand usage patterns
-- Implement tenant management dashboards and monitoring
-- Build administrative tools for tenant lifecycle management
-- Create tenant-specific configurations and settings
-- Implement tenant-based access control and permissions
-- Develop tenant migration and backup strategies
+* Analyze tenant statistics to understand usage patterns
+* Implement tenant management dashboards and monitoring
+* Build administrative tools for tenant lifecycle management
+* Create tenant-specific configurations and settings
+* Implement tenant-based access control and permissions
+* Develop tenant migration and backup strategies
