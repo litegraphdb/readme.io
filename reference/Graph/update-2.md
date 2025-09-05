@@ -1,6 +1,8 @@
 ---
 title: Delete Graph
-excerpt: Delete existing graphs with standard or force deletion options, including all associated nodes, edges, and data.
+excerpt: >-
+  Delete existing graphs with standard or force deletion options, including all
+  associated nodes, edges, and data.
 deprecated: false
 hidden: false
 metadata:
@@ -11,13 +13,12 @@ next:
       title: Running Server from Source
       type: basic
 ---
-
 ## Overview
 
 The Delete Graph endpoints allow you to permanently remove graphs from your tenant. When you delete a graph, all associated nodes, edges, vectors, and custom data are also removed. The API provides two deletion modes:
 
-- **Standard Delete**: Performs a standard deletion with safety checks
-- **Force Delete**: Bypasses safety checks for immediate deletion
+* **Standard Delete**: Performs a standard deletion with safety checks
+* **Force Delete**: Bypasses safety checks for immediate deletion
 
 **Warning**: Graph deletion is irreversible. All data associated with the graph will be permanently lost.
 
@@ -48,6 +49,22 @@ const deleteGraphById = async () => {
     console.log("err:", JSON.stringify(err));
   }
 };
+```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def delete_graph():
+    litegraph.Graph.delete(resource_id="graph-guid",force=True)
+    print("Graph deleted")
+
+delete_graph()
+
 ```
 
 ## Force Delete
@@ -80,6 +97,21 @@ const deleteGraphById = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def delete_graph_force():
+    litegraph.Graph.delete(resource_id="graph-guid",force=True)
+    print("Graph deleted")
+
+delete_graph_force()
+```
 
 ## Response
 
@@ -99,7 +131,7 @@ When deleting graphs, consider the following recommendations:
 
 After successfully deleting a graph, you can:
 
-- Create new graphs to replace deleted ones
-- Review remaining graphs in your tenant
-- Clean up any orphaned references in your application
-- Update any dependent systems that referenced the deleted graph
+* Create new graphs to replace deleted ones
+* Review remaining graphs in your tenant
+* Clean up any orphaned references in your application
+* Update any dependent systems that referenced the deleted graph
