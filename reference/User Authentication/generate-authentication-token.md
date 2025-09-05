@@ -42,7 +42,7 @@ sdk = litegraph.configure(
 )
 
 def generate_authentication_token():
-    token = litegraph.Authentication.generate_authentication_token(email="default@user.com", password="password", tenant_guid="00000000-0000-0000-0000-000000000000")
+    token = litegraph.Authentication.generate_authentication_token(email="user@example.com", password="pass****", tenant_guid="tenanat-guid")
     print(token)
     
 generate_authentication_token()
