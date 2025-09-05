@@ -173,6 +173,21 @@ const enumerateUsers = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def enumerate_user():
+    users = litegraph.User.enumerate()
+    print(users)
+
+enumerate_user()
+```
 
 ## Enumeration and Search (POST)
 
