@@ -1,21 +1,22 @@
 ---
 title: Read and Enumerate Users
-excerpt: Read individual users, multiple users by GUIDs, all users, and perform advanced enumeration with search capabilities using various API endpoints.
+excerpt: >-
+  Read individual users, multiple users by GUIDs, all users, and perform
+  advanced enumeration with search capabilities using various API endpoints.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Read and Enumerate Users endpoints provide comprehensive functionality for retrieving user data from a tenant. These endpoints support various retrieval patterns including:
 
-- Reading individual users by their unique identifier
-- Reading multiple users simultaneously by providing a list of GUIDs
-- Reading all users within a tenant
-- Advanced enumeration with pagination and filtering capabilities
-- Search-based enumeration with complex query expressions
+* Reading individual users by their unique identifier
+* Reading multiple users simultaneously by providing a list of GUIDs
+* Reading all users within a tenant
+* Advanced enumeration with pagination and filtering capabilities
+* Search-based enumeration with complex query expressions
 
 **Important**: All read operations require appropriate permissions within the tenant and must use a valid authentication token.
 
@@ -45,6 +46,21 @@ const readUser = async () => {
     console.log("err:", JSON.stringify(err));
   }
 };
+```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def retrieve_user():
+    user = litegraph.User.retrieve(guid="user-guid")
+    print(user)
+
+retrieve_user()
 ```
 
 ## Read Multiple Users by GUIDs
@@ -178,24 +194,24 @@ const enumerateAndSearchUsers = async () => {
 
 The POST enumeration endpoint supports the following search parameters:
 
-- **Ordering**: Sort order for results (`CreatedAscending`, `CreatedDescending`, `ModifiedAscending`, `ModifiedDescending`)
-- **IncludeData**: Whether to include full user data in the response (boolean)
-- **IncludeSubordinates**: Whether to include subordinate users (boolean)
-- **MaxResults**: Maximum number of results to return (integer)
-- **Skip**: Number of results to skip for pagination (integer)
-- **ContinuationToken**: Token for continuing pagination from previous request (string)
-- **Labels**: Array of label filters to apply (array of strings)
-- **Tags**: Object containing tag-based filters (object)
-- **Expr**: Complex expression for advanced filtering (object with Left, Operator, Right properties)
+* **Ordering**: Sort order for results (`CreatedAscending`, `CreatedDescending`, `ModifiedAscending`, `ModifiedDescending`)
+* **IncludeData**: Whether to include full user data in the response (boolean)
+* **IncludeSubordinates**: Whether to include subordinate users (boolean)
+* **MaxResults**: Maximum number of results to return (integer)
+* **Skip**: Number of results to skip for pagination (integer)
+* **ContinuationToken**: Token for continuing pagination from previous request (string)
+* **Labels**: Array of label filters to apply (array of strings)
+* **Tags**: Object containing tag-based filters (object)
+* **Expr**: Complex expression for advanced filtering (object with Left, Operator, Right properties)
 
 ## Response
 
 All read and enumeration endpoints return JSON responses containing user data. The response structure varies based on the endpoint:
 
-- **Individual User**: Returns a single user object with all properties
-- **Multiple Users**: Returns an array of user objects
-- **All Users**: Returns an array of all user objects in the tenant
-- **Enumeration**: Returns paginated results with metadata including continuation tokens
+* **Individual User**: Returns a single user object with all properties
+* **Multiple Users**: Returns an array of user objects
+* **All Users**: Returns an array of all user objects in the tenant
+* **Enumeration**: Returns paginated results with metadata including continuation tokens
 
 ## Best Practices
 
@@ -210,10 +226,10 @@ When reading and enumerating users, consider the following recommendations:
 
 After reading user data, you can:
 
-- Display user information in your application interface
-- Implement user management and administration features
-- Perform user-specific operations based on retrieved data
-- Update user information using the update endpoints
-- Implement user search and filtering functionality
-- Build user analytics and reporting features
-- Integrate user data with other system components
+* Display user information in your application interface
+* Implement user management and administration features
+* Perform user-specific operations based on retrieved data
+* Update user information using the update endpoints
+* Implement user search and filtering functionality
+* Build user analytics and reporting features
+* Integrate user data with other system components
