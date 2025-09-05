@@ -48,7 +48,7 @@ const readTenant = async () => {
   }
 };
 ```
-```
+```python
 import litegraph
 
 sdk = litegraph.configure(
@@ -90,6 +90,22 @@ const readTenantStatistic = async () => {
     console.log("err:", JSON.stringify(err));
   }
 };
+```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def retrieve_statistics_single_tenant():
+    statistics = litegraph.Tenant.retrieve_statistics(tenant_guid="tenanat-guid")
+    print(statistics)
+    
+retrieve_statistics_single_tenant()
+
 ```
 
 ## Read Multiple Tenants by GUIDs
