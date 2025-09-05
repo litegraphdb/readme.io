@@ -162,3 +162,32 @@ const crateMultipleNodes = async () => {
 };
 
 ```
+```
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    graph_guid="Graph-Guid",
+    access_key="******",
+)
+
+def create_multiple_node():
+    nodes = litegraph.Node.create_multiple([
+        {
+            "name": "Active Directory",
+            "data": {
+                "type": "service"
+            }
+        },
+        {
+            "name": "Website", 
+            "data": {
+                "type": "service"
+            }
+        }
+    ])
+    print(nodes)
+
+create_multiple_node()
+```
