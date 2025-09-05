@@ -76,6 +76,23 @@ const deleteMultipleNodes = async () => {
 };
 
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    graph-guid="Graph-Guid",
+    access_key="******",
+)
+
+def delete_multiple_node():
+    litegraph.Node.delete_multiple(guid=["node-guid","node-guid-1"])
+    print("Nodes deleted")
+
+delete_multiple_node()
+
+```
 
 ## Delete all nodes
 
