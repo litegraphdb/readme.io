@@ -220,6 +220,21 @@ const readAllTenantStatistics = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def retrieve_statistics_all_tenant():
+    statistics = litegraph.Tenant.retrieve_statistics()
+    print(statistics)
+    
+retrieve_statistics_all_tenant()
+```
 
 ## Enumeration (GET)
 
