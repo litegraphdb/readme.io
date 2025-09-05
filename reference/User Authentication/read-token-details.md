@@ -28,3 +28,21 @@ const getTokenDetails = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="00000000-0000-0000-0000-000000000000",
+    access_key="litegraphadmin",
+)
+
+def retrieve_token_details():
+    token_details = litegraph.Authentication.retrieve_token_details(token="******")
+    print(token_details)
+    
+retrieve_token_details()
+
+```
+
+<br />
