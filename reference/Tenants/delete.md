@@ -1,20 +1,21 @@
 ---
 title: Delete Tenant
-excerpt: Delete tenant objects with isolated data domains within LiteGraph using administrative bearer token authentication, with optional force deletion.
+excerpt: >-
+  Delete tenant objects with isolated data domains within LiteGraph using
+  administrative bearer token authentication, with optional force deletion.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Delete Tenant endpoint allows you to permanently remove tenant objects from your LiteGraph instance. When you delete a tenant, all associated data including graphs, nodes, edges, and vectors are also permanently removed. This functionality provides:
 
-- Complete tenant removal and cleanup
-- Data isolation and security enforcement
-- Administrative control over tenant lifecycle
-- Force deletion capabilities for problematic tenants
+* Complete tenant removal and cleanup
+* Data isolation and security enforcement
+* Administrative control over tenant lifecycle
+* Force deletion capabilities for problematic tenants
 
 **Warning**: Tenant deletion is irreversible. All data associated with the tenant will be permanently lost.
 
@@ -47,6 +48,21 @@ const deleteTenant = async () => {
     console.log("err:", JSON.stringify(err));
   }
 };
+```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def delete_tenant():
+    litegraph.Tenant.delete(guid="tenanat-guid")
+    print("Tenant deleted")
+
+delete_tenant()
 ```
 
 ## Delete Forcefully
@@ -90,8 +106,8 @@ When deleting tenants, consider the following recommendations:
 
 After successfully deleting a tenant, you can:
 
-- Clean up any orphaned references in your application
-- Update any dependent systems that referenced the deleted tenant
-- Review remaining tenants in your system
-- Implement tenant lifecycle management policies
-- Update your tenant management documentation
+* Clean up any orphaned references in your application
+* Update any dependent systems that referenced the deleted tenant
+* Review remaining tenants in your system
+* Implement tenant lifecycle management policies
+* Update your tenant management documentation
