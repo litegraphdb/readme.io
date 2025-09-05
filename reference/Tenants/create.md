@@ -69,44 +69,6 @@ create_tenant()
 
 ```
 
-```javascript
-import { LiteGraphSdk } from "litegraphdb";
-
-var api = new LiteGraphSdk(
-  "http://localhost:8701/",
-  "<Tenant-Guid>",
-  "*******"
-);
-
-const createTenant = async () => {
-  try {
-    const created = await api.Tenant.create({
-      Name: "Another tenant",
-      Active: true,
-    });
-    console.log(created);
-  } catch (err) {
-    console.log("err:", JSON.stringify(err));
-  }
-};
-```
-```python
-import litegraph
-
-sdk = litegraph.configure(
-    endpoint="http://192.168.101.63:8701",
-    tenant_guid="00000000-0000-0000-0000-000000000000",
-    access_key="litegraphadmin",
-)
-
-def create_tenant():
-    tenant = litegraph.Tenant.create(name="Test Tenant")
-    print(tenant)
-    
-create_tenant()
-
-```
-
 ## Request Parameters
 
 The tenant creation request supports the following parameters:
