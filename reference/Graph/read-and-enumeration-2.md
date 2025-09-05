@@ -91,6 +91,21 @@ const readGraphStatistic = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def retrieve_statistics():
+    statistics = litegraph.Graph.retrieve_statistics(graph_guid="graph-guid")
+    print(statistics)
+
+retrieve_statistics()
+```
 
 ## Read First Graph
 
