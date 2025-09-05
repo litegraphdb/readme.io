@@ -66,6 +66,24 @@ const createNode = async () => {
 };
 
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    graph_guid="Graph-Guid",
+    access_key="******",
+)
+
+def create_node():
+    node = litegraph.Node.create(name="Sample Node",data={"type": "service"})
+    print(node)
+    
+create_node()
+
+
+```
 
 ## Create multiple node
 
