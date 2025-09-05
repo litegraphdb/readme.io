@@ -52,6 +52,22 @@ const createTenant = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://192.168.101.63:8701",
+    tenant_guid="00000000-0000-0000-0000-000000000000",
+    access_key="litegraphadmin",
+)
+
+def create_tenant():
+    tenant = litegraph.Tenant.create(name="Test Tenant")
+    print(tenant)
+    
+create_tenant()
+
+```
 
 ```javascript
 import { LiteGraphSdk } from "litegraphdb";
