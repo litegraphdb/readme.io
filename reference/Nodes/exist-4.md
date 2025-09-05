@@ -27,3 +27,19 @@ const checkIfNodeExistsById = async () => {
 };
 
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    graph-guid="Graph-Guid",
+    access_key="******",
+)
+
+def exists_node():
+    exists = litegraph.Node.exists(guid="node-guid")
+    print(exists)
+    
+exists_node()
+```
