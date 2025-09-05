@@ -56,7 +56,7 @@ const createTenant = async () => {
 import litegraph
 
 sdk = litegraph.configure(
-    endpoint="http://192.168.101.63:8701",
+    endpoint="http://localhost:8701",
     tenant_guid="Tenant-Guid",
     access_key="******",
 )
