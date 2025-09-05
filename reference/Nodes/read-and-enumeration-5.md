@@ -193,6 +193,22 @@ const enumerateNodes = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    graph_guid="Graph-Guid",
+    access_key="******",
+)
+
+def enumerate_node():
+    nodes = litegraph.Node.enumerate()
+    print(nodes)
+    
+enumerate_node()
+```
 
 ## Enumeration and search (POST)
 
