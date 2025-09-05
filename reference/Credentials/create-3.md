@@ -1,12 +1,13 @@
 ---
 title: Create Credential
-excerpt: Create new authentication credentials for users including bearer tokens and API keys with proper security validation and access control.
+excerpt: >-
+  Create new authentication credentials for users including bearer tokens and
+  API keys with proper security validation and access control.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Create Credential endpoint allows you to generate new authentication credentials for users within a tenant.
@@ -49,15 +50,30 @@ const createCredential = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def create_credential():
+    credential = litegraph.Credential.create(user_guid="user-guid", name="New credential", bearer_token="foobar")
+    print(credential)
+
+create_credential()
+```
 
 ## Request Parameters
 
 The credential creation request accepts the following parameters:
 
-- **UserGUID**: The unique identifier of the user for whom the credential is being created (string, required)
-- **Name**: A descriptive name for the credential (string, required)
-- **BearerToken**: The bearer token value for authentication (string, required)
-- **Active**: Whether the credential is active and can be used for authentication (boolean, required)
+* **UserGUID**: The unique identifier of the user for whom the credential is being created (string, required)
+* **Name**: A descriptive name for the credential (string, required)
+* **BearerToken**: The bearer token value for authentication (string, required)
+* **Active**: Whether the credential is active and can be used for authentication (boolean, required)
 
 **Note**: The BearerToken should be a secure, randomly generated value. Consider using cryptographically secure random generators for production environments.
 
@@ -82,10 +98,10 @@ Upon successful credential creation, the API returns a `201 Created` status code
 
 After successfully creating a credential, you can:
 
-- Test the credential by using it for API authentication
-- Implement credential management interfaces for users
-- Set up credential rotation and expiration policies
-- Create credential monitoring and usage tracking
-- Implement credential revocation mechanisms
-- Build credential sharing and delegation features
-- Set up automated credential validation and testing
+* Test the credential by using it for API authentication
+* Implement credential management interfaces for users
+* Set up credential rotation and expiration policies
+* Create credential monitoring and usage tracking
+* Implement credential revocation mechanisms
+* Build credential sharing and delegation features
+* Set up automated credential validation and testing
