@@ -173,21 +173,6 @@ const enumerateUsers = async () => {
   }
 };
 ```
-```python
-import litegraph
-
-sdk = litegraph.configure(
-    endpoint="http://localhost:8701",
-    tenant_guid="Tenant-Guid",
-    access_key="******",
-)
-
-def enumerate_user():
-    users = litegraph.User.enumerate()
-    print(users)
-
-enumerate_user()
-```
 
 ## Enumeration and Search (POST)
 
@@ -233,6 +218,22 @@ const enumerateAndSearchUsers = async () => {
     console.log("err:", JSON.stringify(err));
   }
 };
+```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def enumerate_with_query_user():
+    users = litegraph.User.enumerate_with_query(ordering="CreatedDescending",MaxResults=10,Skip=0,IncludeData=True,IncludeSubordinates=True,Expr=litegraph.ExprModel(Left="Name",Operator="Equals",Right="Test"))
+    print(users)
+
+enumerate_with_query_user()
+
 ```
 
 ## Search Parameters
