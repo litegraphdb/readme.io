@@ -31,7 +31,6 @@ curl --location --request PUT 'http://view.homedns.org:8701/v1.0/tenants' \
     "Active": true
 }'
 ```
-
 ```javascript
 import { LiteGraphSdk } from "litegraphdb";
 

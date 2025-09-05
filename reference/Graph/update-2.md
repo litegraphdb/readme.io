@@ -31,7 +31,6 @@ curl --location --request DELETE 'http://localhost:8701/v1.0/tenants/00000000-00
 --header 'Authorization: ••••••' \
 --data ''
 ```
-
 ```javascript
 import { LiteGraphSdk } from "litegraphdb";
 
