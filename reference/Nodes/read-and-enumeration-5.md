@@ -255,3 +255,25 @@ const enumerateAndSearchNodes = async () => {
 
 
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    graph_guid="Graph-Guid",
+    access_key="******",
+)
+
+def enumerate_with_query_node():
+    nodes = litegraph.Node.enumerate_with_query(
+        expr=litegraph.ExprModel(
+            Left="Name",
+            Operator="Equals", 
+            Right="Test"
+        )
+    )
+    print(nodes)
+
+enumerate_with_query_node()
+```
