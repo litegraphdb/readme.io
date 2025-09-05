@@ -38,7 +38,7 @@ sdk = litegraph.configure(
 )
 
 def retrieve_tenants_for_email():
-    tenants = litegraph.Authentication.retrieve_tenants_for_email(email="default@user.com")
+    tenants = litegraph.Authentication.retrieve_tenants_for_email(email="user@example.com")
     print(tenants)
 
 retrieve_tenants_for_email()
