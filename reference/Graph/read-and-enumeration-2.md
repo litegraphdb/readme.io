@@ -145,6 +145,23 @@ const readFirstGraph = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def read_first_graph():
+    graph = litegraph.Graph.read_first(ordering="CreatedDescending")
+    print(graph)
+
+read_first_graph()
+```
 
 ```python
 import litegraph
