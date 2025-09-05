@@ -27,7 +27,6 @@ Read a single credential by its unique identifier using `GET: /v1.0/tenants/{ten
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/credentials/00000000-0000-0000-0000-000000000000' \
 --header 'Authorization: ••••••'
 ```
-
 ```javascript
 import { LiteGraphSdk } from "litegraphdb";
 
@@ -55,7 +54,6 @@ Read multiple credentials simultaneously by providing a comma-separated list of 
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/credentials?guids=00000000-0000-0000-0000-000000000000%2C00000000-0000-0000-0000-000000000001' \
 --header 'Authorization: ••••••'
 ```
-
 ```javascript
 import { LiteGraphSdk } from 'litegraphdb';
 
@@ -79,7 +77,6 @@ Read all credentials within a tenant using `GET: /v1.0/tenants/{tenant-guid}/cre
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/credentials' \
 --header 'Authorization: ••••••'
 ```
-
 ```javascript
 import { LiteGraphSdk } from "litegraphdb";
 
@@ -107,7 +104,6 @@ Perform basic enumeration of credentials using `GET: /v2.0/tenants/{tenant-guid}
 curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/credentials' \
 --header 'Authorization: ••••••'
 ```
-
 ```javascript
 import { LiteGraphSdk } from "litegraphdb";
 
@@ -147,7 +143,6 @@ curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-0000
     "Expr": { }
 }'
 ```
-
 ```javascript
 import { LiteGraphSdk } from "litegraphdb";
 

@@ -30,7 +30,6 @@ curl --location --request DELETE 'http://view.homedns.org:8701/v1.0/tenants/0000
 --header 'Authorization: Bearer ********' \
 --data ''
 ```
-
 ```javascript
 import { LiteGraphSdk } from "litegraphdb";
 
@@ -62,7 +61,6 @@ curl --location --request DELETE 'http://view.homedns.org:8701/v1.0/tenants/0000
 --header 'Authorization: Bearer ********' \
 --data ''
 ```
-
 ```javascript
 const deleteTenant = async () => {
   try {
