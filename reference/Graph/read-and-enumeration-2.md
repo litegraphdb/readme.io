@@ -333,6 +333,21 @@ const enumerateGraphs = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def enumerate_graph():
+    graphs = litegraph.Graph.enumerate()
+    print(graphs)
+
+enumerate_graph()
+```
 
 ## Enumeration and Search (POST)
 
