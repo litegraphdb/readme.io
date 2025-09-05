@@ -29,6 +29,21 @@ const getNodeById = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def retrieve_node():
+    node = litegraph.Node.retrieve(guid="node-guid")
+    print(node)
+
+retrieve_node()
+```
 
 ## Read first
 
