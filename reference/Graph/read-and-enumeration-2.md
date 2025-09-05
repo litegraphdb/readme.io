@@ -241,6 +241,21 @@ const getGraphList = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def retrieve_all_graph():
+    graphs = litegraph.Graph.retrieve_all()
+    print(graphs)
+
+retrieve_all_graph()
+```
 
 ### Read All Graph Statistics
 
