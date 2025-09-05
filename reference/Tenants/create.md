@@ -1,19 +1,20 @@
 ---
 title: Create Tenant
-excerpt: Create new tenant objects with isolated data domains within LiteGraph using administrative bearer token authentication.
+excerpt: >-
+  Create new tenant objects with isolated data domains within LiteGraph using
+  administrative bearer token authentication.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Create Tenant endpoint allows you to create new tenant objects within your LiteGraph instance. Each tenant represents a separate, isolated domain of data, providing complete data separation and security boundaries. This functionality is essential for:
 
-- Multi-tenant application architectures
-- Data isolation and security
-- Organizational separation of graph data
+* Multi-tenant application architectures
+* Data isolation and security
+* Organizational separation of graph data
 
 **Important**: Tenant creation requires administrative privileges and must use the LiteGraph administrative bearer token for authentication.
 
@@ -52,23 +53,39 @@ const createTenant = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://192.168.101.63:8701",
+    tenant_guid="00000000-0000-0000-0000-000000000000",
+    access_key="litegraphadmin",
+)
+
+def create_tenant():
+    tenant = litegraph.Tenant.create(name="Test Tenant")
+    print(tenant)
+    
+create_tenant()
+
+```
 
 ## Request Parameters
 
 The tenant creation request supports the following parameters:
 
-- **`Name`** - The display name of the tenant. This is a required field and should be descriptive and unique within your organization.
-- **`Active`** - A boolean flag indicating whether the tenant should be active (`true`) or inactive (`false`) upon creation. Defaults to `true` if not specified. Inactive tenants cannot be used for data operations until they are activated.
+* **`Name`** - The display name of the tenant. This is a required field and should be descriptive and unique within your organization.
+* **`Active`** - A boolean flag indicating whether the tenant should be active (`true`) or inactive (`false`) upon creation. Defaults to `true` if not specified. Inactive tenants cannot be used for data operations until they are activated.
 
 ## Response
 
 Upon successful creation, the API returns a `201 Created` status with the created tenant object containing:
 
-- **TenantGUID**: The unique identifier assigned to the newly created tenant
-- **Name**: The display name provided in the request
-- **Active**: The active status of the tenant
-- **CreatedUtc**: Timestamp when the tenant was created
-- **LastUpdateUtc**: Timestamp of the last update (initially the same as CreatedUtc)
+* **TenantGUID**: The unique identifier assigned to the newly created tenant
+* **Name**: The display name provided in the request
+* **Active**: The active status of the tenant
+* **CreatedUtc**: Timestamp when the tenant was created
+* **LastUpdateUtc**: Timestamp of the last update (initially the same as CreatedUtc)
 
 ## Best Practices
 
@@ -84,8 +101,8 @@ When creating tenants, consider the following recommendations:
 
 After successfully creating a tenant, you can:
 
-- Create graphs within the new tenant
-- Set up user authentication for the tenant
-- Configure tenant-specific settings and permissions
-- Begin adding nodes, edges, and data to tenant graphs
-- Implement tenant-specific business logic and workflows
+* Create graphs within the new tenant
+* Set up user authentication for the tenant
+* Configure tenant-specific settings and permissions
+* Begin adding nodes, edges, and data to tenant graphs
+* Implement tenant-specific business logic and workflows
