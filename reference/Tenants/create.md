@@ -57,8 +57,8 @@ import litegraph
 
 sdk = litegraph.configure(
     endpoint="http://192.168.101.63:8701",
-    tenant_guid="00000000-0000-0000-0000-000000000000",
-    access_key="litegraphadmin",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
 )
 
 def create_tenant():
