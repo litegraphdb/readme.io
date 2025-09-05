@@ -38,7 +38,7 @@ import litegraph
 sdk = litegraph.configure(
     endpoint="http://localhost:8701",
     tenant_guid="Tenant-Guid",
-    access_key="litegraphadmin",
+    access_key="******",
 )
 
 def generate_authentication_token():
