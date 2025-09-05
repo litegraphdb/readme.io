@@ -62,7 +62,7 @@ sdk = litegraph.configure(
 )
 
 def create_tenant():
-    tenant = litegraph.Tenant.create(name="Test Tenant")
+    tenant = litegraph.Tenant.create(name="Another Tenant")
     print(tenant)
     
 create_tenant()
