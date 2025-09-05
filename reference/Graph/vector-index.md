@@ -1,27 +1,29 @@
 ---
 title: Vector Index Management
-excerpt: Manage vector indexes for graphs including configuration, statistics, enabling, rebuilding, and deletion operations for optimized vector search performance.
+excerpt: >-
+  Manage vector indexes for graphs including configuration, statistics,
+  enabling, rebuilding, and deletion operations for optimized vector search
+  performance.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Vector Index Management endpoints allow you to configure and manage vector indexes for your graphs. Vector indexes are essential for efficient similarity-based searches and significantly improve the performance of vector operations. These endpoints provide functionality for:
 
-- Reading vector index configuration and statistics
-- Enabling vector indexes with custom parameters
-- Rebuilding indexes to optimize performance
-- Deleting indexes when no longer needed
+* Reading vector index configuration and statistics
+* Enabling vector indexes with custom parameters
+* Rebuilding indexes to optimize performance
+* Deleting indexes when no longer needed
 
 Vector indexes are particularly important for:
 
-- Accelerating vector similarity searches
-- Supporting large-scale vector operations
-- Optimizing memory usage for vector data
-- Enabling real-time vector search capabilities
+* Accelerating vector similarity searches
+* Supporting large-scale vector operations
+* Optimizing memory usage for vector data
+* Enabling real-time vector search capabilities
 
 ## Read Configuration
 
@@ -48,6 +50,21 @@ const readVectorIndexConfig = async () => {
     console.log("err:", JSON.stringify(err));
   }
 };
+```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******"
+)
+
+def read_config():
+    config = litegraph.VectorIndex.get_config(graph_guid="graph-guid")
+    print(config)
+
+read_config()
 ```
 
 ### Response
@@ -117,13 +134,13 @@ Enable a vector index for a graph using `PUT: /v2.0/tenants/{tenant-guid}/graphs
 
 The enable request supports the following parameters:
 
-- **VectorIndexType**: The type of vector index to use (e.g., "HnswSqlite")
-- **VectorIndexFile**: The filename for the index storage
-- **VectorIndexThreshold**: Optional threshold value for index operations
-- **VectorDimensionality**: The dimensionality of vectors in the index
-- **VectorIndexM**: The number of bi-directional links for each node (HNSW parameter)
-- **VectorIndexEf**: The size of the dynamic candidate list (HNSW parameter)
-- **VectorIndexEfConstruction**: The size of the dynamic candidate list during construction (HNSW parameter)
+* **VectorIndexType**: The type of vector index to use (e.g., "HnswSqlite")
+* **VectorIndexFile**: The filename for the index storage
+* **VectorIndexThreshold**: Optional threshold value for index operations
+* **VectorDimensionality**: The dimensionality of vectors in the index
+* **VectorIndexM**: The number of bi-directional links for each node (HNSW parameter)
+* **VectorIndexEf**: The size of the dynamic candidate list (HNSW parameter)
+* **VectorIndexEfConstruction**: The size of the dynamic candidate list during construction (HNSW parameter)
 
 ```curl
 curl --location --request PUT 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/vectorindex/enable' \
@@ -208,6 +225,7 @@ const rebuildVectorIndex = async () => {
 ```
 
 ### Response
+
 Upon successful rebuild, the API returns a `200 OK` status code. No response body is returned for this operation.
 
 ## Delete Vector Index
@@ -239,14 +257,15 @@ const deleteVectorIndex = async () => {
 ```
 
 ### Response
+
 Upon successful delete, the API returns a `200 OK` status code. No response body is returned for this operation.
 
 ## Next Steps
 
 After managing vector indexes, you can:
 
-- Perform optimized vector similarity searches
-- Monitor index performance and statistics
-- Implement vector-based recommendation systems
-- Build semantic search applications
-- Optimize vector operations for large-scale deployments
+* Perform optimized vector similarity searches
+* Monitor index performance and statistics
+* Implement vector-based recommendation systems
+* Build semantic search applications
+* Optimize vector operations for large-scale deployments
