@@ -262,6 +262,21 @@ const enumerateTenants = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def enumerate_tenant():
+    tenants = litegraph.Tenant.enumerate()
+    print(tenants)
+    
+enumerate_tenant()
+```
 
 ### Response
 
