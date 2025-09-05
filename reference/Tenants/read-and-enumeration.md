@@ -134,6 +134,22 @@ const readManyTenants = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def retrieve_multiple_tenants():
+    tenants = litegraph.Tenant.retrieve_many(["Tenant-Guid","Tenant-Guid-2"])
+    print(tenants)
+    
+retrieve_multiple_tenants()
+
+```
 
 ## Read All Tenants
 
