@@ -1,21 +1,22 @@
 ---
 title: Delete User
-excerpt: Delete existing user objects from a tenant, permanently removing user accounts and associated data with proper authentication.
+excerpt: >-
+  Delete existing user objects from a tenant, permanently removing user accounts
+  and associated data with proper authentication.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Delete User endpoint allows you to permanently remove user objects from a specific tenant. When you delete a user, all associated user data, preferences, and access permissions are also permanently removed. This functionality is essential for:
 
-- Removing inactive or terminated user accounts
-- Cleaning up user data for compliance and privacy
-- Managing user lifecycle within tenant boundaries
-- Implementing user account termination workflows
-- Maintaining data security and access control
+* Removing inactive or terminated user accounts
+* Cleaning up user data for compliance and privacy
+* Managing user lifecycle within tenant boundaries
+* Implementing user account termination workflows
+* Maintaining data security and access control
 
 **Warning**: User deletion is irreversible. All data associated with the user will be permanently lost.
 
@@ -47,6 +48,21 @@ const deleteUser = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def delete_user():
+    litegraph.User.delete(guid="user-guid")
+    print("User deleted")
+
+delete_user()
+```
 
 ## Response
 
@@ -64,6 +80,6 @@ When deleting users, consider the following recommendations:
 
 After successfully deleting a user, you can:
 
-- Clean up any orphaned references in your application
-- Update any dependent systems that referenced the deleted user
-- Review remaining users in the tenant
+* Clean up any orphaned references in your application
+* Update any dependent systems that referenced the deleted user
+* Review remaining users in the tenant
