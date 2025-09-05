@@ -89,6 +89,21 @@ const readManyUsers = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def retrieve_multiple_user():
+    users = litegraph.User.retrieve_many(guids=["userGuid","userGuid2"])
+    print(users)
+
+retrieve_multiple_user()
+```
 
 ## Read All Users
 
@@ -115,6 +130,21 @@ const readAllUsers = async () => {
     console.log("err:", JSON.stringify(err));
   }
 };
+```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def retrieve_all_user():
+    users = litegraph.User.retrieve_all()
+    print(users)
+
+retrieve_all_user()
 ```
 
 ## Enumeration (GET)
