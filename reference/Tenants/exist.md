@@ -56,7 +56,7 @@ sdk = litegraph.configure(
 )
 
 def tenant_exists():
-    exists = litegraph.Tenant.exists(guid="00000000-0000-0000-0000-000000000000")
+    exists = litegraph.Tenant.exists(guid="tenanat-guid")
     print(exists)
 
 tenant_exists()
