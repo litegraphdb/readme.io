@@ -1,21 +1,22 @@
 ---
 title: Check User Existence
-excerpt: Check if a specific user exists in a tenant by its unique identifier using lightweight HEAD requests with proper authentication.
+excerpt: >-
+  Check if a specific user exists in a tenant by its unique identifier using
+  lightweight HEAD requests with proper authentication.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Check User Existence endpoint allows you to efficiently verify whether a specific user exists within a tenant without retrieving the full user data. This is particularly useful for:
 
-- Validating user IDs before performing operations
-- Implementing conditional logic based on user existence
-- Optimizing applications by avoiding unnecessary data retrieval
-- Performing lightweight existence checks in bulk operations
-- User authentication and access control validation
+* Validating user IDs before performing operations
+* Implementing conditional logic based on user existence
+* Optimizing applications by avoiding unnecessary data retrieval
+* Performing lightweight existence checks in bulk operations
+* User authentication and access control validation
 
 ## Check User Existence
 
@@ -43,10 +44,25 @@ const userExists = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def exists_user():
+    exists = litegraph.User.exists(guid="user-guid")
+    print(exists)
+
+exists_user()
+```
 
 ## Response
 
 The HEAD request returns only HTTP status codes without any response body:
 
-- **200 OK**: The user exists and is accessible
-- **404 Not Found**: The user does not exist or you don't have access to it
+* **200 OK**: The user exists and is accessible
+* **404 Not Found**: The user does not exist or you don't have access to it
