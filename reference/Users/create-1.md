@@ -68,7 +68,7 @@ sdk = litegraph.configure(
 )
 
 def create_user():
-    user = litegraph.User.create(email="test@test.com", password="password", first_name="Test", last_name="User")
+    user = litegraph.User.create(email="another@user.com", password="pass****", first_name="Another", last_name="User")
     print(user)
 
 create_user()
