@@ -33,8 +33,8 @@ import litegraph
 
 sdk = litegraph.configure(
     endpoint="http://localhost:8701",
-    tenant_guid="00000000-0000-0000-0000-000000000000",
-    access_key="litegraphadmin",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
 )
 
 def retrieve_tenants_for_email():
