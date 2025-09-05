@@ -87,6 +87,22 @@ const deleteTenant = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def delete_tenant_force():
+    litegraph.Tenant.delete(guid="tenanat-guid", force=True)
+    print("Tenant deleted")
+
+delete_tenant_force()
+
+```
 
 ## Response
 
