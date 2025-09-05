@@ -1,21 +1,22 @@
 ---
 title: Update Credential
-excerpt: Update existing authentication credentials including bearer tokens, names, and status with proper validation and security controls.
+excerpt: >-
+  Update existing authentication credentials including bearer tokens, names, and
+  status with proper validation and security controls.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Update Credential endpoint allows you to modify existing authentication credentials within a tenant. This functionality is essential for:
 
-- Updating credential names and descriptions
-- Modifying bearer token values
-- Changing credential status (active/inactive)
-- Implementing credential lifecycle management
-- Maintaining security through credential rotation
+* Updating credential names and descriptions
+* Modifying bearer token values
+* Changing credential status (active/inactive)
+* Implementing credential lifecycle management
+* Maintaining security through credential rotation
 
 **Important**: Credential updates require appropriate permissions within the tenant and must use a valid authentication token. All updates are validated before being applied.
 
@@ -61,19 +62,35 @@ const updateCredential = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def update_credential():
+    credential = litegraph.Credential.update(guid="credential-guid",user_guid="user-guid", name="Updated credential")
+    print(credential)
+
+update_credential()
+
+```
 
 ## Request Parameters
 
 The update request accepts the following credential properties:
 
-- **UserGUID**: The unique identifier of the user associated with the credential (string, required)
-- **Name**: A descriptive name for the credential (string, required)
-- **BearerToken**: The bearer token value for authentication (string, required)
-- **Active**: Whether the credential is active and can be used for authentication (boolean, required)
-- **GUID**: The credential's unique identifier (string, read-only)
-- **TenantGUID**: The tenant's unique identifier (string, read-only)
-- **CreatedUtc**: Timestamp when credential was created (string, read-only)
-- **LastUpdateUtc**: Timestamp of last update (string, read-only)
+* **UserGUID**: The unique identifier of the user associated with the credential (string, required)
+* **Name**: A descriptive name for the credential (string, required)
+* **BearerToken**: The bearer token value for authentication (string, required)
+* **Active**: Whether the credential is active and can be used for authentication (boolean, required)
+* **GUID**: The credential's unique identifier (string, read-only)
+* **TenantGUID**: The tenant's unique identifier (string, read-only)
+* **CreatedUtc**: Timestamp when credential was created (string, read-only)
+* **LastUpdateUtc**: Timestamp of last update (string, read-only)
   ged by the system.
 
 ## Response
