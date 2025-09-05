@@ -1,21 +1,22 @@
 ---
 title: Delete Credential
-excerpt: Delete existing authentication credentials permanently, revoking access and removing bearer tokens with proper security validation.
+excerpt: >-
+  Delete existing authentication credentials permanently, revoking access and
+  removing bearer tokens with proper security validation.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Delete Credential endpoint allows you to permanently remove authentication credentials from a tenant. This functionality is essential for:
 
-- Revoking compromised or expired credentials
-- Removing unused or unnecessary authentication tokens
-- Implementing credential lifecycle management
-- Maintaining security by cleaning up old credentials
-- Managing user access control and permissions
+* Revoking compromised or expired credentials
+* Removing unused or unnecessary authentication tokens
+* Implementing credential lifecycle management
+* Maintaining security by cleaning up old credentials
+* Managing user access control and permissions
 
 **Warning**: Credential deletion is irreversible. All access using the deleted credential will be immediately revoked.
 
@@ -49,6 +50,21 @@ const deleteCredential = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def delete_credential():
+    litegraph.Credential.delete(guid="credential-guid")
+    print("Credential deleted")
+
+delete_credential()
+```
 
 ## Response
 
@@ -66,10 +82,10 @@ When deleting credentials, consider the following security recommendations:
 
 After successfully deleting a credential, you can:
 
-- Update any systems that were using the deleted credential
-- Create replacement credentials if needed
-- Review remaining credentials in the tenant
-- Implement credential lifecycle management policies
-- Update credential management documentation
-- Set up automated credential monitoring and cleanup
-- Implement credential expiration and rotation workflows
+* Update any systems that were using the deleted credential
+* Create replacement credentials if needed
+* Review remaining credentials in the tenant
+* Implement credential lifecycle management policies
+* Update credential management documentation
+* Set up automated credential monitoring and cleanup
+* Implement credential expiration and rotation workflows
