@@ -163,16 +163,6 @@ def read_first_graph():
 read_first_graph()
 ```
 
-```python
-import litegraph
-
-def read_first_graph():
-    graph = litegraph.Graph.read_first(ordering="CreatedDescending")
-    print(graph)
-
-read_first_graph()
-```
-
 ## Read Multiple Graphs by GUIDs
 
 Retrieve multiple specific graphs by providing their GUIDs as query parameters using `GET: /v1.0/tenants/{tenant-id}/graphs?guids=<graph1-guid>,<graph2-guid>`. This endpoint allows you to fetch several graphs in a single request by specifying comma-separated GUIDs in the URL query string.
@@ -203,6 +193,21 @@ const readManyTenants = async () => {
     console.log("err:", JSON.stringify(err));
   }
 };
+```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def retrieve_multiple_graph():
+    graphs = litegraph.Graph.retrieve_many(["graph-guid","graph-guid-2"])
+    print(graphs)
+
+# retrieve_multiple_graph()
 ```
 
 ## Read All Graphs
