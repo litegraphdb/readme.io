@@ -35,6 +35,7 @@ import litegraph
 sdk = litegraph.configure(
     endpoint="http://localhost:8701",
     tenant_guid="Tenant-Guid",
+    node_guid="Node-Guid",
     access_key="******",
 )
 
