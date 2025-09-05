@@ -54,7 +54,7 @@ const updateTenant = async () => {
   }
 };
 ```
-```
+```python
 import litegraph
 
 sdk = litegraph.configure(
