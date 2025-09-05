@@ -197,6 +197,31 @@ const enableVectorIndex = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def enable_vector_index():
+    vector_index = litegraph.VectorIndex.enable(
+        graph_guid="00000000-0000-0000-0000-000000000000", 
+        config=litegraph.HnswLiteVectorIndexModel(
+            VectorIndexType="HnswSqlite", 
+            VectorIndexFile="graph-00000000-0000-0000-0000-000000000000-hnsw.db", 
+            VectorDimensionality=384, 
+            M=16, 
+            DefaultEf=50, 
+            EfConstruction=200
+        )
+    )
+    print(vector_index)
+
+enable_vector_index()
+```
 
 ### Response
 
@@ -237,6 +262,24 @@ const rebuildVectorIndex = async () => {
     console.log("err:", JSON.stringify(err));
   }
 };
+```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def rebuild_vector_index():
+    vector_index = litegraph.VectorIndex.rebuild(
+        graph_guid="graph-guid", 
+
+    )
+    print(vector_index)
+
+rebuild_vector_index()
 ```
 
 ### Response
