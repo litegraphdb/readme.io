@@ -1,42 +1,61 @@
 ---
-title: Read and Enumeration
+title: Read and Enumerate Credentials
+excerpt: Read individual credentials, multiple credentials by GUIDs, all credentials, and perform advanced enumeration with search capabilities using various API endpoints.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-## Read
 
-Read a single credential: `GET: /v1.0/tenants/{tenant-guid}/credentials/{credential-guid}`
+## Overview
+
+The Read and Enumerate Credentials endpoints provide comprehensive functionality for retrieving credential data from a tenant. These endpoints support various retrieval patterns including:
+
+- Reading individual credentials by their unique identifier
+- Reading multiple credentials simultaneously by providing a list of GUIDs
+- Reading all credentials within a tenant
+- Advanced enumeration with pagination and filtering capabilities
+- Search-based enumeration with complex query expressions
+
+**Important**: All read operations require appropriate permissions within the tenant and must use a valid authentication token.
+
+## Read Individual Credential
+
+Read a single credential by its unique identifier using `GET: /v1.0/tenants/{tenant-guid}/credentials/{credential-guid}`. This endpoint returns the complete credential data including all properties and metadata.
 
 ```curl
-curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/credentials?guids=00000000-0000-0000-0000-000000000000%2C00000000-0000-0000-0000-000000000001' \
+curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/credentials/00000000-0000-0000-0000-000000000000' \
 --header 'Authorization: ••••••'
 ```
+
 ```javascript
-import { LiteGraphSdk } from 'litegraphdb';
+import { LiteGraphSdk } from "litegraphdb";
 
-var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
-
+var api = new LiteGraphSdk(
+  "http://localhost:8701/",
+  "<Tenant-Guid>",
+  "*******"
+);
 
 const readCredential = async () => {
   try {
-    const data = await api.Credential.read('<credential-guid>');
-    console.log(data, 'chk data');
+    const data = await api.Credential.read("<credential-guid>");
+    console.log(data, "chk data");
   } catch (err) {
-    console.log('err:', JSON.stringify(err));
+    console.log("err:", JSON.stringify(err));
   }
 };
 ```
 
-## Read by GUIDs
+## Read Multiple Credentials by GUIDs
 
-To Read multiple credentials call `GET: /v1.0/tenants/{tenant-guid}/credentials?guids=<credential1-guid>,<credential2-guid>`
+Read multiple credentials simultaneously by providing a comma-separated list of credential GUIDs using `GET: /v1.0/tenants/{tenant-guid}/credentials?guids=<credential1-guid>,<credential2-guid>`. This endpoint is efficient for retrieving specific credentials without fetching all credentials in the tenant.
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/credentials?guids=00000000-0000-0000-0000-000000000000%2C00000000-0000-0000-0000-000000000001' \
 --header 'Authorization: ••••••'
 ```
+
 ```javascript
 import { LiteGraphSdk } from 'litegraphdb';
 
@@ -52,58 +71,65 @@ const readManyCredentials = async () => {
 };
 ```
 
-## Read all
+## Read All Credentials
 
-To read all credentials call `GET:/v1.0/tenants/{tenant-guid}/credentials `
+Read all credentials within a tenant using `GET: /v1.0/tenants/{tenant-guid}/credentials/`. This endpoint returns a complete list of all credentials in the tenant. Use this endpoint when you need to retrieve all credentials or when implementing credential management interfaces.
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/credentials' \
 --header 'Authorization: ••••••'
 ```
-```javascript
-import { LiteGraphSdk } from 'litegraphdb';
 
-var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
+```javascript
+import { LiteGraphSdk } from "litegraphdb";
+
+var api = new LiteGraphSdk(
+  "http://localhost:8701/",
+  "<Tenant-Guid>",
+  "*******"
+);
 
 const readAllCredentials = async () => {
   try {
     const data = await api.Credential.readAll();
-    console.log(data, 'chk data');
+    console.log(data, "chk data");
   } catch (err) {
-    console.log('err:', JSON.stringify(err));
+    console.log("err:", JSON.stringify(err));
   }
 };
-
 ```
 
 ## Enumeration (GET)
 
-Enumeration via `GET:/v2.0/tenants/{tenant-guid}/credentials/` allows to enumerate response
+Perform basic enumeration of credentials using `GET: /v2.0/tenants/{tenant-guid}/credentials/`. This endpoint provides a simple way to enumerate all credentials with basic pagination support. The v2.0 API offers improved performance and additional features compared to the v1.0 endpoints.
 
 ```curl
 curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/credentials' \
 --header 'Authorization: ••••••'
 ```
-```javascript
-import { LiteGraphSdk } from 'litegraphdb';
 
-var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
+```javascript
+import { LiteGraphSdk } from "litegraphdb";
+
+var api = new LiteGraphSdk(
+  "http://localhost:8701/",
+  "<Tenant-Guid>",
+  "*******"
+);
 
 const enumerateCredentials = async () => {
   try {
     const data = await api.Credential.enumerate();
-    console.log(data, 'chk data');
+    console.log(data, "chk data");
   } catch (err) {
-    console.log('err:', JSON.stringify(err));
+    console.log("err:", JSON.stringify(err));
   }
 };
-
-
 ```
 
-## Enumeration and search (POST)
+## Enumeration and Search (POST)
 
-Enumeration via `POST :/v2.0/tenants/{tenant-guid}/credentials` allows to enumerate and search response
+Perform advanced enumeration with search capabilities using `POST: /v2.0/tenants/{tenant-guid}/credentials`. This endpoint allows you to filter, sort, and paginate credentials based on complex criteria including labels, tags, and custom expressions. It's ideal for implementing sophisticated credential search and management interfaces.
 
 ```curl
 curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/credentials' \
@@ -121,15 +147,20 @@ curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-0000
     "Expr": { }
 }'
 ```
-```javascript
-import { LiteGraphSdk } from 'litegraphdb';
 
-var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
+```javascript
+import { LiteGraphSdk } from "litegraphdb";
+
+var api = new LiteGraphSdk(
+  "http://localhost:8701/",
+  "<Tenant-Guid>",
+  "*******"
+);
 
 const enumerateAndSearchCredentials = async () => {
   try {
     const data = await api.Credential.enumerateAndSearch({
-      Ordering: 'CreatedDescending',
+      Ordering: "CreatedDescending",
       IncludeData: false,
       IncludeSubordinates: false,
       MaxResults: 5,
@@ -138,10 +169,56 @@ const enumerateAndSearchCredentials = async () => {
       Tags: {},
       Expr: {},
     });
-    console.log(data, 'chk data');
+    console.log(data, "chk data");
   } catch (err) {
-    console.log('err:', JSON.stringify(err));
+    console.log("err:", JSON.stringify(err));
   }
 };
-
 ```
+
+## Search Parameters
+
+The POST enumeration endpoint supports the following search parameters:
+
+- **Ordering**: Sort order for results (`CreatedAscending`, `CreatedDescending`, `ModifiedAscending`, `ModifiedDescending`)
+- **IncludeData**: Whether to include full credential data in the response (boolean)
+- **IncludeSubordinates**: Whether to include subordinate credentials (boolean)
+- **MaxResults**: Maximum number of results to return (integer)
+- **Skip**: Number of results to skip for pagination (integer)
+- **ContinuationToken**: Token for continuing pagination from previous request (string)
+- **Labels**: Array of label filters to apply (array of strings)
+- **Tags**: Object containing tag-based filters (object)
+- **Expr**: Complex expression for advanced filtering (object with Left, Operator, Right properties)
+
+## Response
+
+All read and enumeration endpoints return JSON responses containing credential data. The response structure varies based on the endpoint:
+
+- **Individual Credential**: Returns a single credential object with all properties
+- **Multiple Credentials**: Returns an array of credential objects
+- **All Credentials**: Returns an array of all credential objects in the tenant
+- **Enumeration**: Returns paginated results with metadata including continuation tokens
+
+## Best Practices
+
+When reading and enumerating credentials, consider the following recommendations:
+
+1. **Use Appropriate Endpoints**: Choose the right endpoint based on your needs (individual vs. multiple vs. all credentials)
+2. **Implement Pagination**: Use MaxResults and ContinuationToken for large datasets
+3. **Optimize Data Retrieval**: Use IncludeData=false when you only need credential metadata
+4. **Handle Errors Gracefully**: Implement proper error handling for different HTTP status codes
+5. **Cache Results**: Consider caching frequently accessed credential data
+6. **Use Search Filters**: Leverage Labels, Tags, and Expr parameters for efficient filtering
+7. **Monitor Performance**: Be aware of the performance impact when reading large numbers of credentials
+
+## Next Steps
+
+After reading credential data, you can:
+
+- Display credential information in your application interface
+- Implement credential management and administration features
+- Perform credential-specific operations based on retrieved data
+- Update credential information using the update endpoints
+- Implement credential search and filtering functionality
+- Build credential analytics and reporting features
+- Integrate credential data with other system components
