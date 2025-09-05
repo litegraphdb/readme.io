@@ -313,6 +313,21 @@ const deleteVectorIndex = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def delete_vector_index():
+    litegraph.VectorIndex.delete(graph_guid="graph-guid")
+    print("Vector index deleted")
+
+delete_vector_index()
+```
 
 ### Response
 
