@@ -79,7 +79,7 @@ sdk = litegraph.configure(
 )
 
 def create_graph():
-    graph = litegraph.Graph.create(name="Test Graph",labels=["test"],tags={"Foo": "Bar"},data={"Key": "Value"},vectors=[{"Vectors":[0.1, 0.2, 0.3],"Content":"Test Content","Dimensionality":3,"Model":"all-MiniLM-L6-v2"}])
+    graph = litegraph.Graph.create(name="New Graph")
     print(graph)
 
 create_graph()
