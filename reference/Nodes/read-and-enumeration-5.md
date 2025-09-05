@@ -114,6 +114,21 @@ const readManyNodes = async () => {
 };
 
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def retrieve_many_node():
+    nodes = litegraph.Node.retrieve_many(guids=["node-guid-1","node-guid-2"],graph_guid="graph-guid")
+    print(nodes)
+    
+retrieve_many_node()
+```
 
 ## Read all
 
