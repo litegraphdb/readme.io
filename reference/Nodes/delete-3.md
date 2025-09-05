@@ -118,3 +118,21 @@ const deleteAllNodes = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    graph-guid="Graph-Guid",
+    access_key="******",
+)
+
+def delete_all_node():
+    litegraph.Node.delete_all()
+    print("Nodes deleted")
+
+delete_all_node()
+```
+
+<br />
