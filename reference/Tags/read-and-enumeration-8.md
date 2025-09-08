@@ -49,6 +49,21 @@ const readTag = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def retrieve_tag():
+    tag = litegraph.Tag.retrieve(guid="tag-guid")
+    print(tag)
+
+retrieve_tag()
+```
 
 ### Response
 
