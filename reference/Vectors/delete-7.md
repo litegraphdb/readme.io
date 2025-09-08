@@ -61,7 +61,6 @@ curl --location --request DELETE 'http://localhost:8701/v1.0/tenants/00000000-00
     "00000000-0000-0000-0000-000000000000"
 ]'
 ```
-
 ```javascript
 import { LiteGraphSdk } from "litegraphdb";
 
