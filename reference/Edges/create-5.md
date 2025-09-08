@@ -149,7 +149,6 @@ const createMultipleEdges = async () => {
 
 ```
 ```python
-
 import litegraph
 
 sdk = litegraph.configure(
