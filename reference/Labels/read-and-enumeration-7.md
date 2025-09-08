@@ -112,6 +112,21 @@ const readManyLabels = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def retrieve_multiple_label():
+    labels = litegraph.Label.retrieve_many(guids=["label-guid-1","label-guid-2"])
+    print(labels)
+
+retrieve_multiple_label()
+```
 
 ```json
 [
