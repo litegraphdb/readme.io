@@ -20,6 +20,27 @@ The Create Node endpoint allows you to add new nodes to a graph within a tenant.
 
 **Important**: Node creation requires appropriate permissions within the tenant and must use a valid authentication token. All nodes are validated before being added to the graph.
 
+## Request Parameters
+
+The node creation request accepts the following properties:
+
+#### Node Properties
+
+* **Name**: A descriptive name for the node (string, required)
+* **Labels**: Array of labels for categorizing and filtering nodes (array of strings, optional)
+* **Tags**: Key-value pairs for additional metadata and categorization (object, optional)
+* **Data**: Custom data object containing any structured information (object, optional)
+* **Vectors**: Array of vector embeddings for semantic search operations (array, optional)
+
+#### Vector Properties
+
+Each vector in the Vectors array can contain:
+
+* **Model**: The embedding model used to generate the vectors (string, required)
+* **Dimensionality**: The number of dimensions in the vector (number, required)
+* **Content**: The text content that was vectorized (string, required)
+* **Vectors**: The actual vector values as an array of numbers (array of numbers, required)
+
 ## Create Single Node
 
 Create a single node in the graph using `PUT: /v1.0/tenants/{tenant-guid}/graphs/{graph-guid}/nodes`. This endpoint allows you to create a node with custom properties including name, labels, tags, data, and vector embeddings.
@@ -243,28 +264,7 @@ def create_multiple_node():
 create_multiple_node()
 ```
 
-### Request Parameters
-
-The node creation request accepts the following properties:
-
-#### Node Properties
-
-* **Name**: A descriptive name for the node (string, required)
-* **Labels**: Array of labels for categorizing and filtering nodes (array of strings, optional)
-* **Tags**: Key-value pairs for additional metadata and categorization (object, optional)
-* **Data**: Custom data object containing any structured information (object, optional)
-* **Vectors**: Array of vector embeddings for semantic search operations (array, optional)
-
-#### Vector Properties
-
-Each vector in the Vectors array can contain:
-
-* **Model**: The embedding model used to generate the vectors (string, required)
-* **Dimensionality**: The number of dimensions in the vector (number, required)
-* **Content**: The text content that was vectorized (string, required)
-* **Vectors**: The actual vector values as an array of numbers (array of numbers, required)
-
-**Note**: GUID, GraphGUID, CreatedUtc, and LastUpdateUtc are automatically managed by the system and should not be included in creation requests.
+<br />
 
 ### Response
 
