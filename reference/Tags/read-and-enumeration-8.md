@@ -182,6 +182,21 @@ const readAllTags = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def retrieve_all_tag():
+    tags = litegraph.Tag.retrieve_all()
+    print(tags)
+
+retrieve_all_tag()
+```
 
 ### Response
 
