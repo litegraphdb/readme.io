@@ -1,12 +1,14 @@
 ---
 title: Check Vector Existence
-excerpt: Comprehensive guide for checking vector existence using HEAD requests, including validation procedures, existence verification, and efficient vector lookup operations for effective vector management and data validation.
+excerpt: >-
+  Comprehensive guide for checking vector existence using HEAD requests,
+  including validation procedures, existence verification, and efficient vector
+  lookup operations for effective vector management and data validation.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 Vector existence checking operations provide a lightweight and efficient way to verify whether specific vectors exist in your graph database without retrieving their full data.
@@ -39,10 +41,25 @@ const existsVector = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def exists_vector():
+    exists = litegraph.Vector.exists(guid="vector-guid-1")
+    print(exists)
+
+exists_vector()
+```
 
 ### Response
 
 The API returns different status codes based on vector existence:
 
-- **200 OK**: Vector exists and is accessible
-- **404 Not Found**: Vector does not exist
+* **200 OK**: Vector exists and is accessible
+* **404 Not Found**: Vector does not exist
