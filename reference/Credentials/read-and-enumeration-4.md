@@ -340,8 +340,6 @@ enumerate_with_query_credential()
 }
 ```
 
-<br />
-
 ## Response
 
 All read and enumeration endpoints return JSON responses containing credential data. The response structure varies based on the endpoint:
