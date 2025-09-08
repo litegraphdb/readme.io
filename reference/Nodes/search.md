@@ -1,14 +1,43 @@
 ---
-title: Search
-excerpt: Perform vector search.
+title: Search Nodes
+excerpt: Perform normal and vector-based searches on nodes with advanced filtering, expression matching, and semantic similarity capabilities.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
+
+## Overview
+
+The Node Search endpoints provide powerful search capabilities for finding nodes within a graph. These endpoints support:
+
+- Normal search with label, tag, and expression-based filtering
+- Vector search for semantic similarity and content-based discovery
+- Advanced filtering with custom expressions and operators
+- Flexible ordering and result pagination
+- Integration with graph traversal and relationship analysis
+
 ## Normal Search
 
-To perform normal search call `POST: v1.0/tenants/{tenant-guid}/graphs/{graph-guid}/nodes/search`
+Perform a standard search on nodes using `POST: /v1.0/tenants/{tenant-guid}/graphs/{graph-guid}/nodes/search`. This endpoint allows you to search nodes based on labels, tags, custom expressions, and ordering preferences.
+
+### Search Parameters
+
+The normal search request supports the following parameters:
+
+- **Ordering**: Sort results by creation date (CreatedAscending, CreatedDescending)
+- **Name**: Filter by node name (string, optional)
+- **Labels**: Array of labels to filter nodes (array of strings, optional)
+- **Tags**: Key-value pairs for tag-based filtering (object, optional)
+- **Expr**: Custom expression for advanced filtering (object, optional)
+
+### Expression Parameters
+
+Custom expressions support the following structure:
+
+- **Left**: The field or property to evaluate (string, required)
+- **Operator**: The comparison operator (string, required - "Equals", "Contains", "GreaterThan", etc.)
+- **Right**: The value to compare against (string/number, required)
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/nodes/search' \
@@ -31,34 +60,50 @@ curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-0000
 }'
 ```
 ```javascript
-import { LiteGraphSdk } from 'litegraphdb';
-import { NodeEdgeSearchRequest  } from 'litegraphdb/dist/types/types';
+import { LiteGraphSdk } from "litegraphdb";
+import { NodeEdgeSearchRequest } from "litegraphdb/dist/types/types";
 
-var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
+var api = new LiteGraphSdk(
+  "http://localhost:8701/",
+  "<Tenant-Guid>",
+  "*******"
+);
 
 const searchNodes = async () => {
   const searchRequest: NodeEdgeSearchRequest = {
-    GraphGUID: '<graph-guid>',
-    Ordering: 'CreatedDescending',
+    GraphGUID: "<graph-guid>",
+    Ordering: "CreatedDescending",
     Expr: {
-      Left: 'Hello',
-      Operator: 'Equals',
-      Right: 'World',
+      Left: "Hello",
+      Operator: "Equals",
+      Right: "World",
     },
   };
 
   try {
     const response = await api.Node.search(searchRequest);
-    console.log(response, 'Graph searched successfully');
+    console.log(response, "Graph searched successfully");
   } catch (err) {
-    console.log('Error searching graph:', JSON.stringify(err), err);
+    console.log("Error searching graph:", JSON.stringify(err), err);
   }
 };
 ```
 
 ## Vector Search
 
-To perform vector search call `POST: v1.0/tenants/{tenant-guid}/vectors`
+Perform semantic similarity search on nodes using `POST: /v1.0/tenants/{tenant-guid}/vectors`. This endpoint allows you to search for nodes based on vector embeddings and semantic similarity, enabling content-based discovery and similarity matching across your graph data.
+
+### Search Parameters
+
+The vector search request supports the following parameters:
+
+- **GraphGUID**: The graph's unique identifier (string, required)
+- **Domain**: The domain to search in (string, required - "Node" for node search)
+- **SearchType**: The type of vector search (string, required - "CosineSimilarity", "Vector", etc.)
+- **Labels**: Array of labels to filter nodes (array of strings, optional)
+- **Tags**: Key-value pairs for tag-based filtering (object, optional)
+- **Expr**: Custom expression for advanced filtering (object, optional)
+- **Embeddings**: The vector embeddings to search with (array of numbers, required)
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/vectors' \
@@ -75,25 +120,42 @@ curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-0000
 }'
 ```
 ```javascript
-import { LiteGraphSdk } from 'litegraphdb';
-import { NodeEdgeSearchRequest  } from 'litegraphdb/dist/types/types';
+import { LiteGraphSdk } from "litegraphdb";
+import { NodeEdgeSearchRequest } from "litegraphdb/dist/types/types";
 
-var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
+var api = new LiteGraphSdk(
+  "http://localhost:8701/",
+  "<Tenant-Guid>",
+  "*******"
+);
 
 const nodeVectorSearch = async () => {
   try {
     const data = await api.Vector.search({
-      GraphGUID: '<graph-guid>',
-      Domain: 'Node',
-      SearchType: 'Vector',
+      GraphGUID: "<graph-guid>",
+      Domain: "Node",
+      SearchType: "Vector",
       Labels: [],
       Tags: {},
       Expr: {},
       Embeddings: [0.1, 0.2, 0.3],
     });
-    console.log(data, 'chk data');
+    console.log(data, "chk data");
   } catch (err) {
-    console.log('err:', JSON.stringify(err));
+    console.log("err:", JSON.stringify(err));
   }
 };
 ```
+
+## Next Steps
+
+After successfully searching nodes, you can:
+
+- Process search results and implement result ranking algorithms
+- Build advanced search interfaces with filtering and sorting capabilities
+- Implement search result caching for improved performance
+- Create search analytics and monitoring dashboards
+- Develop recommendation systems based on similarity scores
+- Build search result visualization and exploration tools
+- Implement search result export and sharing functionality
+- Set up automated search indexing and optimization processes
