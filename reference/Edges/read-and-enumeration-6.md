@@ -29,6 +29,22 @@ const getEdgeById = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    graph_guid="Graph-Guid",
+    access_key="******",
+)
+
+def exists_edge():
+    exists = litegraph.Edge.exists(guid="edgeGuid")
+    print(exists)
+
+exists_edge()
+```
 
 ## Read first
 
@@ -59,6 +75,21 @@ const readFirstEdge = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def retrieve_first_edge():
+    graph = litegraph.Edge.retrieve_first(ordering="CreatedDescending",graph_guid="Graph-Guid")
+    print(graph)
+
+retrieve_first_edge()
+```
 
 ## Read by GUIDs
 
@@ -82,6 +113,21 @@ const readManyEdges = async () => {
   }
 };
 
+```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def retrieve_many_edge():
+    edges = litegraph.Edge.retrieve_many(graph_guid="Graph-Guid",guids=["edgeGuid","edgeGuid2"])
+    print(edges)
+
+retrieve_many_edge()
 ```
 
 ## Read all
