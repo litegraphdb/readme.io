@@ -179,6 +179,21 @@ const readAllLabels = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def retrieve_all_label():
+    labels = litegraph.Label.retrieve_all()
+    print(labels)
+
+retrieve_all_label()
+```
 
 ### Response
 
