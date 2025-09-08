@@ -91,6 +91,18 @@ Upon successful update, the API returns a `200 OK` status with the updated tenan
 * **CreatedUtc**: The original creation timestamp (unchanged)
 * **LastUpdateUtc**: The new timestamp reflecting when the update occurred
 
+```json
+{
+    "GUID": "00000000-0000-0000-0000-000000000000",
+    "Name": "Updated tenant",
+    "Active": true,
+    "CreatedUtc": "2025-08-29T13:54:54.956041Z",
+    "LastUpdateUtc": "2025-09-08T10:00:45.175616Z"
+}
+```
+
+<br />
+
 ## Best Practices
 
 When updating tenants, consider the following recommendations:
