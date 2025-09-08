@@ -63,6 +63,22 @@ def retrieve_user():
 retrieve_user()
 ```
 
+### Response 
+
+```json
+{
+    "GUID": "00000000-0000-0000-0000-000000000000",
+    "TenantGUID": "00000000-0000-0000-0000-000000000000",
+    "FirstName": "Again Updated",
+    "LastName": "User",
+    "Email": "anotherbbb@user.com",
+    "Password": "password",
+    "Active": true,
+    "CreatedUtc": "2025-08-29T13:54:55.050579Z",
+    "LastUpdateUtc": "2025-09-08T10:01:29.629367Z"
+}
+```
+
 ## Read Multiple Users by GUIDs
 
 Read multiple users simultaneously by providing a comma-separated list of user GUIDs using `GET: /v1.0/tenants/{tenant-guid}/users?guids=<user1-guid>,<user2-guid>`. This endpoint is efficient for retrieving specific users without fetching all users in the tenant.
@@ -103,6 +119,24 @@ def retrieve_multiple_user():
     print(users)
 
 retrieve_multiple_user()
+```
+
+### Response
+
+```
+[
+    {
+        "GUID": "00000000-0000-0000-0000-000000000000",
+        "TenantGUID": "00000000-0000-0000-0000-000000000000",
+        "FirstName": "Again Updated",
+        "LastName": "User",
+        "Email": "anotherbbb@user.com",
+        "Password": "password",
+        "Active": true,
+        "CreatedUtc": "2025-08-29T13:54:55.050579Z",
+        "LastUpdateUtc": "2025-09-08T10:01:29.629367Z"
+    }
+]
 ```
 
 ## Read All Users
@@ -189,9 +223,67 @@ def enumerate_user():
 enumerate_user()
 ```
 
+### Response 
+
+```
+{
+    "Success": true,
+    "Timestamp": {
+        "Start": "2025-09-08T10:02:51.072911Z",
+        "End": "2025-09-08T10:02:51.085875Z",
+        "TotalMs": 12.96,
+        "Messages": {}
+    },
+    "MaxResults": 1000,
+    "EndOfResults": true,
+    "TotalRecords": 2,
+    "RecordsRemaining": 0,
+    "Objects": [
+        {
+            "GUID": "2bfe8b6e-53ac-4aa6-80fc-905ad154049f",
+            "TenantGUID": "00000000-0000-0000-0000-000000000000",
+            "FirstName": "Another",
+            "LastName": "User",
+            "Email": "another@user.com",
+            "Password": "password",
+            "Active": true,
+            "CreatedUtc": "2025-09-08T10:01:18.546398Z",
+            "LastUpdateUtc": "2025-09-08T10:01:18.546398Z"
+        },
+        {
+            "GUID": "00000000-0000-0000-0000-000000000000",
+            "TenantGUID": "00000000-0000-0000-0000-000000000000",
+            "FirstName": "Again Updated",
+            "LastName": "User",
+            "Email": "anotherbbb@user.com",
+            "Password": "password",
+            "Active": true,
+            "CreatedUtc": "2025-08-29T13:54:55.050579Z",
+            "LastUpdateUtc": "2025-09-08T10:01:29.629367Z"
+        }
+    ]
+}
+```
+
+<br />
+
 ## Enumeration and Search (POST)
 
 Perform advanced enumeration with search capabilities using `POST: /v2.0/tenants/{tenant-guid}/users/`. This endpoint allows you to filter, sort, and paginate users based on complex criteria including labels, tags, and custom expressions. It's ideal for implementing sophisticated user search and management interfaces.
+
+### Search Parameters
+
+The POST enumeration endpoint supports the following search parameters:
+
+* **Ordering**: Sort order for results (`CreatedAscending`, `CreatedDescending`, `ModifiedAscending`, `ModifiedDescending`)
+* **IncludeData**: Whether to include full user data in the response (boolean)
+* **IncludeSubordinates**: Whether to include subordinate users (boolean)
+* **MaxResults**: Maximum number of results to return (integer)
+* **Skip**: Number of results to skip for pagination (integer)
+* **ContinuationToken**: Token for continuing pagination from previous request (string)
+* **Labels**: Array of label filters to apply (array of strings)
+* **Tags**: Object containing tag-based filters (object)
+* **Expr**: Complex expression for advanced filtering (object with Left, Operator, Right properties)
 
 ```curl
 curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/users' \
@@ -251,19 +343,50 @@ enumerate_with_query_user()
 
 ```
 
-## Search Parameters
+### Response
 
-The POST enumeration endpoint supports the following search parameters:
+```json
+{
+    "Success": true,
+    "Timestamp": {
+        "Start": "2025-09-08T10:03:50.302363Z",
+        "End": "2025-09-08T10:03:50.305431Z",
+        "TotalMs": 3.07,
+        "Messages": {}
+    },
+    "MaxResults": 5,
+    "ContinuationToken": "00000000-0000-0000-0000-000000000000",
+    "EndOfResults": false,
+    "TotalRecords": 2,
+    "RecordsRemaining": 2,
+    "Objects": [
+        {
+            "GUID": "2bfe8b6e-53ac-4aa6-80fc-905ad154049f",
+            "TenantGUID": "00000000-0000-0000-0000-000000000000",
+            "FirstName": "Another",
+            "LastName": "User",
+            "Email": "another@user.com",
+            "Password": "password",
+            "Active": true,
+            "CreatedUtc": "2025-09-08T10:01:18.546398Z",
+            "LastUpdateUtc": "2025-09-08T10:01:18.546398Z"
+        },
+        {
+            "GUID": "00000000-0000-0000-0000-000000000000",
+            "TenantGUID": "00000000-0000-0000-0000-000000000000",
+            "FirstName": "Again Updated",
+            "LastName": "User",
+            "Email": "anotherbbb@user.com",
+            "Password": "password",
+            "Active": true,
+            "CreatedUtc": "2025-08-29T13:54:55.050579Z",
+            "LastUpdateUtc": "2025-09-08T10:01:29.629367Z"
+        }
+    ]
+}
+```
 
-* **Ordering**: Sort order for results (`CreatedAscending`, `CreatedDescending`, `ModifiedAscending`, `ModifiedDescending`)
-* **IncludeData**: Whether to include full user data in the response (boolean)
-* **IncludeSubordinates**: Whether to include subordinate users (boolean)
-* **MaxResults**: Maximum number of results to return (integer)
-* **Skip**: Number of results to skip for pagination (integer)
-* **ContinuationToken**: Token for continuing pagination from previous request (string)
-* **Labels**: Array of label filters to apply (array of strings)
-* **Tags**: Object containing tag-based filters (object)
-* **Expr**: Complex expression for advanced filtering (object with Left, Operator, Right properties)
+<br />
 
 ## Response
 
