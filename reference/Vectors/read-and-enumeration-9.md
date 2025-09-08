@@ -49,6 +49,21 @@ const readVector = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def retrieve_vector():
+    vector = litegraph.Vector.retrieve(guid="vector-guid")
+    print(vector)
+
+retrieve_vector()
+```
 
 ### Response
 
@@ -95,6 +110,21 @@ const readManyVectors = async () => {
     console.log("err:", JSON.stringify(err));
   }
 };
+```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def retrieve_multiple_vector():
+    vectors = litegraph.Vector.retrieve_many(guids=["vector-guid-1","vector-guid-2])
+    print(vectors)
+
+retrieve_multiple_vector()
 ```
 
 ### Response
