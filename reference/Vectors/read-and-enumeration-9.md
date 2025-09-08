@@ -188,6 +188,21 @@ const readAllVectors = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def retrieve_all_vector():
+    vectors = litegraph.Vector.retrieve_all()
+    print(vectors)
+
+retrieve_all_vector()
+```
 
 ### Response
 
@@ -238,6 +253,21 @@ const enumerateVectors = async () => {
     console.log("err:", JSON.stringify(err));
   }
 };
+```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def enumerate_vector():
+    vectors = litegraph.Vector.enumerate()
+    print(vectors)
+
+enumerate_vector()
 ```
 
 ### Response
@@ -322,6 +352,32 @@ const enumerateAndSearchVectors = async () => {
     console.log("err:", JSON.stringify(err));
   }
 };
+```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def enumerate_with_query_vector():
+    vectors = litegraph.Vector.enumerate_with_query(
+        ordering="CreatedDescending",
+        MaxResults=10,
+        Skip=0,
+        IncludeData=True,
+        IncludeSubordinates=True,
+        Expr=litegraph.ExprModel(
+            Left="Name",
+            Operator="Equals",
+            Right="Test"
+        )
+    )
+    print(vectors)
+
+enumerate_with_query_vector()
 ```
 
 ### Response
