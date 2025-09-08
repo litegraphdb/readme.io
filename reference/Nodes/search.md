@@ -167,6 +167,23 @@ const nodeVectorSearch = async () => {
 };
 ```
 
+### Response
+
+```json
+[
+			{
+            "TenantGUID": "00000000-0000-0000-0000-000000000000",
+            "GUID": "eb787bc5-224b-4551-a70f-9a7eae07a0b8",
+            "GraphGUID": "d913a38a-20fc-4009-a0ec-56229f021885",
+            "Name": "My test node",
+            "CreatedUtc": "2025-09-08T10:18:03.776249Z",
+            "LastUpdateUtc": "2025-09-08T10:18:03.776249Z"
+        }
+]
+```
+
+<br />
+
 ## Next Steps
 
 After successfully searching nodes, you can:
