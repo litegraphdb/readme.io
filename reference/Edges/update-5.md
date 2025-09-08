@@ -67,3 +67,21 @@ const updateEdge = async () => {
 };
 
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    graph_guid="Graph-Guid"
+    access_key="******",
+)
+
+def update_edge():
+    edge = litegraph.Edge.update(guid="edge-guid",name="My test edge",cost=10)
+    print(edge)
+
+update_edge()
+```
+
+<br />
