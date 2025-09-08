@@ -1,22 +1,23 @@
 ---
 title: Update Node
-excerpt: Update existing nodes in a graph with new properties, labels, tags, data, and vector embeddings while maintaining graph integrity and relationships.
+excerpt: >-
+  Update existing nodes in a graph with new properties, labels, tags, data, and
+  vector embeddings while maintaining graph integrity and relationships.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Update Node endpoint allows you to modify existing nodes within a graph. This functionality is essential for:
 
-- Updating node names and descriptions
-- Modifying labels and tags for better categorization
-- Changing node data and metadata
-- Updating vector embeddings for semantic search
-- Maintaining graph consistency during data evolution
-- Implementing node lifecycle management
+* Updating node names and descriptions
+* Modifying labels and tags for better categorization
+* Changing node data and metadata
+* Updating vector embeddings for semantic search
+* Maintaining graph consistency during data evolution
+* Implementing node lifecycle management
 
 ## Update Node
 
@@ -120,11 +121,11 @@ Upon successful update, the API returns a `200 OK` status code with the updated 
 
 After successfully updating a node, you can:
 
-- Verify the update by reading the node data
-- Update related edges and relationships if needed
-- Perform graph traversal to check for consistency
-- Update dependent systems that reference the node
-- Implement node change notifications
-- Create node update history and audit logs
-- Set up automated node validation and testing
-- Build node management interfaces for ongoing maintenance
+* Verify the update by reading the node data
+* Update related edges and relationships if needed
+* Perform graph traversal to check for consistency
+* Update dependent systems that reference the node
+* Implement node change notifications
+* Create node update history and audit logs
+* Set up automated node validation and testing
+* Build node management interfaces for ongoing maintenance
