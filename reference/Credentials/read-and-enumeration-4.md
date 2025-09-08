@@ -63,6 +63,23 @@ def retrieve_credential():
 retrieve_credential()
 ```
 
+### Response
+
+```json
+{
+    "GUID": "00000000-0000-0000-0000-000000000000",
+    "TenantGUID": "00000000-0000-0000-0000-000000000000",
+    "UserGUID": "00000000-0000-0000-0000-000000000000",
+    "Name": "Default credential",
+    "BearerToken": "default",
+    "Active": true,
+    "CreatedUtc": "2025-08-29T13:54:55.175279Z",
+    "LastUpdateUtc": "2025-08-29T13:54:55.174491Z"
+}
+```
+
+<br />
+
 ## Read Multiple Credentials by GUIDs
 
 Read multiple credentials simultaneously by providing a comma-separated list of credential GUIDs using `GET: /v1.0/tenants/{tenant-guid}/credentials?guids=<credential1-guid>,<credential2-guid>`. This endpoint is efficient for retrieving specific credentials without fetching all credentials in the tenant.
@@ -185,9 +202,53 @@ def enumerate_credential():
 enumerate_credential()
 ```
 
+### Response
+
+```json
+{
+    "Success": true,
+    "Timestamp": {
+        "Start": "2025-09-08T10:05:20.543278Z",
+        "End": "2025-09-08T10:05:20.549982Z",
+        "TotalMs": 6.7,
+        "Messages": {}
+    },
+    "MaxResults": 1000,
+    "EndOfResults": true,
+    "TotalRecords": 1,
+    "RecordsRemaining": 0,
+    "Objects": [
+        {
+            "GUID": "00000000-0000-0000-0000-000000000000",
+            "TenantGUID": "00000000-0000-0000-0000-000000000000",
+            "UserGUID": "00000000-0000-0000-0000-000000000000",
+            "Name": "Default credential",
+            "BearerToken": "default",
+            "Active": true,
+            "CreatedUtc": "2025-08-29T13:54:55.175279Z",
+            "LastUpdateUtc": "2025-08-29T13:54:55.174491Z"
+        }
+    ]
+}
+```
+
 ## Enumeration and Search (POST)
 
 Perform advanced enumeration with search capabilities using `POST: /v2.0/tenants/{tenant-guid}/credentials`. This endpoint allows you to filter, sort, and paginate credentials based on complex criteria including labels, tags, and custom expressions. It's ideal for implementing sophisticated credential search and management interfaces.
+
+### Search Parameters
+
+The POST enumeration endpoint supports the following search parameters:
+
+* **Ordering**: Sort order for results (`CreatedAscending`, `CreatedDescending`, `ModifiedAscending`, `ModifiedDescending`)
+* **IncludeData**: Whether to include full credential data in the response (boolean)
+* **IncludeSubordinates**: Whether to include subordinate credentials (boolean)
+* **MaxResults**: Maximum number of results to return (integer)
+* **Skip**: Number of results to skip for pagination (integer)
+* **ContinuationToken**: Token for continuing pagination from previous request (string)
+* **Labels**: Array of label filters to apply (array of strings)
+* **Tags**: Object containing tag-based filters (object)
+* **Expr**: Complex expression for advanced filtering (object with Left, Operator, Right properties)
 
 ```curl
 curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/credentials' \
@@ -248,19 +309,38 @@ def enumerate_with_query_credential():
 enumerate_with_query_credential()
 ```
 
-## Search Parameters
+### Response
 
-The POST enumeration endpoint supports the following search parameters:
+```json
+{
+    "Success": true,
+    "Timestamp": {
+        "Start": "2025-09-08T10:05:58.611665Z",
+        "End": "2025-09-08T10:05:58.615198Z",
+        "TotalMs": 3.53,
+        "Messages": {}
+    },
+    "MaxResults": 5,
+    "ContinuationToken": "00000000-0000-0000-0000-000000000000",
+    "EndOfResults": false,
+    "TotalRecords": 1,
+    "RecordsRemaining": 1,
+    "Objects": [
+        {
+            "GUID": "00000000-0000-0000-0000-000000000000",
+            "TenantGUID": "00000000-0000-0000-0000-000000000000",
+            "UserGUID": "00000000-0000-0000-0000-000000000000",
+            "Name": "Default credential",
+            "BearerToken": "default",
+            "Active": true,
+            "CreatedUtc": "2025-08-29T13:54:55.175279Z",
+            "LastUpdateUtc": "2025-08-29T13:54:55.174491Z"
+        }
+    ]
+}
+```
 
-* **Ordering**: Sort order for results (`CreatedAscending`, `CreatedDescending`, `ModifiedAscending`, `ModifiedDescending`)
-* **IncludeData**: Whether to include full credential data in the response (boolean)
-* **IncludeSubordinates**: Whether to include subordinate credentials (boolean)
-* **MaxResults**: Maximum number of results to return (integer)
-* **Skip**: Number of results to skip for pagination (integer)
-* **ContinuationToken**: Token for continuing pagination from previous request (string)
-* **Labels**: Array of label filters to apply (array of strings)
-* **Tags**: Object containing tag-based filters (object)
-* **Expr**: Complex expression for advanced filtering (object with Left, Operator, Right properties)
+<br />
 
 ## Response
 
