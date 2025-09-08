@@ -85,8 +85,6 @@ const deleteMultipleTags = async () => {
 
 Upon successful tag deletion, the API returns a `200 No Content` status code indicating the tag has been successfully removed from the system.
 
-## Best Practices
-
 ## Next Steps
 
 After successfully deleting tags, consider these next actions:
