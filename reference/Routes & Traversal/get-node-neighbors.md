@@ -26,3 +26,23 @@ const getNodeNeighbors = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def get_neighbors_of_node():
+    neighbors = litegraph.RouteNodes.neighbors(
+        graph_guid="1cbb2bc5-a990-49a8-9975-e0b1c34d1011",
+        node_guid="00000000-0000-0000-0000-000000000000"
+    )
+    print(neighbors)
+
+def get_neighbors_of_node()
+```
+
+<br />
