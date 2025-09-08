@@ -69,8 +69,6 @@ const createEdge = async () => {
 ```python
 import litegraph
 
-import litegraph
-
 sdk = litegraph.configure(
     endpoint="http://localhost:8701",
     tenant_guid="Tenant-Guid",
@@ -151,8 +149,6 @@ const createMultipleEdges = async () => {
 
 ```
 ```python
-
-import litegraph
 
 import litegraph
 
