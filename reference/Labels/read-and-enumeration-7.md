@@ -49,6 +49,21 @@ const readLabel = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def retrieve_label():
+    label = litegraph.Label.retrieve(guid="label-guid")
+    print(label)
+
+retrieve_label()
+```
 
 ### Response
 
