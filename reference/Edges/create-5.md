@@ -66,6 +66,18 @@ const createEdge = async () => {
 };
 
 ```
+```python
+import litegraph
+
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    graph_guid="Graph-Guid",
+    access_key="******",
+)
+```
 
 ## Create multiple edge
 
