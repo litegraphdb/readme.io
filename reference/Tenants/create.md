@@ -86,6 +86,18 @@ Upon successful creation, the API returns a `201 Created` status with the create
 * **CreatedUtc**: Timestamp when the tenant was created
 * **LastUpdateUtc**: Timestamp of the last update (initially the same as CreatedUtc)
 
+```json
+{
+    "GUID": "1361d1f4-bb3b-409e-9436-528d41e260bf",
+    "Name": "Another tenant",
+    "Active": true,
+    "CreatedUtc": "2025-09-08T09:53:34.432889Z",
+    "LastUpdateUtc": "2025-09-08T09:53:34.432889Z"
+}
+```
+
+<br />
+
 ## Best Practices
 
 When creating tenants, consider the following recommendations:
