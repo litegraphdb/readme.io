@@ -41,11 +41,11 @@ sdk = litegraph.configure(
     access_key="******",
 )
 
-def delete_edge():
-    litegraph.Edge.delete(guid="edgeGuid")
-    print("Edge deleted")
+def exists_edge():
+    exists = litegraph.Edge.exists(guid="edge-guid")
+    print(exists)
 
-delete_edge()
+exists_edge()
 ```
 
 ## Delete multiple edge
