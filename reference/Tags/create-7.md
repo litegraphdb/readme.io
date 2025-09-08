@@ -165,6 +165,31 @@ const createMultipleTags = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def create_multiple_tag():
+    tags = litegraph.Tag.create_multiple(tags=[
+        {
+            "Key": "Test Key 1",
+            "Value": "Test Value 1"
+        },
+        {
+            "Key": "Test Key 2",
+            "Value": "Test Value 2"
+        }
+    ])
+    print(tags)
+
+create_multiple_tag()
+
+```
 
 ### Response
 
