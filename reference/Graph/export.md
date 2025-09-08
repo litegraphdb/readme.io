@@ -74,9 +74,28 @@ Upon successful export, the API returns a `200 OK` status with the GEXF XML stri
 
 * **Graph metadata**: Name, description, and creation information
 * **Nodes**: All nodes with their properties, labels, and attributes
-* **Edges**: All relationships with their properties and weights
+* **Edges**: All relationships with their properties and weightss
 * **Attributes**: Custom attributes and data fields (if incldata=true)
 * **XML structure**: Standard GEXF XML format for compatibility
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<gexf xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.gexf.net/1.3 http://www.gexf.net/1.3/gexf.xsd" version="1.3" xmlns="http://www.gexf.net/1.3">
+    <meta lastmodifieddate="2025-09-08T10:14:05.3162871Z">
+        <creator>LiteGraph</creator>
+        <description>Graph from LiteGraph https://github.com/jchristn/litegraph</description>
+    </meta>
+    <graph defaultedgetype="directed">
+        <attributes class="node">
+            <attribute id="0" title="props" type="string" />
+        </attributes>
+        <nodes />
+        <edges />
+    </graph>
+</gexf>
+```
+
+<br />
 
 ## Best Practices
 
