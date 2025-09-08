@@ -127,10 +127,6 @@ const readManyLabels = async () => {
 
 Retrieve all labels within a tenant using `GET: /v1.0/tenants/{tenant-guid}/labels`. This endpoint provides comprehensive access to all label data in your tenant, useful for data analysis, backup operations, and complete label inventory management.
 
-### Response
-
-Upon successful retrieval, the API returns a `200 OK` status code with an array of all label objects in the response body.
-
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/labels' \
 --header 'Authorization: ••••••'
@@ -154,6 +150,9 @@ const readAllLabels = async () => {
 };
 ```
 
+### Response
+
+Upon successful retrieval, the API returns a `200 OK` status code with an array of all label objects in the response body.
 
 ```json
 [
