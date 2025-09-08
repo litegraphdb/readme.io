@@ -1,21 +1,24 @@
 ---
 title: Delete Vector
-excerpt: Comprehensive guide for deleting individual vectors and performing bulk vector deletion operations, including proper cleanup procedures, vector index management, and safe deletion practices for efficient vector storage management.
+excerpt: >-
+  Comprehensive guide for deleting individual vectors and performing bulk vector
+  deletion operations, including proper cleanup procedures, vector index
+  management, and safe deletion practices for efficient vector storage
+  management.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 Vector deletion operations provide the ability to remove vector embeddings from your graph database when they are no longer needed. These operations are essential for maintaining storage efficiency, removing obsolete vector data, and managing vector indexes effectively. Understanding vector deletion is crucial for proper vector lifecycle management and ensuring your vector system remains organized and performant.
 
 Key capabilities include:
 
-- Deleting individual vectors by their unique GUID
-- Performing bulk deletion of multiple vectors
-- Maintaining vector index integrity during deletion operations
+* Deleting individual vectors by their unique GUID
+* Performing bulk deletion of multiple vectors
+* Maintaining vector index integrity during deletion operations
 
 These operations support various use cases such as vector data cleanup, storage optimization, model migration, and maintaining vector system performance.
 
@@ -29,7 +32,6 @@ curl --location --request DELETE 'http://localhost:8701/v1.0/tenants/00000000-00
 --header 'Authorization: ••••••' \
 --data ''
 ```
-
 ```javascript
 import { LiteGraphSdk } from "litegraphdb";
 
@@ -47,6 +49,19 @@ const deleteVector = async () => {
     console.log("err:", JSON.stringify(err));
   }
 };
+```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def delete_vector():
+    litegraph.Vector.delete(guid="vector-guid")
+    print("Vector deleted")
 ```
 
 ## Delete Multiple Vectors
@@ -88,9 +103,9 @@ Upon successful vector deletion, the API returns a `204 No Content` status code 
 
 After successfully deleting vectors, consider these next actions:
 
-- **Verify Deletion**: Confirm vectors have been removed by attempting to read them
-- **Update Dependencies**: Check if any dependent systems need to be updated
-- **Clean Up References**: Remove any local references to deleted vectors
-- **Monitor System**: Watch for any issues that might arise from the deletions
-- **Document Changes**: Maintain documentation of deletion operations
-- **Optimize Storage**: Review storage usage improvements from the cleanup
+* **Verify Deletion**: Confirm vectors have been removed by attempting to read them
+* **Update Dependencies**: Check if any dependent systems need to be updated
+* **Clean Up References**: Remove any local references to deleted vectors
+* **Monitor System**: Watch for any issues that might arise from the deletions
+* **Document Changes**: Maintain documentation of deletion operations
+* **Optimize Storage**: Review storage usage improvements from the cleanup
