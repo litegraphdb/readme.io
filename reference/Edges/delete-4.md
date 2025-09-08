@@ -31,6 +31,22 @@ const deleteEdgeById = async () => {
 };
 
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    graph_guid="Graph-Guid",
+    access_key="******",
+)
+
+def delete_edge():
+    litegraph.Edge.delete(guid="edgeGuid")
+    print("Edge deleted")
+
+delete_edge()
+```
 
 ## Delete multiple edge
 
