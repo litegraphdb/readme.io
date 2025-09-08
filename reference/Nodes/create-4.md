@@ -162,7 +162,7 @@ const crateMultipleNodes = async () => {
 };
 
 ```
-```
+```python
 import litegraph
 
 sdk = litegraph.configure(
