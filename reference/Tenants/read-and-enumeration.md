@@ -65,6 +65,18 @@ retrieve_tenant()
 
 ```
 
+### Response 
+
+```json
+{
+    "GUID": "00000000-0000-0000-0000-000000000000",
+    "Name": "Default tenant",
+    "Active": true,
+    "CreatedUtc": "2025-08-29T13:54:54.956041Z",
+    "LastUpdateUtc": "2025-08-29T13:54:54.955375Z"
+}
+```
+
 ## Read Tenant Statistics
 
 Retrieve statistical information about a specific tenant using `GET: /v1.0/tenants/{tenant-id}/stats`. This endpoint provides metrics such as graph count, node count, edge count, and other performance-related statistics for the tenant.
@@ -106,6 +118,19 @@ def retrieve_statistics_single_tenant():
     
 retrieve_statistics_single_tenant()
 
+```
+
+### Response
+
+```json
+{
+    "Graphs": 1,
+    "Nodes": 0,
+    "Edges": 0,
+    "Labels": 0,
+    "Tags": 0,
+    "Vectors": 0
+}
 ```
 
 ## Read Multiple Tenants by GUIDs
@@ -234,6 +259,29 @@ def retrieve_statistics_all_tenant():
     print(statistics)
     
 retrieve_statistics_all_tenant()
+```
+
+### Response
+
+```json
+{
+    "00000000-0000-0000-0000-000000000000": {
+        "Graphs": 1,
+        "Nodes": 0,
+        "Edges": 0,
+        "Labels": 0,
+        "Tags": 0,
+        "Vectors": 0
+    },
+    "1361d1f4-bb3b-409e-9436-528d41e260bf": {
+        "Graphs": 0,
+        "Nodes": 0,
+        "Edges": 0,
+        "Labels": 0,
+        "Tags": 0,
+        "Vectors": 0
+    }
+}
 ```
 
 ## Enumeration (GET)
@@ -381,6 +429,40 @@ def enumerate_with_query_tenant():
 
 enumerate_with_query_tenant()
 
+```
+
+### Response 
+
+```json
+{
+    "Success": true,
+    "Timestamp": {
+        "Start": "2025-09-08T09:59:28.736887Z",
+        "End": "2025-09-08T09:59:28.744129Z",
+        "TotalMs": 7.24,
+        "Messages": {}
+    },
+    "MaxResults": 5,
+    "EndOfResults": true,
+    "TotalRecords": 2,
+    "RecordsRemaining": 0,
+    "Objects": [
+        {
+            "GUID": "1361d1f4-bb3b-409e-9436-528d41e260bf",
+            "Name": "Another tenant",
+            "Active": true,
+            "CreatedUtc": "2025-09-08T09:53:34.432889Z",
+            "LastUpdateUtc": "2025-09-08T09:53:34.432889Z"
+        },
+        {
+            "GUID": "00000000-0000-0000-0000-000000000000",
+            "Name": "Default tenant",
+            "Active": true,
+            "CreatedUtc": "2025-08-29T13:54:54.956041Z",
+            "LastUpdateUtc": "2025-08-29T13:54:54.955375Z"
+        }
+    ]
+}
 ```
 
 ## Best Practices
