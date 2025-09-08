@@ -83,9 +83,12 @@ def create_edge():
         from_guid="from-node-guid",
         to_guid="to-node-guid",
         name="My test edge",
-        cost=1
+        cost=10
     )
     print(edge)
+
+create_edge()
+
 
 ```
 
@@ -146,4 +149,36 @@ const createMultipleEdges = async () => {
   }
 };
 
+```
+```python
+
+import litegraph
+
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    graph_guid="Graph-Guid",
+    access_key="******",
+)
+
+def create_multiple_edge():
+    edges = litegraph.Edge.create_multiple([
+        {
+            "from_guid": "from-node-guid",
+            "to_guid": "to-node-guid",
+            "name": "DigitalOcean to Control Plane",
+            "cost": 100
+        },
+        {
+            "from_guid": "from-node-guid"",
+            "to_guid":  "to-node-guid",
+            "name": "DigitalOcean to Control Plane 2",
+            "cost": 100
+        }
+    ])
+    print(edges)
+
+create_multiple_edge()
 ```
