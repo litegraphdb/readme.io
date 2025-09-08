@@ -255,6 +255,21 @@ const enumerateTags = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def enumerate_tag():
+    tags = litegraph.Tag.enumerate()
+    print(tags)
+
+enumerate_tag()
+```
 
 ### Response
 
