@@ -25,3 +25,21 @@ const getChildrenFromNode = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def get_children_of_node():
+    children = litegraph.RouteNodes.children(
+        graph_guid="graph-guid",
+        node_guid="node-guid"
+    )
+    print(children)
+
+get_children_of_node()
+```
