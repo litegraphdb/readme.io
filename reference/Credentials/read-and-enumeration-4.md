@@ -78,8 +78,6 @@ retrieve_credential()
 }
 ```
 
-<br />
-
 ## Read Multiple Credentials by GUIDs
 
 Read multiple credentials simultaneously by providing a comma-separated list of credential GUIDs using `GET: /v1.0/tenants/{tenant-guid}/credentials?guids=<credential1-guid>,<credential2-guid>`. This endpoint is efficient for retrieving specific credentials without fetching all credentials in the tenant.
