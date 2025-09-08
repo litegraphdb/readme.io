@@ -6,23 +6,128 @@ hidden: false
 metadata:
   robots: index
 ---
-To check if node exist call `PUT: /v1.0/tenants/{tenant-guid}/graphs/{graph-guid}/edges/{edge-guid}`
+## Delete single edge
+
+To delete existing edge call `DELETE: /v1.0/tenants/{tenant-guid}/graphs/{graph-guid}/edges/{edge-guid}`
 
 ```curl
-curl --location --head 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/edges/00000000-0000-0000-0000-000000000000' \
---header 'Authorization: ••••••'
+curl --location --request DELETE 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/edges/00000000-0000-0000-0000-000000000000' \
+--header 'content-type: application/json' \
+--header 'Authorization: ••••••' \
+--data ''
 ```
 ```javascript
 import { LiteGraphSdk } from 'litegraphdb';
 
-var api = new LiteGraphSdk('http://localhost:8701/','<Tenant-Guid>', '*******');
+var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
 
-const checkIfEdgeExistsById = async () => {
+const deleteEdgeById = async () => {
   try {
-    const data = await api.Edge.exists(guid, edgeGuid);
+    const data = await api.Edge.delete(guid, edgeGuid);
     console.log(data, 'chk data');
   } catch (err) {
     console.log('err:', JSON.stringify(err));
   }
 };
+
+```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    graph_guid="Graph-Guid",
+    access_key="******",
+)
+
+def delete_edge():
+    litegraph.Edge.delete(guid="edgeGuid")
+    print("Edge deleted")
+
+delete_edge()
+```
+
+## Delete multiple edge
+
+To delete multiple edges call `DELETE: /v1.0/tenants/{tenant-guid}/graphs/{graph-guid}/edges/bulk`
+
+```curl
+curl --location --request DELETE 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/edges/bulk' \
+--header 'content-type: application/json' \
+--header 'Authorization: ••••••' \
+--data '[
+    "00000000-0000-0000-0000-000000000000"
+]'
+```
+```javascript
+import { LiteGraphSdk } from 'litegraphdb';
+
+var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
+
+const deleteMultipleEdges = async () => {
+  try {
+    const data = await api.Edge.deleteBulk(guid, [edge-guid]);
+    console.log(data, 'chk data');
+  } catch (err) {
+    console.log('err:', JSON.stringify(err));
+  }
+};
+
+```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def delete_multiple_edge():
+    litegraph.Edge.delete_multiple(guid=["edge-guid-1","edge-guid"])
+    print("Edges deleted")
+
+delete_multiple_edge()
+```
+
+## Delete all edges
+
+To delete existing edge call `DELETE: /v1.0/tenants/{tenant-guid}/graphs/{graph-guid}/edges/all`
+
+```curl
+curl --location --request DELETE 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/edges/all' \
+--header 'content-type: application/json' \
+--header 'Authorization: ••••••' \
+--data ''
+```
+```javascript
+import { LiteGraphSdk } from 'litegraphdb';
+
+var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
+
+const deleteAllEdges = async () => {
+  try {
+    const data = await api.Node.deleteAll(<graph-guid>);
+    console.log(data, 'chk data');
+  } catch (err) {
+    console.log('err:', JSON.stringify(err), err);
+  }
+};
+```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    graph_guid="Graph-Guid",
+    access_key="******",
+)
+
+def delete_all_edge():
+    litegraph.Edge.delete_all()
+    print("Edges deleted")
+
+delete_all_edge()
 ```
