@@ -26,6 +26,21 @@ const getEdgesFromNode = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def get_edges_from_node():
+    edges = litegraph.RouteNodes.get_edges_from(graph_guid="graph-guid",node_guid="node-guid")
+    print(edges)
+
+get_edges_from_node()
+```
 
 ### Response
 
