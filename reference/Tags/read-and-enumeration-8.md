@@ -109,6 +109,21 @@ const readManyTags = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def retrieve_multiple_tag():
+    tags = litegraph.Tag.retrieve_many(guids=["tag-guid","tag-guid-2"])
+    print(tags)
+
+retrieve_multiple_tag()
+```
 
 ### Response
 
