@@ -1,30 +1,31 @@
 ---
 title: Read and Enumerate Labels
-excerpt: Comprehensive guide for reading individual labels, retrieving multiple labels by GUIDs, reading all labels, and performing enumeration operations with search capabilities for efficient label management and data retrieval.
+excerpt: >-
+  Comprehensive guide for reading individual labels, retrieving multiple labels
+  by GUIDs, reading all labels, and performing enumeration operations with
+  search capabilities for efficient label management and data retrieval.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 Label reading and enumeration operations provide comprehensive access to label data within your graph database. These operations enable you to retrieve individual labels, fetch multiple labels by their GUIDs, read all labels in a tenant, and perform advanced enumeration with search capabilities. Understanding these operations is essential for effective label management, data analysis, and application development.
 
 Key capabilities include:
 
-- Reading individual labels by their unique GUID
-- Retrieving multiple specific labels using comma-separated GUIDs
-- Reading all labels within a tenant for comprehensive data access
-- Enumerating labels with pagination support for large datasets
-- Advanced search and filtering capabilities for targeted label retrieval
+* Reading individual labels by their unique GUID
+* Retrieving multiple specific labels using comma-separated GUIDs
+* Reading all labels within a tenant for comprehensive data access
+* Enumerating labels with pagination support for large datasets
+* Advanced search and filtering capabilities for targeted label retrieval
 
 These operations support various use cases such as label data validation, categorization analysis, bulk operations, and integration with external systems that require label information.
 
 ## Read Individual Label
 
 Read a single label using `GET: /v1.0/tenants/{tenant-guid}/labels/{label-guid}`. This endpoint retrieves a specific label by its unique identifier, providing complete label information including metadata and timestamps.
-
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/labels/00000000-0000-0000-0000-000000000000' \
@@ -122,7 +123,6 @@ const readManyLabels = async () => {
 ]
 ```
 
-
 ## Read All Labels
 
 Retrieve all labels within a tenant using `GET: /v1.0/tenants/{tenant-guid}/labels`. This endpoint provides comprehensive access to all label data in your tenant, useful for data analysis, backup operations, and complete label inventory management.
@@ -173,7 +173,6 @@ Upon successful retrieval, the API returns a `200 OK` status code with an array 
 
 Perform label enumeration using `GET: /v2.0/tenants/{tenant-guid}/labels`. This v2.0 endpoint provides enhanced enumeration capabilities with built-in pagination support, making it ideal for handling large label datasets efficiently and systematically browsing through label collections.
 
-
 ```curl
 curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/labels' \
 --header 'Authorization: ••••••'
@@ -197,6 +196,46 @@ const enumerateLabels = async () => {
 };
 ```
 
+### Response
+
+```
+{
+    "Success": true,
+    "Timestamp": {
+        "Start": "2025-09-08T12:15:55.555337Z",
+        "End": "2025-09-08T12:15:55.560048Z",
+        "TotalMs": 4.71,
+        "Messages": {}
+    },
+    "MaxResults": 1000,
+    "EndOfResults": false,
+    "TotalRecords": 2,
+    "RecordsRemaining": 2,
+    "Objects": [
+        {
+            "GUID": "463a4c91-6c58-41cf-8421-e694019476d6",
+            "TenantGUID": "00000000-0000-0000-0000-000000000000",
+            "GraphGUID": "d913a38a-20fc-4009-a0ec-56229f021885",
+            "NodeGUID": "72f9cb54-1081-4b6f-a07d-c86d9e0c5150",
+            "Label": "updated",
+            "CreatedUtc": "2025-09-08T10:47:03.877150Z",
+            "LastUpdateUtc": "2025-09-08T10:47:03.877154Z"
+        },
+        {
+            "GUID": "c18aba31-117d-4323-9ecc-d6500f73bdb7",
+            "TenantGUID": "00000000-0000-0000-0000-000000000000",
+            "GraphGUID": "d913a38a-20fc-4009-a0ec-56229f021885",
+            "NodeGUID": "00000000-0000-0000-0000-000000000000",
+            "Label": "test",
+            "CreatedUtc": "2025-09-08T10:46:32.767393Z",
+            "LastUpdateUtc": "2025-09-08T10:46:32.767397Z"
+        },
+    ]
+}
+```
+
+<br />
+
 ## Enumeration and Search (POST)
 
 Perform advanced label enumeration with search capabilities using `POST: /v2.0/tenants/{tenant-guid}/graphs/{graph-guid}/labels`. This powerful endpoint combines enumeration with sophisticated filtering, sorting, and search functionality, allowing you to find specific labels based on various criteria while maintaining efficient pagination for large result sets.
@@ -205,16 +244,15 @@ Perform advanced label enumeration with search capabilities using `POST: /v2.0/t
 
 The POST endpoint supports various search and filtering parameters:
 
-- **Ordering**: Sort results by creation time (`CreatedAscending`, `CreatedDescending`)
-- **IncludeData**: Include full label data in response (boolean)
-- **IncludeSubordinates**: Include related subordinate data (boolean)
-- **MaxResults**: Maximum number of results per page (integer)
-- **Skip**: Number of results to skip for pagination (integer)
-- **ContinuationToken**: Token for continuing pagination (string)
-- **Labels**: Filter by specific labels (array)
-- **Tags**: Filter by tag key-value pairs (object)
-- **Expr**: Advanced expression-based filtering (object)
-
+* **Ordering**: Sort results by creation time (`CreatedAscending`, `CreatedDescending`)
+* **IncludeData**: Include full label data in response (boolean)
+* **IncludeSubordinates**: Include related subordinate data (boolean)
+* **MaxResults**: Maximum number of results per page (integer)
+* **Skip**: Number of results to skip for pagination (integer)
+* **ContinuationToken**: Token for continuing pagination (string)
+* **Labels**: Filter by specific labels (array)
+* **Tags**: Filter by tag key-value pairs (object)
+* **Expr**: Advanced expression-based filtering (object)
 
 ```curl
 curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/labels' \
@@ -260,14 +298,54 @@ const enumerateAndSearchLabels = async () => {
 };
 ```
 
+### Response
+
+```json
+{
+    "Success": true,
+    "Timestamp": {
+        "Start": "2025-09-08T12:15:55.555337Z",
+        "End": "2025-09-08T12:15:55.560048Z",
+        "TotalMs": 4.71,
+        "Messages": {}
+    },
+    "MaxResults": 1000,
+    "EndOfResults": false,
+    "TotalRecords": 2,
+    "RecordsRemaining": 2,
+    "Objects": [
+        {
+            "GUID": "463a4c91-6c58-41cf-8421-e694019476d6",
+            "TenantGUID": "00000000-0000-0000-0000-000000000000",
+            "GraphGUID": "d913a38a-20fc-4009-a0ec-56229f021885",
+            "NodeGUID": "72f9cb54-1081-4b6f-a07d-c86d9e0c5150",
+            "Label": "updated",
+            "CreatedUtc": "2025-09-08T10:47:03.877150Z",
+            "LastUpdateUtc": "2025-09-08T10:47:03.877154Z"
+        },
+        {
+            "GUID": "c18aba31-117d-4323-9ecc-d6500f73bdb7",
+            "TenantGUID": "00000000-0000-0000-0000-000000000000",
+            "GraphGUID": "d913a38a-20fc-4009-a0ec-56229f021885",
+            "NodeGUID": "00000000-0000-0000-0000-000000000000",
+            "Label": "test",
+            "CreatedUtc": "2025-09-08T10:46:32.767393Z",
+            "LastUpdateUtc": "2025-09-08T10:46:32.767397Z"
+        },
+    ]
+}
+```
+
+<br />
+
 ## Best Practices
 
 When reading and enumerating labels, consider the following recommendations:
 
-- **Use Appropriate Endpoints**: Choose the right endpoint based on your needs (individual read vs. enumeration vs. search)
-- **Implement Pagination**: Use MaxResults and ContinuationToken for large datasets to avoid memory issues
-- **Optimize Queries**: Use specific GUIDs when possible instead of reading all labels
-- **Cache Results**: Implement caching for frequently accessed label data
-- **Handle Errors**: Implement proper error handling for network issues and invalid GUIDs
-- **Monitor Performance**: Track response times and optimize queries for better performance
-- **Use Search Filters**: Leverage search parameters to reduce data transfer and improve relevance
+* **Use Appropriate Endpoints**: Choose the right endpoint based on your needs (individual read vs. enumeration vs. search)
+* **Implement Pagination**: Use MaxResults and ContinuationToken for large datasets to avoid memory issues
+* **Optimize Queries**: Use specific GUIDs when possible instead of reading all labels
+* **Cache Results**: Implement caching for frequently accessed label data
+* **Handle Errors**: Implement proper error handling for network issues and invalid GUIDs
+* **Monitor Performance**: Track response times and optimize queries for better performance
+* **Use Search Filters**: Leverage search parameters to reduce data transfer and improve relevance
