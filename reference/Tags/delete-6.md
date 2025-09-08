@@ -96,6 +96,21 @@ const deleteMultipleTags = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def delete_multiple_tag():
+    litegraph.Tag.delete_multiple(guid=["tag-guid-1","tag-guid-2"])
+    print("Tags deleted")
+
+delete_multiple_tag()
+```
 
 ### Response
 
