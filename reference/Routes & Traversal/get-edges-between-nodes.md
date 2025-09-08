@@ -26,3 +26,25 @@ const getEdgesBetween = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def get_edges_between_nodes():
+    edges = litegraph.RouteEdges.between(
+        graph_guid="graph-guid",
+        from_node_guid="node-guid",
+        to_node_guid="node-guid-2"
+    )
+    print(edges)
+
+get_edges_between_nodes()
+
+```
+
+<br />
