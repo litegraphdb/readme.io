@@ -65,6 +65,26 @@ def retrieve_graph():
 retrieve_graph()
 ```
 
+### Response
+
+```json
+{
+    "TenantGUID": "00000000-0000-0000-0000-000000000000",
+    "GUID": "d913a38a-20fc-4009-a0ec-56229f021885",
+    "Name": "My graph",
+    "VectorIndexType": "HnswSqlite",
+    "VectorIndexFile": "indexes\\graph-00000000-0000-0000-0000-000000000000-hnsw.db",
+    "VectorDimensionality": 384,
+    "VectorIndexM": 16,
+    "VectorIndexEf": 50,
+    "VectorIndexEfConstruction": 200,
+    "CreatedUtc": "2025-09-04T08:26:45.592040Z",
+    "LastUpdateUtc": "2025-09-04T13:25:45.920512Z"
+}
+```
+
+<br />
+
 ### Read Graph Statistics
 
 Retrieve statistical information about a specific graph using `GET: /v1.0/tenants/{tenant-id}/graphs/{graph-guid}/stats`. This endpoint provides metrics such as node count, edge count etc.
@@ -105,6 +125,18 @@ def retrieve_statistics():
     print(statistics)
 
 retrieve_statistics()
+```
+
+### Response
+
+```json
+{
+    "Nodes": 0,
+    "Edges": 0,
+    "Labels": 0,
+    "Tags": 0,
+    "Vectors": 0
+}
 ```
 
 ## Read First Graph
@@ -298,6 +330,22 @@ def retrieve_statistics_all():
 
 retrieve_statistics_all()
 ```
+
+### Response
+
+```json
+{
+    "d913a38a-20fc-4009-a0ec-56229f021885": {
+        "Nodes": 0,
+        "Edges": 0,
+        "Labels": 0,
+        "Tags": 0,
+        "Vectors": 0
+    }
+}
+```
+
+<br />
 
 ## Enumeration (GET)
 
