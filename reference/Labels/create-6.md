@@ -142,6 +142,30 @@ const createMultipleLabels = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def create_multiple_label():
+    labels = litegraph.Label.create_multiple([
+        {
+            "Label": "label multiple",
+            "GraphGUID": "graph-guid"
+        },
+        {
+            "Label": "label multiple 2",
+            "GraphGUID": "graph-guid"
+        }
+    ])
+    print(labels)
+
+create_multiple_label()
+```
 
 ### Response
 
