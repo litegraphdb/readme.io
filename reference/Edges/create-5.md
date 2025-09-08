@@ -77,6 +77,16 @@ sdk = litegraph.configure(
     graph_guid="Graph-Guid",
     access_key="******",
 )
+
+def create_edge():
+    edge = litegraph.Edge.create(
+        from_guid="from-node-guid",
+        to_guid="to-node-guid",
+        name="My test edge",
+        cost=1
+    )
+    print(edge)
+
 ```
 
 ## Create multiple edge
