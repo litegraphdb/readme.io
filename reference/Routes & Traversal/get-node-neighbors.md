@@ -42,7 +42,7 @@ def get_neighbors_of_node():
     )
     print(neighbors)
 
-def get_neighbors_of_node()
+get_neighbors_of_node()
 ```
 
 <br />
