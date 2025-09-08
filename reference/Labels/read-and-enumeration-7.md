@@ -357,6 +357,32 @@ const enumerateAndSearchLabels = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def enumerate_with_query_label():
+    labels = litegraph.Label.enumerate_with_query(
+        ordering="CreatedDescending",
+        MaxResults=10,
+        Skip=0,
+        IncludeData=True,
+        IncludeSubordinates=True,
+        Expr=litegraph.ExprModel(
+            Left="Name",
+            Operator="Equals",
+            Right="Test"
+        )
+    )
+    print(labels)
+
+enumerate_with_query_label()
+```
 
 ### Response
 
