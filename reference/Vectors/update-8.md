@@ -1,23 +1,25 @@
 ---
 title: Update Vector
-excerpt: Comprehensive guide for updating existing vectors, including modifying vector embeddings, updating metadata, and handling vector modifications with proper validation and error handling for effective vector management.
+excerpt: >-
+  Comprehensive guide for updating existing vectors, including modifying vector
+  embeddings, updating metadata, and handling vector modifications with proper
+  validation and error handling for effective vector management.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 Vector update operations allow you to modify existing vector embeddings within your graph database. This functionality is essential for maintaining data accuracy, correcting vector embeddings, and adapting vector information as your application requirements evolve. Understanding vector update operations is crucial for effective vector management and ensuring your vector system remains current and relevant.
 
 Key capabilities include:
 
-- Updating vector embeddings and dimensional data
-- Modifying vector metadata and properties
-- Maintaining data integrity during updates
-- Handling validation and error scenarios
-- Preserving vector relationships and associations
+* Updating vector embeddings and dimensional data
+* Modifying vector metadata and properties
+* Maintaining data integrity during updates
+* Handling validation and error scenarios
+* Preserving vector relationships and associations
 
 These operations support various use cases such as vector refinement, metadata updates, model migration, and maintaining consistency across your vector database.
 
@@ -73,6 +75,29 @@ const updateVector = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def update_vector():
+    vector = litegraph.Vector.update(
+        guid="00000000-0000-0000-0000-000000000000",
+        vectors=[0.1, 0.2, 0.3],
+        content="Updated Content",
+        graph_guid="00000000-0000-0000-0000-000000000000",
+        dimensionality=3,
+        model="all-MiniLM-L6-v2"
+    )
+    print(vector)
+
+update_vector()
+
+```
 
 ### Response
 
@@ -98,8 +123,8 @@ Upon successful vector update, the API returns a `200 OK` status code with the u
 
 After successfully updating vectors, consider these next actions:
 
-- **Verify Changes**: Read the updated vector to confirm changes were applied correctly
-- **Update Dependencies**: Check if any dependent systems need to be notified of changes
-- **Monitor Impact**: Track how vector updates affect related operations and queries
-- **Document Changes**: Maintain documentation of vector modification history
-- **Optimize Performance**: Review update patterns for potential performance improvements
+* **Verify Changes**: Read the updated vector to confirm changes were applied correctly
+* **Update Dependencies**: Check if any dependent systems need to be notified of changes
+* **Monitor Impact**: Track how vector updates affect related operations and queries
+* **Document Changes**: Maintain documentation of vector modification history
+* **Optimize Performance**: Review update patterns for potential performance improvements
