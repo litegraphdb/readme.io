@@ -192,6 +192,23 @@ const enumerateEdges = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    graph_guid="Graph-Guid"
+    access_key="******",
+)
+
+def enumerate_edge():
+    edges = litegraph.Edge.enumerate()
+    print(edges)
+
+enumerate_edge()
+
+```
 
 ## Enumeration and search (POST)
 
