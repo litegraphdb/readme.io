@@ -94,6 +94,21 @@ const deleteMultipleVectors = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def delete_multiple_vector():
+    litegraph.Vector.delete_multiple(["vector-guid-1","vector-guid-2"])
+    print("Vectors deleted")
+
+delete_multiple_vector()
+```
 
 ## Response
 
