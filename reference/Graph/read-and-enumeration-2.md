@@ -397,6 +397,39 @@ def enumerate_graph():
 enumerate_graph()
 ```
 
+### Response
+
+```json
+{
+    "Success": true,
+    "Timestamp": {
+        "Start": "2025-09-08T10:09:02.071499Z",
+        "End": "2025-09-08T10:09:02.080128Z",
+        "TotalMs": 8.63,
+        "Messages": {}
+    },
+    "MaxResults": 1000,
+    "EndOfResults": true,
+    "TotalRecords": 1,
+    "RecordsRemaining": 0,
+    "Objects": [
+        {
+            "TenantGUID": "00000000-0000-0000-0000-000000000000",
+            "GUID": "d913a38a-20fc-4009-a0ec-56229f021885",
+            "Name": "My graph",
+            "VectorIndexType": "HnswSqlite",
+            "VectorIndexFile": "indexes\\graph-00000000-0000-0000-0000-000000000000-hnsw.db",
+            "VectorDimensionality": 384,
+            "VectorIndexM": 16,
+            "VectorIndexEf": 50,
+            "VectorIndexEfConstruction": 200,
+            "CreatedUtc": "2025-09-04T08:26:45.592040Z",
+            "LastUpdateUtc": "2025-09-04T13:25:45.920512Z"
+        }
+    ]
+}
+```
+
 ## Enumeration and Search (POST)
 
 The advanced enumeration endpoint `POST: /v2.0/tenants/{tenant-id}/graphs` provides powerful search and filtering capabilities along with enumeration. This endpoint supports complex query parameters including ordering, pagination, label filtering, tag matching, and custom expressions. It's ideal for applications that need to implement sophisticated graph discovery and search functionality.
@@ -484,3 +517,38 @@ def enumerate_with_query_graph():
 
 enumerate_with_query_graph()
 ```
+
+### Response
+
+```json
+{
+    "Success": true,
+    "Timestamp": {
+        "Start": "2025-09-08T10:10:08.720761Z",
+        "End": "2025-09-08T10:10:08.731802Z",
+        "TotalMs": 11.04,
+        "Messages": {}
+    },
+    "MaxResults": 5,
+    "EndOfResults": true,
+    "TotalRecords": 1,
+    "RecordsRemaining": 0,
+    "Objects": [
+        {
+            "TenantGUID": "00000000-0000-0000-0000-000000000000",
+            "GUID": "d913a38a-20fc-4009-a0ec-56229f021885",
+            "Name": "My graph",
+            "VectorIndexType": "HnswSqlite",
+            "VectorIndexFile": "indexes\\graph-00000000-0000-0000-0000-000000000000-hnsw.db",
+            "VectorDimensionality": 384,
+            "VectorIndexM": 16,
+            "VectorIndexEf": 50,
+            "VectorIndexEfConstruction": 200,
+            "CreatedUtc": "2025-09-04T08:26:45.592040Z",
+            "LastUpdateUtc": "2025-09-04T13:25:45.920512Z"
+        }
+    ]
+}
+```
+
+<br />
