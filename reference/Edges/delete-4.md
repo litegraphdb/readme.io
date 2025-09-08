@@ -115,3 +115,19 @@ const deleteAllEdges = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    graph_guid="Graph-Guid",
+    access_key="******",
+)
+
+def delete_all_edge():
+    litegraph.Edge.delete_all()
+    print("Edges deleted")
+
+delete_all_edge()
+```
