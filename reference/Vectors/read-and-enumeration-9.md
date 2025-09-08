@@ -246,8 +246,6 @@ const enumerateVectors = async () => {
 }
 ```
 
-<br />
-
 ## Enumeration and search (POST)
 
 Enumeration via `POST :/v2.0/tenants/{tenant-guid}/vectors` allows to enumerate and search response
@@ -295,3 +293,41 @@ const enumerateAndSearchVectors = async () => {
   }
 };
 ```
+
+### Response
+
+```json
+{
+    "Success": true,
+    "Timestamp": {
+        "Start": "2025-09-08T11:37:23.166261Z",
+        "End": "2025-09-08T11:37:23.174110Z",
+        "TotalMs": 7.85,
+        "Messages": {}
+    },
+    "MaxResults": 5,
+    "EndOfResults": true,
+    "TotalRecords": 1,
+    "RecordsRemaining": 0,
+    "Objects": [
+        {
+            "GUID": "72f9cb54-1081-4b6f-a07d-c86d9e0c5150",
+            "TenantGUID": "00000000-0000-0000-0000-000000000000",
+            "GraphGUID": "d913a38a-20fc-4009-a0ec-56229f021885",
+            "NodeGUID": "eb787bc5-224b-4551-a70f-9a7eae07a0b8",
+            "Model": "all-MiniLM-L6-v2",
+            "Dimensionality": 384,
+            "Content": "test",
+            "Vectors": [
+                0.1,
+                0.2,
+                0.3
+            ],
+            "CreatedUtc": "2025-09-08T10:18:03.777113Z",
+            "LastUpdateUtc": "2025-09-08T10:18:03.777113Z"
+        }
+    ]
+}
+```
+
+<br />
