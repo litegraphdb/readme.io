@@ -1,23 +1,25 @@
 ---
 title: Create Label
-excerpt: Comprehensive guide for creating individual labels and performing bulk label creation operations, including label management, categorization, and efficient label storage for effective graph organization and data classification.
+excerpt: >-
+  Comprehensive guide for creating individual labels and performing bulk label
+  creation operations, including label management, categorization, and efficient
+  label storage for effective graph organization and data classification.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 Label creation operations enable you to create and manage labels within your graph database. Labels are essential for organizing, categorizing, and classifying nodes and edges in your graph structure. Understanding label creation is crucial for building well-organized graph databases and implementing effective data classification systems.
 
 Key capabilities include:
 
-- Creating individual labels with custom names and associations
-- Performing bulk label creation for efficient batch processing
-- Associating labels with specific nodes or edges in your graph
-- Managing label metadata and properties for organization
-- Supporting hierarchical and categorical data structures
+* Creating individual labels with custom names and associations
+* Performing bulk label creation for efficient batch processing
+* Associating labels with specific nodes or edges in your graph
+* Managing label metadata and properties for organization
+* Supporting hierarchical and categorical data structures
 
 These operations support various use cases such as data classification, graph organization, content categorization, and implementing custom data taxonomies.
 
@@ -58,6 +60,21 @@ const createLabel = async () => {
     console.log("err:", JSON.stringify(err));
   }
 };
+```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def create_label():
+    label = litegraph.Label.create(graph_guid="graph-guid",label="test")
+    print(label)
+
+create_label()
 ```
 
 ### Response
@@ -149,8 +166,8 @@ Upon successful bulk label creation, the API returns a `201 Created` status code
 
 After successfully creating labels, consider these next actions:
 
-- **Update Labels**: Modify existing labels using the update operations
-- **Delete Labels**: Remove unnecessary labels to maintain data cleanliness
-- **Create New Labels**: Add additional labels based on your analysis
-- **Integrate Data**: Use created labels in your application logic
-- **Monitor Usage**: Track label usage patterns for optimization opportunities
+* **Update Labels**: Modify existing labels using the update operations
+* **Delete Labels**: Remove unnecessary labels to maintain data cleanliness
+* **Create New Labels**: Add additional labels based on your analysis
+* **Integrate Data**: Use created labels in your application logic
+* **Monitor Usage**: Track label usage patterns for optimization opportunities
