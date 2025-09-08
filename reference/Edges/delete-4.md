@@ -75,6 +75,21 @@ const deleteMultipleEdges = async () => {
 };
 
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def delete_multiple_edge():
+    litegraph.Edge.delete_multiple(guid=["edge-guid-1","edge-guid"])
+    print("Edges deleted")
+
+delete_multiple_edge()
+```
 
 ## Delete all edges
 
