@@ -154,6 +154,20 @@ const getEdgeList = async () => {
 
 ```
 ```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    graph_guid="Graph-Guid"
+    access_key="******",
+)
+
+def retrieve_all_edge():
+    edges = litegraph.Edge.retrieve_all()
+    print(edges)
+
+retrieve_all_edge()
 ```
 
 ## Enumeration (GET)
