@@ -48,3 +48,18 @@ def generate_authentication_token():
 generate_authentication_token()
 
 ```
+
+
+#Response
+
+```json
+{
+    "TimestampUtc": "2025-09-09T10:27:10.892667Z",
+    "ExpirationUtc": "2025-09-10T10:27:10.892667Z",
+    "IsExpired": false,
+    "TenantGUID": "00000000-0000-0000-0000-000000000000",
+    "UserGUID": "2bfe8b6e-53ac-4aa6-80fc-905ad154049f",
+    "Token": "*******",
+    "Valid": true
+}
+```
