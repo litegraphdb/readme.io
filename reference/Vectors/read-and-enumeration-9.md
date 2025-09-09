@@ -9,17 +9,18 @@ hidden: false
 metadata:
   robots: index
 ---
+
 ## Overview
 
 Vector reading and enumeration operations provide comprehensive access to vector data within your graph database. These operations enable you to retrieve individual vectors, fetch multiple vectors by their GUIDs, read all vectors in a tenant, and perform advanced enumeration with search capabilities. Understanding these operations is essential for effective vector management, data analysis, and application development.
 
 Key capabilities include:
 
-* Reading individual vectors by their unique GUID
-* Retrieving multiple specific vectors using comma-separated GUIDs
-* Reading all vectors within a tenant for comprehensive data access
-* Enumerating vectors with pagination support for large datasets
-* Advanced search and filtering capabilities for targeted vector retrieval
+- Reading individual vectors by their unique GUID
+- Retrieving multiple specific vectors using comma-separated GUIDs
+- Reading all vectors within a tenant for comprehensive data access
+- Enumerating vectors with pagination support for large datasets
+- Advanced search and filtering capabilities for targeted vector retrieval
 
 These operations support various use cases such as vector data validation, similarity analysis, bulk operations, and integration with external systems that require vector information.
 
@@ -43,7 +44,7 @@ var api = new LiteGraphSdk(
 const readVector = async () => {
   try {
     const data = await api.Vector.read("<vector-guid>");
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -105,7 +106,7 @@ var api = new LiteGraphSdk(
 const readManyVectors = async () => {
   try {
     const data = await api.Vector.readMany([vectorGuid]);
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -182,7 +183,7 @@ var api = new LiteGraphSdk(
 const readAllVectors = async () => {
   try {
     const data = await api.Vector.readAll();
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -248,7 +249,7 @@ var api = new LiteGraphSdk(
 const enumerateVectors = async () => {
   try {
     const data = await api.Vector.enumerate();
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -274,35 +275,31 @@ enumerate_vector()
 
 ```json
 {
-    "Success": true,
-    "Timestamp": {
-        "Start": "2025-09-08T11:37:23.166261Z",
-        "End": "2025-09-08T11:37:23.174110Z",
-        "TotalMs": 7.85,
-        "Messages": {}
-    },
-    "MaxResults": 5,
-    "EndOfResults": true,
-    "TotalRecords": 1,
-    "RecordsRemaining": 0,
-    "Objects": [
-        {
-            "GUID": "72f9cb54-1081-4b6f-a07d-c86d9e0c5150",
-            "TenantGUID": "00000000-0000-0000-0000-000000000000",
-            "GraphGUID": "d913a38a-20fc-4009-a0ec-56229f021885",
-            "NodeGUID": "eb787bc5-224b-4551-a70f-9a7eae07a0b8",
-            "Model": "all-MiniLM-L6-v2",
-            "Dimensionality": 384,
-            "Content": "test",
-            "Vectors": [
-                0.1,
-                0.2,
-                0.3
-            ],
-            "CreatedUtc": "2025-09-08T10:18:03.777113Z",
-            "LastUpdateUtc": "2025-09-08T10:18:03.777113Z"
-        }
-    ]
+  "Success": true,
+  "Timestamp": {
+    "Start": "2025-09-08T11:37:23.166261Z",
+    "End": "2025-09-08T11:37:23.174110Z",
+    "TotalMs": 7.85,
+    "Messages": {}
+  },
+  "MaxResults": 5,
+  "EndOfResults": true,
+  "TotalRecords": 1,
+  "RecordsRemaining": 0,
+  "Objects": [
+    {
+      "GUID": "72f9cb54-1081-4b6f-a07d-c86d9e0c5150",
+      "TenantGUID": "00000000-0000-0000-0000-000000000000",
+      "GraphGUID": "d913a38a-20fc-4009-a0ec-56229f021885",
+      "NodeGUID": "eb787bc5-224b-4551-a70f-9a7eae07a0b8",
+      "Model": "all-MiniLM-L6-v2",
+      "Dimensionality": 384,
+      "Content": "test",
+      "Vectors": [0.1, 0.2, 0.3],
+      "CreatedUtc": "2025-09-08T10:18:03.777113Z",
+      "LastUpdateUtc": "2025-09-08T10:18:03.777113Z"
+    }
+  ]
 }
 ```
 
@@ -347,7 +344,7 @@ const enumerateAndSearchVectors = async () => {
       Tags: {},
       Expr: {},
     });
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -384,35 +381,31 @@ enumerate_with_query_vector()
 
 ```json
 {
-    "Success": true,
-    "Timestamp": {
-        "Start": "2025-09-08T11:37:23.166261Z",
-        "End": "2025-09-08T11:37:23.174110Z",
-        "TotalMs": 7.85,
-        "Messages": {}
-    },
-    "MaxResults": 5,
-    "EndOfResults": true,
-    "TotalRecords": 1,
-    "RecordsRemaining": 0,
-    "Objects": [
-        {
-            "GUID": "72f9cb54-1081-4b6f-a07d-c86d9e0c5150",
-            "TenantGUID": "00000000-0000-0000-0000-000000000000",
-            "GraphGUID": "d913a38a-20fc-4009-a0ec-56229f021885",
-            "NodeGUID": "eb787bc5-224b-4551-a70f-9a7eae07a0b8",
-            "Model": "all-MiniLM-L6-v2",
-            "Dimensionality": 384,
-            "Content": "test",
-            "Vectors": [
-                0.1,
-                0.2,
-                0.3
-            ],
-            "CreatedUtc": "2025-09-08T10:18:03.777113Z",
-            "LastUpdateUtc": "2025-09-08T10:18:03.777113Z"
-        }
-    ]
+  "Success": true,
+  "Timestamp": {
+    "Start": "2025-09-08T11:37:23.166261Z",
+    "End": "2025-09-08T11:37:23.174110Z",
+    "TotalMs": 7.85,
+    "Messages": {}
+  },
+  "MaxResults": 5,
+  "EndOfResults": true,
+  "TotalRecords": 1,
+  "RecordsRemaining": 0,
+  "Objects": [
+    {
+      "GUID": "72f9cb54-1081-4b6f-a07d-c86d9e0c5150",
+      "TenantGUID": "00000000-0000-0000-0000-000000000000",
+      "GraphGUID": "d913a38a-20fc-4009-a0ec-56229f021885",
+      "NodeGUID": "eb787bc5-224b-4551-a70f-9a7eae07a0b8",
+      "Model": "all-MiniLM-L6-v2",
+      "Dimensionality": 384,
+      "Content": "test",
+      "Vectors": [0.1, 0.2, 0.3],
+      "CreatedUtc": "2025-09-08T10:18:03.777113Z",
+      "LastUpdateUtc": "2025-09-08T10:18:03.777113Z"
+    }
+  ]
 }
 ```
 

@@ -9,15 +9,16 @@ hidden: false
 metadata:
   robots: index
 ---
+
 ## Overview
 
 Tag deletion operations provide the ability to remove tags from your graph database when they are no longer needed. These operations are essential for maintaining data cleanliness, removing obsolete information, and managing storage efficiently. Understanding tag deletion is crucial for proper data lifecycle management and ensuring your tag system remains organized and relevant.
 
 Key capabilities include:
 
-* Deleting individual tags by their unique GUID
-* Performing bulk deletion of multiple tags
-* Maintaining data integrity during deletion operations
+- Deleting individual tags by their unique GUID
+- Performing bulk deletion of multiple tags
+- Maintaining data integrity during deletion operations
 
 These operations support various use cases such as data cleanup, tag lifecycle management, storage optimization, and maintaining data quality standards.
 
@@ -43,7 +44,7 @@ var api = new LiteGraphSdk(
 const deleteTag = async () => {
   try {
     const data = await api.Tag.delete("<tag-guid>");
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -89,8 +90,8 @@ var api = new LiteGraphSdk(
 
 const deleteMultipleTags = async () => {
   try {
-    const data = await api.Tag.deleteBulk([tagGUID1,tagGUID2]);
-    console.log(data, "chk data");
+    const data = await api.Tag.deleteBulk([tagGUID1, tagGUID2]);
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -120,6 +121,6 @@ Upon successful tag deletion, the API returns a `200 No Content` status code ind
 
 After successfully deleting tags, consider these next actions:
 
-* **Verify Deletion**: Confirm tags have been removed by attempting to read them
-* **Update Dependencies**: Check if any dependent systems need to be updated
-* **Clean Up References**: Remove any local references to deleted tags
+- **Verify Deletion**: Confirm tags have been removed by attempting to read them
+- **Update Dependencies**: Check if any dependent systems need to be updated
+- **Clean Up References**: Remove any local references to deleted tags

@@ -27,7 +27,6 @@ Retrieve all edges connected to a specific node using `GET: /v1.0/tenants/{tenan
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/nodes/00000000-0000-0000-0000-000000000000/edges' \
 --header 'Authorization: ••••••'
 ```
-
 ```javascript
 import { LiteGraphSdk } from "litegraphdb";
 
@@ -40,13 +39,12 @@ var api = new LiteGraphSdk(
 const getAllNodeEdges = async () => {
   try {
     const data = await api.Route.getAllNodeEdges(graphGuid, nodeGuid);
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err), err);
   }
 };
 ```
-
 ```python
 import litegraph
 

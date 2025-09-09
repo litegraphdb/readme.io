@@ -8,14 +8,15 @@ hidden: false
 metadata:
   robots: index
 ---
+
 ## Overview
 
 The Graph Existence endpoint allows you to efficiently check whether a specific graph exists in your tenant without retrieving the full graph data. This is particularly useful for:
 
-* Validating graph IDs before performing operations
-* Implementing conditional logic based on graph existence
-* Optimizing applications by avoiding unnecessary data retrieval
-* Performing lightweight existence checks in bulk operations
+- Validating graph IDs before performing operations
+- Implementing conditional logic based on graph existence
+- Optimizing applications by avoiding unnecessary data retrieval
+- Performing lightweight existence checks in bulk operations
 
 ## Check Graph Existence
 
@@ -37,7 +38,7 @@ var api = new LiteGraphSdk(
 const checkIfGraphExistsById = async () => {
   try {
     const data = await api.Graph.exists(guid);
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -63,5 +64,5 @@ exists_graph()
 
 The HEAD request returns only HTTP status codes without any response body:
 
-* **200 OK**: The graph exists and is accessible
-* **404 Not Found**: The graph does not exist or you don't have access to it
+- **200 OK**: The graph exists and is accessible
+- **404 Not Found**: The graph does not exist or you don't have access to it

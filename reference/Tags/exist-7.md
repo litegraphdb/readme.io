@@ -9,17 +9,18 @@ hidden: false
 metadata:
   robots: index
 ---
+
 ## Overview
 
 Tag existence checking operations provide a lightweight and efficient way to verify whether specific tags exist in your graph database without retrieving their full data. This functionality is essential for validation, conditional operations, and optimizing API calls by avoiding unnecessary data transfer. Understanding tag existence checking is crucial for building robust applications that need to validate tag presence before performing operations.
 
 Key capabilities include:
 
-* Checking tag existence using lightweight HEAD requests
-* Validating tag GUIDs before performing operations
-* Optimizing API calls by avoiding full data retrieval
-* Supporting conditional logic based on tag presence
-* Providing fast existence verification for large datasets
+- Checking tag existence using lightweight HEAD requests
+- Validating tag GUIDs before performing operations
+- Optimizing API calls by avoiding full data retrieval
+- Supporting conditional logic based on tag presence
+- Providing fast existence verification for large datasets
 
 These operations support various use cases such as data validation, conditional processing, API optimization, and building robust error handling mechanisms.
 
@@ -43,7 +44,7 @@ var api = new LiteGraphSdk(
 const existsTag = async () => {
   try {
     const data = await api.Tag.exists("<tag-guid>");
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -69,13 +70,13 @@ exists_tag()
 
 The API returns different status codes based on tag existence:
 
-* **200 OK**: Tag exists and is accessible
-* **404 Not Found**: Tag does not exist or is not accessible
+- **200 OK**: Tag exists and is accessible
+- **404 Not Found**: Tag does not exist or is not accessible
 
 ## Next Steps
 
 After checking tag existence, consider these next actions:
 
-* **Conditional Operations**: Perform different actions based on existence results
-* **Create Missing Tags**: Create tags that don't exist if needed
-* **Update Existing Tags**: Modify tags that already exist
+- **Conditional Operations**: Perform different actions based on existence results
+- **Create Missing Tags**: Create tags that don't exist if needed
+- **Update Existing Tags**: Modify tags that already exist

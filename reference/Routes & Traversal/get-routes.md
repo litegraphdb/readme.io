@@ -32,7 +32,6 @@ curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-0000
     "To": "769a880c-85b6-422e-8aa2-c6f160bd24c6"
 }'
 ```
-
 ```javascript
 import { LiteGraphSdk } from "litegraphdb";
 
@@ -45,7 +44,7 @@ var api = new LiteGraphSdk(
 const getRoutes = async () => {
   try {
     const data = await api.Route.getRoutes(graphGuid, fromNodeGuid, toNodeGuid);
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err), err);
   }

@@ -46,7 +46,7 @@ var api = new LiteGraphSdk(
 const getNodeById = async () => {
   try {
     const data = await api.Node.read(grapGuid, nodeGuid);
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -135,7 +135,7 @@ const readFirstNode = async () => {
       "8e72e2b7-86fe-4f94-8483-547c23c8a833",
       {}
     );
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err), err);
   }
@@ -182,7 +182,7 @@ var api = new LiteGraphSdk(
 const readManyNodes = async () => {
   try {
     const data = await api.Node.readMany(grapGuid, [nodeGuid]);
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -229,7 +229,7 @@ var api = new LiteGraphSdk(
 const getNodeList = async () => {
   try {
     const data = await api.Node.readAll(grapGuid);
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err), err);
   }
@@ -281,7 +281,7 @@ var api = new LiteGraphSdk(
 const enumerateNodes = async () => {
   try {
     const data = await api.Node.enumerate(grapGuid);
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -359,7 +359,7 @@ const enumerateAndSearchNodes = async () => {
       Tags: {},
       Expr: {},
     });
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }

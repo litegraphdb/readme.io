@@ -83,23 +83,23 @@ const searchGraph = async () => {
 };
 ```
 
-### Response 
+### Response
 
 ```json
 {
-    "Graphs": [
-        {
-            "TenantGUID": "00000000-0000-0000-0000-000000000000",
-            "GUID": "d913a38a-20fc-4009-a0ec-56229f021885",
-            "Name": "My graph",
-            "VectorIndexType": "None",
-            "VectorIndexM": 16,
-            "VectorIndexEf": 50,
-            "VectorIndexEfConstruction": 200,
-            "CreatedUtc": "2025-09-04T08:26:45.592040Z",
-            "LastUpdateUtc": "2025-09-04T08:26:45.592040Z"
-        }
-    ]
+  "Graphs": [
+    {
+      "TenantGUID": "00000000-0000-0000-0000-000000000000",
+      "GUID": "d913a38a-20fc-4009-a0ec-56229f021885",
+      "Name": "My graph",
+      "VectorIndexType": "None",
+      "VectorIndexM": 16,
+      "VectorIndexEf": 50,
+      "VectorIndexEfConstruction": 200,
+      "CreatedUtc": "2025-09-04T08:26:45.592040Z",
+      "LastUpdateUtc": "2025-09-04T08:26:45.592040Z"
+    }
+  ]
 }
 ```
 
@@ -111,7 +111,7 @@ The vector search request supports the following parameters:
 
 - **GraphGUID**: The unique identifier of the graph to search within
 - **Domain**: The domain to search ("Graph" for graphs)
-- **SearchType**: The similarity metric to use ("Vector", "CosineSimliarity")
+- **SearchType**: The similarity metric to use ("Vector", "CosineSimilarity")
 - **Labels**: Array of labels to filter results
 - **Tags**: Key-value pairs for tag-based filtering
 - **Expr**: Custom expression for additional filtering
@@ -124,7 +124,7 @@ curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-0000
 --data '{
     "GraphGUID": "00000000-0000-0000-0000-000000000000",
     "Domain": "Graph",
-    "SearchType": "CosineSimliarity",
+    "SearchType": "CosineSimilarity",
     "Labels": [],
     "Tags": {},
     "Expr": null,
@@ -151,7 +151,7 @@ const graphVectorSearch = async () => {
       Expr: {},
       Embeddings: [0.1, 0.2, 0.3],
     });
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -162,40 +162,36 @@ const graphVectorSearch = async () => {
 
 ```json
 [
-    {
-        "Score": 1,
-        "Graph": {
-            "TenantGUID": "00000000-0000-0000-0000-000000000000",
-            "GUID": "ee40590e-4f5f-4379-a5b1-68c6ded0dd2c",
-            "Name": "My graph",
-            "VectorIndexType": "None",
-            "VectorIndexM": 16,
-            "VectorIndexEf": 50,
-            "VectorIndexEfConstruction": 200,
-            "CreatedUtc": "2025-09-09T10:20:11.752627Z",
-            "LastUpdateUtc": "2025-09-09T10:20:11.752627Z",
-            "Data": {
-                "Key": "Value"
-            },
-            "Vectors": [
-                {
-                    "GUID": "2236e461-25fe-4dec-9ea2-c76e49b7f4bd",
-                    "TenantGUID": "00000000-0000-0000-0000-000000000000",
-                    "GraphGUID": "ee40590e-4f5f-4379-a5b1-68c6ded0dd2c",
-                    "Model": "all-MiniLM-L6-v2",
-                    "Dimensionality": 384,
-                    "Content": "test",
-                    "Vectors": [
-                        0.1,
-                        0.2,
-                        0.3
-                    ],
-                    "CreatedUtc": "2025-09-09T10:20:11.753536Z",
-                    "LastUpdateUtc": "2025-09-09T10:20:11.753536Z"
-                }
-            ]
+  {
+    "Score": 1,
+    "Graph": {
+      "TenantGUID": "00000000-0000-0000-0000-000000000000",
+      "GUID": "ee40590e-4f5f-4379-a5b1-68c6ded0dd2c",
+      "Name": "My graph",
+      "VectorIndexType": "None",
+      "VectorIndexM": 16,
+      "VectorIndexEf": 50,
+      "VectorIndexEfConstruction": 200,
+      "CreatedUtc": "2025-09-09T10:20:11.752627Z",
+      "LastUpdateUtc": "2025-09-09T10:20:11.752627Z",
+      "Data": {
+        "Key": "Value"
+      },
+      "Vectors": [
+        {
+          "GUID": "2236e461-25fe-4dec-9ea2-c76e49b7f4bd",
+          "TenantGUID": "00000000-0000-0000-0000-000000000000",
+          "GraphGUID": "ee40590e-4f5f-4379-a5b1-68c6ded0dd2c",
+          "Model": "all-MiniLM-L6-v2",
+          "Dimensionality": 384,
+          "Content": "test",
+          "Vectors": [0.1, 0.2, 0.3],
+          "CreatedUtc": "2025-09-09T10:20:11.753536Z",
+          "LastUpdateUtc": "2025-09-09T10:20:11.753536Z"
         }
+      ]
     }
+  }
 ]
 ```
 

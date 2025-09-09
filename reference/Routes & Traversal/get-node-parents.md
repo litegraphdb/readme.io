@@ -39,7 +39,7 @@ var api = new LiteGraphSdk(
 const getParentsFromNode = async () => {
   try {
     const data = await api.Route.getParentsFromNode(graphGuid, nodeGuid);
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err), err);
   }
@@ -68,20 +68,20 @@ get_parents_of_node()
 
 ```json
 [
-    {
-        "TenantGUID": "00000000-0000-0000-0000-000000000000",
-        "GUID": "eb787bc5-224b-4551-a70f-9a7eae07a0b8",
-        "GraphGUID": "d913a38a-20fc-4009-a0ec-56229f021885",
-        "Name": "My test node",
-        "CreatedUtc": "2025-09-08T10:18:03.776249Z",
-        "LastUpdateUtc": "2025-09-08T10:18:03.776249Z",
-        "Data": {
-            "Hello": "World",
-            "Foo": {
-                "Data": "hello"
-            }
-        }
+  {
+    "TenantGUID": "00000000-0000-0000-0000-000000000000",
+    "GUID": "eb787bc5-224b-4551-a70f-9a7eae07a0b8",
+    "GraphGUID": "d913a38a-20fc-4009-a0ec-56229f021885",
+    "Name": "My test node",
+    "CreatedUtc": "2025-09-08T10:18:03.776249Z",
+    "LastUpdateUtc": "2025-09-08T10:18:03.776249Z",
+    "Data": {
+      "Hello": "World",
+      "Foo": {
+        "Data": "hello"
+      }
     }
+  }
 ]
 ```
 
@@ -91,7 +91,6 @@ When retrieving node parents, consider the following recommendations:
 
 - **Validate Node GUID**: Ensure the child node GUID exists before making requests
 - **Handle Empty Results**: Implement proper handling for nodes with no parents
-
 
 ## Next Steps
 

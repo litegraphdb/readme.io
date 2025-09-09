@@ -8,15 +8,16 @@ hidden: false
 metadata:
   robots: index
 ---
+
 ## Overview
 
 The Delete Credential endpoint allows you to permanently remove authentication credentials from a tenant. This functionality is essential for:
 
-* Revoking compromised or expired credentials
-* Removing unused or unnecessary authentication tokens
-* Implementing credential lifecycle management
-* Maintaining security by cleaning up old credentials
-* Managing user access control and permissions
+- Revoking compromised or expired credentials
+- Removing unused or unnecessary authentication tokens
+- Implementing credential lifecycle management
+- Maintaining security by cleaning up old credentials
+- Managing user access control and permissions
 
 **Warning**: Credential deletion is irreversible. All access using the deleted credential will be immediately revoked.
 
@@ -44,7 +45,7 @@ var api = new LiteGraphSdk(
 const deleteCredential = async () => {
   try {
     const data = await api.Credential.delete("<credential-guid>");
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -82,10 +83,10 @@ When deleting credentials, consider the following security recommendations:
 
 After successfully deleting a credential, you can:
 
-* Update any systems that were using the deleted credential
-* Create replacement credentials if needed
-* Review remaining credentials in the tenant
-* Implement credential lifecycle management policies
-* Update credential management documentation
-* Set up automated credential monitoring and cleanup
-* Implement credential expiration and rotation workflows
+- Update any systems that were using the deleted credential
+- Create replacement credentials if needed
+- Review remaining credentials in the tenant
+- Implement credential lifecycle management policies
+- Update credential management documentation
+- Set up automated credential monitoring and cleanup
+- Implement credential expiration and rotation workflows

@@ -9,17 +9,18 @@ hidden: false
 metadata:
   robots: index
 ---
+
 ## Overview
 
 Vector update operations allow you to modify existing vector embeddings within your graph database. This functionality is essential for maintaining data accuracy, correcting vector embeddings, and adapting vector information as your application requirements evolve. Understanding vector update operations is crucial for effective vector management and ensuring your vector system remains current and relevant.
 
 Key capabilities include:
 
-* Updating vector embeddings and dimensional data
-* Modifying vector metadata and properties
-* Maintaining data integrity during updates
-* Handling validation and error scenarios
-* Preserving vector relationships and associations
+- Updating vector embeddings and dimensional data
+- Modifying vector metadata and properties
+- Maintaining data integrity during updates
+- Handling validation and error scenarios
+- Preserving vector relationships and associations
 
 These operations support various use cases such as vector refinement, metadata updates, model migration, and maintaining consistency across your vector database.
 
@@ -69,7 +70,7 @@ const updateVector = async () => {
       CreatedUtc: "",
       LastUpdateUtc: "",
     });
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -123,8 +124,8 @@ Upon successful vector update, the API returns a `200 OK` status code with the u
 
 After successfully updating vectors, consider these next actions:
 
-* **Verify Changes**: Read the updated vector to confirm changes were applied correctly
-* **Update Dependencies**: Check if any dependent systems need to be notified of changes
-* **Monitor Impact**: Track how vector updates affect related operations and queries
-* **Document Changes**: Maintain documentation of vector modification history
-* **Optimize Performance**: Review update patterns for potential performance improvements
+- **Verify Changes**: Read the updated vector to confirm changes were applied correctly
+- **Update Dependencies**: Check if any dependent systems need to be notified of changes
+- **Monitor Impact**: Track how vector updates affect related operations and queries
+- **Document Changes**: Maintain documentation of vector modification history
+- **Optimize Performance**: Review update patterns for potential performance improvements

@@ -54,7 +54,6 @@ curl --location --request PUT 'http://localhost:8701/v1.0/tenants/00000000-0000-
     ]
 }'
 ```
-
 ```javascript
 import { LiteGraphSdk } from "litegraphdb";
 
@@ -85,7 +84,6 @@ const createEdge = async () => {
   }
 };
 ```
-
 ```python
 import litegraph
 
@@ -171,7 +169,6 @@ curl --location --request PUT 'http://localhost:8701/v1.0/tenants/00000000-0000-
     }
 ]'
 ```
-
 ```javascript
 import { LiteGraphSdk } from "litegraphdb";
 
@@ -206,7 +203,6 @@ const createMultipleEdges = async () => {
   }
 };
 ```
-
 ```python
 import litegraph
 

@@ -31,7 +31,6 @@ curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-0000
   }
 }'
 ```
-
 ```javascript
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/nodes/search' \
 --header 'content-type: application/json' \
@@ -69,14 +68,13 @@ curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-0000
 --data '{
     "GraphGUID": "00000000-0000-0000-0000-000000000000",
     "Domain": "Edge",
-    "SearchType": "CosineSimliarity",
+    "SearchType": "CosineSimilarity",
     "Labels": [],
     "Tags": {},
     "Expr": null,
     "Embeddings": [ 0.1, 0.2, 0.3 ]
 }'
 ```
-
 ```javascript
 import { LiteGraphSdk } from "litegraphdb";
 import { NodeEdgeSearchRequest } from "litegraphdb/dist/types/types";
@@ -92,13 +90,13 @@ const edgeVectorSearch = async () => {
     const data = await api.Vector.search({
       GraphGUID: "<graph-guid>",
       Domain: "Edge",
-      SearchType: "CosineSimliarity",
+      SearchType: "CosineSimilarity",
       Labels: [],
       Tags: {},
       Expr: null,
       Embeddings: [0.1, 0.2, 0.3],
     });
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }

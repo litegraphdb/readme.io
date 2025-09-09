@@ -9,17 +9,18 @@ hidden: false
 metadata:
   robots: index
 ---
+
 ## Overview
 
 The Read and Enumeration endpoints provide comprehensive functionality for retrieving edge data from your graph. These endpoints allow you to:
 
-* Read individual edges by their unique identifier
-* Retrieve the first edge matching specific criteria
-* Read multiple edges by providing their GUIDs
-* Enumerate all edges in a graph
-* Search and filter edges based on labels, tags, and custom expressions
-* Implement pagination for large result sets
-* Include additional data and subordinate information in responses
+- Read individual edges by their unique identifier
+- Retrieve the first edge matching specific criteria
+- Read multiple edges by providing their GUIDs
+- Enumerate all edges in a graph
+- Search and filter edges based on labels, tags, and custom expressions
+- Implement pagination for large result sets
+- Include additional data and subordinate information in responses
 
 ## Read Individual Edge
 
@@ -27,8 +28,8 @@ Retrieve a specific edge by its unique identifier using the `GET: /v1.0/tenants/
 
 To include additional information in the response, such as custom data fields and subordinate (child) edges, use the `incldata` and `inclsub` query parameters in your request.
 
-* `incldata=true` will include the `Data` property for each edge in the response.
-* `inclsub=true` will include subordinate (child) edges in the response.
+- `incldata=true` will include the `Data` property for each edge in the response.
+- `inclsub=true` will include subordinate (child) edges in the response.
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/edges/00000000-0000-0000-0000-000000000000' \
@@ -46,7 +47,7 @@ var api = new LiteGraphSdk(
 const getEdgeById = async () => {
   try {
     const data = await api.Edge.read(guid, edgeGuid);
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -107,8 +108,8 @@ Retrieve the first edge that matches your specified criteria using `GET: /v1.0/t
 
 To include additional information in the response, such as custom data fields and subordinate (child) edges, use the `incldata` and `inclsub` query parameters in your request.
 
-* `incldata=true` will include the `Data` property for each edge in the response.
-* `inclsub=true` will include subordinate (child) edges in the response.
+- `incldata=true` will include the `Data` property for each edge in the response.
+- `inclsub=true` will include subordinate (child) edges in the response.
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/edges/first' \
@@ -133,7 +134,7 @@ var api = new LiteGraphSdk(
 const readFirstEdge = async () => {
   try {
     const data = await api.Edge.readFirst(guid, {});
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err), err);
   }
@@ -161,8 +162,8 @@ Retrieve multiple specific edges by providing their GUIDs as query parameters us
 
 To include additional information in the response, such as custom data fields and subordinate (child) edges, use the `incldata` and `inclsub` query parameters in your request.
 
-* `incldata=true` will include the `Data` property for each edge in the response.
-* `inclsub=true` will include subordinate (child) edges in the response.
+- `incldata=true` will include the `Data` property for each edge in the response.
+- `inclsub=true` will include subordinate (child) edges in the response.
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/edges?guids=00000000-0000-0000-0000-000000000000,00000000-0000-0000-0000-000000000001' \
@@ -180,7 +181,7 @@ var api = new LiteGraphSdk(
 const readManyEdges = async () => {
   try {
     const data = await api.Edge.readMany(guid, [edgeGuid]);
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -208,8 +209,8 @@ Retrieve all edges within your graph using `GET: /v1.0/tenants/{tenant-guid}/gra
 
 To include additional information in the response, such as custom data fields and subordinate (child) edges, use the `incldata` and `inclsub` query parameters in your request.
 
-* `incldata=true` will include the `Data` property for each edge in the response.
-* `inclsub=true` will include subordinate (child) edges in the response.
+- `incldata=true` will include the `Data` property for each edge in the response.
+- `inclsub=true` will include subordinate (child) edges in the response.
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/edges' \
@@ -227,7 +228,7 @@ var api = new LiteGraphSdk(
 const getEdgeList = async () => {
   try {
     const data = await api.Edge.readAll(guid);
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err), err);
   }
@@ -256,11 +257,11 @@ The v2.0 enumeration endpoint `GET: /v2.0/tenants/{tenant-guid}/graphs/{graph-gu
 
 To include additional information in the response, such as custom data fields and subordinate (child) edges.
 
-* `incldata=true` will include the `Data` property for each edge in the response.
-* `inclsub=true` will include subordinate (child) edges in the response.
-* `max-keys=<number>` will limit the maximum number of edges returned in the response.
-* `skip=<number>` will skip the specified number of edges in the result set (useful for pagination).
-* `continuationToken=<edgeGUID>` will return results starting after the specified edge GUID (useful for pagination).
+- `incldata=true` will include the `Data` property for each edge in the response.
+- `inclsub=true` will include subordinate (child) edges in the response.
+- `max-keys=<number>` will limit the maximum number of edges returned in the response.
+- `skip=<number>` will skip the specified number of edges in the result set (useful for pagination).
+- `continuationToken=<edgeGUID>` will return results starting after the specified edge GUID (useful for pagination).
 
 ```curl
 curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/edges' \
@@ -280,7 +281,7 @@ const enumerateEdges = async () => {
     const data = await api.Edge.enumerate(
       "00000000-0000-0000-0000-000000000000"
     );
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -307,30 +308,30 @@ enumerate_edge()
 
 ```json
 {
-    "Success": true,
-    "Timestamp": {
-        "Start": "2025-09-09T10:03:54.787758Z",
-        "End": "2025-09-09T10:03:54.805314Z",
-        "TotalMs": 17.56,
-        "Messages": {}
-    },
-    "MaxResults": 1000,
-    "EndOfResults": true,
-    "TotalRecords": 1,
-    "RecordsRemaining": 0,
-    "Objects": [
-        {
-            "TenantGUID": "00000000-0000-0000-0000-000000000000",
-            "GUID": "a1d61bb1-f990-4b90-885c-a925a1cede9d",
-            "GraphGUID": "d913a38a-20fc-4009-a0ec-56229f021885",
-            "Name": "My test edge",
-            "From": "eb787bc5-224b-4551-a70f-9a7eae07a0b8",
-            "To": "b9ccf229-f36b-4f1f-98b1-a0e8a4373f71",
-            "Cost": 10,
-            "CreatedUtc": "2025-09-09T10:03:46.978477Z",
-            "LastUpdateUtc": "2025-09-09T10:03:46.978477Z"
-        }
-    ]
+  "Success": true,
+  "Timestamp": {
+    "Start": "2025-09-09T10:03:54.787758Z",
+    "End": "2025-09-09T10:03:54.805314Z",
+    "TotalMs": 17.56,
+    "Messages": {}
+  },
+  "MaxResults": 1000,
+  "EndOfResults": true,
+  "TotalRecords": 1,
+  "RecordsRemaining": 0,
+  "Objects": [
+    {
+      "TenantGUID": "00000000-0000-0000-0000-000000000000",
+      "GUID": "a1d61bb1-f990-4b90-885c-a925a1cede9d",
+      "GraphGUID": "d913a38a-20fc-4009-a0ec-56229f021885",
+      "Name": "My test edge",
+      "From": "eb787bc5-224b-4551-a70f-9a7eae07a0b8",
+      "To": "b9ccf229-f36b-4f1f-98b1-a0e8a4373f71",
+      "Cost": 10,
+      "CreatedUtc": "2025-09-09T10:03:46.978477Z",
+      "LastUpdateUtc": "2025-09-09T10:03:46.978477Z"
+    }
+  ]
 }
 ```
 
@@ -344,15 +345,15 @@ The advanced enumeration endpoint `POST: /v2.0/tenants/{tenant-guid}/graphs/{gra
 
 The POST request body supports the following parameters:
 
-* **Ordering**: Sort results by creation date (CreatedAscending, CreatedDescending)
-* **IncludeData**: Whether to include custom data in the response
-* **IncludeSubordinates**: Whether to include subordinate edge information
-* **MaxResults**: Maximum number of results to return (for pagination)
-* **Skip**: Number of results to skip (for pagination)
-* **ContinuationToken**: Token for continuing pagination from a previous request
-* **Labels**: Array of labels to filter edges
-* **Tags**: Key-value pairs for tag-based filtering
-* **Expr**: Custom expression for advanced filtering
+- **Ordering**: Sort results by creation date (CreatedAscending, CreatedDescending)
+- **IncludeData**: Whether to include custom data in the response
+- **IncludeSubordinates**: Whether to include subordinate edge information
+- **MaxResults**: Maximum number of results to return (for pagination)
+- **Skip**: Number of results to skip (for pagination)
+- **ContinuationToken**: Token for continuing pagination from a previous request
+- **Labels**: Array of labels to filter edges
+- **Tags**: Key-value pairs for tag-based filtering
+- **Expr**: Custom expression for advanced filtering
 
 ```curl
 curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/edges' \
@@ -391,7 +392,7 @@ const enumerateAndSearchEdges = async () => {
       Tags: {},
       Expr: {},
     });
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -424,30 +425,30 @@ enumerate_with_query_edge()
 
 ```json
 {
-    "Success": true,
-    "Timestamp": {
-        "Start": "2025-09-09T10:04:20.372731Z",
-        "End": "2025-09-09T10:04:20.388938Z",
-        "TotalMs": 16.21,
-        "Messages": {}
-    },
-    "MaxResults": 5,
-    "EndOfResults": true,
-    "TotalRecords": 1,
-    "RecordsRemaining": 0,
-    "Objects": [
-        {
-            "TenantGUID": "00000000-0000-0000-0000-000000000000",
-            "GUID": "a1d61bb1-f990-4b90-885c-a925a1cede9d",
-            "GraphGUID": "d913a38a-20fc-4009-a0ec-56229f021885",
-            "Name": "My test edge",
-            "From": "eb787bc5-224b-4551-a70f-9a7eae07a0b8",
-            "To": "b9ccf229-f36b-4f1f-98b1-a0e8a4373f71",
-            "Cost": 10,
-            "CreatedUtc": "2025-09-09T10:03:46.978477Z",
-            "LastUpdateUtc": "2025-09-09T10:03:46.978477Z"
-        }
-    ]
+  "Success": true,
+  "Timestamp": {
+    "Start": "2025-09-09T10:04:20.372731Z",
+    "End": "2025-09-09T10:04:20.388938Z",
+    "TotalMs": 16.21,
+    "Messages": {}
+  },
+  "MaxResults": 5,
+  "EndOfResults": true,
+  "TotalRecords": 1,
+  "RecordsRemaining": 0,
+  "Objects": [
+    {
+      "TenantGUID": "00000000-0000-0000-0000-000000000000",
+      "GUID": "a1d61bb1-f990-4b90-885c-a925a1cede9d",
+      "GraphGUID": "d913a38a-20fc-4009-a0ec-56229f021885",
+      "Name": "My test edge",
+      "From": "eb787bc5-224b-4551-a70f-9a7eae07a0b8",
+      "To": "b9ccf229-f36b-4f1f-98b1-a0e8a4373f71",
+      "Cost": 10,
+      "CreatedUtc": "2025-09-09T10:03:46.978477Z",
+      "LastUpdateUtc": "2025-09-09T10:03:46.978477Z"
+    }
+  ]
 }
 ```
 
@@ -467,11 +468,11 @@ When reading and enumerating edges, consider the following recommendations:
 
 After successfully reading and enumerating edges, you can:
 
-* Create nodes to establish graph structure and relationships
-* Perform graph traversal and path-finding operations
-* Implement vector search for semantic similarity queries
-* Update or delete specific edges based on query results
-* Build edge analytics and reporting features
-* Create edge visualization and exploration interfaces
-* Set up automated edge monitoring and validation
-* Implement edge-based business logic and workflows
+- Create nodes to establish graph structure and relationships
+- Perform graph traversal and path-finding operations
+- Implement vector search for semantic similarity queries
+- Update or delete specific edges based on query results
+- Build edge analytics and reporting features
+- Create edge visualization and exploration interfaces
+- Set up automated edge monitoring and validation
+- Implement edge-based business logic and workflows

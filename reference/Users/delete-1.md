@@ -8,15 +8,16 @@ hidden: false
 metadata:
   robots: index
 ---
+
 ## Overview
 
 The Delete User endpoint allows you to permanently remove user objects from a specific tenant. When you delete a user, all associated user data, preferences, and access permissions are also permanently removed. This functionality is essential for:
 
-* Removing inactive or terminated user accounts
-* Cleaning up user data for compliance and privacy
-* Managing user lifecycle within tenant boundaries
-* Implementing user account termination workflows
-* Maintaining data security and access control
+- Removing inactive or terminated user accounts
+- Cleaning up user data for compliance and privacy
+- Managing user lifecycle within tenant boundaries
+- Implementing user account termination workflows
+- Maintaining data security and access control
 
 **Warning**: User deletion is irreversible. All data associated with the user will be permanently lost.
 
@@ -42,7 +43,7 @@ var api = new LiteGraphSdk(
 const deleteUser = async () => {
   try {
     const data = await api.User.delete("<user-guid>");
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -80,6 +81,6 @@ When deleting users, consider the following recommendations:
 
 After successfully deleting a user, you can:
 
-* Clean up any orphaned references in your application
-* Update any dependent systems that referenced the deleted user
-* Review remaining users in the tenant
+- Clean up any orphaned references in your application
+- Update any dependent systems that referenced the deleted user
+- Review remaining users in the tenant

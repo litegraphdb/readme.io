@@ -8,15 +8,16 @@ hidden: false
 metadata:
   robots: index
 ---
+
 ## Overview
 
 The Check Tenant Existence endpoint allows you to efficiently verify whether a specific tenant exists in your LiteGraph instance without retrieving the full tenant data. This is particularly useful for:
 
-* Validating tenant IDs before performing operations
-* Implementing conditional logic based on tenant existence
-* Optimizing applications by avoiding unnecessary data retrieval
-* Performing lightweight existence checks in bulk operations
-* Administrative monitoring and tenant management
+- Validating tenant IDs before performing operations
+- Implementing conditional logic based on tenant existence
+- Optimizing applications by avoiding unnecessary data retrieval
+- Performing lightweight existence checks in bulk operations
+- Administrative monitoring and tenant management
 
 **Important**: Tenant existence checks require administrative privileges and must use the LiteGraph administrative bearer token for authentication.
 
@@ -40,7 +41,7 @@ var api = new LiteGraphSdk(
 const tenantExists = async () => {
   try {
     const data = await api.Tenant.exists("<tenant-guid>");
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -56,7 +57,7 @@ sdk = litegraph.configure(
 )
 
 def tenant_exists():
-    exists = litegraph.Tenant.exists(guid="tenanat-guid")
+    exists = litegraph.Tenant.exists(guid="tenant-guid")
     print(exists)
 
 tenant_exists()
@@ -66,5 +67,5 @@ tenant_exists()
 
 The HEAD request returns only HTTP status codes without any response body:
 
-* **200 OK**: The tenant exists and is accessible
-* **404 Not Found**: The tenant does not exist
+- **200 OK**: The tenant exists and is accessible
+- **404 Not Found**: The tenant does not exist

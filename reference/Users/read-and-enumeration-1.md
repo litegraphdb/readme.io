@@ -8,15 +8,16 @@ hidden: false
 metadata:
   robots: index
 ---
+
 ## Overview
 
 The Read and Enumerate Users endpoints provide comprehensive functionality for retrieving user data from a tenant. These endpoints support various retrieval patterns including:
 
-* Reading individual users by their unique identifier
-* Reading multiple users simultaneously by providing a list of GUIDs
-* Reading all users within a tenant
-* Advanced enumeration with pagination and filtering capabilities
-* Search-based enumeration with complex query expressions
+- Reading individual users by their unique identifier
+- Reading multiple users simultaneously by providing a list of GUIDs
+- Reading all users within a tenant
+- Advanced enumeration with pagination and filtering capabilities
+- Search-based enumeration with complex query expressions
 
 **Important**: All read operations require appropriate permissions within the tenant and must use a valid authentication token.
 
@@ -41,7 +42,7 @@ var api = new LiteGraphSdk(
 const readUser = async () => {
   try {
     const data = await api.User.read("<user-guid>");
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -63,19 +64,19 @@ def retrieve_user():
 retrieve_user()
 ```
 
-### Response 
+### Response
 
 ```json
 {
-    "GUID": "00000000-0000-0000-0000-000000000000",
-    "TenantGUID": "00000000-0000-0000-0000-000000000000",
-    "FirstName": "Again Updated",
-    "LastName": "User",
-    "Email": "anotherbbb@user.com",
-    "Password": "password",
-    "Active": true,
-    "CreatedUtc": "2025-08-29T13:54:55.050579Z",
-    "LastUpdateUtc": "2025-09-08T10:01:29.629367Z"
+  "GUID": "00000000-0000-0000-0000-000000000000",
+  "TenantGUID": "00000000-0000-0000-0000-000000000000",
+  "FirstName": "Again Updated",
+  "LastName": "User",
+  "Email": "anotherbbb@user.com",
+  "Password": "password",
+  "Active": true,
+  "CreatedUtc": "2025-08-29T13:54:55.050579Z",
+  "LastUpdateUtc": "2025-09-08T10:01:29.629367Z"
 }
 ```
 
@@ -99,7 +100,7 @@ var api = new LiteGraphSdk(
 const readManyUsers = async () => {
   try {
     const data = await api.User.readMany([userGuid]);
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -159,7 +160,7 @@ var api = new LiteGraphSdk(
 const readAllUsers = async () => {
   try {
     const data = await api.User.readAll();
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -201,7 +202,7 @@ var api = new LiteGraphSdk(
 const enumerateUsers = async () => {
   try {
     const data = await api.User.enumerate();
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -223,7 +224,7 @@ def enumerate_user():
 enumerate_user()
 ```
 
-### Response 
+### Response
 
 ```
 {
@@ -275,15 +276,15 @@ Perform advanced enumeration with search capabilities using `POST: /v2.0/tenants
 
 The POST enumeration endpoint supports the following search parameters:
 
-* **Ordering**: Sort order for results (`CreatedAscending`, `CreatedDescending`, `ModifiedAscending`, `ModifiedDescending`)
-* **IncludeData**: Whether to include full user data in the response (boolean)
-* **IncludeSubordinates**: Whether to include subordinate users (boolean)
-* **MaxResults**: Maximum number of results to return (integer)
-* **Skip**: Number of results to skip for pagination (integer)
-* **ContinuationToken**: Token for continuing pagination from previous request (string)
-* **Labels**: Array of label filters to apply (array of strings)
-* **Tags**: Object containing tag-based filters (object)
-* **Expr**: Complex expression for advanced filtering (object with Left, Operator, Right properties)
+- **Ordering**: Sort order for results (`CreatedAscending`, `CreatedDescending`, `ModifiedAscending`, `ModifiedDescending`)
+- **IncludeData**: Whether to include full user data in the response (boolean)
+- **IncludeSubordinates**: Whether to include subordinate users (boolean)
+- **MaxResults**: Maximum number of results to return (integer)
+- **Skip**: Number of results to skip for pagination (integer)
+- **ContinuationToken**: Token for continuing pagination from previous request (string)
+- **Labels**: Array of label filters to apply (array of strings)
+- **Tags**: Object containing tag-based filters (object)
+- **Expr**: Complex expression for advanced filtering (object with Left, Operator, Right properties)
 
 ```curl
 curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/users' \
@@ -320,7 +321,7 @@ const enumerateAndSearchUsers = async () => {
       Tags: {},
       Expr: {},
     });
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -347,42 +348,42 @@ enumerate_with_query_user()
 
 ```json
 {
-    "Success": true,
-    "Timestamp": {
-        "Start": "2025-09-08T10:03:50.302363Z",
-        "End": "2025-09-08T10:03:50.305431Z",
-        "TotalMs": 3.07,
-        "Messages": {}
+  "Success": true,
+  "Timestamp": {
+    "Start": "2025-09-08T10:03:50.302363Z",
+    "End": "2025-09-08T10:03:50.305431Z",
+    "TotalMs": 3.07,
+    "Messages": {}
+  },
+  "MaxResults": 5,
+  "ContinuationToken": "00000000-0000-0000-0000-000000000000",
+  "EndOfResults": false,
+  "TotalRecords": 2,
+  "RecordsRemaining": 2,
+  "Objects": [
+    {
+      "GUID": "2bfe8b6e-53ac-4aa6-80fc-905ad154049f",
+      "TenantGUID": "00000000-0000-0000-0000-000000000000",
+      "FirstName": "Another",
+      "LastName": "User",
+      "Email": "another@user.com",
+      "Password": "password",
+      "Active": true,
+      "CreatedUtc": "2025-09-08T10:01:18.546398Z",
+      "LastUpdateUtc": "2025-09-08T10:01:18.546398Z"
     },
-    "MaxResults": 5,
-    "ContinuationToken": "00000000-0000-0000-0000-000000000000",
-    "EndOfResults": false,
-    "TotalRecords": 2,
-    "RecordsRemaining": 2,
-    "Objects": [
-        {
-            "GUID": "2bfe8b6e-53ac-4aa6-80fc-905ad154049f",
-            "TenantGUID": "00000000-0000-0000-0000-000000000000",
-            "FirstName": "Another",
-            "LastName": "User",
-            "Email": "another@user.com",
-            "Password": "password",
-            "Active": true,
-            "CreatedUtc": "2025-09-08T10:01:18.546398Z",
-            "LastUpdateUtc": "2025-09-08T10:01:18.546398Z"
-        },
-        {
-            "GUID": "00000000-0000-0000-0000-000000000000",
-            "TenantGUID": "00000000-0000-0000-0000-000000000000",
-            "FirstName": "Again Updated",
-            "LastName": "User",
-            "Email": "anotherbbb@user.com",
-            "Password": "password",
-            "Active": true,
-            "CreatedUtc": "2025-08-29T13:54:55.050579Z",
-            "LastUpdateUtc": "2025-09-08T10:01:29.629367Z"
-        }
-    ]
+    {
+      "GUID": "00000000-0000-0000-0000-000000000000",
+      "TenantGUID": "00000000-0000-0000-0000-000000000000",
+      "FirstName": "Again Updated",
+      "LastName": "User",
+      "Email": "anotherbbb@user.com",
+      "Password": "password",
+      "Active": true,
+      "CreatedUtc": "2025-08-29T13:54:55.050579Z",
+      "LastUpdateUtc": "2025-09-08T10:01:29.629367Z"
+    }
+  ]
 }
 ```
 
@@ -392,10 +393,10 @@ enumerate_with_query_user()
 
 All read and enumeration endpoints return JSON responses containing user data. The response structure varies based on the endpoint:
 
-* **Individual User**: Returns a single user object with all properties
-* **Multiple Users**: Returns an array of user objects
-* **All Users**: Returns an array of all user objects in the tenant
-* **Enumeration**: Returns paginated results with metadata including continuation tokens
+- **Individual User**: Returns a single user object with all properties
+- **Multiple Users**: Returns an array of user objects
+- **All Users**: Returns an array of all user objects in the tenant
+- **Enumeration**: Returns paginated results with metadata including continuation tokens
 
 ## Best Practices
 
@@ -410,10 +411,10 @@ When reading and enumerating users, consider the following recommendations:
 
 After reading user data, you can:
 
-* Display user information in your application interface
-* Implement user management and administration features
-* Perform user-specific operations based on retrieved data
-* Update user information using the update endpoints
-* Implement user search and filtering functionality
-* Build user analytics and reporting features
-* Integrate user data with other system components
+- Display user information in your application interface
+- Implement user management and administration features
+- Perform user-specific operations based on retrieved data
+- Update user information using the update endpoints
+- Implement user search and filtering functionality
+- Build user analytics and reporting features
+- Integrate user data with other system components

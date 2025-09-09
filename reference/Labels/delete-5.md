@@ -9,17 +9,18 @@ hidden: false
 metadata:
   robots: index
 ---
+
 ## Overview
 
 Label deletion operations provide the ability to remove labels from your graph database when they are no longer needed. These operations are essential for maintaining data cleanliness, removing obsolete labels, and managing storage efficiently. Understanding label deletion is crucial for proper label lifecycle management and ensuring your label system remains organized and relevant.
 
 Key capabilities include:
 
-* Deleting individual labels by their unique GUID
-* Performing bulk deletion of multiple labels
-* Maintaining data integrity during deletion operations
-* Handling cleanup of label associations and relationships
-* Ensuring proper authorization and validation
+- Deleting individual labels by their unique GUID
+- Performing bulk deletion of multiple labels
+- Maintaining data integrity during deletion operations
+- Handling cleanup of label associations and relationships
+- Ensuring proper authorization and validation
 
 These operations support various use cases such as data cleanup, label lifecycle management, storage optimization, and maintaining data quality standards.
 
@@ -45,7 +46,7 @@ var api = new LiteGraphSdk(
 const deleteLabel = async () => {
   try {
     const data = await api.Label.delete("<label-guid>");
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -91,7 +92,7 @@ var api = new LiteGraphSdk(
 const deleteMultipleLabels = async () => {
   try {
     const data = await api.Label.deleteBulk([label - guid]);
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -106,9 +107,9 @@ Upon successful label deletion, the API returns a `200 No Content` status code i
 
 After successfully deleting labels, consider these next actions:
 
-* **Verify Deletion**: Confirm labels have been removed by attempting to read them
-* **Update Dependencies**: Check if any dependent systems need to be updated
-* **Clean Up References**: Remove any local references to deleted labels
-* **Monitor System**: Watch for any issues that might arise from the deletions
-* **Document Changes**: Maintain documentation of deletion operations
-* **Optimize Storage**: Review storage usage improvements from the cleanup
+- **Verify Deletion**: Confirm labels have been removed by attempting to read them
+- **Update Dependencies**: Check if any dependent systems need to be updated
+- **Clean Up References**: Remove any local references to deleted labels
+- **Monitor System**: Watch for any issues that might arise from the deletions
+- **Document Changes**: Maintain documentation of deletion operations
+- **Optimize Storage**: Review storage usage improvements from the cleanup

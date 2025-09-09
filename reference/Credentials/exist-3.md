@@ -8,6 +8,7 @@ hidden: false
 metadata:
   robots: index
 ---
+
 ## Overview
 
 The Check Credential Existence endpoint allows you to efficiently verify whether a specific credential exists within a tenant without retrieving the full credential data.
@@ -34,7 +35,7 @@ var api = new LiteGraphSdk(
 const existsCredential = async () => {
   try {
     const data = await api.Credential.exists("<credential-guid>");
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -60,5 +61,5 @@ exists_credential()
 
 The HEAD request returns only HTTP status codes without any response body:
 
-* **200 OK**: The credential exists and is accessible
-* **404 Not Found**: The credential does not exist
+- **200 OK**: The credential exists and is accessible
+- **404 Not Found**: The credential does not exist

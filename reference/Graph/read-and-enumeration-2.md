@@ -8,15 +8,16 @@ hidden: false
 metadata:
   robots: index
 ---
+
 ## Overview
 
 The Read and Enumeration endpoints provide comprehensive functionality for retrieving graph data from your tenant. These endpoints allow you to:
 
-* Read individual graphs by their unique identifier
-* Retrieve graph statistics and metadata
-* Enumerate multiple graphs with various filtering options
-* Search and filter graphs based on labels, tags, and custom expressions
-* Implement pagination for large result sets
+- Read individual graphs by their unique identifier
+- Retrieve graph statistics and metadata
+- Enumerate multiple graphs with various filtering options
+- Search and filter graphs based on labels, tags, and custom expressions
+- Implement pagination for large result sets
 
 ## Read Individual Graph
 
@@ -24,8 +25,8 @@ Retrieve a specific graph by its unique identifier using the `GET: /v1.0/tenants
 
 To include additional information in the response, such as custom data fields and subordinate (child) graphs, use the `incldata` and `inclsub` query parameters in your request.
 
-* `incldata=true` will include the `Data` property for each graph in the response.
-* `inclsub=true` will include subordinate (child) graphs in the response.
+- `incldata=true` will include the `Data` property for each graph in the response.
+- `inclsub=true` will include subordinate (child) graphs in the response.
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000' \
@@ -43,7 +44,7 @@ var api = new LiteGraphSdk(
 const getGraphById = async () => {
   try {
     const data = await api.Graph.read(guid);
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -69,17 +70,17 @@ retrieve_graph()
 
 ```json
 {
-    "TenantGUID": "00000000-0000-0000-0000-000000000000",
-    "GUID": "d913a38a-20fc-4009-a0ec-56229f021885",
-    "Name": "My graph",
-    "VectorIndexType": "HnswSqlite",
-    "VectorIndexFile": "indexes\\graph-00000000-0000-0000-0000-000000000000-hnsw.db",
-    "VectorDimensionality": 384,
-    "VectorIndexM": 16,
-    "VectorIndexEf": 50,
-    "VectorIndexEfConstruction": 200,
-    "CreatedUtc": "2025-09-04T08:26:45.592040Z",
-    "LastUpdateUtc": "2025-09-04T13:25:45.920512Z"
+  "TenantGUID": "00000000-0000-0000-0000-000000000000",
+  "GUID": "d913a38a-20fc-4009-a0ec-56229f021885",
+  "Name": "My graph",
+  "VectorIndexType": "HnswSqlite",
+  "VectorIndexFile": "indexes\\graph-00000000-0000-0000-0000-000000000000-hnsw.db",
+  "VectorDimensionality": 384,
+  "VectorIndexM": 16,
+  "VectorIndexEf": 50,
+  "VectorIndexEfConstruction": 200,
+  "CreatedUtc": "2025-09-04T08:26:45.592040Z",
+  "LastUpdateUtc": "2025-09-04T13:25:45.920512Z"
 }
 ```
 
@@ -105,7 +106,7 @@ var api = new LiteGraphSdk(
 const readGraphStatistic = async () => {
   try {
     const data = await api.Graph.readStatistic(guid);
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -131,11 +132,11 @@ retrieve_statistics()
 
 ```json
 {
-    "Nodes": 0,
-    "Edges": 0,
-    "Labels": 0,
-    "Tags": 0,
-    "Vectors": 0
+  "Nodes": 0,
+  "Edges": 0,
+  "Labels": 0,
+  "Tags": 0,
+  "Vectors": 0
 }
 ```
 
@@ -145,8 +146,8 @@ Retrieve the first graph that matches your specified criteria using `GET: /v1.0/
 
 To include additional information in the response, such as custom data fields and subordinate (child) graphs, use the `incldata` and `inclsub` query parameters in your request.
 
-* `incldata=true` will include the `Data` property for each graph in the response.
-* `inclsub=true` will include subordinate (child) graphs in the response.
+- `incldata=true` will include the `Data` property for each graph in the response.
+- `inclsub=true` will include subordinate (child) graphs in the response.
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/first' \
@@ -171,7 +172,7 @@ var api = new LiteGraphSdk(
 const readFirstGraph = async () => {
   try {
     const data = await api.Graph.readFirst({});
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -201,8 +202,8 @@ Retrieve multiple specific graphs by providing their GUIDs as query parameters u
 
 To include additional information in the response, such as custom data fields and subordinate (child) graphs, use the `incldata` and `inclsub` query parameters in your request.
 
-* `incldata=true` will include the `Data` property for each graph in the response.
-* `inclsub=true` will include subordinate (child) graphs in the response.
+- `incldata=true` will include the `Data` property for each graph in the response.
+- `inclsub=true` will include subordinate (child) graphs in the response.
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs?guids=00000000-0000-0000-0000-000000000000%2C00000000-0000-0000-0000-000000000001' \
@@ -220,7 +221,7 @@ var api = new LiteGraphSdk(
 const readManyTenants = async () => {
   try {
     const data = await api.Tenant.readMany([tenantGuid]);
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -248,8 +249,8 @@ Retrieve all graphs within your tenant using `GET: /v1.0/tenants/{tenant-id}/gra
 
 To include additional information in the response, such as custom data fields and subordinate (child) graphs, use the `incldata` and `inclsub` query parameters in your request.
 
-* `incldata=true` will include the `Data` property for each graph in the response.
-* `inclsub=true` will include subordinate (child) graphs in the response.
+- `incldata=true` will include the `Data` property for each graph in the response.
+- `inclsub=true` will include subordinate (child) graphs in the response.
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs' \
@@ -267,7 +268,7 @@ var api = new LiteGraphSdk(
 const getGraphList = async () => {
   try {
     const data = await api.Graph.readAll();
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err), err);
   }
@@ -309,7 +310,7 @@ var api = new LiteGraphSdk(
 const readAllTenantStatistics = async () => {
   try {
     const data = await api.Tenant.readStatistics();
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -335,13 +336,13 @@ retrieve_statistics_all()
 
 ```json
 {
-    "d913a38a-20fc-4009-a0ec-56229f021885": {
-        "Nodes": 0,
-        "Edges": 0,
-        "Labels": 0,
-        "Tags": 0,
-        "Vectors": 0
-    }
+  "d913a38a-20fc-4009-a0ec-56229f021885": {
+    "Nodes": 0,
+    "Edges": 0,
+    "Labels": 0,
+    "Tags": 0,
+    "Vectors": 0
+  }
 }
 ```
 
@@ -353,11 +354,11 @@ The v2.0 enumeration endpoint `GET: /v2.0/tenants/{tenant-id}/graphs` provides e
 
 To include additional information in the response, such as custom data fields and subordinate (child) graphs.
 
-* `incldata=true` will include the `Data` property for each graph in the response.
-* `inclsub=true` will include subordinate (child) graphs in the response.
-* `max-keys=<number>` will limit the maximum number of graphs returned in the response.
-* `skip=<number>` will skip the specified number of graphs in the result set (useful for pagination).
-* `continuationToken=<graphGUID>` will return results starting after the specified graph GUID (useful for pagination).
+- `incldata=true` will include the `Data` property for each graph in the response.
+- `inclsub=true` will include subordinate (child) graphs in the response.
+- `max-keys=<number>` will limit the maximum number of graphs returned in the response.
+- `skip=<number>` will skip the specified number of graphs in the result set (useful for pagination).
+- `continuationToken=<graphGUID>` will return results starting after the specified graph GUID (useful for pagination).
 
 ```curl
 curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/graphs' \
@@ -375,7 +376,7 @@ var api = new LiteGraphSdk(
 const enumerateGraphs = async () => {
   try {
     const data = await api.Graph.enumerate();
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -401,32 +402,32 @@ enumerate_graph()
 
 ```json
 {
-    "Success": true,
-    "Timestamp": {
-        "Start": "2025-09-08T10:09:02.071499Z",
-        "End": "2025-09-08T10:09:02.080128Z",
-        "TotalMs": 8.63,
-        "Messages": {}
-    },
-    "MaxResults": 1000,
-    "EndOfResults": true,
-    "TotalRecords": 1,
-    "RecordsRemaining": 0,
-    "Objects": [
-        {
-            "TenantGUID": "00000000-0000-0000-0000-000000000000",
-            "GUID": "d913a38a-20fc-4009-a0ec-56229f021885",
-            "Name": "My graph",
-            "VectorIndexType": "HnswSqlite",
-            "VectorIndexFile": "indexes\\graph-00000000-0000-0000-0000-000000000000-hnsw.db",
-            "VectorDimensionality": 384,
-            "VectorIndexM": 16,
-            "VectorIndexEf": 50,
-            "VectorIndexEfConstruction": 200,
-            "CreatedUtc": "2025-09-04T08:26:45.592040Z",
-            "LastUpdateUtc": "2025-09-04T13:25:45.920512Z"
-        }
-    ]
+  "Success": true,
+  "Timestamp": {
+    "Start": "2025-09-08T10:09:02.071499Z",
+    "End": "2025-09-08T10:09:02.080128Z",
+    "TotalMs": 8.63,
+    "Messages": {}
+  },
+  "MaxResults": 1000,
+  "EndOfResults": true,
+  "TotalRecords": 1,
+  "RecordsRemaining": 0,
+  "Objects": [
+    {
+      "TenantGUID": "00000000-0000-0000-0000-000000000000",
+      "GUID": "d913a38a-20fc-4009-a0ec-56229f021885",
+      "Name": "My graph",
+      "VectorIndexType": "HnswSqlite",
+      "VectorIndexFile": "indexes\\graph-00000000-0000-0000-0000-000000000000-hnsw.db",
+      "VectorDimensionality": 384,
+      "VectorIndexM": 16,
+      "VectorIndexEf": 50,
+      "VectorIndexEfConstruction": 200,
+      "CreatedUtc": "2025-09-04T08:26:45.592040Z",
+      "LastUpdateUtc": "2025-09-04T13:25:45.920512Z"
+    }
+  ]
 }
 ```
 
@@ -438,15 +439,15 @@ The advanced enumeration endpoint `POST: /v2.0/tenants/{tenant-id}/graphs` provi
 
 The POST request body supports the following parameters:
 
-* **Ordering**: Sort results by creation date (CreatedAscending, CreatedDescending)
-* **IncludeData**: Whether to include custom data in the response
-* **IncludeSubordinates**: Whether to include subordinate graph information
-* **MaxResults**: Maximum number of results to return (for pagination)
-* **Skip**: Number of results to skip (for pagination)
-* **ContinuationToken**: Token for continuing pagination from a previous request
-* **Labels**: Array of labels to filter graphs
-* **Tags**: Key-value pairs for tag-based filtering
-* **Expr**: Custom expression for advanced filtering
+- **Ordering**: Sort results by creation date (CreatedAscending, CreatedDescending)
+- **IncludeData**: Whether to include custom data in the response
+- **IncludeSubordinates**: Whether to include subordinate graph information
+- **MaxResults**: Maximum number of results to return (for pagination)
+- **Skip**: Number of results to skip (for pagination)
+- **ContinuationToken**: Token for continuing pagination from a previous request
+- **Labels**: Array of labels to filter graphs
+- **Tags**: Key-value pairs for tag-based filtering
+- **Expr**: Custom expression for advanced filtering
 
 ```curl
 curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/graphs' \
@@ -485,7 +486,7 @@ const enumerateAndSearchGraphs = async () => {
       Tags: {},
       Expr: {},
     });
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -522,32 +523,32 @@ enumerate_with_query_graph()
 
 ```json
 {
-    "Success": true,
-    "Timestamp": {
-        "Start": "2025-09-08T10:10:08.720761Z",
-        "End": "2025-09-08T10:10:08.731802Z",
-        "TotalMs": 11.04,
-        "Messages": {}
-    },
-    "MaxResults": 5,
-    "EndOfResults": true,
-    "TotalRecords": 1,
-    "RecordsRemaining": 0,
-    "Objects": [
-        {
-            "TenantGUID": "00000000-0000-0000-0000-000000000000",
-            "GUID": "d913a38a-20fc-4009-a0ec-56229f021885",
-            "Name": "My graph",
-            "VectorIndexType": "HnswSqlite",
-            "VectorIndexFile": "indexes\\graph-00000000-0000-0000-0000-000000000000-hnsw.db",
-            "VectorDimensionality": 384,
-            "VectorIndexM": 16,
-            "VectorIndexEf": 50,
-            "VectorIndexEfConstruction": 200,
-            "CreatedUtc": "2025-09-04T08:26:45.592040Z",
-            "LastUpdateUtc": "2025-09-04T13:25:45.920512Z"
-        }
-    ]
+  "Success": true,
+  "Timestamp": {
+    "Start": "2025-09-08T10:10:08.720761Z",
+    "End": "2025-09-08T10:10:08.731802Z",
+    "TotalMs": 11.04,
+    "Messages": {}
+  },
+  "MaxResults": 5,
+  "EndOfResults": true,
+  "TotalRecords": 1,
+  "RecordsRemaining": 0,
+  "Objects": [
+    {
+      "TenantGUID": "00000000-0000-0000-0000-000000000000",
+      "GUID": "d913a38a-20fc-4009-a0ec-56229f021885",
+      "Name": "My graph",
+      "VectorIndexType": "HnswSqlite",
+      "VectorIndexFile": "indexes\\graph-00000000-0000-0000-0000-000000000000-hnsw.db",
+      "VectorDimensionality": 384,
+      "VectorIndexM": 16,
+      "VectorIndexEf": 50,
+      "VectorIndexEfConstruction": 200,
+      "CreatedUtc": "2025-09-04T08:26:45.592040Z",
+      "LastUpdateUtc": "2025-09-04T13:25:45.920512Z"
+    }
+  ]
 }
 ```
 

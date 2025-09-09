@@ -9,15 +9,16 @@ hidden: false
 metadata:
   robots: index
 ---
+
 ## Overview
 
 The Read and Enumerate Credentials endpoints provide comprehensive functionality for retrieving credential data from a tenant. These endpoints support various retrieval patterns including:
 
-* Reading individual credentials by their unique identifier
-* Reading multiple credentials simultaneously by providing a list of GUIDs
-* Reading all credentials within a tenant
-* Advanced enumeration with pagination and filtering capabilities
-* Search-based enumeration with complex query expressions
+- Reading individual credentials by their unique identifier
+- Reading multiple credentials simultaneously by providing a list of GUIDs
+- Reading all credentials within a tenant
+- Advanced enumeration with pagination and filtering capabilities
+- Search-based enumeration with complex query expressions
 
 **Important**: All read operations require appropriate permissions within the tenant and must use a valid authentication token.
 
@@ -41,7 +42,7 @@ var api = new LiteGraphSdk(
 const readCredential = async () => {
   try {
     const data = await api.Credential.read("<credential-guid>");
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -67,14 +68,14 @@ retrieve_credential()
 
 ```json
 {
-    "GUID": "00000000-0000-0000-0000-000000000000",
-    "TenantGUID": "00000000-0000-0000-0000-000000000000",
-    "UserGUID": "00000000-0000-0000-0000-000000000000",
-    "Name": "Default credential",
-    "BearerToken": "default",
-    "Active": true,
-    "CreatedUtc": "2025-08-29T13:54:55.175279Z",
-    "LastUpdateUtc": "2025-08-29T13:54:55.174491Z"
+  "GUID": "00000000-0000-0000-0000-000000000000",
+  "TenantGUID": "00000000-0000-0000-0000-000000000000",
+  "UserGUID": "00000000-0000-0000-0000-000000000000",
+  "Name": "Default credential",
+  "BearerToken": "default",
+  "Active": true,
+  "CreatedUtc": "2025-08-29T13:54:55.175279Z",
+  "LastUpdateUtc": "2025-08-29T13:54:55.174491Z"
 }
 ```
 
@@ -136,7 +137,7 @@ var api = new LiteGraphSdk(
 const readAllCredentials = async () => {
   try {
     const data = await api.Credential.readAll();
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -178,7 +179,7 @@ var api = new LiteGraphSdk(
 const enumerateCredentials = async () => {
   try {
     const data = await api.Credential.enumerate();
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -204,29 +205,29 @@ enumerate_credential()
 
 ```json
 {
-    "Success": true,
-    "Timestamp": {
-        "Start": "2025-09-08T10:05:20.543278Z",
-        "End": "2025-09-08T10:05:20.549982Z",
-        "TotalMs": 6.7,
-        "Messages": {}
-    },
-    "MaxResults": 1000,
-    "EndOfResults": true,
-    "TotalRecords": 1,
-    "RecordsRemaining": 0,
-    "Objects": [
-        {
-            "GUID": "00000000-0000-0000-0000-000000000000",
-            "TenantGUID": "00000000-0000-0000-0000-000000000000",
-            "UserGUID": "00000000-0000-0000-0000-000000000000",
-            "Name": "Default credential",
-            "BearerToken": "default",
-            "Active": true,
-            "CreatedUtc": "2025-08-29T13:54:55.175279Z",
-            "LastUpdateUtc": "2025-08-29T13:54:55.174491Z"
-        }
-    ]
+  "Success": true,
+  "Timestamp": {
+    "Start": "2025-09-08T10:05:20.543278Z",
+    "End": "2025-09-08T10:05:20.549982Z",
+    "TotalMs": 6.7,
+    "Messages": {}
+  },
+  "MaxResults": 1000,
+  "EndOfResults": true,
+  "TotalRecords": 1,
+  "RecordsRemaining": 0,
+  "Objects": [
+    {
+      "GUID": "00000000-0000-0000-0000-000000000000",
+      "TenantGUID": "00000000-0000-0000-0000-000000000000",
+      "UserGUID": "00000000-0000-0000-0000-000000000000",
+      "Name": "Default credential",
+      "BearerToken": "default",
+      "Active": true,
+      "CreatedUtc": "2025-08-29T13:54:55.175279Z",
+      "LastUpdateUtc": "2025-08-29T13:54:55.174491Z"
+    }
+  ]
 }
 ```
 
@@ -238,15 +239,15 @@ Perform advanced enumeration with search capabilities using `POST: /v2.0/tenants
 
 The POST enumeration endpoint supports the following search parameters:
 
-* **Ordering**: Sort order for results (`CreatedAscending`, `CreatedDescending`, `ModifiedAscending`, `ModifiedDescending`)
-* **IncludeData**: Whether to include full credential data in the response (boolean)
-* **IncludeSubordinates**: Whether to include subordinate credentials (boolean)
-* **MaxResults**: Maximum number of results to return (integer)
-* **Skip**: Number of results to skip for pagination (integer)
-* **ContinuationToken**: Token for continuing pagination from previous request (string)
-* **Labels**: Array of label filters to apply (array of strings)
-* **Tags**: Object containing tag-based filters (object)
-* **Expr**: Complex expression for advanced filtering (object with Left, Operator, Right properties)
+- **Ordering**: Sort order for results (`CreatedAscending`, `CreatedDescending`, `ModifiedAscending`, `ModifiedDescending`)
+- **IncludeData**: Whether to include full credential data in the response (boolean)
+- **IncludeSubordinates**: Whether to include subordinate credentials (boolean)
+- **MaxResults**: Maximum number of results to return (integer)
+- **Skip**: Number of results to skip for pagination (integer)
+- **ContinuationToken**: Token for continuing pagination from previous request (string)
+- **Labels**: Array of label filters to apply (array of strings)
+- **Tags**: Object containing tag-based filters (object)
+- **Expr**: Complex expression for advanced filtering (object with Left, Operator, Right properties)
 
 ```curl
 curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/credentials' \
@@ -285,7 +286,7 @@ const enumerateAndSearchCredentials = async () => {
       Tags: {},
       Expr: {},
     });
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -311,30 +312,30 @@ enumerate_with_query_credential()
 
 ```json
 {
-    "Success": true,
-    "Timestamp": {
-        "Start": "2025-09-08T10:05:58.611665Z",
-        "End": "2025-09-08T10:05:58.615198Z",
-        "TotalMs": 3.53,
-        "Messages": {}
-    },
-    "MaxResults": 5,
-    "ContinuationToken": "00000000-0000-0000-0000-000000000000",
-    "EndOfResults": false,
-    "TotalRecords": 1,
-    "RecordsRemaining": 1,
-    "Objects": [
-        {
-            "GUID": "00000000-0000-0000-0000-000000000000",
-            "TenantGUID": "00000000-0000-0000-0000-000000000000",
-            "UserGUID": "00000000-0000-0000-0000-000000000000",
-            "Name": "Default credential",
-            "BearerToken": "default",
-            "Active": true,
-            "CreatedUtc": "2025-08-29T13:54:55.175279Z",
-            "LastUpdateUtc": "2025-08-29T13:54:55.174491Z"
-        }
-    ]
+  "Success": true,
+  "Timestamp": {
+    "Start": "2025-09-08T10:05:58.611665Z",
+    "End": "2025-09-08T10:05:58.615198Z",
+    "TotalMs": 3.53,
+    "Messages": {}
+  },
+  "MaxResults": 5,
+  "ContinuationToken": "00000000-0000-0000-0000-000000000000",
+  "EndOfResults": false,
+  "TotalRecords": 1,
+  "RecordsRemaining": 1,
+  "Objects": [
+    {
+      "GUID": "00000000-0000-0000-0000-000000000000",
+      "TenantGUID": "00000000-0000-0000-0000-000000000000",
+      "UserGUID": "00000000-0000-0000-0000-000000000000",
+      "Name": "Default credential",
+      "BearerToken": "default",
+      "Active": true,
+      "CreatedUtc": "2025-08-29T13:54:55.175279Z",
+      "LastUpdateUtc": "2025-08-29T13:54:55.174491Z"
+    }
+  ]
 }
 ```
 
@@ -342,10 +343,10 @@ enumerate_with_query_credential()
 
 All read and enumeration endpoints return JSON responses containing credential data. The response structure varies based on the endpoint:
 
-* **Individual Credential**: Returns a single credential object with all properties
-* **Multiple Credentials**: Returns an array of credential objects
-* **All Credentials**: Returns an array of all credential objects in the tenant
-* **Enumeration**: Returns paginated results with metadata including continuation tokens
+- **Individual Credential**: Returns a single credential object with all properties
+- **Multiple Credentials**: Returns an array of credential objects
+- **All Credentials**: Returns an array of all credential objects in the tenant
+- **Enumeration**: Returns paginated results with metadata including continuation tokens
 
 ## Best Practices
 
@@ -363,10 +364,10 @@ When reading and enumerating credentials, consider the following recommendations
 
 After reading credential data, you can:
 
-* Display credential information in your application interface
-* Implement credential management and administration features
-* Perform credential-specific operations based on retrieved data
-* Update credential information using the update endpoints
-* Implement credential search and filtering functionality
-* Build credential analytics and reporting features
-* Integrate credential data with other system components
+- Display credential information in your application interface
+- Implement credential management and administration features
+- Perform credential-specific operations based on retrieved data
+- Update credential information using the update endpoints
+- Implement credential search and filtering functionality
+- Build credential analytics and reporting features
+- Integrate credential data with other system components

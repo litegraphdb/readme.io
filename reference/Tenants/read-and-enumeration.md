@@ -9,15 +9,16 @@ hidden: false
 metadata:
   robots: index
 ---
+
 ## Overview
 
 The Read and Enumeration endpoints provide comprehensive functionality for retrieving tenant data from your LiteGraph instance. These endpoints allow you to:
 
-* Read individual tenants by their unique identifier
-* Retrieve tenant statistics and metadata
-* Enumerate multiple tenants with various filtering options
-* Search and filter tenants based on labels, tags, and custom expressions
-* Implement pagination for large result sets
+- Read individual tenants by their unique identifier
+- Retrieve tenant statistics and metadata
+- Enumerate multiple tenants with various filtering options
+- Search and filter tenants based on labels, tags, and custom expressions
+- Implement pagination for large result sets
 
 **Important**: All tenant read and enumeration operations require administrative privileges and must use the LiteGraph administrative bearer token for authentication.
 
@@ -58,22 +59,22 @@ sdk = litegraph.configure(
 )
 
 def retrieve_tenant():
-    tenant = litegraph.Tenant.retrieve(guid="tenanat-guid")
+    tenant = litegraph.Tenant.retrieve(guid="tenant-guid")
     print(tenant)
 
 retrieve_tenant()
 
 ```
 
-### Response 
+### Response
 
 ```json
 {
-    "GUID": "00000000-0000-0000-0000-000000000000",
-    "Name": "Default tenant",
-    "Active": true,
-    "CreatedUtc": "2025-08-29T13:54:54.956041Z",
-    "LastUpdateUtc": "2025-08-29T13:54:54.955375Z"
+  "GUID": "00000000-0000-0000-0000-000000000000",
+  "Name": "Default tenant",
+  "Active": true,
+  "CreatedUtc": "2025-08-29T13:54:54.956041Z",
+  "LastUpdateUtc": "2025-08-29T13:54:54.955375Z"
 }
 ```
 
@@ -97,7 +98,7 @@ var api = new LiteGraphSdk(
 const readTenantStatistic = async () => {
   try {
     const data = await api.Tenant.readStatistic(guid);
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -113,9 +114,9 @@ sdk = litegraph.configure(
 )
 
 def retrieve_statistics_single_tenant():
-    statistics = litegraph.Tenant.retrieve_statistics(tenant_guid="tenanat-guid")
+    statistics = litegraph.Tenant.retrieve_statistics(tenant_guid="tenant-guid")
     print(statistics)
-    
+
 retrieve_statistics_single_tenant()
 
 ```
@@ -124,12 +125,12 @@ retrieve_statistics_single_tenant()
 
 ```json
 {
-    "Graphs": 1,
-    "Nodes": 0,
-    "Edges": 0,
-    "Labels": 0,
-    "Tags": 0,
-    "Vectors": 0
+  "Graphs": 1,
+  "Nodes": 0,
+  "Edges": 0,
+  "Labels": 0,
+  "Tags": 0,
+  "Vectors": 0
 }
 ```
 
@@ -153,7 +154,7 @@ var api = new LiteGraphSdk(
 const readManyTenants = async () => {
   try {
     const data = await api.Tenant.readMany([tenantGuid]);
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -171,7 +172,7 @@ sdk = litegraph.configure(
 def retrieve_multiple_tenants():
     tenants = litegraph.Tenant.retrieve_many(["Tenant-Guid","Tenant-Guid-2"])
     print(tenants)
-    
+
 retrieve_multiple_tenants()
 
 ```
@@ -196,7 +197,7 @@ var api = new LiteGraphSdk(
 const readTenants = async () => {
   try {
     const data = await api.Tenant.readAll();
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -214,7 +215,7 @@ sdk = litegraph.configure(
 def retrieve_all_tenants():
     tenants = litegraph.Tenant.retrieve_all()
     print(tenants)
-    
+
 retrieve_all_tenants()
 
 ```
@@ -239,7 +240,7 @@ var api = new LiteGraphSdk(
 const readAllTenantStatistics = async () => {
   try {
     const data = await api.Tenant.readStatistics();
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -257,7 +258,7 @@ sdk = litegraph.configure(
 def retrieve_statistics_all_tenant():
     statistics = litegraph.Tenant.retrieve_statistics()
     print(statistics)
-    
+
 retrieve_statistics_all_tenant()
 ```
 
@@ -265,22 +266,22 @@ retrieve_statistics_all_tenant()
 
 ```json
 {
-    "00000000-0000-0000-0000-000000000000": {
-        "Graphs": 1,
-        "Nodes": 0,
-        "Edges": 0,
-        "Labels": 0,
-        "Tags": 0,
-        "Vectors": 0
-    },
-    "1361d1f4-bb3b-409e-9436-528d41e260bf": {
-        "Graphs": 0,
-        "Nodes": 0,
-        "Edges": 0,
-        "Labels": 0,
-        "Tags": 0,
-        "Vectors": 0
-    }
+  "00000000-0000-0000-0000-000000000000": {
+    "Graphs": 1,
+    "Nodes": 0,
+    "Edges": 0,
+    "Labels": 0,
+    "Tags": 0,
+    "Vectors": 0
+  },
+  "1361d1f4-bb3b-409e-9436-528d41e260bf": {
+    "Graphs": 0,
+    "Nodes": 0,
+    "Edges": 0,
+    "Labels": 0,
+    "Tags": 0,
+    "Vectors": 0
+  }
 }
 ```
 
@@ -304,7 +305,7 @@ var api = new LiteGraphSdk(
 const enumerateTenants = async () => {
   try {
     const data = await api.Tenant.enumerate();
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -322,7 +323,7 @@ sdk = litegraph.configure(
 def enumerate_tenant():
     tenants = litegraph.Tenant.enumerate()
     print(tenants)
-    
+
 enumerate_tenant()
 ```
 
@@ -361,15 +362,15 @@ The advanced enumeration endpoint `POST: /v2.0/tenants` provides powerful search
 
 The POST request body supports the following parameters:
 
-* **Ordering**: Sort results by creation date (CreatedAscending, CreatedDescending)
-* **IncludeData**: Whether to include custom data in the response
-* **IncludeSubordinates**: Whether to include subordinate tenant information
-* **MaxResults**: Maximum number of results to return (for pagination)
-* **Skip**: Number of results to skip (for pagination)
-* **ContinuationToken**: Token for continuing pagination from a previous request
-* **Labels**: Array of labels to filter tenants
-* **Tags**: Key-value pairs for tag-based filtering
-* **Expr**: Custom expression for advanced filtering
+- **Ordering**: Sort results by creation date (CreatedAscending, CreatedDescending)
+- **IncludeData**: Whether to include custom data in the response
+- **IncludeSubordinates**: Whether to include subordinate tenant information
+- **MaxResults**: Maximum number of results to return (for pagination)
+- **Skip**: Number of results to skip (for pagination)
+- **ContinuationToken**: Token for continuing pagination from a previous request
+- **Labels**: Array of labels to filter tenants
+- **Tags**: Key-value pairs for tag-based filtering
+- **Expr**: Custom expression for advanced filtering
 
 ```curl
 curl --location 'http://view.homedns.org:8701/v2.0/tenants' \
@@ -431,37 +432,37 @@ enumerate_with_query_tenant()
 
 ```
 
-### Response 
+### Response
 
 ```json
 {
-    "Success": true,
-    "Timestamp": {
-        "Start": "2025-09-08T09:59:28.736887Z",
-        "End": "2025-09-08T09:59:28.744129Z",
-        "TotalMs": 7.24,
-        "Messages": {}
+  "Success": true,
+  "Timestamp": {
+    "Start": "2025-09-08T09:59:28.736887Z",
+    "End": "2025-09-08T09:59:28.744129Z",
+    "TotalMs": 7.24,
+    "Messages": {}
+  },
+  "MaxResults": 5,
+  "EndOfResults": true,
+  "TotalRecords": 2,
+  "RecordsRemaining": 0,
+  "Objects": [
+    {
+      "GUID": "1361d1f4-bb3b-409e-9436-528d41e260bf",
+      "Name": "Another tenant",
+      "Active": true,
+      "CreatedUtc": "2025-09-08T09:53:34.432889Z",
+      "LastUpdateUtc": "2025-09-08T09:53:34.432889Z"
     },
-    "MaxResults": 5,
-    "EndOfResults": true,
-    "TotalRecords": 2,
-    "RecordsRemaining": 0,
-    "Objects": [
-        {
-            "GUID": "1361d1f4-bb3b-409e-9436-528d41e260bf",
-            "Name": "Another tenant",
-            "Active": true,
-            "CreatedUtc": "2025-09-08T09:53:34.432889Z",
-            "LastUpdateUtc": "2025-09-08T09:53:34.432889Z"
-        },
-        {
-            "GUID": "00000000-0000-0000-0000-000000000000",
-            "Name": "Default tenant",
-            "Active": true,
-            "CreatedUtc": "2025-08-29T13:54:54.956041Z",
-            "LastUpdateUtc": "2025-08-29T13:54:54.955375Z"
-        }
-    ]
+    {
+      "GUID": "00000000-0000-0000-0000-000000000000",
+      "Name": "Default tenant",
+      "Active": true,
+      "CreatedUtc": "2025-08-29T13:54:54.956041Z",
+      "LastUpdateUtc": "2025-08-29T13:54:54.955375Z"
+    }
+  ]
 }
 ```
 
@@ -477,9 +478,9 @@ When reading and enumerating tenants, consider the following recommendations:
 
 After reading and enumerating tenants, you can:
 
-* Analyze tenant statistics to understand usage patterns
-* Implement tenant management dashboards and monitoring
-* Build administrative tools for tenant lifecycle management
-* Create tenant-specific configurations and settings
-* Implement tenant-based access control and permissions
-* Develop tenant migration and backup strategies
+- Analyze tenant statistics to understand usage patterns
+- Implement tenant management dashboards and monitoring
+- Build administrative tools for tenant lifecycle management
+- Create tenant-specific configurations and settings
+- Implement tenant-based access control and permissions
+- Develop tenant migration and backup strategies

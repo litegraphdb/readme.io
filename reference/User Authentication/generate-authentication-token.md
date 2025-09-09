@@ -6,6 +6,7 @@ hidden: false
 metadata:
   robots: index
 ---
+
 To generate authentication token (using password), call `GET /v1.0/token`
 
 ```curl
@@ -15,20 +16,24 @@ curl --location --request GET 'http://localhost:8701/v1.0/token' \
 --header 'x-tenant-guid: 00000000-0000-0000-0000-000000000000'
 ```
 ```javascript
-import { LiteGraphSdk } from 'litegraphdb';
+import { LiteGraphSdk } from "litegraphdb";
 
-var api = new LiteGraphSdk('http://localhost:8701/', '<Tenant-Guid>', '*******');
+var api = new LiteGraphSdk(
+  "http://localhost:8701/",
+  "<Tenant-Guid>",
+  "*******"
+);
 
 const generateToken = async () => {
   try {
     const data = await api.Authentication.generateToken(
-      'user@example.com',
-      'pass****',
-      '<tenanat-guid>'
+      "user@example.com",
+      "pass****",
+      "<tenant-guid>"
     );
-    console.log(data, 'Token generated successfully');
+    console.log(data, "Token generated successfully");
   } catch (err) {
-    console.log('err:', JSON.stringify(err));
+    console.log("err:", JSON.stringify(err));
   }
 };
 ```
@@ -42,24 +47,23 @@ sdk = litegraph.configure(
 )
 
 def generate_authentication_token():
-    token = litegraph.Authentication.generate_authentication_token(email="user@example.com", password="pass****", tenant_guid="tenanat-guid")
+    token = litegraph.Authentication.generate_authentication_token(email="user@example.com", password="pass****", tenant_guid="tenant-guid")
     print(token)
-    
+
 generate_authentication_token()
 
 ```
 
-
-#Response
+### Response
 
 ```json
 {
-    "TimestampUtc": "2025-09-09T10:27:10.892667Z",
-    "ExpirationUtc": "2025-09-10T10:27:10.892667Z",
-    "IsExpired": false,
-    "TenantGUID": "00000000-0000-0000-0000-000000000000",
-    "UserGUID": "2bfe8b6e-53ac-4aa6-80fc-905ad154049f",
-    "Token": "*******",
-    "Valid": true
+  "TimestampUtc": "2025-09-09T10:27:10.892667Z",
+  "ExpirationUtc": "2025-09-10T10:27:10.892667Z",
+  "IsExpired": false,
+  "TenantGUID": "00000000-0000-0000-0000-000000000000",
+  "UserGUID": "2bfe8b6e-53ac-4aa6-80fc-905ad154049f",
+  "Token": "*******",
+  "Valid": true
 }
 ```

@@ -27,7 +27,6 @@ Retrieve all edges that directly connect two specific nodes using `GET: /v1.0/te
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/edges/between?from=00000000-0000-0000-0000-000000000000&to=00000000-0000-0000-0000-000000000001' \
 --header 'Authorization: Bearer litegraphadmin'
 ```
-
 ```javascript
 import { LiteGraphSdk } from "litegraphdb";
 
@@ -44,13 +43,12 @@ const getEdgesBetween = async () => {
       fromNodeGuid,
       toNodeGuid
     );
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err), err);
   }
 };
 ```
-
 ```python
 import litegraph
 

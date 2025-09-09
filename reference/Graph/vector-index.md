@@ -9,21 +9,22 @@ hidden: false
 metadata:
   robots: index
 ---
+
 ## Overview
 
 The Vector Index Management endpoints allow you to configure and manage vector indexes for your graphs. Vector indexes are essential for efficient similarity-based searches and significantly improve the performance of vector operations. These endpoints provide functionality for:
 
-* Reading vector index configuration and statistics
-* Enabling vector indexes with custom parameters
-* Rebuilding indexes to optimize performance
-* Deleting indexes when no longer needed
+- Reading vector index configuration and statistics
+- Enabling vector indexes with custom parameters
+- Rebuilding indexes to optimize performance
+- Deleting indexes when no longer needed
 
 Vector indexes are particularly important for:
 
-* Accelerating vector similarity searches
-* Supporting large-scale vector operations
-* Optimizing memory usage for vector data
-* Enabling real-time vector search capabilities
+- Accelerating vector similarity searches
+- Supporting large-scale vector operations
+- Optimizing memory usage for vector data
+- Enabling real-time vector search capabilities
 
 ## Read Configuration
 
@@ -45,7 +46,7 @@ var api = new LiteGraphSdk(
 const readVectorIndexConfig = async () => {
   try {
     const data = await api.Graph.readVectorIndexConfig(guid);
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -100,7 +101,7 @@ var api = new LiteGraphSdk(
 const readVectorIndexStats = async () => {
   try {
     const data = await api.Graph.readVectorIndexStats(guid);
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -149,13 +150,13 @@ Enable a vector index for a graph using `PUT: /v2.0/tenants/{tenant-guid}/graphs
 
 The enable request supports the following parameters:
 
-* **VectorIndexType**: The type of vector index to use (e.g., "HnswSqlite")
-* **VectorIndexFile**: The filename for the index storage
-* **VectorIndexThreshold**: Optional threshold value for index operations
-* **VectorDimensionality**: The dimensionality of vectors in the index
-* **VectorIndexM**: The number of bi-directional links for each node (HNSW parameter)
-* **VectorIndexEf**: The size of the dynamic candidate list (HNSW parameter)
-* **VectorIndexEfConstruction**: The size of the dynamic candidate list during construction (HNSW parameter)
+- **VectorIndexType**: The type of vector index to use (e.g., "HnswSqlite")
+- **VectorIndexFile**: The filename for the index storage
+- **VectorIndexThreshold**: Optional threshold value for index operations
+- **VectorDimensionality**: The dimensionality of vectors in the index
+- **VectorIndexM**: The number of bi-directional links for each node (HNSW parameter)
+- **VectorIndexEf**: The size of the dynamic candidate list (HNSW parameter)
+- **VectorIndexEfConstruction**: The size of the dynamic candidate list during construction (HNSW parameter)
 
 ```curl
 curl --location --request PUT 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/vectorindex/enable' \
@@ -191,7 +192,7 @@ const enableVectorIndex = async () => {
       VectorIndexEf: 50,
       VectorIndexEfConstruction: 200,
     });
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -208,13 +209,13 @@ sdk = litegraph.configure(
 
 def enable_vector_index():
     vector_index = litegraph.VectorIndex.enable(
-        graph_guid="00000000-0000-0000-0000-000000000000", 
+        graph_guid="00000000-0000-0000-0000-000000000000",
         config=litegraph.HnswLiteVectorIndexModel(
-            VectorIndexType="HnswSqlite", 
-            VectorIndexFile="graph-00000000-0000-0000-0000-000000000000-hnsw.db", 
-            VectorDimensionality=384, 
-            M=16, 
-            DefaultEf=50, 
+            VectorIndexType="HnswSqlite",
+            VectorIndexFile="graph-00000000-0000-0000-0000-000000000000-hnsw.db",
+            VectorDimensionality=384,
+            M=16,
+            DefaultEf=50,
             EfConstruction=200
         )
     )
@@ -257,7 +258,7 @@ var api = new LiteGraphSdk(
 const rebuildVectorIndex = async () => {
   try {
     const data = await api.Graph.rebuildVectorIndex(guid);
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -274,7 +275,7 @@ sdk = litegraph.configure(
 
 def rebuild_vector_index():
     vector_index = litegraph.VectorIndex.rebuild(
-        graph_guid="graph-guid", 
+        graph_guid="graph-guid",
 
     )
     print(vector_index)
@@ -307,7 +308,7 @@ var api = new LiteGraphSdk(
 const deleteVectorIndex = async () => {
   try {
     const data = await api.Graph.deleteVectorIndex(guid);
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -337,8 +338,8 @@ Upon successful delete, the API returns a `200 OK` status code. No response body
 
 After managing vector indexes, you can:
 
-* Perform optimized vector similarity searches
-* Monitor index performance and statistics
-* Implement vector-based recommendation systems
-* Build semantic search applications
-* Optimize vector operations for large-scale deployments
+- Perform optimized vector similarity searches
+- Monitor index performance and statistics
+- Implement vector-based recommendation systems
+- Build semantic search applications
+- Optimize vector operations for large-scale deployments

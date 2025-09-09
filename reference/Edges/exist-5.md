@@ -25,7 +25,6 @@ These operations support various use cases such as edge data validation, conditi
 
 Check if an edge exists using `HEAD: /v1.0/tenants/{tenant-guid}/graphs/{graph-guid}/edges/{edge-guid}`. This endpoint performs a lightweight existence check without returning the edge data, making it ideal for validation and conditional operations.
 
-
 ```curl
 curl --location --request HEAD 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/edges/00000000-0000-0000-0000-000000000000' \
 --header 'content-type: application/json' \
@@ -44,7 +43,7 @@ var api = new LiteGraphSdk(
 const existsEdge = async () => {
   try {
     const data = await api.Edge.exists("<edge-guid>");
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -67,11 +66,9 @@ def exists_edge():
 exists_edge()
 ```
 
-
 ### Response
 
 The API returns different status codes based on edge existence:
 
 - **200 OK**: Edge exists and is accessible
 - **404 Not Found**: Edge does not exist or is not accessible
-

@@ -9,6 +9,7 @@ hidden: false
 metadata:
   robots: index
 ---
+
 ## Overview
 
 Vector existence checking operations provide a lightweight and efficient way to verify whether specific vectors exist in your graph database without retrieving their full data.
@@ -35,7 +36,7 @@ var api = new LiteGraphSdk(
 const existsVector = async () => {
   try {
     const data = await api.Vector.exists("<vector-guid>");
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -61,5 +62,5 @@ exists_vector()
 
 The API returns different status codes based on vector existence:
 
-* **200 OK**: Vector exists and is accessible
-* **404 Not Found**: Vector does not exist
+- **200 OK**: Vector exists and is accessible
+- **404 Not Found**: Vector does not exist

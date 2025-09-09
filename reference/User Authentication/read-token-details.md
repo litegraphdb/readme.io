@@ -1,6 +1,6 @@
 ---
 title: Read Token Details
-excerpt: Retrieve Authentication token deatils
+excerpt: Retrieve Authentication token details
 deprecated: false
 hidden: false
 metadata:
@@ -14,7 +14,6 @@ curl --location --request GET 'http://localhost:8701/v1.0/token/details' \
 --header 'x-token: ******' \
 --header 'Authorization: ••••••'
 ```
-
 ```javascript
 import { LiteGraphSdk } from "litegraphdb";
 
@@ -34,7 +33,6 @@ const getTokenDetails = async () => {
   }
 };
 ```
-
 ```python
 import litegraph
 

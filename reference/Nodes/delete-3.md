@@ -40,7 +40,7 @@ var api = new LiteGraphSdk(
 const deleteNodeById = async () => {
   try {
     const data = await api.Node.delete(guid, nodeGuid);
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -88,7 +88,7 @@ var api = new LiteGraphSdk(
 const deleteMultipleNodes = async () => {
   try {
     const data = await api.Node.deleteBulk(grapGuid, [node - guid]);
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err), err);
   }

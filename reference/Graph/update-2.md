@@ -13,12 +13,13 @@ next:
       title: Running Server from Source
       type: basic
 ---
+
 ## Overview
 
 The Delete Graph endpoints allow you to permanently remove graphs from your tenant. When you delete a graph, all associated nodes, edges, vectors, and custom data are also removed. The API provides two deletion modes:
 
-* **Standard Delete**: Performs a standard deletion with safety checks
-* **Force Delete**: Bypasses safety checks for immediate deletion
+- **Standard Delete**: Performs a standard deletion with safety checks
+- **Force Delete**: Bypasses safety checks for immediate deletion
 
 **Warning**: Graph deletion is irreversible. All data associated with the graph will be permanently lost.
 
@@ -44,7 +45,7 @@ var api = new LiteGraphSdk(
 const deleteGraphById = async () => {
   try {
     const data = await api.Graph.delete(guid);
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -91,7 +92,7 @@ var api = new LiteGraphSdk(
 const deleteGraphById = async () => {
   try {
     const data = await api.Graph.delete(guid, true);
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -131,7 +132,7 @@ When deleting graphs, consider the following recommendations:
 
 After successfully deleting a graph, you can:
 
-* Create new graphs to replace deleted ones
-* Review remaining graphs in your tenant
-* Clean up any orphaned references in your application
-* Update any dependent systems that referenced the deleted graph
+- Create new graphs to replace deleted ones
+- Review remaining graphs in your tenant
+- Clean up any orphaned references in your application
+- Update any dependent systems that referenced the deleted graph

@@ -9,17 +9,18 @@ hidden: false
 metadata:
   robots: index
 ---
+
 ## Overview
 
 Label creation operations enable you to create and manage labels within your graph database. Labels are essential for organizing, categorizing, and classifying nodes and edges in your graph structure. Understanding label creation is crucial for building well-organized graph databases and implementing effective data classification systems.
 
 Key capabilities include:
 
-* Creating individual labels with custom names and associations
-* Performing bulk label creation for efficient batch processing
-* Associating labels with specific nodes or edges in your graph
-* Managing label metadata and properties for organization
-* Supporting hierarchical and categorical data structures
+- Creating individual labels with custom names and associations
+- Performing bulk label creation for efficient batch processing
+- Associating labels with specific nodes or edges in your graph
+- Managing label metadata and properties for organization
+- Supporting hierarchical and categorical data structures
 
 These operations support various use cases such as data classification, graph organization, content categorization, and implementing custom data taxonomies.
 
@@ -55,7 +56,7 @@ const createLabel = async () => {
       Label: "test",
       EdgeGUID: null,
     });
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -136,7 +137,7 @@ const createMultipleLabels = async () => {
         Label: "label multiple 2",
       },
     ]);
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -190,8 +191,8 @@ Upon successful bulk label creation, the API returns a `201 Created` status code
 
 After successfully creating labels, consider these next actions:
 
-* **Update Labels**: Modify existing labels using the update operations
-* **Delete Labels**: Remove unnecessary labels to maintain data cleanliness
-* **Create New Labels**: Add additional labels based on your analysis
-* **Integrate Data**: Use created labels in your application logic
-* **Monitor Usage**: Track label usage patterns for optimization opportunities
+- **Update Labels**: Modify existing labels using the update operations
+- **Delete Labels**: Remove unnecessary labels to maintain data cleanliness
+- **Create New Labels**: Add additional labels based on your analysis
+- **Integrate Data**: Use created labels in your application logic
+- **Monitor Usage**: Track label usage patterns for optimization opportunities

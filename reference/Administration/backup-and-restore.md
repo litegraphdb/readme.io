@@ -6,6 +6,7 @@ hidden: false
 metadata:
   robots: index
 ---
+
 ### Create a Backup
 
 ```bash
@@ -15,18 +16,22 @@ curl -X POST -H "Authorization: Bearer litegraphadmin" \
      http://localhost:8701/v1.0/backups
 ```
 ```javascript
-import { LiteGraphSdk } from 'litegraphdb';
+import { LiteGraphSdk } from "litegraphdb";
 
-var api = new LiteGraphSdk('http://localhost:8701/','<Tenant-Guid>', '*******');
+var api = new LiteGraphSdk(
+  "http://localhost:8701/",
+  "<Tenant-Guid>",
+  "*******"
+);
 
 const createBackup = async () => {
   try {
     const data = await api.Backup.create({
-      Filename: 'test2.db',
+      Filename: "test2.db",
     });
-    console.log(data, 'chk data');
+    console.log(data, "check data");
   } catch (err) {
-    console.log('err:', JSON.stringify(err));
+    console.log("err:", JSON.stringify(err));
   }
 };
 ```
@@ -40,16 +45,20 @@ curl -H "Authorization: Bearer litegraphadmin" \
      http://localhost:8701/v1.0/backups
 ```
 ```javascript
-import { LiteGraphSdk } from 'litegraphdb';
+import { LiteGraphSdk } from "litegraphdb";
 
-var api = new LiteGraphSdk('http://localhost:8701/','<Tenant-Guid>', '*******');
+var api = new LiteGraphSdk(
+  "http://localhost:8701/",
+  "<Tenant-Guid>",
+  "*******"
+);
 
 const readAllBackups = async () => {
   try {
     const data = await api.Backup.readAll();
-    console.log(data, 'chk data');
+    console.log(data, "check data");
   } catch (err) {
-    console.log('err:', JSON.stringify(err));
+    console.log("err:", JSON.stringify(err));
   }
 };
 ```
@@ -67,16 +76,20 @@ curl -H "Authorization: Bearer litegraphadmin" \
      http://localhost:8701/v1.0/backups
 ```
 ```javascript
-import { LiteGraphSdk } from 'litegraphdb';
+import { LiteGraphSdk } from "litegraphdb";
 
-var api = new LiteGraphSdk('http://localhost:8701/','<Tenant-Guid>', '*******');
+var api = new LiteGraphSdk(
+  "http://localhost:8701/",
+  "<Tenant-Guid>",
+  "*******"
+);
 
 const readBackup = async () => {
   try {
-    const data = await api.Backup.read('my-backup.db');
-    console.log(data, 'chk data');
+    const data = await api.Backup.read("my-backup.db");
+    console.log(data, "check data");
   } catch (err) {
-    console.log('err:', JSON.stringify(err));
+    console.log("err:", JSON.stringify(err));
   }
 };
 ```
@@ -90,16 +103,20 @@ curl -H "Authorization: Bearer litegraphadmin" \
      http://localhost:8701/v1.0/backups
 ```
 ```javascript
-import { LiteGraphSdk } from 'litegraphdb';
+import { LiteGraphSdk } from "litegraphdb";
 
-var api = new LiteGraphSdk('http://localhost:8701/','<Tenant-Guid>', '*******');
+var api = new LiteGraphSdk(
+  "http://localhost:8701/",
+  "<Tenant-Guid>",
+  "*******"
+);
 
 const deleteBackup = async () => {
   try {
-    const data = await api.Backup.delete('my-backup.db');
-    console.log(data, 'chk data');
+    const data = await api.Backup.delete("my-backup.db");
+    console.log(data, "check data");
   } catch (err) {
-    console.log('err:', JSON.stringify(err));
+    console.log("err:", JSON.stringify(err));
   }
 };
 ```
@@ -113,16 +130,20 @@ curl -H "Authorization: Bearer litegraphadmin" \
      http://localhost:8701/v1.0/backups
 ```
 ```javascript
-import { LiteGraphSdk } from 'litegraphdb';
+import { LiteGraphSdk } from "litegraphdb";
 
-var api = new LiteGraphSdk('http://localhost:8701/','<Tenant-Guid>', '*******');
+var api = new LiteGraphSdk(
+  "http://localhost:8701/",
+  "<Tenant-Guid>",
+  "*******"
+);
 
 const existsBackup = async () => {
   try {
-    const data = await api.Backup.exists('my-backup.db');
-    console.log(data, 'chk data');
+    const data = await api.Backup.exists("my-backup.db");
+    console.log(data, "check data");
   } catch (err) {
-    console.log('err:', JSON.stringify(err));
+    console.log("err:", JSON.stringify(err));
   }
 };
 ```

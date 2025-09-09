@@ -8,15 +8,16 @@ hidden: false
 metadata:
   robots: index
 ---
+
 ## Overview
 
 The Graph Export endpoint allows you to export graphs in GEXF (Graph Exchange XML Format), a standard format for representing graphs and networks. This functionality is particularly useful for:
 
-* Visualizing graphs in external tools like Gephi, Cytoscape, or NetworkX
-* Creating backups of graph data in a portable format
-* Sharing graph structures with other systems or collaborators
-* Performing offline analysis and processing
-* Migrating graph data between different platforms
+- Visualizing graphs in external tools like Gephi, Cytoscape, or NetworkX
+- Creating backups of graph data in a portable format
+- Sharing graph structures with other systems or collaborators
+- Performing offline analysis and processing
+- Migrating graph data between different platforms
 
 ## Export Graph to GEXF
 
@@ -38,7 +39,7 @@ var api = new LiteGraphSdk(
 const exportGraphToGexf = async () => {
   try {
     const data = await api.Graph.exportGexf("<graph-guid>");
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
@@ -64,19 +65,19 @@ export_gexf()
 
 The export endpoint supports the following query parameters:
 
-* **incldata**: Include custom data fields in the exported GEXF (optional)
-  * `incldata=true`: Include all custom data properties
-  * `incldata=false` or omitted: Exclude custom data properties
+- **incldata**: Include custom data fields in the exported GEXF (optional)
+  - `incldata=true`: Include all custom data properties
+  - `incldata=false` or omitted: Exclude custom data properties
 
 ## Response
 
 Upon successful export, the API returns a `200 OK` status with the GEXF XML string in the response body. The GEXF format includes:
 
-* **Graph metadata**: Name, description, and creation information
-* **Nodes**: All nodes with their properties, labels, and attributes
-* **Edges**: All relationships with their properties and weightss
-* **Attributes**: Custom attributes and data fields (if incldata=true)
-* **XML structure**: Standard GEXF XML format for compatibility
+- **Graph metadata**: Name, description, and creation information
+- **Nodes**: All nodes with their properties, labels, and attributes
+- **Edges**: All relationships with their properties and weights
+- **Attributes**: Custom attributes and data fields (if incldata=true)
+- **XML structure**: Standard GEXF XML format for compatibility
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -111,8 +112,8 @@ When exporting graphs, consider the following recommendations:
 
 After exporting a graph to GEXF format, you can:
 
-* Import the GEXF file into visualization tools like Gephi or Cytoscape
-* Use the exported data for offline analysis and processing
-* Share the graph structure with collaborators or external systems
-* Create backups of your graph data in a portable format
-* Migrate graph data to other platforms that support GEXF format
+- Import the GEXF file into visualization tools like Gephi or Cytoscape
+- Use the exported data for offline analysis and processing
+- Share the graph structure with collaborators or external systems
+- Create backups of your graph data in a portable format
+- Migrate graph data to other platforms that support GEXF format

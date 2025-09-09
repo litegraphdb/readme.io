@@ -27,7 +27,6 @@ Retrieve all outgoing edges from a specific node using `GET: /v1.0/tenants/{tena
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/nodes/1f56dc61-55d3-48e3-b4a9-d54b864f1763/edges/from' \
 --header 'Authorization: ••••••'
 ```
-
 ```javascript
 import { LiteGraphSdk } from "litegraphdb";
 
@@ -40,13 +39,12 @@ var api = new LiteGraphSdk(
 const getEdgesFromNode = async () => {
   try {
     const data = await api.Route.getEdgesFromNode(graphGuid, nodeGuid);
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err), err);
   }
 };
 ```
-
 ```python
 import litegraph
 

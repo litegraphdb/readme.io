@@ -11,7 +11,6 @@ metadata:
 
 The Check Node Existence endpoint allows you to verify whether a specific node exists in a graph without retrieving the actual node data. This functionality is essential for:
 
-
 ## Check Node Existence
 
 Verify if a specific node exists in the graph using `HEAD: /v1.0/tenants/{tenant-guid}/graphs/{graph-guid}/nodes/{node-guid}`. This lightweight operation returns only HTTP status codes without transferring node data, making it ideal for existence validation.
@@ -32,7 +31,7 @@ var api = new LiteGraphSdk(
 const checkIfNodeExistsById = async () => {
   try {
     const data = await api.Node.exists(graphGuid, nodeGuid);
-    console.log(data, "chk data");
+    console.log(data, "check data");
   } catch (err) {
     console.log("err:", JSON.stringify(err));
   }
