@@ -120,7 +120,7 @@ The vector search request supports the following parameters:
 
 - **GraphGUID**: The graph's unique identifier (string, required)
 - **Domain**: The domain to search in (string, required - "Node" for node search)
-- **SearchType**: The type of vector search (string, required - "CosineSimilarity", "Vector", etc.)
+- **SearchType**: The type of vector search (string, required - "CosineSimilarity", etc.)
 - **Labels**: Array of labels to filter nodes (array of strings, optional)
 - **Tags**: Key-value pairs for tag-based filtering (object, optional)
 - **Expr**: Custom expression for advanced filtering (object, optional)

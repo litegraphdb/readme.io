@@ -1,18 +1,40 @@
 ---
 title: Vector Search
-excerpt: Perform vector search.
+excerpt: Perform advanced vector search operations on edges to discover semantically similar relationships and implement AI-powered edge discovery.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
 
+## Overview
+
+The Vector Search endpoints provide powerful semantic search capabilities for edges in your graph. These operations enable you to discover edges based on semantic similarity, implement AI-powered relationship discovery, and build intelligent edge recommendation systems using vector embeddings and similarity algorithms.
+
+Key capabilities include:
+
+- Performing normal search with filtering and expression-based queries
+- Executing vector-based semantic search using embeddings
+- Discovering semantically similar edges based on content similarity
+- Implementing AI-powered edge discovery and recommendation systems
+- Building intelligent relationship mapping and analysis tools
+
 ## Normal Search
 
-To perform normal search call `POST: v1.0/tenants/{tenant-guid}/graphs/{graph-guid}/edges/search`
+Perform traditional search operations on edges using filtering, labels, tags, and custom expressions with `POST: v1.0/tenants/{tenant-guid}/graphs/{graph-guid}/edges/search`. This endpoint allows you to search for edges based on specific criteria, enabling precise edge discovery and relationship analysis.
+
+### Search Parameters
+
+The POST request body supports the following parameters:
+
+- **Ordering**: Sort results by creation date (CreatedAscending, CreatedDescending)
+- **Name**: Filter edges by name (optional)
+- **Labels**: Array of labels to filter edges
+- **Tags**: Key-value pairs for tag-based filtering
+- **Expr**: Custom expression for advanced filtering with Left, Operator, and Right components
 
 ```curl
-curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/nodes/search' \
+curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/edges/search' \
 --header 'content-type: application/json' \
 --header 'Authorization: ••••••' \
 --data '{
@@ -32,34 +54,49 @@ curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-0000
 }'
 ```
 ```javascript
-curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/nodes/search' \
---header 'content-type: application/json' \
---header 'Authorization: ••••••' \
---data '{
-  "Ordering": "CreatedDescending",
+import { LiteGraphSdk } from "litegraphdb";
+
+var api = new LiteGraphSdk(
+  "http://localhost:8701/",
+  "<Tenant-Guid>",
+  "*******"
+);
+
 const searchEdges = async () => {
   const searchRequest = {
-    GraphGUID: '<graph-guid>',
-    Ordering: 'CreatedDescending',
+    GraphGUID: "<graph-guid>",
+    Ordering: "CreatedDescending",
     Expr: {
-      Left: 'Hello',
-      Operator: 'Equals',
-      Right: 'World',
+      Left: "Hello",
+      Operator: "Equals",
+      Right: "World",
     },
   };
 
   try {
     const response = await api.Edge.search(searchRequest);
-    console.log(response, 'Graph searched successfully');
+    console.log(response, "Edge searched successfully");
   } catch (err) {
-    console.log('Error searching graph:', JSON.stringify(err), err);
+    console.log("Error searching edge:", JSON.stringify(err), err);
   }
 };
 ```
 
 ## Vector Search
 
-To perform vector search call `POST: v1.0/tenants/{tenant-guid}/vectors`
+Perform advanced semantic search on edges using vector embeddings and similarity algorithms with `POST: v1.0/tenants/{tenant-guid}/vectors`. This endpoint enables AI-powered edge discovery by finding semantically similar edges based on their vector representations, allowing you to implement intelligent relationship discovery and recommendation systems.
+
+### Vector Search Parameters
+
+The POST request body supports the following parameters:
+
+- **GraphGUID**: The unique identifier of the graph to search within
+- **Domain**: Specify "Edge" to search within edge data
+- **SearchType**: Choose similarity algorithm (e.g., "CosineSimilarity")
+- **Labels**: Array of labels to filter edges before vector search
+- **Tags**: Key-value pairs for tag-based filtering
+- **Expr**: Custom expression for additional filtering
+- **Embeddings**: Array of numerical values representing the search vector
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/vectors' \
@@ -96,9 +133,9 @@ const edgeVectorSearch = async () => {
       Expr: null,
       Embeddings: [0.1, 0.2, 0.3],
     });
-    console.log(data, "check data");
+    console.log(data, "Edge vector search completed");
   } catch (err) {
-    console.log("err:", JSON.stringify(err));
+    console.log("Error in vector search:", JSON.stringify(err));
   }
 };
 ```
@@ -140,3 +177,24 @@ const edgeVectorSearch = async () => {
   }
 ]
 ```
+
+## Best Practices
+
+When performing vector search on edges, consider the following recommendations:
+
+- **Vector Quality**: Ensure high-quality vector embeddings for accurate similarity results
+- **Search Type Selection**: Choose appropriate similarity algorithms (CosineSimilarity, Euclidean, etc.) based on your use case
+- **Filtering Strategy**: Use labels and tags to narrow down the search space before vector comparison
+- **Performance Optimization**: Consider caching vector search results for frequently accessed queries
+- **Result Interpretation**: Analyze similarity scores to understand the relevance of search results
+
+## Next Steps
+
+After performing vector search on edges, you can:
+
+- Implement AI-powered edge recommendation systems based on semantic similarity
+- Build intelligent relationship discovery and mapping tools
+- Create semantic edge clustering and categorization systems
+- Develop content-based edge filtering and organization features
+- Implement advanced graph analytics using vector similarity insights
+- Build machine learning models for edge relationship prediction

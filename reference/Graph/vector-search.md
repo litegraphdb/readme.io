@@ -111,7 +111,7 @@ The vector search request supports the following parameters:
 
 - **GraphGUID**: The unique identifier of the graph to search within
 - **Domain**: The domain to search ("Graph" for graphs)
-- **SearchType**: The similarity metric to use ("Vector", "CosineSimilarity")
+- **SearchType**: The similarity metric to use (e.g: "CosineSimilarity")
 - **Labels**: Array of labels to filter results
 - **Tags**: Key-value pairs for tag-based filtering
 - **Expr**: Custom expression for additional filtering
