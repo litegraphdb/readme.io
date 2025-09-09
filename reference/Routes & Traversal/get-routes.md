@@ -1,23 +1,24 @@
 ---
 title: Get Routes
-excerpt: Discover all possible routes between two nodes to analyze path connectivity and implement advanced graph traversal algorithms.
+excerpt: >-
+  Discover all possible routes between two nodes to analyze path connectivity
+  and implement advanced graph traversal algorithms.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Get Routes endpoint allows you to discover all possible paths between two specific nodes in your graph. This operation is essential for understanding path connectivity, analyzing route options, and implementing advanced graph traversal algorithms for pathfinding and route optimization.
 
 Key capabilities include:
 
-- Finding all possible routes between two specific nodes
-- Analyzing path connectivity and route options
-- Discovering multiple path alternatives and route variations
-- Building comprehensive route maps and path analysis
-- Supporting advanced graph traversal and pathfinding algorithms
+* Finding all possible routes between two specific nodes
+* Analyzing path connectivity and route options
+* Discovering multiple path alternatives and route variations
+* Building comprehensive route maps and path analysis
+* Supporting advanced graph traversal and pathfinding algorithms
 
 ## Get Routes
 
@@ -49,6 +50,25 @@ const getRoutes = async () => {
     console.log("err:", JSON.stringify(err), err);
   }
 };
+```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def get_routes():
+    routes = litegraph.Routes.routes(
+        graph_guid="Graph-Guid",
+        from_guid="Node-Guid",
+        to_guid="Node-Guid",
+    )
+    print(routes)
+
+get_routes()
 ```
 
 ### Response
@@ -89,19 +109,19 @@ const getRoutes = async () => {
 
 When retrieving routes between nodes, consider the following recommendations:
 
-- **Validate Node GUIDs**: Ensure both source and destination node GUIDs exist before making requests
-- **Handle Empty Results**: Implement proper handling for cases where no routes exist between nodes
-- **Analyze Route Costs**: Consider the total cost and edge costs when evaluating route options
-- **Cache Results**: Consider caching route information for frequently accessed node pairs
-- **Performance Monitoring**: Track response times for complex route calculations
+* **Validate Node GUIDs**: Ensure both source and destination node GUIDs exist before making requests
+* **Handle Empty Results**: Implement proper handling for cases where no routes exist between nodes
+* **Analyze Route Costs**: Consider the total cost and edge costs when evaluating route options
+* **Cache Results**: Consider caching route information for frequently accessed node pairs
+* **Performance Monitoring**: Track response times for complex route calculations
 
 ## Next Steps
 
 After retrieving routes between nodes, you can:
 
-- Analyze path connectivity and route options for optimization
-- Build comprehensive route maps and path analysis systems
-- Implement advanced graph traversal algorithms for pathfinding
-- Create route visualization interfaces and path exploration tools
-- Perform route optimization and path analysis studies
-- Develop route-based recommendation systems and navigation algorithms
+* Analyze path connectivity and route options for optimization
+* Build comprehensive route maps and path analysis systems
+* Implement advanced graph traversal algorithms for pathfinding
+* Create route visualization interfaces and path exploration tools
+* Perform route optimization and path analysis studies
+* Develop route-based recommendation systems and navigation algorithms
