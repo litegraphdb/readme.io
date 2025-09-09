@@ -9,13 +9,15 @@ metadata:
 
 ## Structure
 
-tag objects have the following structure:
+Vector objects have the following structure:
 
 ```json
 {
   "GUID": "83972a1a-3414-4d3a-8655-474d84e7ce66",
   "TenantGUID": "00000000-0000-0000-0000-000000000000",
   "GraphGUID": "00000000-0000-0000-0000-000000000000",
+  "NodeGUID": "1f56dc61-55d3-48e3-b4a9-d54b864f1763",
+  "EdgeGUID": null,
   "Model": "all-MiniLM-L6-v2",
   "Dimensionality": 384,
   "Content": "test",
@@ -30,6 +32,8 @@ tag objects have the following structure:
 - **`GUID`** - A globally unique identifier for the vector, represented as a UUID string.
 - **`TenantGUID`** - A globally unique identifier for the tenant associated with the vector.
 - **`GraphGUID`** - A globally unique identifier for the graph to which the vector belongs.
+- **`NodeGUID`** - A globally unique identifier for the node associated with the vector (null if not associated with a node).
+- **`EdgeGUID`** - A globally unique identifier for the edge associated with the vector (null if not associated with an edge).
 - **`Model`** - The name of the machine learning model used to generate the vector.
 - **`Dimensionality`** - The number of dimensions in the vector.
 - **`Content`** - The original content (text, document, etc.) that the vector represents.

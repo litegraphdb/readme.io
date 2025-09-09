@@ -9,7 +9,7 @@ metadata:
 
 ## Structure
 
-tag objects have the following structure:
+Tag objects have the following structure:
 
 ```json
 {
@@ -25,10 +25,10 @@ tag objects have the following structure:
 
 ## Properties
 
-- **`GUID`** - A globally unique identifier for the property, represented as a UUID string.
-- **`TenantGUID`** - A globally unique identifier for the tenant associated with the property.
-- **`GraphGUID`** - A globally unique identifier for the graph to which the property belongs.
-- **`Key`** - The key or name of the property.
-- **`Value`** - The value associated with the key.
-- **`CreatedUtc`** - The UTC date and time when the property was created.
-- **`LastUpdateUtc`** - The UTC date and time when the property was last updated.
+- **`GUID`** - A globally unique identifier for the tag, represented as a UUID string.
+- **`TenantGUID`** - A globally unique identifier for the tenant associated with the tag.
+- **`GraphGUID`** - A globally unique identifier for the graph to which the tag belongs.
+- **`Key`** - The key or name of the tag.
+- **`Value`** - The value associated with the tag key.
+- **`CreatedUtc`** - The UTC date and time when the tag was created.
+- **`LastUpdateUtc`** - The UTC date and time when the tag was last updated.

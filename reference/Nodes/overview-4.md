@@ -9,7 +9,7 @@ metadata:
 
 ## Structure
 
-Nodeobjects have the following structure:
+Node objects have the following structure:
 
 ```json
 {
