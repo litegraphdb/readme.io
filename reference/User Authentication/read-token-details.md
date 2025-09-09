@@ -6,8 +6,7 @@ hidden: false
 metadata:
   robots: index
 ---
-
-To retrieve authentication token, call `GET /v1.0/token/details`
+To retrieve the details of an authentication token that has already been generated, call `GET /v1.0/token/details`
 
 ```curl
 curl --location --request GET 'http://localhost:8701/v1.0/token/details' \
