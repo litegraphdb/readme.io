@@ -290,7 +290,7 @@ def retrieve_all_graph():
 retrieve_all_graph()
 ```
 
-### Read All Graph Statistics
+## Read All Graph Statistics
 
 Retrieve statistical information for all graphs in your tenant using `GET: /v1.0/tenants/{tenant-id}/graphs/stats`. This endpoint provides aggregated statistics across all graphs, including total node counts, edge counts etc.
 
