@@ -45,4 +45,18 @@ retrieve_tenants_for_email()
 
 ```
 
+### Response
+
+```json
+[
+    {
+        "GUID": "00000000-0000-0000-0000-000000000000",
+        "Name": "Updated tenant",
+        "Active": true,
+        "CreatedUtc": "2025-08-29T13:54:54.956041Z",
+        "LastUpdateUtc": "2025-09-08T10:00:45.175616Z"
+    }
+]
+```
+
 <br />

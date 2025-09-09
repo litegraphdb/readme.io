@@ -101,7 +101,6 @@ const searchGraph = async () => {
         }
     ]
 }
-
 ```
 
 ## Vector Search
@@ -117,7 +116,6 @@ The vector search request supports the following parameters:
 - **Tags**: Key-value pairs for tag-based filtering
 - **Expr**: Custom expression for additional filtering
 - **Embeddings**: Array of vector values to use for similarity comparison
-
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/vectors' \
@@ -158,6 +156,47 @@ const graphVectorSearch = async () => {
     console.log("err:", JSON.stringify(err));
   }
 };
+```
+
+### Response
+
+```json
+[
+    {
+        "Score": 1,
+        "Graph": {
+            "TenantGUID": "00000000-0000-0000-0000-000000000000",
+            "GUID": "ee40590e-4f5f-4379-a5b1-68c6ded0dd2c",
+            "Name": "My graph",
+            "VectorIndexType": "None",
+            "VectorIndexM": 16,
+            "VectorIndexEf": 50,
+            "VectorIndexEfConstruction": 200,
+            "CreatedUtc": "2025-09-09T10:20:11.752627Z",
+            "LastUpdateUtc": "2025-09-09T10:20:11.752627Z",
+            "Data": {
+                "Key": "Value"
+            },
+            "Vectors": [
+                {
+                    "GUID": "2236e461-25fe-4dec-9ea2-c76e49b7f4bd",
+                    "TenantGUID": "00000000-0000-0000-0000-000000000000",
+                    "GraphGUID": "ee40590e-4f5f-4379-a5b1-68c6ded0dd2c",
+                    "Model": "all-MiniLM-L6-v2",
+                    "Dimensionality": 384,
+                    "Content": "test",
+                    "Vectors": [
+                        0.1,
+                        0.2,
+                        0.3
+                    ],
+                    "CreatedUtc": "2025-09-09T10:20:11.753536Z",
+                    "LastUpdateUtc": "2025-09-09T10:20:11.753536Z"
+                }
+            ]
+        }
+    }
+]
 ```
 
 ## Best Practices
