@@ -1,25 +1,27 @@
 ---
 title: Backup and Restore
-excerpt: Manage point-in-time independent copies of your LiteGraph deployment with comprehensive backup operations, restore procedures, and data protection strategies.
+excerpt: >-
+  Manage point-in-time independent copies of your LiteGraph deployment with
+  comprehensive backup operations, restore procedures, and data protection
+  strategies.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Backup and Restore system provides essential data protection capabilities for your LiteGraph deployment. These operations enable you to create point-in-time snapshots of your entire database, manage backup files, and restore your system to previous states when needed.
 
 Key capabilities include:
 
-- Creating point-in-time database backups with custom filenames
-- Listing and managing existing backup files
-- Reading backup metadata and information
-- Checking backup file existence and status
-- Deleting old or unnecessary backup files
-- Restoring the entire database from backup files
-- Implementing comprehensive data protection strategies
+* Creating point-in-time database backups with custom filenames
+* Listing and managing existing backup files
+* Reading backup metadata and information
+* Checking backup file existence and status
+* Deleting old or unnecessary backup files
+* Restoring the entire database from backup files
+* Implementing comprehensive data protection strategies
 
 ## Create a Backup
 
@@ -27,7 +29,7 @@ Create a point-in-time snapshot of your entire LiteGraph database with `POST: v1
 
 ### Request Parameters
 
-- **Filename**: The name for the backup file (e.g., "backup-2025.db", "daily-backup.db")
+* **Filename**: The name for the backup file (e.g., "backup-2025.db", "daily-backup.db")
 
 ```bash
 curl -X POST -H "Authorization: Bearer litegraphadmin" \
@@ -93,14 +95,13 @@ Restore your LiteGraph database from a backup file by following these steps:
 3. **Replace the current `litegraph.db` file** with your backup file
 4. **Restart the LiteGraph server** to load the restored database
 
-
 ## Read a Backup
 
 Retrieve detailed information about a specific backup file with `GET: v1.0/backups/{filename}`. This operation provides metadata about the backup file, including its size, creation date, and other relevant information.
 
 ### Request Parameters
 
-- **Filename**: The name of the backup file to read (e.g., "backup-2025.db")
+* **Filename**: The name of the backup file to read (e.g., "backup-2025.db")
 
 ```bash
 curl -H "Authorization: Bearer litegraphadmin" \
@@ -132,7 +133,7 @@ Remove a specific backup file from your system with `DELETE: v1.0/backups/{filen
 
 ### Request Parameters
 
-- **Filename**: The name of the backup file to delete (e.g., "backup-2025.db")
+* **Filename**: The name of the backup file to delete (e.g., "backup-2025.db")
 
 ```bash
 curl -X DELETE -H "Authorization: Bearer litegraphadmin" \
@@ -164,7 +165,7 @@ Verify whether a specific backup file exists in your system with `HEAD: v1.0/bac
 
 ### Request Parameters
 
-- **Filename**: The name of the backup file to check (e.g., "backup-2025.db")
+* **Filename**: The name of the backup file to check (e.g., "backup-2025.db")
 
 ```bash
 curl -I -H "Authorization: Bearer litegraphadmin" \
@@ -193,22 +194,22 @@ const existsBackup = async () => {
 
 When managing backups and restore operations, consider the following recommendations:
 
-- **Regular Backup Schedule**: Implement automated daily or weekly backup creation
-- **Backup Verification**: Always verify backup file integrity before relying on them
-- **Retention Policy**: Establish a clear backup retention policy to manage storage space
-- **Testing Restores**: Regularly test restore procedures to ensure they work correctly
-- **Offsite Storage**: Consider storing backups in secure, offsite locations
-- **Documentation**: Maintain clear documentation of backup and restore procedures
-- **Monitoring**: Implement monitoring to ensure backup operations complete successfully
+* **Regular Backup Schedule**: Implement automated daily or weekly backup creation
+* **Backup Verification**: Always verify backup file integrity before relying on them
+* **Retention Policy**: Establish a clear backup retention policy to manage storage space
+* **Testing Restores**: Regularly test restore procedures to ensure they work correctly
+* **Offsite Storage**: Consider storing backups in secure, offsite locations
+* **Documentation**: Maintain clear documentation of backup and restore procedures
+* **Monitoring**: Implement monitoring to ensure backup operations complete successfully
 
 ## Next Steps
 
 After setting up your backup and restore system, you can:
 
-- Implement automated backup scheduling and management
-- Set up backup monitoring and alerting systems
-- Create disaster recovery procedures and documentation
-- Implement backup encryption for enhanced security
-- Set up backup verification and integrity checking
-- Develop backup retention and cleanup automation
-- Create comprehensive data protection strategies
+* Implement automated backup scheduling and management
+* Set up backup monitoring and alerting systems
+* Create disaster recovery procedures and documentation
+* Implement backup encryption for enhanced security
+* Set up backup verification and integrity checking
+* Develop backup retention and cleanup automation
+* Create comprehensive data protection strategies
