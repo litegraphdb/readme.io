@@ -8,15 +8,14 @@ hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Delete Tenant endpoint allows you to permanently remove tenant objects from your LiteGraph instance. When you delete a tenant, all associated data including graphs, nodes, edges, and vectors are also permanently removed. This functionality provides:
 
-- Complete tenant removal and cleanup
-- Data isolation and security enforcement
-- Administrative control over tenant lifecycle
-- Force deletion capabilities for problematic tenants
+* Complete tenant removal and cleanup
+* Data isolation and security enforcement
+* Administrative control over tenant lifecycle
+* Force deletion capabilities for problematic tenants
 
 **Warning**: Tenant deletion is irreversible. All data associated with the tenant will be permanently lost.
 
@@ -65,6 +64,20 @@ def delete_tenant():
 
 delete_tenant()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+public static class Example
+{
+    public static async Task Main(string[] args)
+    {
+        LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+        liteGraph.InitializeRepository();
+        liteGraph.Tenant.DeleteByGuid(Guid.Parse("<tenant-guid>"));
+    }
+}
+```
 
 ## Delete Forcefully
 
@@ -104,6 +117,20 @@ def delete_tenant_force():
 delete_tenant_force()
 
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+public static class Example
+{
+    public static async Task Main(string[] args)
+    {
+        LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+        liteGraph.InitializeRepository();
+        liteGraph.Tenant.DeleteByGuid(Guid.Parse("<tenant-guid>"), force: true);
+    }
+}
+```
 
 ## Response
 
@@ -123,8 +150,8 @@ When deleting tenants, consider the following recommendations:
 
 After successfully deleting a tenant, you can:
 
-- Clean up any orphaned references in your application
-- Update any dependent systems that referenced the deleted tenant
-- Review remaining tenants in your system
-- Implement tenant lifecycle management policies
-- Update your tenant management documentation
+* Clean up any orphaned references in your application
+* Update any dependent systems that referenced the deleted tenant
+* Review remaining tenants in your system
+* Implement tenant lifecycle management policies
+* Update your tenant management documentation
