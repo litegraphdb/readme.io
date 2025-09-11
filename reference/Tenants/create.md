@@ -68,7 +68,7 @@ def create_tenant():
 create_tenant()
 
 ```
-```
+```csharp
 using LiteGraph;
 using LiteGraph.GraphRepositories.Sqlite;
 
