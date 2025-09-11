@@ -74,19 +74,13 @@ update_tenant()
 using LiteGraph;
 using LiteGraph.GraphRepositories.Sqlite;
 
-public static class Example
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+TenantMetadata response = liteGraph.Tenant.Update(new TenantMetadata()
 {
-    public static async Task Main(string[] args)
-    {
-        LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
-        liteGraph.InitializeRepository();
-        TenantMetadata response = liteGraph.Tenant.Update(new TenantMetadata()
-        {
-            Name = "Updated tenant",
-            Active = true,
-        });
-    }
-}
+  Name = "Updated tenant",
+  Active = true,
+});
 ```
 
 ## Request Parameters
