@@ -54,6 +54,7 @@ public static class Example {
     {
       GraphRepositoryBase graphDriver = new SqliteGraphRepository("./litegraph.db");
       LiteGraphClient liteGraph = new LiteGraphClient(graphDriver);
+      liteGraph.InitializeRepository();
       List<TenantMetadata> response = liteGraph.User.ReadTenantsByEmail("user@example.com");
     }
 }
