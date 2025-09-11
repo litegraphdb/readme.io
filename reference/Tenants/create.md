@@ -68,6 +68,23 @@ def create_tenant():
 create_tenant()
 
 ```
+```
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+public static class Example {
+    public static async Task Main(string[] args)
+    {
+      LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+      liteGraph.InitializeRepository();
+      TenantMetadata response = liteGraph.Tenant.Create(new TenantMetadata
+      {
+         Name = "Another tenant",
+         Active = true,
+      });
+    }
+}
+```
 
 ## Request Parameters
 
