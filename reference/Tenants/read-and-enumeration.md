@@ -68,15 +68,9 @@ retrieve_tenant()
 using LiteGraph;
 using LiteGraph.GraphRepositories.Sqlite;
 
-public static class Example
-{
-    public static async Task Main(string[] args)
-    {
-        LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
-        liteGraph.InitializeRepository();
-        TenantMetadata response = liteGraph.Tenant.ReadByGuid(Guid.Parse("<tenant-Guid>"));
-    }
-}
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+TenantMetadata response = liteGraph.Tenant.ReadByGuid(Guid.Parse("<tenant-Guid>"));
 ```
 
 ### Response
@@ -137,15 +131,9 @@ retrieve_statistics_single_tenant()
 using LiteGraph;
 using LiteGraph.GraphRepositories.Sqlite;
 
-public static class Example
-{
-    public static async Task Main(string[] args)
-    {
-        LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
-        liteGraph.InitializeRepository();
-        TenantStatistics response = liteGraph.Tenant.GetStatistics(Guid.Parse("<tenant-Guid>"));
-    }
-}
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+TenantStatistics response = liteGraph.Tenant.GetStatistics(Guid.Parse("<tenant-Guid>"));
 ```
 
 ### Response
@@ -207,20 +195,13 @@ retrieve_multiple_tenants()
 using LiteGraph;
 using LiteGraph.GraphRepositories.Sqlite;
 
-public static class Example
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+IEnumerable<TenantMetadata> response = liteGraph.Tenant.ReadByGuids(new List<Guid>()
 {
-    public static async Task Main(string[] args)
-    {
-        LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
-        liteGraph.InitializeRepository();
-        IEnumerable<TenantMetadata> response = liteGraph.Tenant.ReadByGuids(new List<Guid>()
-        {
-            Guid.Parse("<tenant-guid-1>"),
-            Guid.Parse("<tenant-guid-2>"),
-        });
-
-    }
-}
+  Guid.Parse("<tenant-guid-1>"),
+  Guid.Parse("<tenant-guid-2>"),
+});
 ```
 
 ## Read All Tenants
@@ -269,15 +250,9 @@ retrieve_all_tenants()
 using LiteGraph;
 using LiteGraph.GraphRepositories.Sqlite;
 
-public static class Example
-{
-    public static async Task Main(string[] args)
-    {
-        LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
-        liteGraph.InitializeRepository();
-        IEnumerable<TenantMetadata> response = liteGraph.Tenant.ReadMany();
-    }
-}
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+IEnumerable<TenantMetadata> response = liteGraph.Tenant.ReadMany();
 ```
 
 ## Read All Tenant Statistics
@@ -325,15 +300,9 @@ retrieve_statistics_all_tenant()
 using LiteGraph;
 using LiteGraph.GraphRepositories.Sqlite;
 
-public static class Example
-{
-    public static async Task Main(string[] args)
-    {
-        LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
-        liteGraph.InitializeRepository();
-        Dictionary<Guid, TenantStatistics> response = liteGraph.Tenant.GetStatistics();
-    }
-}
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+Dictionary<Guid, TenantStatistics> response = liteGraph.Tenant.GetStatistics();
 ```
 
 ### Response
@@ -404,15 +373,9 @@ enumerate_tenant()
 using LiteGraph;
 using LiteGraph.GraphRepositories.Sqlite;
 
-public static class Example
-{
-    public static async Task Main(string[] args)
-    {
-        LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
-        liteGraph.InitializeRepository();
-        EnumerationResult<TenantMetadata> response = liteGraph.Tenant.Enumerate();
-    }
-}
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+EnumerationResult<TenantMetadata> response = liteGraph.Tenant.Enumerate();
 ```
 
 ### Response
@@ -523,26 +486,20 @@ enumerate_with_query_tenant()
 using LiteGraph;
 using LiteGraph.GraphRepositories.Sqlite;
 
-public static class Example
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+EnumerationResult<TenantMetadata> response = liteGraph.Tenant.Enumerate(new EnumerationRequest()
 {
-    public static async Task Main(string[] args)
-    {
-        LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
-        liteGraph.InitializeRepository();
-        EnumerationResult<TenantMetadata> response = liteGraph.Tenant.Enumerate(new EnumerationRequest()
-        {
-            Ordering = EnumerationOrderEnum.CreatedDescending,
-            IncludeData = false,
-            IncludeSubordinates = false,
-            MaxResults = 5,
-            Skip = 0,
-            ContinuationToken = null,
-            Labels = new List<string>(),
-            Tags = null,
-            Expr = null 
-        });
-    }
-}
+  Ordering = EnumerationOrderEnum.CreatedDescending,
+  IncludeData = false,
+  IncludeSubordinates = false,
+  MaxResults = 5,
+  Skip = 0,
+  ContinuationToken = null,
+  Labels = new List<string>(),
+  Tags = null,
+  Expr = null 
+});
 ```
 
 ### Response
