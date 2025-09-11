@@ -65,15 +65,9 @@ tenant_exists()
 using LiteGraph;
 using LiteGraph.GraphRepositories.Sqlite;
 
-public static class Example
-{
-    public static async Task Main(string[] args)
-    {
-        LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
-        liteGraph.InitializeRepository();
-        bool exists = liteGraph.Tenant.ExistsByGuid(Guid.Parse("<tenant-guid>"));
-    }
-}
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+bool exists = liteGraph.Tenant.ExistsByGuid(Guid.Parse("<tenant-guid>"));
 ```
 
 ## Response
