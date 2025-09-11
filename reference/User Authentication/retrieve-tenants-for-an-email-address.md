@@ -46,14 +46,12 @@ retrieve_tenants_for_email()
 ```
 ```csharp
 using LiteGraph;
-using LiteGraph.GraphRepositories;
 using LiteGraph.GraphRepositories.Sqlite;
 
 public static class Example {
     public static async Task Main(string[] args)
     {
-      GraphRepositoryBase graphDriver = new SqliteGraphRepository("./litegraph.db");
-      LiteGraphClient liteGraph = new LiteGraphClient(graphDriver);
+      LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
       liteGraph.InitializeRepository();
       List<TenantMetadata> response = liteGraph.User.ReadTenantsByEmail("user@example.com");
     }
