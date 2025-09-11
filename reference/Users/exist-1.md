@@ -8,16 +8,15 @@ hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Check User Existence endpoint allows you to efficiently verify whether a specific user exists within a tenant without retrieving the full user data. This is particularly useful for:
 
-- Validating user IDs before performing operations
-- Implementing conditional logic based on user existence
-- Optimizing applications by avoiding unnecessary data retrieval
-- Performing lightweight existence checks in bulk operations
-- User authentication and access control validation
+* Validating user IDs before performing operations
+* Implementing conditional logic based on user existence
+* Optimizing applications by avoiding unnecessary data retrieval
+* Performing lightweight existence checks in bulk operations
+* User authentication and access control validation
 
 ## Check User Existence
 
@@ -60,10 +59,18 @@ def exists_user():
 
 exists_user()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+bool exists = liteGraph.User.ExistsByGuid(Guid.Parse("<tenant-guid>"), Guid.Parse("<user-guid>"));
+```
 
 ## Response
 
 The HEAD request returns only HTTP status codes without any response body:
 
-- **200 OK**: The user exists and is accessible
-- **404 Not Found**: The user does not exist or you don't have access to it
+* **200 OK**: The user exists and is accessible
+* **404 Not Found**: The user does not exist or you don't have access to it
