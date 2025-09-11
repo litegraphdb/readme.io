@@ -8,16 +8,15 @@ hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Read and Enumerate Users endpoints provide comprehensive functionality for retrieving user data from a tenant. These endpoints support various retrieval patterns including:
 
-- Reading individual users by their unique identifier
-- Reading multiple users simultaneously by providing a list of GUIDs
-- Reading all users within a tenant
-- Advanced enumeration with pagination and filtering capabilities
-- Search-based enumeration with complex query expressions
+* Reading individual users by their unique identifier
+* Reading multiple users simultaneously by providing a list of GUIDs
+* Reading all users within a tenant
+* Advanced enumeration with pagination and filtering capabilities
+* Search-based enumeration with complex query expressions
 
 **Important**: All read operations require appropriate permissions within the tenant and must use a valid authentication token.
 
@@ -62,6 +61,14 @@ def retrieve_user():
     print(user)
 
 retrieve_user()
+```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+UserMaster response = liteGraph.User.ReadByGuid(Guid.Parse("<tenant-guid>"), Guid.Parse("<user-guid>"));
 ```
 
 ### Response
@@ -120,6 +127,18 @@ def retrieve_multiple_user():
     print(users)
 
 retrieve_multiple_user()
+```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+IEnumerable<UserMaster> response = liteGraph.User.ReadByGuids(Guid.Parse("<tenant-guid>"), new List<Guid>()
+{
+    Guid.Parse("<user-guid-1>"),
+    Guid.Parse("<user-guid-2>")
+});
 ```
 
 ### Response
@@ -181,6 +200,14 @@ def retrieve_all_user():
 
 retrieve_all_user()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+IEnumerable<UserMaster> response = liteGraph.User.ReadAllInTenant(Guid.Parse("<tenant-guid>"));
+```
 
 ## Enumeration (GET)
 
@@ -222,6 +249,14 @@ def enumerate_user():
     print(users)
 
 enumerate_user()
+```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+EnumerationResult<UserMaster> response = liteGraph.User.Enumerate();
 ```
 
 ### Response
@@ -276,15 +311,15 @@ Perform advanced enumeration with search capabilities using `POST: /v2.0/tenants
 
 The POST enumeration endpoint supports the following search parameters:
 
-- **Ordering**: Sort order for results (`CreatedAscending`, `CreatedDescending`, `ModifiedAscending`, `ModifiedDescending`)
-- **IncludeData**: Whether to include full user data in the response (boolean)
-- **IncludeSubordinates**: Whether to include subordinate users (boolean)
-- **MaxResults**: Maximum number of results to return (integer)
-- **Skip**: Number of results to skip for pagination (integer)
-- **ContinuationToken**: Token for continuing pagination from previous request (string)
-- **Labels**: Array of label filters to apply (array of strings)
-- **Tags**: Object containing tag-based filters (object)
-- **Expr**: Complex expression for advanced filtering (object with Left, Operator, Right properties)
+* **Ordering**: Sort order for results (`CreatedAscending`, `CreatedDescending`, `ModifiedAscending`, `ModifiedDescending`)
+* **IncludeData**: Whether to include full user data in the response (boolean)
+* **IncludeSubordinates**: Whether to include subordinate users (boolean)
+* **MaxResults**: Maximum number of results to return (integer)
+* **Skip**: Number of results to skip for pagination (integer)
+* **ContinuationToken**: Token for continuing pagination from previous request (string)
+* **Labels**: Array of label filters to apply (array of strings)
+* **Tags**: Object containing tag-based filters (object)
+* **Expr**: Complex expression for advanced filtering (object with Left, Operator, Right properties)
 
 ```curl
 curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/users' \
@@ -343,6 +378,25 @@ def enumerate_with_query_user():
 enumerate_with_query_user()
 
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+EnumerationResult<UserMaster> response = liteGraph.User.Enumerate(new EnumerationRequest()
+{
+    Ordering = EnumerationOrderEnum.CreatedDescending,
+    IncludeData = false,
+    IncludeSubordinates = false,
+    MaxResults = 5,
+    Skip = 0,
+    ContinuationToken = null,
+    Labels = new List<string>(),
+    Tags = null,
+    Expr = null
+});
+```
 
 ### Response
 
@@ -393,10 +447,10 @@ enumerate_with_query_user()
 
 All read and enumeration endpoints return JSON responses containing user data. The response structure varies based on the endpoint:
 
-- **Individual User**: Returns a single user object with all properties
-- **Multiple Users**: Returns an array of user objects
-- **All Users**: Returns an array of all user objects in the tenant
-- **Enumeration**: Returns paginated results with metadata including continuation tokens
+* **Individual User**: Returns a single user object with all properties
+* **Multiple Users**: Returns an array of user objects
+* **All Users**: Returns an array of all user objects in the tenant
+* **Enumeration**: Returns paginated results with metadata including continuation tokens
 
 ## Best Practices
 
@@ -411,10 +465,10 @@ When reading and enumerating users, consider the following recommendations:
 
 After reading user data, you can:
 
-- Display user information in your application interface
-- Implement user management and administration features
-- Perform user-specific operations based on retrieved data
-- Update user information using the update endpoints
-- Implement user search and filtering functionality
-- Build user analytics and reporting features
-- Integrate user data with other system components
+* Display user information in your application interface
+* Implement user management and administration features
+* Perform user-specific operations based on retrieved data
+* Update user information using the update endpoints
+* Implement user search and filtering functionality
+* Build user analytics and reporting features
+* Integrate user data with other system components
