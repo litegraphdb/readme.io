@@ -44,6 +44,20 @@ def retrieve_tenants_for_email():
 retrieve_tenants_for_email()
 
 ```
+```csharp
+using View.Sdk;
+using View.Sdk.Configuration;
+
+public static class Example {
+    public static async Task Main(string[] args)
+    {
+      LiteGraphClient liteGraph = new LiteGraphClient(_GraphDriver, _LoggingSettings, new CachingSettings(), storageSettings);
+        TenantMetadata tenant = new TenantMetadata();
+        await sdk.Tenant.Create(tenant);
+    }
+}
+
+```
 
 ### Response
 
