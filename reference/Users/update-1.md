@@ -8,16 +8,15 @@ hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Update User endpoint allows you to modify existing user information within a tenant. This functionality is essential for:
 
-- Updating user personal information (name, email)
-- Changing user authentication credentials
-- Modifying user account status and permissions
-- Implementing user profile management features
-- Maintaining accurate user data across the system
+* Updating user personal information (name, email)
+* Changing user authentication credentials
+* Modifying user account status and permissions
+* Implementing user profile management features
+* Maintaining accurate user data across the system
 
 **Important**: User updates require appropriate permissions within the tenant and must use a valid authentication token. All updates are validated before being applied.
 
@@ -79,19 +78,34 @@ def update_user():
 
 update_user()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+UserMaster response = liteGraph.User.Update(new UserMaster()
+{
+    FirstName = "Again Updated",
+    LastName = "User",
+    Email = "anotherbbb@user.com",
+    Password = "password",
+    Active = true,
+});
+```
 
 ## Request Parameters
 
 The update request accepts the following user properties:
 
-- **FirstName**: User's first name (string)
-- **LastName**: User's last name (string)
-- **Email**: User's email address (string, must be unique within tenant)
-- **Password**: User's password (string, will be hashed securely)
-- **Active**: Whether the user account is active (boolean)
-- **GUID**: User's unique identifier (string, read-only)
-- **CreatedUtc**: Timestamp when user was created (string, read-only)
-- **LastUpdateUtc**: Timestamp of last update (string, read-only)
+* **FirstName**: User's first name (string)
+* **LastName**: User's last name (string)
+* **Email**: User's email address (string, must be unique within tenant)
+* **Password**: User's password (string, will be hashed securely)
+* **Active**: Whether the user account is active (boolean)
+* **GUID**: User's unique identifier (string, read-only)
+* **CreatedUtc**: Timestamp when user was created (string, read-only)
+* **LastUpdateUtc**: Timestamp of last update (string, read-only)
 
 ## Response
 
@@ -115,10 +129,10 @@ Upon successful update, the API returns a `200 OK` status code with the updated 
 
 After successfully updating a user, you can:
 
-- Verify the update by reading the user data
-- Notify the user about changes to their account
-- Update any dependent systems that reference the user
-- Implement user profile management interfaces
-- Set up automated user data synchronization
-- Create user update history and audit logs
-- Implement user preference and settings management
+* Verify the update by reading the user data
+* Notify the user about changes to their account
+* Update any dependent systems that reference the user
+* Implement user profile management interfaces
+* Set up automated user data synchronization
+* Create user update history and audit logs
+* Implement user preference and settings management
