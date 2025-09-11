@@ -68,15 +68,9 @@ delete_tenant()
 using LiteGraph;
 using LiteGraph.GraphRepositories.Sqlite;
 
-public static class Example
-{
-    public static async Task Main(string[] args)
-    {
-        LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
-        liteGraph.InitializeRepository();
-        liteGraph.Tenant.DeleteByGuid(Guid.Parse("<tenant-guid>"));
-    }
-}
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+liteGraph.Tenant.DeleteByGuid(Guid.Parse("<tenant-guid>"));
 ```
 
 ## Delete Forcefully
@@ -121,15 +115,9 @@ delete_tenant_force()
 using LiteGraph;
 using LiteGraph.GraphRepositories.Sqlite;
 
-public static class Example
-{
-    public static async Task Main(string[] args)
-    {
-        LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
-        liteGraph.InitializeRepository();
-        liteGraph.Tenant.DeleteByGuid(Guid.Parse("<tenant-guid>"), force: true);
-    }
-}
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+liteGraph.Tenant.DeleteByGuid(Guid.Parse("<tenant-guid>"), force: true);
 ```
 
 ## Response
