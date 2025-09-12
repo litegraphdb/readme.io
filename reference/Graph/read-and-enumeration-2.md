@@ -8,16 +8,15 @@ hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Read and Enumeration endpoints provide comprehensive functionality for retrieving graph data from your tenant. These endpoints allow you to:
 
-- Read individual graphs by their unique identifier
-- Retrieve graph statistics and metadata
-- Enumerate multiple graphs with various filtering options
-- Search and filter graphs based on labels, tags, and custom expressions
-- Implement pagination for large result sets
+* Read individual graphs by their unique identifier
+* Retrieve graph statistics and metadata
+* Enumerate multiple graphs with various filtering options
+* Search and filter graphs based on labels, tags, and custom expressions
+* Implement pagination for large result sets
 
 ## Read Individual Graph
 
@@ -25,8 +24,8 @@ Retrieve a specific graph by its unique identifier using the `GET: /v1.0/tenants
 
 To include additional information in the response, such as custom data fields and subordinate (child) graphs, use the `incldata` and `inclsub` query parameters in your request.
 
-- `incldata=true` will include the `Data` property for each graph in the response.
-- `inclsub=true` will include subordinate (child) graphs in the response.
+* `incldata=true` will include the `Data` property for each graph in the response.
+* `inclsub=true` will include subordinate (child) graphs in the response.
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000' \
@@ -64,6 +63,14 @@ def retrieve_graph():
     print(graph)
 
 retrieve_graph()
+```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+Graph response = liteGraph.Graph.ReadByGuid(Guid.Parse("<tenant-guid>"), Guid.Parse("<graph-guid>"), includeData: true, includeSubordinates: true);
 ```
 
 ### Response
@@ -127,6 +134,14 @@ def retrieve_statistics():
 
 retrieve_statistics()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+GraphStatistics response = liteGraph.Graph.GetStatistics(Guid.Parse("<tenant-guid>"), Guid.Parse("<graph-guid>"));
+```
 
 ### Response
 
@@ -146,8 +161,8 @@ Retrieve the first graph that matches your specified criteria using `GET: /v1.0/
 
 To include additional information in the response, such as custom data fields and subordinate (child) graphs, use the `incldata` and `inclsub` query parameters in your request.
 
-- `incldata=true` will include the `Data` property for each graph in the response.
-- `inclsub=true` will include subordinate (child) graphs in the response.
+* `incldata=true` will include the `Data` property for each graph in the response.
+* `inclsub=true` will include subordinate (child) graphs in the response.
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/first' \
@@ -195,6 +210,14 @@ def read_first_graph():
 
 read_first_graph()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+Graph response = liteGraph.Graph.ReadFirst(Guid.Parse("<tenant-guid>"), order: EnumerationOrderEnum.CreatedDescending);
+```
 
 ## Read Multiple Graphs by GUIDs
 
@@ -202,8 +225,8 @@ Retrieve multiple specific graphs by providing their GUIDs as query parameters u
 
 To include additional information in the response, such as custom data fields and subordinate (child) graphs, use the `incldata` and `inclsub` query parameters in your request.
 
-- `incldata=true` will include the `Data` property for each graph in the response.
-- `inclsub=true` will include subordinate (child) graphs in the response.
+* `incldata=true` will include the `Data` property for each graph in the response.
+* `inclsub=true` will include subordinate (child) graphs in the response.
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs?guids=00000000-0000-0000-0000-000000000000%2C00000000-0000-0000-0000-000000000001' \
@@ -242,6 +265,18 @@ def retrieve_multiple_graph():
 
 retrieve_multiple_graph()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+IEnumerable<Graph> response = liteGraph.Graph.ReadByGuids(Guid.Parse("<tenant-guid>"), new List<Guid>()
+{
+    Guid.Parse("<graph-guid-1>"),
+    Guid.Parse("<graph-guid-1>"),
+});
+```
 
 ## Read All Graphs
 
@@ -249,8 +284,8 @@ Retrieve all graphs within your tenant using `GET: /v1.0/tenants/{tenant-id}/gra
 
 To include additional information in the response, such as custom data fields and subordinate (child) graphs, use the `incldata` and `inclsub` query parameters in your request.
 
-- `incldata=true` will include the `Data` property for each graph in the response.
-- `inclsub=true` will include subordinate (child) graphs in the response.
+* `incldata=true` will include the `Data` property for each graph in the response.
+* `inclsub=true` will include subordinate (child) graphs in the response.
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs' \
@@ -288,6 +323,14 @@ def retrieve_all_graph():
     print(graphs)
 
 retrieve_all_graph()
+```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+IEnumerable<Graph> response = liteGraph.Graph.ReadMany(Guid.Parse("<tenant-guid>"), order: EnumerationOrderEnum.CreatedDescending);
 ```
 
 ## Read All Graph Statistics
@@ -331,6 +374,14 @@ def retrieve_statistics_all():
 
 retrieve_statistics_all()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+Dictionary<Guid, GraphStatistics> response = liteGraph.Graph.GetStatistics(Guid.Parse("<tenant-guid>"));
+```
 
 ### Response
 
@@ -354,11 +405,11 @@ The v2.0 enumeration endpoint `GET: /v2.0/tenants/{tenant-id}/graphs` provides e
 
 To include additional information in the response, such as custom data fields and subordinate (child) graphs.
 
-- `incldata=true` will include the `Data` property for each graph in the response.
-- `inclsub=true` will include subordinate (child) graphs in the response.
-- `max-keys=<number>` will limit the maximum number of graphs returned in the response.
-- `skip=<number>` will skip the specified number of graphs in the result set (useful for pagination).
-- `continuationToken=<graphGUID>` will return results starting after the specified graph GUID (useful for pagination).
+* `incldata=true` will include the `Data` property for each graph in the response.
+* `inclsub=true` will include subordinate (child) graphs in the response.
+* `max-keys=<number>` will limit the maximum number of graphs returned in the response.
+* `skip=<number>` will skip the specified number of graphs in the result set (useful for pagination).
+* `continuationToken=<graphGUID>` will return results starting after the specified graph GUID (useful for pagination).
 
 ```curl
 curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/graphs' \
@@ -396,6 +447,14 @@ def enumerate_graph():
     print(graphs)
 
 enumerate_graph()
+```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+EnumerationResult<Graph> response = liteGraph.Graph.Enumerate();
 ```
 
 ### Response
@@ -439,15 +498,15 @@ The advanced enumeration endpoint `POST: /v2.0/tenants/{tenant-id}/graphs` provi
 
 The POST request body supports the following parameters:
 
-- **Ordering**: Sort results by creation date (CreatedAscending, CreatedDescending)
-- **IncludeData**: Whether to include custom data in the response
-- **IncludeSubordinates**: Whether to include subordinate graph information
-- **MaxResults**: Maximum number of results to return (for pagination)
-- **Skip**: Number of results to skip (for pagination)
-- **ContinuationToken**: Token for continuing pagination from a previous request
-- **Labels**: Array of labels to filter graphs
-- **Tags**: Key-value pairs for tag-based filtering
-- **Expr**: Custom expression for advanced filtering
+* **Ordering**: Sort results by creation date (CreatedAscending, CreatedDescending)
+* **IncludeData**: Whether to include custom data in the response
+* **IncludeSubordinates**: Whether to include subordinate graph information
+* **MaxResults**: Maximum number of results to return (for pagination)
+* **Skip**: Number of results to skip (for pagination)
+* **ContinuationToken**: Token for continuing pagination from a previous request
+* **Labels**: Array of labels to filter graphs
+* **Tags**: Key-value pairs for tag-based filtering
+* **Expr**: Custom expression for advanced filtering
 
 ```curl
 curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/graphs' \
@@ -517,6 +576,8 @@ def enumerate_with_query_graph():
     print(graphs)
 
 enumerate_with_query_graph()
+```
+```csharp
 ```
 
 ### Response
