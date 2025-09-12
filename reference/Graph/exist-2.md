@@ -64,7 +64,7 @@ using LiteGraph.GraphRepositories.Sqlite;
 
 LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
 liteGraph.InitializeRepository();
-bool exists = liteGraph.Vector.ExistsByGuid(Guid.Parse("tenant-guid"), Guid.Parse("graph-guid"));
+bool exists = liteGraph.Graph.ExistsByGuid(Guid.Parse("tenant-guid"), Guid.Parse("graph-guid"));
 ```
 
 ## Response
