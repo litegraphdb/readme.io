@@ -9,16 +9,15 @@ hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Read and Enumerate Credentials endpoints provide comprehensive functionality for retrieving credential data from a tenant. These endpoints support various retrieval patterns including:
 
-- Reading individual credentials by their unique identifier
-- Reading multiple credentials simultaneously by providing a list of GUIDs
-- Reading all credentials within a tenant
-- Advanced enumeration with pagination and filtering capabilities
-- Search-based enumeration with complex query expressions
+* Reading individual credentials by their unique identifier
+* Reading multiple credentials simultaneously by providing a list of GUIDs
+* Reading all credentials within a tenant
+* Advanced enumeration with pagination and filtering capabilities
+* Search-based enumeration with complex query expressions
 
 **Important**: All read operations require appropriate permissions within the tenant and must use a valid authentication token.
 
@@ -62,6 +61,14 @@ def retrieve_credential():
     print(credential)
 
 retrieve_credential()
+```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+Credential response = liteGraph.Credential.ReadByGuid(Guid.Parse("<tenant-guid>"), Guid.Parse("<credential-guid>"));
 ```
 
 ### Response
@@ -116,6 +123,18 @@ def retrieve_multiple_credential():
 
 retrieve_multiple_credential()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+IEnumerable<Credential> response = liteGraph.Credential.ReadByGuids(Guid.Parse("<tenant-guid>"), new List<Guid>()
+{
+    Guid.Parse("<credential-guid-1>"),
+    Guid.Parse("<credential-guid-2>"),
+});
+```
 
 ## Read All Credentials
 
@@ -157,6 +176,14 @@ def retrieve_all_credential():
     print(credentials)
 
 retrieve_all_credential()
+```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+IEnumerable<Credential> response = liteGraph.Credential.ReadMany(Guid.Parse("<tenant-guid>"), Guid.Parse("<user-guid>"), bearerToken: "token");
 ```
 
 ## Enumeration (GET)
@@ -200,6 +227,14 @@ def enumerate_credential():
 
 enumerate_credential()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+EnumerationResult<Credential> response = liteGraph.Credential.Enumerate();
+```
 
 ### Response
 
@@ -239,15 +274,15 @@ Perform advanced enumeration with search capabilities using `POST: /v2.0/tenants
 
 The POST enumeration endpoint supports the following search parameters:
 
-- **Ordering**: Sort order for results (`CreatedAscending`, `CreatedDescending`, `ModifiedAscending`, `ModifiedDescending`)
-- **IncludeData**: Whether to include full credential data in the response (boolean)
-- **IncludeSubordinates**: Whether to include subordinate credentials (boolean)
-- **MaxResults**: Maximum number of results to return (integer)
-- **Skip**: Number of results to skip for pagination (integer)
-- **ContinuationToken**: Token for continuing pagination from previous request (string)
-- **Labels**: Array of label filters to apply (array of strings)
-- **Tags**: Object containing tag-based filters (object)
-- **Expr**: Complex expression for advanced filtering (object with Left, Operator, Right properties)
+* **Ordering**: Sort order for results (`CreatedAscending`, `CreatedDescending`, `ModifiedAscending`, `ModifiedDescending`)
+* **IncludeData**: Whether to include full credential data in the response (boolean)
+* **IncludeSubordinates**: Whether to include subordinate credentials (boolean)
+* **MaxResults**: Maximum number of results to return (integer)
+* **Skip**: Number of results to skip for pagination (integer)
+* **ContinuationToken**: Token for continuing pagination from previous request (string)
+* **Labels**: Array of label filters to apply (array of strings)
+* **Tags**: Object containing tag-based filters (object)
+* **Expr**: Complex expression for advanced filtering (object with Left, Operator, Right properties)
 
 ```curl
 curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/credentials' \
@@ -307,6 +342,25 @@ def enumerate_with_query_credential():
 
 enumerate_with_query_credential()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+EnumerationResult<Credential> response = liteGraph.Credential.Enumerate(new EnumerationRequest()
+{
+    Ordering = EnumerationOrderEnum.CreatedDescending,
+    IncludeData = true,
+    IncludeSubordinates = true,
+    MaxResults = 5,
+    Skip = 0,
+    ContinuationToken = null,
+    Labels = new List<string>(),
+    Tags = null,
+    Expr = null
+});
+```
 
 ### Response
 
@@ -343,10 +397,10 @@ enumerate_with_query_credential()
 
 All read and enumeration endpoints return JSON responses containing credential data. The response structure varies based on the endpoint:
 
-- **Individual Credential**: Returns a single credential object with all properties
-- **Multiple Credentials**: Returns an array of credential objects
-- **All Credentials**: Returns an array of all credential objects in the tenant
-- **Enumeration**: Returns paginated results with metadata including continuation tokens
+* **Individual Credential**: Returns a single credential object with all properties
+* **Multiple Credentials**: Returns an array of credential objects
+* **All Credentials**: Returns an array of all credential objects in the tenant
+* **Enumeration**: Returns paginated results with metadata including continuation tokens
 
 ## Best Practices
 
@@ -364,10 +418,10 @@ When reading and enumerating credentials, consider the following recommendations
 
 After reading credential data, you can:
 
-- Display credential information in your application interface
-- Implement credential management and administration features
-- Perform credential-specific operations based on retrieved data
-- Update credential information using the update endpoints
-- Implement credential search and filtering functionality
-- Build credential analytics and reporting features
-- Integrate credential data with other system components
+* Display credential information in your application interface
+* Implement credential management and administration features
+* Perform credential-specific operations based on retrieved data
+* Update credential information using the update endpoints
+* Implement credential search and filtering functionality
+* Build credential analytics and reporting features
+* Integrate credential data with other system components
