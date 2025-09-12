@@ -13,13 +13,12 @@ next:
       title: Running Server from Source
       type: basic
 ---
-
 ## Overview
 
 The Delete Graph endpoints allow you to permanently remove graphs from your tenant. When you delete a graph, all associated nodes, edges, vectors, and custom data are also removed. The API provides two deletion modes:
 
-- **Standard Delete**: Performs a standard deletion with safety checks
-- **Force Delete**: Bypasses safety checks for immediate deletion
+* **Standard Delete**: Performs a standard deletion with safety checks
+* **Force Delete**: Bypasses safety checks for immediate deletion
 
 **Warning**: Graph deletion is irreversible. All data associated with the graph will be permanently lost.
 
@@ -67,6 +66,14 @@ def delete_graph():
 delete_graph()
 
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+liteGraph.Graph.DeleteByGuid(Guid.Parse("<tenant-guid>"), Guid.Parse("<graph-guid>"));
+```
 
 ## Force Delete
 
@@ -113,6 +120,14 @@ def delete_graph_force():
 
 delete_graph_force()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+liteGraph.Graph.DeleteByGuid(Guid.Parse("<tenant-guid>"), Guid.Parse("<graph-guid>"), force: true);
+```
 
 ## Response
 
@@ -132,7 +147,7 @@ When deleting graphs, consider the following recommendations:
 
 After successfully deleting a graph, you can:
 
-- Create new graphs to replace deleted ones
-- Review remaining graphs in your tenant
-- Clean up any orphaned references in your application
-- Update any dependent systems that referenced the deleted graph
+* Create new graphs to replace deleted ones
+* Review remaining graphs in your tenant
+* Clean up any orphaned references in your application
+* Update any dependent systems that referenced the deleted graph
