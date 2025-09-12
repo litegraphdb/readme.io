@@ -9,22 +9,21 @@ hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Vector Index Management endpoints allow you to configure and manage vector indexes for your graphs. Vector indexes are essential for efficient similarity-based searches and significantly improve the performance of vector operations. These endpoints provide functionality for:
 
-- Reading vector index configuration and statistics
-- Enabling vector indexes with custom parameters
-- Rebuilding indexes to optimize performance
-- Deleting indexes when no longer needed
+* Reading vector index configuration and statistics
+* Enabling vector indexes with custom parameters
+* Rebuilding indexes to optimize performance
+* Deleting indexes when no longer needed
 
 Vector indexes are particularly important for:
 
-- Accelerating vector similarity searches
-- Supporting large-scale vector operations
-- Optimizing memory usage for vector data
-- Enabling real-time vector search capabilities
+* Accelerating vector similarity searches
+* Supporting large-scale vector operations
+* Optimizing memory usage for vector data
+* Enabling real-time vector search capabilities
 
 ## Read Configuration
 
@@ -66,6 +65,14 @@ def read_config():
     print(config)
 
 read_config()
+```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+VectorIndexConfiguration response = liteGraph.VectorIndex.GetConfiguration(Guid.Parse("tenant-guid"), Guid.Parse("graph-guid"));
 ```
 
 ### Response
@@ -122,6 +129,15 @@ def get_stats():
 
 get_stats()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+using LiteGraph.Indexing.Vector;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+VectorIndexStatistics response = liteGraph.VectorIndex.GetStatistics(Guid.Parse("tenant-guid"), Guid.Parse("graph-guid"));
+```
 
 ### Response
 
@@ -150,13 +166,13 @@ Enable a vector index for a graph using `PUT: /v2.0/tenants/{tenant-guid}/graphs
 
 The enable request supports the following parameters:
 
-- **VectorIndexType**: The type of vector index to use (e.g., "HnswSqlite")
-- **VectorIndexFile**: The filename for the index storage
-- **VectorIndexThreshold**: Optional threshold value for index operations
-- **VectorDimensionality**: The dimensionality of vectors in the index
-- **VectorIndexM**: The number of bi-directional links for each node (HNSW parameter)
-- **VectorIndexEf**: The size of the dynamic candidate list (HNSW parameter)
-- **VectorIndexEfConstruction**: The size of the dynamic candidate list during construction (HNSW parameter)
+* **VectorIndexType**: The type of vector index to use (e.g., "HnswSqlite")
+* **VectorIndexFile**: The filename for the index storage
+* **VectorIndexThreshold**: Optional threshold value for index operations
+* **VectorDimensionality**: The dimensionality of vectors in the index
+* **VectorIndexM**: The number of bi-directional links for each node (HNSW parameter)
+* **VectorIndexEf**: The size of the dynamic candidate list (HNSW parameter)
+* **VectorIndexEfConstruction**: The size of the dynamic candidate list during construction (HNSW parameter)
 
 ```curl
 curl --location --request PUT 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/vectorindex/enable' \
@@ -223,6 +239,24 @@ def enable_vector_index():
 
 enable_vector_index()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+using LiteGraph.Indexing.Vector;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+await liteGraph.VectorIndex.EnableVectorIndexAsync(Guid.Parse("tenant-guid"), Guid.Parse("graph-guid"), new VectorIndexConfiguration
+{
+    VectorIndexType = VectorIndexTypeEnum.HnswSqlite,
+    VectorDimensionality = 384,
+    VectorIndexThreshold = null,
+    VectorIndexM = 16,
+    VectorIndexEf = 50,
+    VectorIndexEfConstruction = 200,
+    VectorIndexFile = "vector-index.db"
+});
+```
 
 ### Response
 
@@ -282,6 +316,14 @@ def rebuild_vector_index():
 
 rebuild_vector_index()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+await liteGraph.VectorIndex.RebuildVectorIndexAsync(Guid.Parse("tenant-guid"), Guid.Parse("graph-guid"));
+```
 
 ### Response
 
@@ -329,6 +371,14 @@ def delete_vector_index():
 
 delete_vector_index()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+await liteGraph.VectorIndex.DeleteVectorIndexAsync(Guid.Parse("tenant-guid"), Guid.Parse("graph-guid"), deleteIndexFile: true);
+```
 
 ### Response
 
@@ -338,8 +388,8 @@ Upon successful delete, the API returns a `200 OK` status code. No response body
 
 After managing vector indexes, you can:
 
-- Perform optimized vector similarity searches
-- Monitor index performance and statistics
-- Implement vector-based recommendation systems
-- Build semantic search applications
-- Optimize vector operations for large-scale deployments
+* Perform optimized vector similarity searches
+* Monitor index performance and statistics
+* Implement vector-based recommendation systems
+* Build semantic search applications
+* Optimize vector operations for large-scale deployments
