@@ -8,7 +8,6 @@ hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Check Credential Existence endpoint allows you to efficiently verify whether a specific credential exists within a tenant without retrieving the full credential data.
@@ -56,10 +55,18 @@ def exists_credential():
 
 exists_credential()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+bool exists = liteGraph.Credential.ExistsByGuid(Guid.Parse("<tenant-guid>"), Guid.Parse("<credential-guid>"));
+```
 
 ## Response
 
 The HEAD request returns only HTTP status codes without any response body:
 
-- **200 OK**: The credential exists and is accessible
-- **404 Not Found**: The credential does not exist
+* **200 OK**: The credential exists and is accessible
+* **404 Not Found**: The credential does not exist
