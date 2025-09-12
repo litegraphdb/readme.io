@@ -84,6 +84,35 @@ def create_graph():
 
 create_graph()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+using System.Collections.Specialized;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+Graph response = liteGraph.Graph.Create(new Graph
+{
+    Name = "My graph",
+    Labels = new List<string> { "test" },
+    Tags = new NameValueCollection
+    {
+        { "Foo", "Bar" }
+    },
+    Data = new Dictionary<string, string> { ["Key"] = "Value" },
+    Vectors = new List<VectorMetadata>
+    {
+        new VectorMetadata
+        {
+            Model = "all-MiniLM-L6-v2",
+            Dimensionality = 384,
+            Content = "test",
+            Vectors = new List<float>{ 0.1f, 0.2f, 0.3f }
+        }
+    }
+});
+
+```
 
 ## Response
 
