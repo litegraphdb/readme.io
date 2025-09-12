@@ -1,25 +1,26 @@
 ---
 title: Vector Search
-excerpt: Perform vector-based similarity searches on graphs and nodes using embeddings, with support for cosine similarity and other vector operations.
+excerpt: >-
+  Perform vector-based similarity searches on graphs and nodes using embeddings,
+  with support for cosine similarity and other vector operations.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Vector Search endpoints enable you to perform similarity-based searches using vector embeddings. These endpoints support two main types of searches:
 
-- **Normal Search**: Traditional graph search with filtering by labels, tags, and expressions
-- **Vector Search**: Similarity-based search using vector embeddings for finding semantically similar content
+* **Normal Search**: Traditional graph search with filtering by labels, tags, and expressions
+* **Vector Search**: Similarity-based search using vector embeddings for finding semantically similar content
 
 Vector search is particularly useful for:
 
-- Finding similar nodes or graphs based on content
-- Implementing recommendation systems
-- Performing semantic similarity matching
-- Building knowledge discovery applications
+* Finding similar nodes or graphs based on content
+* Implementing recommendation systems
+* Performing semantic similarity matching
+* Building knowledge discovery applications
 
 ## Normal Search
 
@@ -27,11 +28,11 @@ Perform traditional graph search with filtering capabilities using `POST: /v1.0/
 
 The normal search request supports the following parameters:
 
-- **Ordering**: Sort results by creation date (CreatedAscending, CreatedDescending)
-- **Name**: Filter by graph name (optional)
-- **Labels**: Array of labels to filter graphs
-- **Tags**: Key-value pairs for tag-based filtering
-- **Expr**: Custom expression for advanced filtering with Left, Operator, and Right fields
+* **Ordering**: Sort results by creation date (CreatedAscending, CreatedDescending)
+* **Name**: Filter by graph name (optional)
+* **Labels**: Array of labels to filter graphs
+* **Tags**: Key-value pairs for tag-based filtering
+* **Expr**: Custom expression for advanced filtering with Left, Operator, and Right fields
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/search' \
@@ -82,6 +83,17 @@ const searchGraph = async () => {
   }
 };
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+IEnumerable<VectorSearchResult> response = liteGraph.Vector.SearchGraph(VectorSearchTypeEnum.CosineSimilarity,
+    new List<float>() { 1.3f, 1.2f },
+    Guid.Parse("<tenant-guid>"),
+    labels: new List<string>());
+```
 
 ### Response
 
@@ -109,13 +121,13 @@ Perform similarity-based searches using vector embeddings with `POST: /v1.0/tena
 
 The vector search request supports the following parameters:
 
-- **GraphGUID**: The unique identifier of the graph to search within
-- **Domain**: The domain to search ("Graph" for graphs)
-- **SearchType**: The similarity metric to use (e.g: "CosineSimilarity")
-- **Labels**: Array of labels to filter results
-- **Tags**: Key-value pairs for tag-based filtering
-- **Expr**: Custom expression for additional filtering
-- **Embeddings**: Array of vector values to use for similarity comparison
+* **GraphGUID**: The unique identifier of the graph to search within
+* **Domain**: The domain to search ("Graph" for graphs)
+* **SearchType**: The similarity metric to use (e.g: "CosineSimilarity")
+* **Labels**: Array of labels to filter results
+* **Tags**: Key-value pairs for tag-based filtering
+* **Expr**: Custom expression for additional filtering
+* **Embeddings**: Array of vector values to use for similarity comparison
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/vectors' \
@@ -156,6 +168,24 @@ const graphVectorSearch = async () => {
     console.log("err:", JSON.stringify(err));
   }
 };
+```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+using System.Collections.Specialized;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+IEnumerable<VectorSearchResult> response = liteGraph.Vector.Search(new VectorSearchRequest
+{
+    GraphGUID = Guid.Parse("graph-guid"),
+    Domain = VectorSearchDomainEnum.Graph,
+    SearchType = VectorSearchTypeEnum.CosineSimilarity,
+    Labels = new List<string> { "test" },
+    Tags = new NameValueCollection(),
+    Expr = null,
+    Embeddings = new List<float>() { 0.2f, 0.3f }
+});
 ```
 
 ### Response
@@ -209,8 +239,8 @@ When performing vector searches, consider the following recommendations:
 
 After performing vector searches, you can:
 
-- Analyze similarity scores to understand content relationships
-- Implement recommendation systems based on search results
-- Build knowledge discovery applications
-- Create semantic search interfaces
-- Develop content clustering and categorization systems
+* Analyze similarity scores to understand content relationships
+* Implement recommendation systems based on search results
+* Build knowledge discovery applications
+* Create semantic search interfaces
+* Develop content clustering and categorization systems
