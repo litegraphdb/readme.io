@@ -8,15 +8,14 @@ hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Graph Existence endpoint allows you to efficiently check whether a specific graph exists in your tenant without retrieving the full graph data. This is particularly useful for:
 
-- Validating graph IDs before performing operations
-- Implementing conditional logic based on graph existence
-- Optimizing applications by avoiding unnecessary data retrieval
-- Performing lightweight existence checks in bulk operations
+* Validating graph IDs before performing operations
+* Implementing conditional logic based on graph existence
+* Optimizing applications by avoiding unnecessary data retrieval
+* Performing lightweight existence checks in bulk operations
 
 ## Check Graph Existence
 
@@ -59,10 +58,18 @@ def exists_graph():
 
 exists_graph()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+bool exists = liteGraph.Vector.ExistsByGuid(Guid.Parse("tenant-guid"), Guid.Parse("graph-guid"));
+```
 
 ## Response
 
 The HEAD request returns only HTTP status codes without any response body:
 
-- **200 OK**: The graph exists and is accessible
-- **404 Not Found**: The graph does not exist or you don't have access to it
+* **200 OK**: The graph exists and is accessible
+* **404 Not Found**: The graph does not exist or you don't have access to it
