@@ -1,25 +1,25 @@
 ---
 title: Read and Enumerate Nodes
 excerpt: >-
-  Read individual nodes, retrieve node statistics, and enumerate multiple
-  nodes with filtering and search capabilities including data and subordinate information.
+  Read individual nodes, retrieve node statistics, and enumerate multiple nodes
+  with filtering and search capabilities including data and subordinate
+  information.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Read and Enumeration endpoints provide comprehensive functionality for retrieving node data from your graph. These endpoints allow you to:
 
-- Read individual nodes by their unique identifier
-- Retrieve the first node matching specific criteria
-- Read multiple nodes by providing their GUIDs
-- Enumerate all nodes in a graph
-- Search and filter nodes based on labels, tags, and custom expressions
-- Implement pagination for large result sets
-- Include additional data and subordinate information in responses
+* Read individual nodes by their unique identifier
+* Retrieve the first node matching specific criteria
+* Read multiple nodes by providing their GUIDs
+* Enumerate all nodes in a graph
+* Search and filter nodes based on labels, tags, and custom expressions
+* Implement pagination for large result sets
+* Include additional data and subordinate information in responses
 
 ## Read Individual Node
 
@@ -27,8 +27,8 @@ Retrieve a specific node by its unique identifier using the `GET: /v1.0/tenants/
 
 To include additional information in the response, such as custom data fields and subordinate (child) nodes, use the `incldata` and `inclsub` query parameters in your request.
 
-- `incldata=true` will include the `Data` property for each node in the response.
-- `inclsub=true` will include subordinate (child) nodes in the response.
+* `incldata=true` will include the `Data` property for each node in the response.
+* `inclsub=true` will include subordinate (child) nodes in the response.
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/nodes/00000000-0000-0000-0000-000000000000' \
@@ -68,6 +68,17 @@ def retrieve_node():
 
 retrieve_node()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+Node response = liteGraph.Node.ReadByGuid(
+    Guid.Parse("<tenant-guid>"),
+    Guid.Parse("<graph-guid>"),
+    Guid.Parse("<node-guid>"), includeData: true, includeSubordinates: true);
+```
 
 ### Response
 
@@ -106,8 +117,8 @@ Retrieve the first node that matches your specified criteria using `GET: /v1.0/t
 
 To include additional information in the response, such as custom data fields and subordinate (child) nodes, use the `incldata` and `inclsub` query parameters in your request.
 
-- `incldata=true` will include the `Data` property for each node in the response.
-- `inclsub=true` will include subordinate (child) nodes in the response.
+* `incldata=true` will include the `Data` property for each node in the response.
+* `inclsub=true` will include subordinate (child) nodes in the response.
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/nodes/first' \
@@ -156,6 +167,16 @@ def retrieve_first_node():
 
 retrieve_first_node()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+Node response = liteGraph.Node.ReadFirst(
+    Guid.Parse("<tenant-guid>"),
+    Guid.Parse("<graph-guid>"));
+```
 
 ## Read Multiple Nodes by GUIDs
 
@@ -163,8 +184,8 @@ Retrieve multiple specific nodes by providing their GUIDs as query parameters us
 
 To include additional information in the response, such as custom data fields and subordinate (child) nodes, use the `incldata` and `inclsub` query parameters in your request.
 
-- `incldata=true` will include the `Data` property for each node in the response.
-- `inclsub=true` will include subordinate (child) nodes in the response.
+* `incldata=true` will include the `Data` property for each node in the response.
+* `inclsub=true` will include subordinate (child) nodes in the response.
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/nodes?guids=00000000-0000-0000-0000-000000000000,00000000-0000-0000-0000-000000000001' \
@@ -203,6 +224,20 @@ def retrieve_many_node():
 
 retrieve_many_node()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+IEnumerable<Node> response = liteGraph.Node.ReadByGuids(
+    Guid.Parse("<tenant-guid>"),
+    new List<Guid>()
+    {
+       Guid.Parse("<node-guid-1>"),
+       Guid.Parse("<node-guid-2>")
+    });
+```
 
 ## Read All Nodes
 
@@ -210,8 +245,8 @@ Retrieve all nodes within your graph using `GET: /v1.0/tenants/{tenant-guid}/gra
 
 To include additional information in the response, such as custom data fields and subordinate (child) nodes, use the `incldata` and `inclsub` query parameters in your request.
 
-- `incldata=true` will include the `Data` property for each node in the response.
-- `inclsub=true` will include subordinate (child) nodes in the response.
+* `incldata=true` will include the `Data` property for each node in the response.
+* `inclsub=true` will include subordinate (child) nodes in the response.
 
 ```curl
 curl --location 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/nodes' \
@@ -252,6 +287,16 @@ def retrieve_all_node():
 retrieve_all_node()
 
 ```
+```
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+IEnumerable<Node> response = liteGraph.Node.ReadMany(
+    Guid.Parse("<tenant-guid>"),
+    Guid.Parse("<graph-guid>"));
+```
 
 ## Enumeration (GET)
 
@@ -259,11 +304,11 @@ The v2.0 enumeration endpoint `GET: /v2.0/tenants/{tenant-guid}/graphs/{graph-gu
 
 To include additional information in the response, such as custom data fields and subordinate (child) nodes.
 
-- `incldata=true` will include the `Data` property for each node in the response.
-- `inclsub=true` will include subordinate (child) nodes in the response.
-- `max-keys=<number>` will limit the maximum number of nodes returned in the response.
-- `skip=<number>` will skip the specified number of nodes in the result set (useful for pagination).
-- `continuationToken=<nodeGUID>` will return results starting after the specified node GUID (useful for pagination).
+* `incldata=true` will include the `Data` property for each node in the response.
+* `inclsub=true` will include subordinate (child) nodes in the response.
+* `max-keys=<number>` will limit the maximum number of nodes returned in the response.
+* `skip=<number>` will skip the specified number of nodes in the result set (useful for pagination).
+* `continuationToken=<nodeGUID>` will return results starting after the specified node GUID (useful for pagination).
 
 ```curl
 curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/nodes' \
@@ -303,6 +348,14 @@ def enumerate_node():
 
 enumerate_node()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+EnumerationResult<Node> response = liteGraph.Node.Enumerate();
+```
 
 ## Enumeration and Search (POST)
 
@@ -312,15 +365,15 @@ The advanced enumeration endpoint `POST: /v2.0/tenants/{tenant-guid}/graphs/{gra
 
 The POST request body supports the following parameters:
 
-- **Ordering**: Sort results by creation date (CreatedAscending, CreatedDescending)
-- **IncludeData**: Whether to include custom data in the response
-- **IncludeSubordinates**: Whether to include subordinate node information
-- **MaxResults**: Maximum number of results to return (for pagination)
-- **Skip**: Number of results to skip (for pagination)
-- **ContinuationToken**: Token for continuing pagination from a previous request
-- **Labels**: Array of labels to filter nodes
-- **Tags**: Key-value pairs for tag-based filtering
-- **Expr**: Custom expression for advanced filtering
+* **Ordering**: Sort results by creation date (CreatedAscending, CreatedDescending)
+* **IncludeData**: Whether to include custom data in the response
+* **IncludeSubordinates**: Whether to include subordinate node information
+* **MaxResults**: Maximum number of results to return (for pagination)
+* **Skip**: Number of results to skip (for pagination)
+* **ContinuationToken**: Token for continuing pagination from a previous request
+* **Labels**: Array of labels to filter nodes
+* **Tags**: Key-value pairs for tag-based filtering
+* **Expr**: Custom expression for advanced filtering
 
 ```curl
 curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/nodes' \
@@ -387,6 +440,25 @@ def enumerate_with_query_node():
 
 enumerate_with_query_node()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+EnumerationResult<Node> response = liteGraph.Node.Enumerate(new EnumerationRequest()
+{
+    Ordering = EnumerationOrderEnum.CreatedDescending,
+    IncludeData = true,
+    IncludeSubordinates = true,
+    MaxResults = 5,
+    Skip = 0,
+    ContinuationToken = null,
+    Labels = new List<string>(),
+    Tags = null,
+    Expr = null
+});
+```
 
 ### Response
 
@@ -452,11 +524,11 @@ When reading and enumerating nodes, consider the following recommendations:
 
 After successfully reading and enumerating nodes, you can:
 
-- Create edges to connect nodes and build relationships
-- Perform graph traversal and path-finding operations
-- Implement vector search for semantic similarity queries
-- Update or delete specific nodes based on query results
-- Build node analytics and reporting features
-- Create node visualization and exploration interfaces
-- Set up automated node monitoring and validation
-- Implement node-based business logic and workflows
+* Create edges to connect nodes and build relationships
+* Perform graph traversal and path-finding operations
+* Implement vector search for semantic similarity queries
+* Update or delete specific nodes based on query results
+* Build node analytics and reporting features
+* Create node visualization and exploration interfaces
+* Set up automated node monitoring and validation
+* Implement node-based business logic and workflows
