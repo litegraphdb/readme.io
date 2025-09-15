@@ -57,6 +57,21 @@ const createBackup = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def create_backup():
+    backup = litegraph.Admin.create_backup(filename="backup-2025.db")
+    print(backup)
+
+create_backup()
+```
 
 ## List Backups
 
