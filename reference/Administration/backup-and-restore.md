@@ -100,6 +100,21 @@ const readAllBackups = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def retrieve_all_backups():
+    backups = litegraph.Admin.retrieve_all()
+    print(backups)
+
+retrieve_all_backups()
+```
 
 ## Restore from Backup
 
@@ -151,7 +166,7 @@ sdk = litegraph.configure(
 )
 
 def retrieve_backup():
-    backup = litegraph.Admin.retrieve(filename="test.backup")
+    backup = litegraph.Admin.retrieve(filename="backup-2025.db")
     print(backup)
 
 retrieve_backup()
@@ -188,6 +203,21 @@ const deleteBackup = async () => {
   }
 };
 ```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def delete_backup():
+    backup = litegraph.Admin.delete(filename="backup-2025.db")
+    print(backup)
+
+delete_backup()
+```
 
 ## Check Backup Existence
 
@@ -218,6 +248,21 @@ const existsBackup = async () => {
     console.log("Error checking backup existence:", JSON.stringify(err));
   }
 };
+```
+```python
+import litegraph
+
+sdk = litegraph.configure(
+    endpoint="http://localhost:8701",
+    tenant_guid="Tenant-Guid",
+    access_key="******",
+)
+
+def check_backup_exists():
+    backup = litegraph.Admin.exists(filename="backup-2025.db")
+    print(backup)
+
+check_backup_exists()
 ```
 
 ## Best Practices
