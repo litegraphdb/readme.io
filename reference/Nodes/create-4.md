@@ -122,6 +122,39 @@ create_node()
 
 
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+using System.Collections.Specialized;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+Node response = liteGraph.Node.Create(new Node
+{
+    Name = "My test node",
+    Labels = new List<string> { "test", "hello" },
+    Tags = new NameValueCollection
+    {
+        { "Foo", "Bar" },
+        { "Bar", "Baz" }
+    },
+    Data = new
+    {
+        Hello = "World",
+        Foo = new { Data = "hello" }
+    },
+    Vectors = new List<VectorMetadata>
+    {
+       new VectorMetadata
+       {
+           Model = "all-MiniLM-L6-v2",
+           Dimensionality = 384,
+           Content = "test",
+           Vectors = new List<float> { 0.1f, 0.2f, 0.3f }
+       }
+    }
+});
+```
 
 ### &#x20;Response
 
@@ -262,6 +295,35 @@ def create_multiple_node():
     print(nodes)
 
 create_multiple_node()
+```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+using System.Collections.Specialized;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+List<Node> response = liteGraph.Node.CreateMany(
+    Guid.Parse("<tenant-guid>"),
+    Guid.Parse("<graph-guid>"),
+    new List<Node>()
+    {
+        new Node()
+        {
+            Name = "My test node",
+            Labels = new List<string> { "test", "hello" },
+            Tags = new NameValueCollection
+            {
+                { "Foo", "Bar" },
+                { "Bar", "Baz" }
+            },
+            Data = new
+            {
+                Hello = "World",
+                Foo = new { Data = "hello" }
+            },
+        }
+    });
 ```
 
 <br />
