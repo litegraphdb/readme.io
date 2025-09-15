@@ -67,6 +67,14 @@ def exists_edge():
 
 exists_edge()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+bool exists = liteGraph.Edge.ExistsByGuid(Guid.Parse("<tenant-guid>"), Guid.Parse("graph-guid"), Guid.Parse("edge-guid"));
+```
 
 ### Response
 
