@@ -1,23 +1,25 @@
 ---
 title: Create Edge
-excerpt: Comprehensive guide for creating individual edges and performing bulk edge creation operations, including edge management, relationship establishment, and efficient edge storage for effective graph connectivity and data modeling.
+excerpt: >-
+  Comprehensive guide for creating individual edges and performing bulk edge
+  creation operations, including edge management, relationship establishment,
+  and efficient edge storage for effective graph connectivity and data modeling.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 Edge creation operations enable you to create and manage edges within your graph database. Edges are fundamental components that establish relationships between nodes, enabling complex graph structures and data modeling. Understanding edge creation is crucial for building interconnected graph databases and implementing effective relationship management systems.
 
 Key capabilities include:
 
-- Creating individual edges with custom names and properties
-- Performing bulk edge creation for efficient batch processing
-- Establishing relationships between nodes with directional connections
-- Managing edge metadata, labels, tags, and vector data
-- Supporting weighted edges with cost values for graph algorithms
+* Creating individual edges with custom names and properties
+* Performing bulk edge creation for efficient batch processing
+* Establishing relationships between nodes with directional connections
+* Managing edge metadata, labels, tags, and vector data
+* Supporting weighted edges with cost values for graph algorithms
 
 These operations support various use cases such as relationship modeling, network analysis, data connectivity, and implementing complex graph structures for applications.
 
@@ -106,6 +108,41 @@ def create_edge():
 create_edge()
 
 
+```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+using System.Collections.Specialized;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+Edge response = liteGraph.Edge.Create(new Edge()
+{
+    Name = "My test edge",
+    From = Guid.Parse("<from-node-guid>"),
+    To = Guid.Parse("<to-node-guid>"),      
+    Cost = 10,
+    Labels = new List<string> { "test", "hello" },
+    Tags = new NameValueCollection
+    {
+        { "type", "edge" },
+        { "test", "true" }
+    },
+    Data = new
+    {
+        Hello = "World"
+    },
+    Vectors = new List<VectorMetadata>
+    {
+       new VectorMetadata
+       {
+           Model = "all-MiniLM-L6-v2",
+           Dimensionality = 384,
+           Content = "test",
+           Vectors = new List<float> { 0.1f, 0.2f, 0.3f }
+       }
+    }
+});
 ```
 
 ### Response
@@ -232,6 +269,34 @@ def create_multiple_edge():
 
 create_multiple_edge()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+using System.Collections.Specialized;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+List<Edge> response = liteGraph.Edge.CreateMany(Guid.Parse("<tenant-guid>"), Guid.Parse("graph-guid"), new List<Edge>()
+{
+    new Edge()
+    {
+        Name = "My test edge",
+        From = Guid.Parse("<from-node-guid>"),
+        To = Guid.Parse("<to-node-guid>"),
+        Cost = 10,
+        Labels = new List<string> { "test", "hello" },
+        Tags = new NameValueCollection
+        {
+            { "type", "edge" },
+            { "test", "true" }
+        },
+        Data = new
+        {
+            Hello = "World"
+        }
+    }
+});
+```
 
 ### Response
 
@@ -265,17 +330,17 @@ Upon successful bulk edge creation, the API returns a `201 Created` status code 
 
 When creating edges, consider the following recommendations:
 
-- **Validate Node Existence**: Ensure source and target nodes exist before creating edges
-- **Use Descriptive Names**: Choose clear, meaningful edge names for better relationship understanding
-- **Consistent Naming**: Establish naming conventions for edges across your graph
-- **Bulk Operations**: Use bulk creation for multiple edges to improve performance
+* **Validate Node Existence**: Ensure source and target nodes exist before creating edges
+* **Use Descriptive Names**: Choose clear, meaningful edge names for better relationship understanding
+* **Consistent Naming**: Establish naming conventions for edges across your graph
+* **Bulk Operations**: Use bulk creation for multiple edges to improve performance
 
 ## Next Steps
 
 After successfully creating edges, consider these next actions:
 
-- **Update Edges**: Modify existing edges using the update operations
-- **Delete Edges**: Remove unnecessary edges to maintain data cleanliness
-- **Create New Edges**: Add additional edges based on your analysis
-- **Integrate Data**: Use created edges in your application logic
-- **Monitor Usage**: Track edge usage patterns for optimization opportunities
+* **Update Edges**: Modify existing edges using the update operations
+* **Delete Edges**: Remove unnecessary edges to maintain data cleanliness
+* **Create New Edges**: Add additional edges based on your analysis
+* **Integrate Data**: Use created edges in your application logic
+* **Monitor Usage**: Track edge usage patterns for optimization opportunities
