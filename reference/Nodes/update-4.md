@@ -93,6 +93,29 @@ def update_node():
 
 update_node()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+using System.Collections.Specialized;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+Node response = liteGraph.Node.Update(new Node()
+{
+    Name = "My test node",
+    Labels = new List<string> { "test", "hello" },
+    Tags = new NameValueCollection
+    {
+        { "Foo", "Bar" },
+        { "Bar", "Baz" }
+    },
+    Data = new
+    {
+        Hello = "World",
+        Foo = new { Data = "hello" }
+    }
+});
+```
 
 ## Response
 
