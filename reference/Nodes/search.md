@@ -89,7 +89,7 @@ const searchNodes = async () => {
   }
 };
 ```
-```
+```csharp
 using LiteGraph;
 using LiteGraph.GraphRepositories.Sqlite;
 
@@ -176,6 +176,23 @@ const nodeVectorSearch = async () => {
     console.log("err:", JSON.stringify(err));
   }
 };
+```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+IEnumerable<VectorSearchResult> response = liteGraph.Vector.Search(new VectorSearchRequest()
+{
+    GraphGUID = Guid.Parse("<graph-guid>"),
+    Domain = VectorSearchDomainEnum.Node,
+    SearchType = VectorSearchTypeEnum.CosineSimilarity,
+    Labels = new List<string>(),
+    Tags = null,
+    Expr = null,
+    Embeddings = new List<float>() { 0.1f, 0.2f, 0.3f },
+});
 ```
 
 ### Response
