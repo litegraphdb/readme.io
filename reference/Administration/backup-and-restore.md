@@ -150,11 +150,11 @@ sdk = litegraph.configure(
     access_key="******",
 )
 
-def create_backup():
-    backup = litegraph.Admin.create_backup(filename="backup-2025.db")
+def retrieve_backup():
+    backup = litegraph.Admin.retrieve(filename="test.backup")
     print(backup)
 
-create_backup()
+retrieve_backup()
 ```
 
 ## Delete a Backup
