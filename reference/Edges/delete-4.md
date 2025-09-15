@@ -1,23 +1,26 @@
 ---
 title: Delete Edge
-excerpt: Comprehensive guide for deleting individual edges, performing bulk edge deletion operations, and deleting all edges, including proper cleanup procedures, data integrity considerations, and safe deletion practices for effective edge management.
+excerpt: >-
+  Comprehensive guide for deleting individual edges, performing bulk edge
+  deletion operations, and deleting all edges, including proper cleanup
+  procedures, data integrity considerations, and safe deletion practices for
+  effective edge management.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 Edge deletion operations provide the ability to remove edges from your graph database when they are no longer needed. These operations are essential for maintaining data cleanliness, removing obsolete relationships, and managing storage efficiently. Understanding edge deletion is crucial for proper edge lifecycle management and ensuring your graph structure remains organized and relevant.
 
 Key capabilities include:
 
-- Deleting individual edges by their unique GUID
-- Performing bulk deletion of multiple edges
-- Deleting all edges within a graph for complete cleanup
-- Maintaining data integrity during deletion operations
-- Handling cleanup of edge associations and relationships
+* Deleting individual edges by their unique GUID
+* Performing bulk deletion of multiple edges
+* Deleting all edges within a graph for complete cleanup
+* Maintaining data integrity during deletion operations
+* Handling cleanup of edge associations and relationships
 
 These operations support various use cases such as relationship cleanup, edge lifecycle management, storage optimization, and maintaining data quality standards.
 
@@ -65,6 +68,14 @@ def delete_edge():
 
 delete_edge()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+liteGraph.Edge.DeleteByGuid(Guid.Parse("<tenant-guid>"), Guid.Parse("<graph-guid>"), Guid.Parse("<edge-guid>"));
+```
 
 ## Delete Multiple Edges
 
@@ -111,6 +122,19 @@ def delete_multiple_edge():
 
 delete_multiple_edge()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+liteGraph.Edge.DeleteMany(Guid.Parse("<tenant-guid>"), Guid.Parse("<graph-guid>"), new List<Guid>()
+{
+    Guid.Parse("<edge-guid-1>"),
+    Guid.Parse("<edge-guid-2>"),
+    Guid.Parse("<edge-guid-3>")
+});
+```
 
 ## Delete All Edges
 
@@ -156,6 +180,14 @@ def delete_all_edge():
 
 delete_all_edge()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+liteGraph.Edge.DeleteAllInGraph(Guid.Parse("<tenant-guid>"), Guid.Parse("<graph-guid>"));
+```
 
 ## Response
 
@@ -165,21 +197,21 @@ Upon successful edge deletion, the API returns a `200 No Content` status code in
 
 When deleting edges, consider the following recommendations:
 
-- **Verify Before Deletion**: Always confirm the edges you intend to delete are correct
-- **Backup Important Data**: Consider backing up critical edge data before deletion
-- **Check Dependencies**: Ensure no critical systems depend on the edges being deleted
-- **Use Bulk Operations**: Leverage bulk deletion for multiple edges to improve performance
-- **Handle Errors Gracefully**: Implement proper error handling for failed deletions
-- **Monitor Impact**: Track the effects of edge deletions on related operations
-- **Maintain Audit Trail**: Keep records of deletion operations for compliance and debugging
+* **Verify Before Deletion**: Always confirm the edges you intend to delete are correct
+* **Backup Important Data**: Consider backing up critical edge data before deletion
+* **Check Dependencies**: Ensure no critical systems depend on the edges being deleted
+* **Use Bulk Operations**: Leverage bulk deletion for multiple edges to improve performance
+* **Handle Errors Gracefully**: Implement proper error handling for failed deletions
+* **Monitor Impact**: Track the effects of edge deletions on related operations
+* **Maintain Audit Trail**: Keep records of deletion operations for compliance and debugging
 
 ## Next Steps
 
 After successfully deleting edges, consider these next actions:
 
-- **Verify Deletion**: Confirm edges have been removed by attempting to read them
-- **Update Dependencies**: Check if any dependent systems need to be updated
-- **Clean Up References**: Remove any local references to deleted edges
-- **Monitor System**: Watch for any issues that might arise from the deletions
-- **Document Changes**: Maintain documentation of deletion operations
-- **Optimize Storage**: Review storage usage improvements from the cleanup
+* **Verify Deletion**: Confirm edges have been removed by attempting to read them
+* **Update Dependencies**: Check if any dependent systems need to be updated
+* **Clean Up References**: Remove any local references to deleted edges
+* **Monitor System**: Watch for any issues that might arise from the deletions
+* **Document Changes**: Maintain documentation of deletion operations
+* **Optimize Storage**: Review storage usage improvements from the cleanup
