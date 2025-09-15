@@ -1,22 +1,23 @@
 ---
 title: Delete Node
-excerpt: Delete single, multiple, or all nodes from a graph with proper relationship handling and data integrity preservation.
+excerpt: >-
+  Delete single, multiple, or all nodes from a graph with proper relationship
+  handling and data integrity preservation.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Delete Node endpoints allow you to remove nodes from a graph with different levels of granularity. This functionality is essential for:
 
-- Removing individual nodes that are no longer needed
-- Bulk deletion of multiple nodes for cleanup operations
-- Complete graph reset by deleting all nodes
-- Maintaining graph integrity during deletion operations
-- Implementing node lifecycle management
-- Cleaning up test data and temporary nodes
+* Removing individual nodes that are no longer needed
+* Bulk deletion of multiple nodes for cleanup operations
+* Complete graph reset by deleting all nodes
+* Maintaining graph integrity during deletion operations
+* Implementing node lifecycle management
+* Cleaning up test data and temporary nodes
 
 ## Delete Single Node
 
@@ -62,6 +63,14 @@ def delete_node():
 
 delete_node()
 
+```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+liteGraph.Node.DeleteByGuid(Guid.Parse("tenant-guid"), Guid.Parse("graph-guid"), Guid.Parse("<node-guid>"));
 ```
 
 ## Delete Multiple Nodes
@@ -111,6 +120,18 @@ def delete_multiple_node():
 delete_multiple_node()
 
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+liteGraph.Node.DeleteMany(Guid.Parse("tenant-guid"), Guid.Parse("graph-guid"), new List<Guid>()
+{
+     Guid.Parse("node-guid-1"),
+     Guid.Parse("node-guid-2")
+});
+```
 
 ## Delete All Nodes
 
@@ -154,6 +175,14 @@ def delete_all_node():
 
 delete_all_node()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+liteGraph.Node.DeleteAllInGraph(Guid.Parse("tenant-guid"), Guid.Parse("graph-guid"));
+```
 
 ## Response
 
@@ -171,11 +200,11 @@ When deleting nodes, consider the following recommendations:
 
 After successfully deleting nodes, you can:
 
-- Verify the deletion by attempting to read the deleted nodes
-- Clean up any orphaned edges that may have been connected to deleted nodes
-- Update dependent systems that may have referenced the deleted nodes
-- Implement node deletion notifications for affected users
-- Create deletion audit reports and compliance documentation
-- Set up automated cleanup processes for temporary nodes
-- Build node lifecycle management interfaces
-- Implement data retention policies and automated deletion schedules
+* Verify the deletion by attempting to read the deleted nodes
+* Clean up any orphaned edges that may have been connected to deleted nodes
+* Update dependent systems that may have referenced the deleted nodes
+* Implement node deletion notifications for affected users
+* Create deletion audit reports and compliance documentation
+* Set up automated cleanup processes for temporary nodes
+* Build node lifecycle management interfaces
+* Implement data retention policies and automated deletion schedules
