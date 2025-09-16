@@ -71,9 +71,9 @@ using LiteGraph.GraphRepositories.Sqlite;
 LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
 liteGraph.InitializeRepository();
 IEnumerable<Node> response= liteGraph.Node.ReadChildren(Guid.Parse("<tenant-guid>"),
-                                                              Guid.Parse("graph-guid"),
-                                                              Guid.Parse("node-guid"),
-                                                              EnumerationOrderEnum.CreatedDescending);
+                                                        Guid.Parse("graph-guid"),
+                                                        Guid.Parse("node-guid"),
+                                                        EnumerationOrderEnum.CreatedDescending);
 ```
 
 ### Response
