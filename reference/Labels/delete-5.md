@@ -72,7 +72,7 @@ using LiteGraph.GraphRepositories.Sqlite;
 
 LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
 liteGraph.InitializeRepository();
-liteGraph.Label.DeleteByGuid(Guid.Parse("<tenant-guid>"), Guid.Parse("<graph-guid>"));
+liteGraph.Label.DeleteByGuid(Guid.Parse("<tenant-guid>"), Guid.Parse("<label-guid>"));
 ```
 
 ## Delete Multiple Labels
