@@ -9,18 +9,17 @@ hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 Label update operations allow you to modify existing labels within your graph database. This functionality is essential for maintaining data accuracy, correcting label names, and adapting label information as your application requirements evolve. Understanding label update operations is crucial for effective label management and ensuring your label system remains current and relevant.
 
 Key capabilities include:
 
-- Updating label names and properties
-- Modifying label metadata and associations
-- Maintaining data integrity during updates
-- Handling validation and error scenarios
-- Preserving label relationships and associations
+* Updating label names and properties
+* Modifying label metadata and associations
+* Maintaining data integrity during updates
+* Handling validation and error scenarios
+* Preserving label relationships and associations
 
 These operations support various use cases such as label refinement, metadata updates, data correction, and maintaining consistency across your graph database.
 
@@ -78,6 +77,20 @@ def update_label():
 
 update_label()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+LabelMetadata response = liteGraph.Label.Update(new LabelMetadata()
+{
+    GraphGUID = Guid.Parse("<graph-guid>"),
+    NodeGUID = Guid.Parse("<node-guid>"),
+    EdgeGUID = Guid.Parse("<edge-guid>"),
+    Label = "updatedlabel",
+});
+```
 
 ### Response
 
@@ -100,16 +113,16 @@ Upon successful label update, the API returns a `200 OK` status code with the up
 
 When updating labels, consider the following recommendations:
 
-- **Validate Data**: Always validate label names before sending update requests
-- **Preserve Relationships**: Ensure updates don't break existing node or edge associations
-- **Handle Conflicts**: Implement proper handling for concurrent update scenarios
+* **Validate Data**: Always validate label names before sending update requests
+* **Preserve Relationships**: Ensure updates don't break existing node or edge associations
+* **Handle Conflicts**: Implement proper handling for concurrent update scenarios
 
 ## Next Steps
 
 After successfully updating labels, consider these next actions:
 
-- **Verify Changes**: Read the updated label to confirm changes were applied correctly
-- **Update Dependencies**: Check if any dependent systems need to be notified of changes
-- **Monitor Impact**: Track how label updates affect related operations and queries
-- **Document Changes**: Maintain documentation of label modification history
-- **Optimize Performance**: Review update patterns for potential performance improvements
+* **Verify Changes**: Read the updated label to confirm changes were applied correctly
+* **Update Dependencies**: Check if any dependent systems need to be notified of changes
+* **Monitor Impact**: Track how label updates affect related operations and queries
+* **Document Changes**: Maintain documentation of label modification history
+* **Optimize Performance**: Review update patterns for potential performance improvements
