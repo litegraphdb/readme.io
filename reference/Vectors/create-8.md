@@ -10,18 +10,17 @@ hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 Vector creation operations enable you to store and manage vector embeddings within your graph database. These operations are essential for implementing advanced AI features such as semantic search, similarity matching, recommendation systems, and machine learning applications. Understanding vector creation is crucial for building intelligent applications that can process and analyze high-dimensional data effectively.
 
 Key capabilities include:
 
-- Creating individual vectors with custom embeddings and metadata
-- Performing bulk vector creation for efficient batch processing
-- Configuring vector models and dimensionality settings
-- Associating vectors with nodes or edges in your graph
-- Managing vector content and metadata for search optimization
+* Creating individual vectors with custom embeddings and metadata
+* Performing bulk vector creation for efficient batch processing
+* Configuring vector models and dimensionality settings
+* Associating vectors with nodes or edges in your graph
+* Managing vector content and metadata for search optimization
 
 These operations support various use cases such as semantic search, recommendation engines, content similarity analysis, and AI-powered data processing applications.
 
@@ -93,6 +92,23 @@ def create_vector():
     print(vector)
 
 create_vector()
+```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+VectorMetadata response = liteGraph.Vector.Create(new VectorMetadata()
+{
+    GraphGUID = Guid.Parse("<graph-guid>"),
+    NodeGUID = Guid.Parse("<node-guid>"),
+    EdgeGUID = Guid.Parse("<edge-guid>"),
+    Model = "all-MiniLM-L6-v2",
+    Dimensionality= 384,
+    Content= "test",
+    Vectors= new List<float>() { 0.1f, 0.2f, 0.3f  }
+});
 ```
 
 ### Response
@@ -210,6 +226,26 @@ def create_multiple_vector():
 
 create_multiple_vector()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+List<VectorMetadata> response = liteGraph.Vector.CreateMany(Guid.Parse("<tenant-guid>"), new List<VectorMetadata>()
+{ 
+    new VectorMetadata()
+    {
+        GraphGUID = Guid.Parse("<graph-guid>"),
+        NodeGUID = Guid.Parse("<node-guid>"),
+        EdgeGUID = Guid.Parse("<edge-guid>"),
+        Model = "all-MiniLM-L6-v2",
+        Dimensionality= 384,
+        Content= "test",
+        Vectors= new List<float>() { 0.1f, 0.2f, 0.3f }
+    }
+});
+```
 
 ### Response
 
@@ -237,18 +273,18 @@ Upon successful bulk vector creation, the API returns a `201 Created` status cod
 
 When creating vectors, consider the following recommendations:
 
-- **Choose Appropriate Models**: Select vector models that match your use case and data type
-- **Validate Dimensionality**: Ensure vector dimensions match your model's expected output
-- **Optimize Content**: Use meaningful content descriptions for better search results
-- **Batch Operations**: Use bulk creation for multiple vectors to improve performance
+* **Choose Appropriate Models**: Select vector models that match your use case and data type
+* **Validate Dimensionality**: Ensure vector dimensions match your model's expected output
+* **Optimize Content**: Use meaningful content descriptions for better search results
+* **Batch Operations**: Use bulk creation for multiple vectors to improve performance
 
 ## Next Steps
 
 After successfully creating vectors, consider these next actions:
 
-- **Configure Vector Indexes**: Set up HNSW indexes for efficient similarity search
-- **Perform Vector Search**: Use the created vectors for semantic search operations
-- **Update Vectors**: Modify existing vectors as your data evolves
-- **Monitor Performance**: Track vector search performance and optimize as needed
-- **Integrate with Applications**: Use vectors in your AI-powered applications
-- **Backup Vector Data**: Implement backup strategies for critical vector data
+* **Configure Vector Indexes**: Set up HNSW indexes for efficient similarity search
+* **Perform Vector Search**: Use the created vectors for semantic search operations
+* **Update Vectors**: Modify existing vectors as your data evolves
+* **Monitor Performance**: Track vector search performance and optimize as needed
+* **Integrate with Applications**: Use vectors in your AI-powered applications
+* **Backup Vector Data**: Implement backup strategies for critical vector data
