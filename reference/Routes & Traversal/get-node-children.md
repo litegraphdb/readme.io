@@ -1,23 +1,24 @@
 ---
 title: Get Node Children
-excerpt: Retrieve all child nodes connected to a specific parent node to analyze hierarchical relationships and tree structures in your graph.
+excerpt: >-
+  Retrieve all child nodes connected to a specific parent node to analyze
+  hierarchical relationships and tree structures in your graph.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Get Node Children endpoint allows you to discover all child nodes directly connected to a specific parent node in your graph. This operation is essential for understanding hierarchical relationships, analyzing tree structures, and building comprehensive parent-child relationship maps.
 
 Key capabilities include:
 
-- Finding all child nodes connected to a specific parent node
-- Analyzing hierarchical relationship patterns and tree structures
-- Discovering all nodes that are direct descendants of the parent node
-- Building hierarchical node profiles and relationship maps
-- Supporting tree traversal and hierarchical path analysis
+* Finding all child nodes connected to a specific parent node
+* Analyzing hierarchical relationship patterns and tree structures
+* Discovering all nodes that are direct descendants of the parent node
+* Building hierarchical node profiles and relationship maps
+* Supporting tree traversal and hierarchical path analysis
 
 ## Get Node Children
 
@@ -63,6 +64,17 @@ def get_children_of_node():
 
 get_children_of_node()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+IEnumerable<Node> response= liteGraph.Node.ReadChildren(Guid.Parse("<tenant-guid>"),
+                                                              Guid.Parse("graph-guid"),
+                                                              Guid.Parse("node-guid"),
+                                                              EnumerationOrderEnum.CreatedDescending);
+```
 
 ### Response
 
@@ -89,14 +101,14 @@ get_children_of_node()
 
 When retrieving node children, consider the following recommendations:
 
-- **Validate Node GUID**: Ensure the parent node GUID exists before making requests
-- **Handle Empty Results**: Implement proper handling for nodes with no children
+* **Validate Node GUID**: Ensure the parent node GUID exists before making requests
+* **Handle Empty Results**: Implement proper handling for nodes with no children
 
 After retrieving node children, you can:
 
-- Analyze hierarchical relationship patterns and tree structures
-- Build comprehensive hierarchical node profiles and relationship maps
-- Implement tree traversal algorithms for hierarchical path analysis
-- Create hierarchical node visualization interfaces
-- Perform tree structure analysis and organizational studies
-- Develop hierarchical recommendation systems and relationship discovery
+* Analyze hierarchical relationship patterns and tree structures
+* Build comprehensive hierarchical node profiles and relationship maps
+* Implement tree traversal algorithms for hierarchical path analysis
+* Create hierarchical node visualization interfaces
+* Perform tree structure analysis and organizational studies
+* Develop hierarchical recommendation systems and relationship discovery
