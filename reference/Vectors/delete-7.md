@@ -10,16 +10,15 @@ hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 Vector deletion operations provide the ability to remove vector embeddings from your graph database when they are no longer needed. These operations are essential for maintaining storage efficiency, removing obsolete vector data, and managing vector indexes effectively. Understanding vector deletion is crucial for proper vector lifecycle management and ensuring your vector system remains organized and performant.
 
 Key capabilities include:
 
-- Deleting individual vectors by their unique GUID
-- Performing bulk deletion of multiple vectors
-- Maintaining vector index integrity during deletion operations
+* Deleting individual vectors by their unique GUID
+* Performing bulk deletion of multiple vectors
+* Maintaining vector index integrity during deletion operations
 
 These operations support various use cases such as vector data cleanup, storage optimization, model migration, and maintaining vector system performance.
 
@@ -63,6 +62,14 @@ sdk = litegraph.configure(
 def delete_vector():
     litegraph.Vector.delete(guid="vector-guid")
     print("Vector deleted")
+```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+liteGraph.Vector.DeleteByGuid(Guid.Parse("<tenant-guid>"), Guid.Parse("<vector-guid>"));
 ```
 
 ## Delete Multiple Vectors
@@ -110,6 +117,17 @@ def delete_multiple_vector():
 
 delete_multiple_vector()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+liteGraph.Vector.DeleteMany(Guid.Parse("<tenant-guid>"),
+                         Guid.Parse("<graph-guid>"),
+                         new List<Guid>() { Guid.Parse("<node-guid-1>"), Guid.Parse("<node-guid-2>") },
+                         new List<Guid>() { Guid.Parse("<edge-guid-1>"), Guid.Parse("<edge-guid-2>") });
+```
 
 ## Response
 
@@ -119,9 +137,9 @@ Upon successful vector deletion, the API returns a `204 No Content` status code 
 
 After successfully deleting vectors, consider these next actions:
 
-- **Verify Deletion**: Confirm vectors have been removed by attempting to read them
-- **Update Dependencies**: Check if any dependent systems need to be updated
-- **Clean Up References**: Remove any local references to deleted vectors
-- **Monitor System**: Watch for any issues that might arise from the deletions
-- **Document Changes**: Maintain documentation of deletion operations
-- **Optimize Storage**: Review storage usage improvements from the cleanup
+* **Verify Deletion**: Confirm vectors have been removed by attempting to read them
+* **Update Dependencies**: Check if any dependent systems need to be updated
+* **Clean Up References**: Remove any local references to deleted vectors
+* **Monitor System**: Watch for any issues that might arise from the deletions
+* **Document Changes**: Maintain documentation of deletion operations
+* **Optimize Storage**: Review storage usage improvements from the cleanup
