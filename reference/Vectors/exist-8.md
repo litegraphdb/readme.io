@@ -9,7 +9,6 @@ hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 Vector existence checking operations provide a lightweight and efficient way to verify whether specific vectors exist in your graph database without retrieving their full data.
@@ -57,10 +56,19 @@ def exists_vector():
 
 exists_vector()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+bool exists = liteGraph.Vector.ExistsByGuid(Guid.Parse("<tenant-guid>"),
+                                            Guid.Parse("<vector-guid>"));
+```
 
 ### Response
 
 The API returns different status codes based on vector existence:
 
-- **200 OK**: Vector exists and is accessible
-- **404 Not Found**: Vector does not exist
+* **200 OK**: Vector exists and is accessible
+* **404 Not Found**: Vector does not exist
