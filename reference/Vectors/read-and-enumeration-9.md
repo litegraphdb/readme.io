@@ -9,18 +9,17 @@ hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 Vector reading and enumeration operations provide comprehensive access to vector data within your graph database. These operations enable you to retrieve individual vectors, fetch multiple vectors by their GUIDs, read all vectors in a tenant, and perform advanced enumeration with search capabilities. Understanding these operations is essential for effective vector management, data analysis, and application development.
 
 Key capabilities include:
 
-- Reading individual vectors by their unique GUID
-- Retrieving multiple specific vectors using comma-separated GUIDs
-- Reading all vectors within a tenant for comprehensive data access
-- Enumerating vectors with pagination support for large datasets
-- Advanced search and filtering capabilities for targeted vector retrieval
+* Reading individual vectors by their unique GUID
+* Retrieving multiple specific vectors using comma-separated GUIDs
+* Reading all vectors within a tenant for comprehensive data access
+* Enumerating vectors with pagination support for large datasets
+* Advanced search and filtering capabilities for targeted vector retrieval
 
 These operations support various use cases such as vector data validation, similarity analysis, bulk operations, and integration with external systems that require vector information.
 
@@ -64,6 +63,14 @@ def retrieve_vector():
     print(vector)
 
 retrieve_vector()
+```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+VectorMetadata response = liteGraph.Vector.ReadByGuid(Guid.Parse("<tenant-guid>"), Guid.Parse("<vector-guid>"));
 ```
 
 ### Response
@@ -126,6 +133,19 @@ def retrieve_multiple_vector():
     print(vectors)
 
 retrieve_multiple_vector()
+```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+IEnumerable<VectorMetadata> response = liteGraph.Vector.ReadByGuids(Guid.Parse("<tenant-guid>"),
+                                                                    new List<Guid>()
+                                                                    {
+                                                                        Guid.Parse("<vector-guid-1>"),
+                                                                        Guid.Parse("<vector-guid-2>"),
+                                                                    });
 ```
 
 ### Response
@@ -204,6 +224,17 @@ def retrieve_all_vector():
 
 retrieve_all_vector()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+IEnumerable<VectorMetadata> response = liteGraph.Vector.ReadMany(Guid.Parse("<tenant-guid>"),
+                                                                 Guid.Parse("<graph-guid>"),
+                                                                 Guid.Parse("<node-guid>"),
+                                                                 Guid.Parse("<edge-guid>"));
+```
 
 ### Response
 
@@ -269,6 +300,14 @@ def enumerate_vector():
     print(vectors)
 
 enumerate_vector()
+```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+EnumerationResult<VectorMetadata> response = liteGraph.Vector.Enumerate();
 ```
 
 ### Response
@@ -375,6 +414,25 @@ def enumerate_with_query_vector():
     print(vectors)
 
 enumerate_with_query_vector()
+```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+EnumerationResult<VectorMetadata> response = liteGraph.Vector.Enumerate(new EnumerationRequest()
+{
+    Ordering = EnumerationOrderEnum.CreatedDescending,
+    IncludeData = true,
+    IncludeSubordinates = true,
+    MaxResults = 5,
+    Skip = 0,
+    ContinuationToken = null,
+    Labels = new List<string>(),
+    Tags = null,
+    Expr = null
+});
 ```
 
 ### Response
