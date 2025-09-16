@@ -1,23 +1,24 @@
 ---
 title: Get Node Parents
-excerpt: Retrieve all parent nodes connected to a specific child node to analyze hierarchical relationships and tree structures in your graph.
+excerpt: >-
+  Retrieve all parent nodes connected to a specific child node to analyze
+  hierarchical relationships and tree structures in your graph.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Get Node Parents endpoint allows you to discover all parent nodes directly connected to a specific child node in your graph. This operation is essential for understanding hierarchical relationships, analyzing tree structures, and building comprehensive parent-child relationship maps.
 
 Key capabilities include:
 
-- Finding all parent nodes connected to a specific child node
-- Analyzing hierarchical relationship patterns and tree structures
-- Discovering all nodes that are direct ancestors of the child node
-- Building hierarchical node profiles and relationship maps
-- Supporting tree traversal and hierarchical path analysis
+* Finding all parent nodes connected to a specific child node
+* Analyzing hierarchical relationship patterns and tree structures
+* Discovering all nodes that are direct ancestors of the child node
+* Building hierarchical node profiles and relationship maps
+* Supporting tree traversal and hierarchical path analysis
 
 ## Get Node Parents
 
@@ -63,6 +64,17 @@ def get_parents_of_node():
 
 get_parents_of_node()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+IEnumerable<Node> response= liteGraph.Node.ReadParents(Guid.Parse("<tenant-guid>"),
+                                                              Guid.Parse("graph-guid"),
+                                                              Guid.Parse("node-guid"),
+                                                              EnumerationOrderEnum.CreatedDescending);
+```
 
 ### Response
 
@@ -89,16 +101,16 @@ get_parents_of_node()
 
 When retrieving node parents, consider the following recommendations:
 
-- **Validate Node GUID**: Ensure the child node GUID exists before making requests
-- **Handle Empty Results**: Implement proper handling for nodes with no parents
+* **Validate Node GUID**: Ensure the child node GUID exists before making requests
+* **Handle Empty Results**: Implement proper handling for nodes with no parents
 
 ## Next Steps
 
 After retrieving node parents, you can:
 
-- Analyze hierarchical relationship patterns and tree structures
-- Build comprehensive hierarchical node profiles and relationship maps
-- Implement tree traversal algorithms for hierarchical path analysis
-- Create hierarchical node visualization interfaces
-- Perform tree structure analysis and organizational studies
-- Develop hierarchical recommendation systems and relationship discovery
+* Analyze hierarchical relationship patterns and tree structures
+* Build comprehensive hierarchical node profiles and relationship maps
+* Implement tree traversal algorithms for hierarchical path analysis
+* Create hierarchical node visualization interfaces
+* Perform tree structure analysis and organizational studies
+* Develop hierarchical recommendation systems and relationship discovery
