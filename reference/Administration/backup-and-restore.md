@@ -72,6 +72,14 @@ def create_backup():
 
 create_backup()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+liteGraph.Admin.Backup(outputFilename: "my-backup.db");
+```
 
 ## List Backups
 
@@ -114,6 +122,14 @@ def retrieve_all_backups():
     print(backups)
 
 retrieve_all_backups()
+```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+IEnumerable<BackupFile> response= liteGraph.Admin.BackupReadAll();
 ```
 
 ## Restore from Backup
@@ -171,6 +187,14 @@ def retrieve_backup():
 
 retrieve_backup()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+BackupFile response = liteGraph.Admin.BackupRead(backupFilename: "my-backup.db");
+```
 
 ## Delete a Backup
 
@@ -218,6 +242,14 @@ def delete_backup():
 
 delete_backup()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+liteGraph.Admin.DeleteBackup(backupFilename: "my-backup.db");
+```
 
 ## Check Backup Existence
 
@@ -263,6 +295,14 @@ def check_backup_exists():
     print(backup)
 
 check_backup_exists()
+```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+bool exists = liteGraph.Admin.BackupExists(backupFilename: "my-backup.db");
 ```
 
 ## Best Practices
