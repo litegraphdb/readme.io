@@ -68,8 +68,8 @@ using LiteGraph.GraphRepositories.Sqlite;
 LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
 liteGraph.InitializeRepository();
 IEnumerable<Edge> response = liteGraph.Edge.ReadEdgesFromNode(Guid.Parse("<tenant-guid>"),
-                                                              Guid.Parse("graph-guid"),
-                                                              Guid.Parse("node-guid"));
+                                                              Guid.Parse("<graph-guid>"),
+                                                              Guid.Parse("<node-guid>"));
 ```
 
 ### Response
