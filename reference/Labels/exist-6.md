@@ -70,8 +70,8 @@ using LiteGraph.GraphRepositories.Sqlite;
 
 LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
 liteGraph.InitializeRepository();
-liteGraph.Label.ExistsByGuid(Guid.Parse("<tenant-guid>"), 
-                             Guid.Parse("<lable-guid>"));
+bool exists = liteGraph.Label.ExistsByGuid(Guid.Parse("<tenant-guid>"), 
+                                           Guid.Parse("<lable-guid>"));
 ```
 
 ### Response
