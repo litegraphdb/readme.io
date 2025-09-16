@@ -70,6 +70,18 @@ def get_routes():
 
 get_routes()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+IEnumerable<RouteDetail> response= liteGraph.Node.ReadRoutes(SearchTypeEnum.DepthFirstSearch,
+                                                             Guid.Parse("<tenant-guid>"),
+                                                             Guid.Parse("graph-guid"),
+                                                             Guid.Parse("from-node-guid"),
+                                                             Guid.Parse("to-node-guid"));
+```
 
 ### Response
 
