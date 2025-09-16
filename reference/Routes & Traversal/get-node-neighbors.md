@@ -1,23 +1,24 @@
 ---
 title: Get Node Neighbors
-excerpt: Retrieve all neighbor nodes connected to a specific node to analyze its immediate connectivity and relationship patterns in your graph.
+excerpt: >-
+  Retrieve all neighbor nodes connected to a specific node to analyze its
+  immediate connectivity and relationship patterns in your graph.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Get Node Neighbors endpoint allows you to discover all neighbor nodes directly connected to a specific node in your graph. This operation is essential for understanding immediate node connectivity, analyzing relationship patterns, and building comprehensive neighbor relationship profiles.
 
 Key capabilities include:
 
-- Finding all neighbor nodes connected to a specific node
-- Analyzing immediate connectivity patterns and relationship types
-- Discovering all nodes that are directly adjacent to the target node
-- Building comprehensive neighbor relationship profiles and connectivity maps
-- Supporting immediate graph traversal and neighbor analysis
+* Finding all neighbor nodes connected to a specific node
+* Analyzing immediate connectivity patterns and relationship types
+* Discovering all nodes that are directly adjacent to the target node
+* Building comprehensive neighbor relationship profiles and connectivity maps
+* Supporting immediate graph traversal and neighbor analysis
 
 ## Get Node Neighbors
 
@@ -63,6 +64,17 @@ def get_neighbors_of_node():
 
 get_neighbors_of_node()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+IEnumerable<Node> response = liteGraph.Node.ReadNeighbors(Guid.Parse("<tenant-guid>"),
+                                                          Guid.Parse("graph-guid"),
+                                                          Guid.Parse("node-guid"),
+                                                          EnumerationOrderEnum.CreatedDescending);
+```
 
 ### Response
 
@@ -89,16 +101,16 @@ get_neighbors_of_node()
 
 When retrieving node neighbors, consider the following recommendations:
 
-- **Validate Node GUID**: Ensure the target node GUID exists before making requests
-- **Handle Empty Results**: Implement proper handling for nodes with no neighbors
+* **Validate Node GUID**: Ensure the target node GUID exists before making requests
+* **Handle Empty Results**: Implement proper handling for nodes with no neighbors
 
 ## Next Steps
 
 After retrieving node neighbors, you can:
 
-- Analyze immediate node connectivity patterns and relationship types
-- Build comprehensive neighbor relationship profiles and connectivity maps
-- Implement immediate graph traversal algorithms for neighbor analysis
-- Create node neighbor visualization interfaces
-- Perform immediate connectivity analysis and network topology studies
-- Develop node-based recommendation systems and neighbor discovery
+* Analyze immediate node connectivity patterns and relationship types
+* Build comprehensive neighbor relationship profiles and connectivity maps
+* Implement immediate graph traversal algorithms for neighbor analysis
+* Create node neighbor visualization interfaces
+* Perform immediate connectivity analysis and network topology studies
+* Develop node-based recommendation systems and neighbor discovery
