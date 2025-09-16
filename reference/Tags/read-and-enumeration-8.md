@@ -9,18 +9,17 @@ hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 Tag reading and enumeration operations provide comprehensive access to tag data within your graph database. These operations enable you to retrieve individual tags, fetch multiple tags by their GUIDs, read all tags in a tenant, and perform advanced enumeration with search capabilities. Understanding these operations is essential for effective tag management, data analysis, and application development.
 
 Key capabilities include:
 
-- Reading individual tags by their unique GUID
-- Retrieving multiple specific tags using comma-separated GUIDs
-- Reading all tags within a tenant for comprehensive data access
-- Enumerating tags with pagination support for large datasets
-- Advanced search and filtering capabilities for targeted tag retrieval
+* Reading individual tags by their unique GUID
+* Retrieving multiple specific tags using comma-separated GUIDs
+* Reading all tags within a tenant for comprehensive data access
+* Enumerating tags with pagination support for large datasets
+* Advanced search and filtering capabilities for targeted tag retrieval
 
 These operations support various use cases such as data validation, tag analysis, bulk operations, and integration with external systems that require tag information.
 
@@ -64,6 +63,14 @@ def retrieve_tag():
     print(tag)
 
 retrieve_tag()
+```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+TagMetadata response = liteGraph.Tag.ReadByGuid(Guid.Parse("<tenant-guid>"), Guid.Parse("<tag-guid>"));
 ```
 
 ### Response
@@ -124,6 +131,19 @@ def retrieve_multiple_tag():
     print(tags)
 
 retrieve_multiple_tag()
+```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+IEnumerable<TagMetadata> response = liteGraph.Tag.ReadByGuids(Guid.Parse("<tenant-guid>"),
+                                                 new List<Guid>()
+                                                 {
+                                                    Guid.Parse("<tag-guid-1>"),
+                                                    Guid.Parse("<tag-guid-2>"),
+                                                  });
 ```
 
 ### Response
@@ -198,6 +218,19 @@ def retrieve_all_tag():
 
 retrieve_all_tag()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+IEnumerable<TagMetadata> response = liteGraph.Tag.ReadMany(Guid.Parse("<tenant-guid>"),
+                                                           Guid.Parse("<graph-guid>"),
+                                                           Guid.Parse("<node-guid>"),
+                                                           Guid.Parse("<edge-guid>"),
+                                                           key: "mykey",
+                                                           val: "value");
+```
 
 ### Response
 
@@ -271,6 +304,14 @@ def enumerate_tag():
 
 enumerate_tag()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+EnumerationResult<TagMetadata> response = liteGraph.Tag.Enumerate();
+```
 
 ### Response
 
@@ -343,15 +384,15 @@ Perform advanced tag enumeration with search capabilities using `POST: /v2.0/ten
 
 The POST endpoint supports various search and filtering parameters:
 
-- **Ordering**: Sort results by creation time (`CreatedAscending`, `CreatedDescending`)
-- **IncludeData**: Include full tag data in response (boolean)
-- **IncludeSubordinates**: Include related subordinate data (boolean)
-- **MaxResults**: Maximum number of results per page (integer)
-- **Skip**: Number of results to skip for pagination (integer)
-- **ContinuationToken**: Token for continuing pagination (string)
-- **Labels**: Filter by specific labels (array)
-- **Tags**: Filter by tag key-value pairs (object)
-- **Expr**: Advanced expression-based filtering (object)
+* **Ordering**: Sort results by creation time (`CreatedAscending`, `CreatedDescending`)
+* **IncludeData**: Include full tag data in response (boolean)
+* **IncludeSubordinates**: Include related subordinate data (boolean)
+* **MaxResults**: Maximum number of results per page (integer)
+* **Skip**: Number of results to skip for pagination (integer)
+* **ContinuationToken**: Token for continuing pagination (string)
+* **Labels**: Filter by specific labels (array)
+* **Tags**: Filter by tag key-value pairs (object)
+* **Expr**: Advanced expression-based filtering (object)
 
 ```curl
 curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/tags' \
@@ -422,6 +463,25 @@ def enumerate_with_query_tag():
 
 enumerate_with_query_tag()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+EnumerationResult<TagMetadata> response = liteGraph.Tag.Enumerate(new EnumerationRequest()
+{
+    Ordering = EnumerationOrderEnum.CreatedDescending,
+    IncludeData = true,
+    IncludeSubordinates = true,
+    MaxResults = 5,
+    Skip = 0,
+    ContinuationToken = null,
+    Labels = new List<string>(),
+    Tags = null,
+    Expr = null
+});
+```
 
 ### Response
 
@@ -490,20 +550,20 @@ Upon successful enumeration and search, the API returns a `200 OK` status code w
 
 When reading and enumerating tags, consider the following recommendations:
 
-- **Use Appropriate Endpoints**: Choose the right endpoint based on your needs (individual read vs. enumeration vs. search)
-- **Implement Pagination**: Use MaxResults and ContinuationToken for large datasets to avoid memory issues
-- **Optimize Queries**: Use specific GUIDs when possible instead of reading all tags
-- **Cache Results**: Implement caching for frequently accessed tag data
-- **Handle Errors**: Implement proper error handling for network issues and invalid GUIDs
-- **Monitor Performance**: Track response times and optimize queries for better performance
-- **Use Search Filters**: Leverage search parameters to reduce data transfer and improve relevance
+* **Use Appropriate Endpoints**: Choose the right endpoint based on your needs (individual read vs. enumeration vs. search)
+* **Implement Pagination**: Use MaxResults and ContinuationToken for large datasets to avoid memory issues
+* **Optimize Queries**: Use specific GUIDs when possible instead of reading all tags
+* **Cache Results**: Implement caching for frequently accessed tag data
+* **Handle Errors**: Implement proper error handling for network issues and invalid GUIDs
+* **Monitor Performance**: Track response times and optimize queries for better performance
+* **Use Search Filters**: Leverage search parameters to reduce data transfer and improve relevance
 
 ## Next Steps
 
 After successfully reading and enumerating tags, consider these next actions:
 
-- **Update Tags**: Modify existing tags using the update operations
-- **Delete Tags**: Remove unnecessary tags to maintain data cleanliness
-- **Create New Tags**: Add additional tags based on your analysis
-- **Integrate Data**: Use retrieved tag data in your application logic
-- **Monitor Usage**: Track tag usage patterns for optimization opportunities
+* **Update Tags**: Modify existing tags using the update operations
+* **Delete Tags**: Remove unnecessary tags to maintain data cleanliness
+* **Create New Tags**: Add additional tags based on your analysis
+* **Integrate Data**: Use retrieved tag data in your application logic
+* **Monitor Usage**: Track tag usage patterns for optimization opportunities
