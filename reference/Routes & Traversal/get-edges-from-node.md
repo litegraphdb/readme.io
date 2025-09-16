@@ -1,23 +1,24 @@
 ---
 title: Get Edges From Node
-excerpt: Retrieve all outgoing edges from a specific node to analyze its connections and outgoing relationships in your graph.
+excerpt: >-
+  Retrieve all outgoing edges from a specific node to analyze its connections
+  and outgoing relationships in your graph.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Get Edges From Node endpoint allows you to discover all outgoing connections from a specific node in your graph. This operation is essential for understanding how a node connects to other nodes, analyzing outgoing relationship patterns, and building comprehensive node connectivity profiles.
 
 Key capabilities include:
 
-- Finding all edges that originate from a specific node
-- Analyzing outgoing relationship patterns and connection types
-- Discovering all nodes that are directly connected from the source node
-- Building node connectivity profiles and relationship maps
-- Supporting graph traversal and outgoing path analysis
+* Finding all edges that originate from a specific node
+* Analyzing outgoing relationship patterns and connection types
+* Discovering all nodes that are directly connected from the source node
+* Building node connectivity profiles and relationship maps
+* Supporting graph traversal and outgoing path analysis
 
 ## Get Edges From Node
 
@@ -60,6 +61,16 @@ def get_edges_from_node():
 
 get_edges_from_node()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+IEnumerable<Edge> response = liteGraph.Edge.ReadEdgesFromNode(Guid.Parse("<tenant-guid>"),
+                                                              Guid.Parse("graph-guid"),
+                                                              Guid.Parse("node-guid"));
+```
 
 ### Response
 
@@ -83,16 +94,16 @@ get_edges_from_node()
 
 When retrieving edges from a node, consider the following recommendations:
 
-- **Validate Node GUID**: Ensure the source node GUID exists before making requests
-- **Handle Empty Results**: Implement proper handling for nodes with no outgoing edges
+* **Validate Node GUID**: Ensure the source node GUID exists before making requests
+* **Handle Empty Results**: Implement proper handling for nodes with no outgoing edges
 
 ## Next Steps
 
 After retrieving edges from a node, you can:
 
-- Analyze the node's outgoing relationship patterns and connection types
-- Build comprehensive node connectivity profiles and relationship maps
-- Implement graph traversal algorithms for outgoing path analysis
-- Create node relationship visualization interfaces
-- Perform outgoing connectivity analysis and network topology studies
-- Develop node-based recommendation systems and relationship discovery
+* Analyze the node's outgoing relationship patterns and connection types
+* Build comprehensive node connectivity profiles and relationship maps
+* Implement graph traversal algorithms for outgoing path analysis
+* Create node relationship visualization interfaces
+* Perform outgoing connectivity analysis and network topology studies
+* Develop node-based recommendation systems and relationship discovery
