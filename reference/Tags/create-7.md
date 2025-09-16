@@ -8,17 +8,16 @@ hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Create Tag endpoints allow you to add metadata tags to nodes and edges within your graph. This functionality is essential for:
 
-- Adding key-value metadata to graph elements
-- Enabling advanced filtering and search capabilities
-- Categorizing and organizing graph data
-- Supporting both single tag and bulk tag creation operations
-- Enhancing graph analytics and reporting
-- Implementing custom data classification systems
+* Adding key-value metadata to graph elements
+* Enabling advanced filtering and search capabilities
+* Categorizing and organizing graph data
+* Supporting both single tag and bulk tag creation operations
+* Enhancing graph analytics and reporting
+* Implementing custom data classification systems
 
 ## Request Parameters
 
@@ -26,18 +25,18 @@ The tag creation request accepts the following properties:
 
 ### Tag Properties
 
-- **GraphGUID**: The graph's unique identifier (string, required)
-- **NodeGUID**: The node's unique identifier to tag (string, optional - null if tagging an edge)
-- **EdgeGUID**: The edge's unique identifier to tag (string, optional - null if tagging a node)
-- **Key**: The tag key/name (string, required)
-- **Value**: The tag value (string, required)
+* **GraphGUID**: The graph's unique identifier (string, required)
+* **NodeGUID**: The node's unique identifier to tag (string, optional - null if tagging an edge)
+* **EdgeGUID**: The edge's unique identifier to tag (string, optional - null if tagging a node)
+* **Key**: The tag key/name (string, required)
+* **Value**: The tag value (string, required)
 
 ### System Properties (Read-only)
 
-- **GUID**: The tag's unique identifier (string, auto-generated)
-- **TenantGUID**: The tenant's unique identifier (string, auto-assigned)
-- **CreatedUtc**: Timestamp when the tag was created (string, auto-generated)
-- **LastUpdateUtc**: Timestamp of last update (string, auto-generated)
+* **GUID**: The tag's unique identifier (string, auto-generated)
+* **TenantGUID**: The tenant's unique identifier (string, auto-assigned)
+* **CreatedUtc**: Timestamp when the tag was created (string, auto-generated)
+* **LastUpdateUtc**: Timestamp of last update (string, auto-generated)
 
 **Note**: GUID, TenantGUID, CreatedUtc, and LastUpdateUtc are automatically managed by the system. Either NodeGUID or EdgeGUID must be specified, but not both.
 
@@ -95,6 +94,21 @@ def create_tag():
     print(tag)
 
 create_tag()
+```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+TagMetadata response = liteGraph.Tag.Create(new TagMetadata()
+{
+    GraphGUID = Guid.Parse("<graph-guid>"),
+    NodeGUID = Guid.Parse("<node-guid>"),
+    EdgeGUID = Guid.Parse("<edge-guid>"),
+    Key = "mykey",
+    Value = "myvalue"
+});
 ```
 
 ### Response
@@ -191,6 +205,24 @@ def create_multiple_tag():
 create_multiple_tag()
 
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+List<TagMetadata> response = liteGraph.Tag.CreateMany(Guid.Parse("<tenant-guid>"), new List<TagMetadata>()
+{
+    new TagMetadata() 
+    {
+        GraphGUID = Guid.Parse("<graph-guid>"),
+        NodeGUID = Guid.Parse("<node-guid>"),
+        EdgeGUID = Guid.Parse("<edge-guid>"),
+        Key = "mykey",
+        Value = "myvalue"
+    }
+});
+```
 
 ### Response
 
@@ -236,11 +268,11 @@ When creating tags, consider the following recommendations:
 
 After successfully creating tags, you can:
 
-- Use tags for advanced filtering in search and enumeration operations
-- Build tag-based analytics and reporting features
-- Implement tag management interfaces for users
-- Create tag-based access control and permissions
-- Set up automated tag validation and cleanup processes
-- Build tag visualization and exploration tools
-- Implement tag-based recommendation systems
-- Create tag usage analytics and monitoring dashboards
+* Use tags for advanced filtering in search and enumeration operations
+* Build tag-based analytics and reporting features
+* Implement tag management interfaces for users
+* Create tag-based access control and permissions
+* Set up automated tag validation and cleanup processes
+* Build tag visualization and exploration tools
+* Implement tag-based recommendation systems
+* Create tag usage analytics and monitoring dashboards
