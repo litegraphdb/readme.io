@@ -9,16 +9,15 @@ hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 Tag deletion operations provide the ability to remove tags from your graph database when they are no longer needed. These operations are essential for maintaining data cleanliness, removing obsolete information, and managing storage efficiently. Understanding tag deletion is crucial for proper data lifecycle management and ensuring your tag system remains organized and relevant.
 
 Key capabilities include:
 
-- Deleting individual tags by their unique GUID
-- Performing bulk deletion of multiple tags
-- Maintaining data integrity during deletion operations
+* Deleting individual tags by their unique GUID
+* Performing bulk deletion of multiple tags
+* Maintaining data integrity during deletion operations
 
 These operations support various use cases such as data cleanup, tag lifecycle management, storage optimization, and maintaining data quality standards.
 
@@ -66,6 +65,14 @@ def delete_tag():
 
 delete_tag()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+liteGraph.Tag.DeleteByGuid(Guid.Parse("<tenant-guid>"), Guid.Parse("<tag-guid>"));
+```
 
 ## Delete Multiple Tags
 
@@ -112,6 +119,18 @@ def delete_multiple_tag():
 
 delete_multiple_tag()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+liteGraph.Tag.DeleteMany(Guid.Parse("<tenant-guid>"),
+                           Guid.Parse("<graph-guid>"),
+                           new List<Guid>() { Guid.Parse("<node-guid-1>"), Guid.Parse("<node-guid-2>") },
+                           new List<Guid>() { Guid.Parse("<edge-guid-1>"), Guid.Parse("<edge-guid-2>") }
+                           );
+```
 
 ### Response
 
@@ -121,6 +140,6 @@ Upon successful tag deletion, the API returns a `200 No Content` status code ind
 
 After successfully deleting tags, consider these next actions:
 
-- **Verify Deletion**: Confirm tags have been removed by attempting to read them
-- **Update Dependencies**: Check if any dependent systems need to be updated
-- **Clean Up References**: Remove any local references to deleted tags
+* **Verify Deletion**: Confirm tags have been removed by attempting to read them
+* **Update Dependencies**: Check if any dependent systems need to be updated
+* **Clean Up References**: Remove any local references to deleted tags
