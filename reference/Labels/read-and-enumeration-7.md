@@ -9,18 +9,17 @@ hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 Label reading and enumeration operations provide comprehensive access to label data within your graph database. These operations enable you to retrieve individual labels, fetch multiple labels by their GUIDs, read all labels in a tenant, and perform advanced enumeration with search capabilities. Understanding these operations is essential for effective label management, data analysis, and application development.
 
 Key capabilities include:
 
-- Reading individual labels by their unique GUID
-- Retrieving multiple specific labels using comma-separated GUIDs
-- Reading all labels within a tenant for comprehensive data access
-- Enumerating labels with pagination support for large datasets
-- Advanced search and filtering capabilities for targeted label retrieval
+* Reading individual labels by their unique GUID
+* Retrieving multiple specific labels using comma-separated GUIDs
+* Reading all labels within a tenant for comprehensive data access
+* Enumerating labels with pagination support for large datasets
+* Advanced search and filtering capabilities for targeted label retrieval
 
 These operations support various use cases such as label data validation, categorization analysis, bulk operations, and integration with external systems that require label information.
 
@@ -64,6 +63,14 @@ def retrieve_label():
     print(label)
 
 retrieve_label()
+```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+LabelMetadata response = liteGraph.Label.ReadByGuid(Guid.Parse("<tenant-guid>"), Guid.Parse("<label-guid>"));
 ```
 
 ### Response
@@ -127,6 +134,19 @@ def retrieve_multiple_label():
     print(labels)
 
 retrieve_multiple_label()
+```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+IEnumerable<LabelMetadata> response = liteGraph.Label.ReadByGuids(Guid.Parse("<tenant-guid>"), 
+                                                                  new List<Guid>()
+                                                                  {
+                                                                      Guid.Parse("<label-guid-1>"),
+                                                                      Guid.Parse("<label-guid-2>"),
+                                                                  });
 ```
 
 ```json
@@ -195,6 +215,18 @@ def retrieve_all_label():
 
 retrieve_all_label()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+IEnumerable<LabelMetadata> response = liteGraph.Label.ReadMany(Guid.Parse("<tenant-guid>"), 
+                                                               Guid.Parse("<graph-guid>"),
+                                                               Guid.Parse("<node-guid>"),
+                                                               Guid.Parse("<edge-guid>"),
+                                                               label:"label");
+```
 
 ### Response
 
@@ -256,6 +288,14 @@ def enumerate_label():
 
 enumerate_label()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+EnumerationResult<LabelMetadata> response = liteGraph.Label.Enumerate();
+```
 
 ### Response
 
@@ -305,15 +345,15 @@ Perform advanced label enumeration with search capabilities using `POST: /v2.0/t
 
 The POST endpoint supports various search and filtering parameters:
 
-- **Ordering**: Sort results by creation time (`CreatedAscending`, `CreatedDescending`)
-- **IncludeData**: Include full label data in response (boolean)
-- **IncludeSubordinates**: Include related subordinate data (boolean)
-- **MaxResults**: Maximum number of results per page (integer)
-- **Skip**: Number of results to skip for pagination (integer)
-- **ContinuationToken**: Token for continuing pagination (string)
-- **Labels**: Filter by specific labels (array)
-- **Tags**: Filter by tag key-value pairs (object)
-- **Expr**: Advanced expression-based filtering (object)
+* **Ordering**: Sort results by creation time (`CreatedAscending`, `CreatedDescending`)
+* **IncludeData**: Include full label data in response (boolean)
+* **IncludeSubordinates**: Include related subordinate data (boolean)
+* **MaxResults**: Maximum number of results per page (integer)
+* **Skip**: Number of results to skip for pagination (integer)
+* **ContinuationToken**: Token for continuing pagination (string)
+* **Labels**: Filter by specific labels (array)
+* **Tags**: Filter by tag key-value pairs (object)
+* **Expr**: Advanced expression-based filtering (object)
 
 ```curl
 curl --location 'http://localhost:8701/v2.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/labels' \
@@ -384,6 +424,25 @@ def enumerate_with_query_label():
 
 enumerate_with_query_label()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+EnumerationResult<LabelMetadata> response = liteGraph.Label.Enumerate(new EnumerationRequest()
+{
+    Ordering = EnumerationOrderEnum.CreatedDescending,
+    IncludeData = true,
+    IncludeSubordinates = true,
+    MaxResults = 5,
+    Skip = 0,
+    ContinuationToken = null,
+    Labels = new List<string>(),
+    Tags = null,
+    Expr = null
+});
+```
 
 ### Response
 
@@ -429,10 +488,10 @@ enumerate_with_query_label()
 
 When reading and enumerating labels, consider the following recommendations:
 
-- **Use Appropriate Endpoints**: Choose the right endpoint based on your needs (individual read vs. enumeration vs. search)
-- **Implement Pagination**: Use MaxResults and ContinuationToken for large datasets to avoid memory issues
-- **Optimize Queries**: Use specific GUIDs when possible instead of reading all labels
-- **Cache Results**: Implement caching for frequently accessed label data
-- **Handle Errors**: Implement proper error handling for network issues and invalid GUIDs
-- **Monitor Performance**: Track response times and optimize queries for better performance
-- **Use Search Filters**: Leverage search parameters to reduce data transfer and improve relevance
+* **Use Appropriate Endpoints**: Choose the right endpoint based on your needs (individual read vs. enumeration vs. search)
+* **Implement Pagination**: Use MaxResults and ContinuationToken for large datasets to avoid memory issues
+* **Optimize Queries**: Use specific GUIDs when possible instead of reading all labels
+* **Cache Results**: Implement caching for frequently accessed label data
+* **Handle Errors**: Implement proper error handling for network issues and invalid GUIDs
+* **Monitor Performance**: Track response times and optimize queries for better performance
+* **Use Search Filters**: Leverage search parameters to reduce data transfer and improve relevance
