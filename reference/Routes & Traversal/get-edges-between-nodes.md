@@ -1,23 +1,24 @@
 ---
 title: Get Edges Between Nodes
-excerpt: Retrieve all edges connecting two specific nodes in your graph for relationship analysis and path discovery.
+excerpt: >-
+  Retrieve all edges connecting two specific nodes in your graph for
+  relationship analysis and path discovery.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Get Edges Between Nodes endpoint allows you to discover all direct connections between two specific nodes in your graph. This operation is essential for understanding the relationships and pathways that exist between nodes, enabling you to analyze connectivity patterns, identify multiple connection types, and build comprehensive relationship maps.
 
 Key capabilities include:
 
-- Finding all edges that connect two specific nodes
-- Analyzing bidirectional relationships between nodes
-- Discovering multiple connection types between the same nodes
-- Building relationship graphs and connection matrices
-- Supporting graph traversal and path-finding algorithms
+* Finding all edges that connect two specific nodes
+* Analyzing bidirectional relationships between nodes
+* Discovering multiple connection types between the same nodes
+* Building relationship graphs and connection matrices
+* Supporting graph traversal and path-finding algorithms
 
 ## Get Edges Between Nodes
 
@@ -68,6 +69,17 @@ def get_edges_between_nodes():
 
 get_edges_between_nodes()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+IEnumerable<Edge> response = liteGraph.Edge.ReadEdgesBetweenNodes(Guid.Parse("<tenant-guid>"),
+                                                                  Guid.Parse("<graph-guid>"),
+                                                                  Guid.Parse("<from-node-guid>"),
+                                                                  Guid.Parse("<to-node-guid>"));
+```
 
 ### Response
 
@@ -91,17 +103,17 @@ get_edges_between_nodes()
 
 When retrieving edges between nodes, consider the following recommendations:
 
-- **Validate Node GUIDs**: Ensure both source and destination node GUIDs exist before making requests
-- **Handle Empty Results**: Implement proper handling for cases where no edges exist between nodes
-- **Cache Results**: Consider caching edge relationships for frequently accessed node pairs
+* **Validate Node GUIDs**: Ensure both source and destination node GUIDs exist before making requests
+* **Handle Empty Results**: Implement proper handling for cases where no edges exist between nodes
+* **Cache Results**: Consider caching edge relationships for frequently accessed node pairs
 
 ## Next Steps
 
 After retrieving edges between nodes, you can:
 
-- Analyze the relationship structure and connection patterns
-- Build comprehensive node relationship maps
-- Implement graph traversal algorithms for path finding
-- Create relationship visualization interfaces
-- Perform connectivity analysis and network topology studies
-- Develop relationship-based recommendation systems
+* Analyze the relationship structure and connection patterns
+* Build comprehensive node relationship maps
+* Implement graph traversal algorithms for path finding
+* Create relationship visualization interfaces
+* Perform connectivity analysis and network topology studies
+* Develop relationship-based recommendation systems
