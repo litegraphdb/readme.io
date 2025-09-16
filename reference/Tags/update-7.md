@@ -9,16 +9,15 @@ hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 Tag update operations allow you to modify existing tags within your graph database. This functionality is essential for maintaining data accuracy, correcting errors, and adapting tag information as your application requirements evolve. Understanding tag update operations is crucial for effective data management and ensuring your tag system remains current and relevant.
 
 Key capabilities include:
 
-- Updating tag key-value pairs to reflect new information
-- Modifying tag metadata and properties
-- Maintaining data integrity during updates
+* Updating tag key-value pairs to reflect new information
+* Modifying tag metadata and properties
+* Maintaining data integrity during updates
 
 These operations support various use cases such as data correction, tag refinement, metadata updates, and maintaining consistency across your graph database.
 
@@ -78,6 +77,21 @@ def update_tag():
 
 update_tag()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+TagMetadata response = liteGraph.Tag.Update(new TagMetadata()
+{
+    GraphGUID = Guid.Parse("<graph-guid>"),
+    NodeGUID = Guid.Parse("<node-guid>"),
+    EdgeGUID = Guid.Parse("<edge-guid>"),
+    Key = "mykey",
+    Value = "myvalue"
+});
+```
 
 ### Response
 
@@ -101,8 +115,8 @@ Upon successful tag update, the API returns a `200 OK` status code with the upda
 
 After successfully updating tags, consider these next actions:
 
-- **Verify Changes**: Read the updated tag to confirm changes were applied correctly
-- **Update Dependencies**: Check if any dependent systems need to be notified of changes
-- **Monitor Impact**: Track how tag updates affect related operations and queries
-- **Document Changes**: Maintain documentation of tag modification history
-- **Optimize Performance**: Review update patterns for potential performance improvements
+* **Verify Changes**: Read the updated tag to confirm changes were applied correctly
+* **Update Dependencies**: Check if any dependent systems need to be notified of changes
+* **Monitor Impact**: Track how tag updates affect related operations and queries
+* **Document Changes**: Maintain documentation of tag modification history
+* **Optimize Performance**: Review update patterns for potential performance improvements
