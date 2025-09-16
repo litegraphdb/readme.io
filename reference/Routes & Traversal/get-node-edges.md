@@ -1,23 +1,24 @@
 ---
 title: Get Node Edges
-excerpt: Retrieve all edges connected to a specific node to analyze its complete connectivity and relationship patterns in your graph.
+excerpt: >-
+  Retrieve all edges connected to a specific node to analyze its complete
+  connectivity and relationship patterns in your graph.
 deprecated: false
 hidden: false
 metadata:
   robots: index
 ---
-
 ## Overview
 
 The Get Node Edges endpoint allows you to discover all edges connected to a specific node in your graph, including both incoming and outgoing connections. This operation is essential for understanding complete node connectivity, analyzing relationship patterns, and building comprehensive node relationship profiles.
 
 Key capabilities include:
 
-- Finding all edges connected to a specific node (both incoming and outgoing)
-- Analyzing complete node connectivity patterns and relationship types
-- Discovering all nodes that are directly connected to the target node
-- Building comprehensive node relationship profiles and connectivity maps
-- Supporting complete graph traversal and connectivity analysis
+* Finding all edges connected to a specific node (both incoming and outgoing)
+* Analyzing complete node connectivity patterns and relationship types
+* Discovering all nodes that are directly connected to the target node
+* Building comprehensive node relationship profiles and connectivity maps
+* Supporting complete graph traversal and connectivity analysis
 
 ## Get Node Edges
 
@@ -63,6 +64,16 @@ def get_edges_of_node():
 
 get_edges_of_node()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+IEnumerable<Edge> response = liteGraph.Edge.ReadNodeEdges(Guid.Parse("<tenant-guid>"),
+                                                                  Guid.Parse("<graph-guid>"),
+                                                                  Guid.Parse("<node-guid>"));
+```
 
 ### Response
 
@@ -86,16 +97,16 @@ get_edges_of_node()
 
 When retrieving all node edges, consider the following recommendations:
 
-- **Validate Node GUID**: Ensure the target node GUID exists before making requests
-- **Handle Empty Results**: Implement proper handling for nodes with no edges
+* **Validate Node GUID**: Ensure the target node GUID exists before making requests
+* **Handle Empty Results**: Implement proper handling for nodes with no edges
 
 ## Next Steps
 
 After retrieving all node edges, you can:
 
-- Analyze complete node connectivity patterns and relationship types
-- Build comprehensive node relationship profiles and connectivity maps
-- Implement complete graph traversal algorithms for connectivity analysis
-- Create node relationship visualization interfaces
-- Perform complete connectivity analysis and network topology studies
-- Develop node-based recommendation systems and relationship discovery
+* Analyze complete node connectivity patterns and relationship types
+* Build comprehensive node relationship profiles and connectivity maps
+* Implement complete graph traversal algorithms for connectivity analysis
+* Create node relationship visualization interfaces
+* Perform complete connectivity analysis and network topology studies
+* Develop node-based recommendation systems and relationship discovery
