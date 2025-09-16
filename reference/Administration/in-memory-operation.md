@@ -81,6 +81,14 @@ def flush_db_to_disk():
 
 flush_db_to_disk()
 ```
+```csharp
+using LiteGraph;
+using LiteGraph.GraphRepositories.Sqlite;
+
+LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
+liteGraph.InitializeRepository();
+EnumerationResult<BackupFile> response = liteGraph.Admin.BackupEnumerate();
+```
 
 ## Performance Considerations
 
