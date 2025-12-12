@@ -1,8 +1,9 @@
 ---
-title: Copy of Read All Edge In Tenant
+title: Read All Edge In Graph
 excerpt: >-
-  Retrieve all edges within a tenant, with support for ordering, pagination, and
-  optional inclusion of data and subordinate objects.
+  Retrieve all edges within a specific graph, with support for ordering,
+  pagination, and optional inclusion of data and subordinate objects. This
+  operation validates that the graph exists before returning results.
 deprecated: false
 hidden: false
 metadata:
@@ -10,21 +11,22 @@ metadata:
 ---
 ## Overview
 
-The `Read All Edge In Tenant` endpoint allows you to retrieve a list of all edge objects within a specified tenant. This operation supports ordering, pagination (skip), and optional inclusion of additional data or subordinate objects. It’s ideal for retrieving a comprehensive list of edges when you need to manage or view the relationships between entities in the tenant.
+The `Read All Edge In Graph` endpoint allows you to retrieve a list of all edge objects within a specified graph in a tenant. It supports ordering, pagination (skip), and optional inclusion of additional data or subordinate objects. Additionally, it validates that the specified graph exists before returning the results.
 
-**Important:**  The request requires a valid authentication token and appropriate permissions within the tenant to retrieve the data.
+**Important:**  The request requires a valid authentication token and appropriate permissions within the tenant to retrieve the data. The graph must exist for the operation to proceed.
 
-## Read All Edge In Tenant
+## Read All Edge In Graph
 
-Retrieve all edges within a tenant using the following `GET request:
-GET: /v1.0/tenants/{tenant-guid}/edges/all`
-This endpoint returns a list of all edge objects in the tenant, with optional query parameters for ordering, pagination, and inclusion of additional data.
+Retrieve all edges within a graph using the following `GET request:
+GET: /v1.0/tenants/{tenant-guid}/graphs/{graph-guid}/edges/all`
+This endpoint returns a list of all edge objects in the graph, with optional query parameters for ordering, pagination, and inclusion of additional data.
 
 **Authentication:** Admin or appropriate tenant-level authentication required.
 
 **Parameters:**
 
 * **Tenant GUID (required):** The unique identifier of the tenant.
+* **Graph GUID (required):** The unique identifier of the graph within the tenant.
 * **Order (optional):** The order in which to return the edges (e.g., ascending, descending).
 * **Skip (optional, for pagination):** The number of results to skip for pagination.
 * **IncludeData (optional):** Whether to include additional data with each edge.
@@ -36,12 +38,12 @@ import { LiteGraphSdk } from "litegraphdb";
 var api = new LiteGraphSdk(
   "http://localhost:8701/",
   "<Tenant-Guid>", 
-  "*******" 
+  "*******"  
 );
 
-const EdgeReadAllInTenant = async () => {
+const EdgeReadAllInGraph = async () => {
   try {
-    const data = await api.Edge.readAllInTenant();
+    const data = await api.Edge.readAllInGraph('<graph-guid>');  
     console.log(data, 'All edges data');
   } catch (err) {
     console.log('Error:', JSON.stringify(err));
