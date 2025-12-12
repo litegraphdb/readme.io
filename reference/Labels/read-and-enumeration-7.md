@@ -247,6 +247,48 @@ Upon successful retrieval, the API returns a `200 OK` status code with an array 
 ]
 ```
 
+## Read All Label In Tenant
+
+Retrieves all label metadata within a tenant using `GET: /v1.0/tenants/{tenant-guid}/labels/all`. Returns a list of all label metadata objects in the specified tenant, with support for ordering and pagination.
+
+```javascript
+import { LiteGraphSdk } from "litegraphdb";
+
+var api = new LiteGraphSdk(
+  "http://localhost:8701/",
+  "<Tenant-Guid>",
+  "*******"
+);
+
+const LabelReadAllInTenant = async () => {
+  try {
+    const data = await api.Label.readAllInTenant();
+    console.log(data, 'chk data');
+  } catch (err) {
+    console.log('err:', JSON.stringify(err));
+  }
+};
+```
+
+### Response
+
+Upon successful retrieval, the API returns a 200 OK status code with an array of all label metadata objects in the response body.
+
+```json
+[
+  {
+    "GUID": "00000000-0000-0000-0000-000000000000",
+    "TenantGUID": "00000000-0000-0000-0000-000000000000",
+    "GraphGUID": "00000000-0000-0000-0000-000000000000",
+    "NodeGUID": "00000000-0000-0000-0000-000000000000",
+    "Label": "label",
+    "CreatedUtc": "2025-12-11T02:31:04.257088Z",
+    "LastUpdateUtc": "2025-12-11T02:31:04.257088Z"
+  }
+]
+
+```
+
 ## Enumeration (GET)
 
 Perform label enumeration using `GET: /v2.0/tenants/{tenant-guid}/labels`. This v2.0 endpoint provides enhanced enumeration capabilities with built-in pagination support, making it ideal for handling large label datasets efficiently and systematically browsing through label collections.
