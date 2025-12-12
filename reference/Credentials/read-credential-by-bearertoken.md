@@ -12,9 +12,7 @@ metadata:
 
 The `CredentialReadByBearer`Token endpoint enables retrieval of a credential object by its bearer token. This endpoint requires admin authentication, and the bearer token is used to verify access. It allows administrators to fetch the credential details if it exists, or a Not Found error will be returned if the credential does not exist.
 
-### Important
-
-This operation requires admin-level authentication and the correct bearer token for accessing the credential data.
+**Important:** This operation requires admin-level authentication and the correct bearer token for accessing the credential data.
 
 ## Credential Read by Bearer Token
 
