@@ -289,6 +289,172 @@ Upon successful retrieval, the API returns a 200 OK status code with an array of
 
 ```
 
+## Read All Label In Graph
+
+Retrieves all label metadata within a specific graph using `GET: /v1.0/tenants/{tenant-guid}/graphs/{graph-guid}/labels/all`. Returns a list of all label metadata objects in the specified graph, with support for ordering and pagination. Validates that the graph exists before returning results.
+
+```javascript
+import { LiteGraphSdk } from "litegraphdb";
+
+var api = new LiteGraphSdk(
+  "http://localhost:8701/",
+  "<Tenant-Guid>",
+  "*******"
+);
+
+const LabelReadAllInGraph = async () => {
+  try {
+    const data = await api.Label.readAllInGraph('<graph-guid>');
+    console.log(data, 'all label in graph retrieved');
+  } catch (err) {
+    console.log('err:', JSON.stringify(err));
+  }
+};
+```
+
+### Response
+
+Upon successful retrieval, the API returns a 200 OK status code with an array of all label metadata objects in the response body.
+
+```json
+[
+  {
+    "GUID": "00000000-0000-0000-0000-000000000000",
+    "TenantGUID": "00000000-0000-0000-0000-000000000000",
+    "GraphGUID": "00000000-0000-0000-0000-000000000000",
+    "NodeGUID": "00000000-0000-0000-0000-000000000000",
+    "Label": "label",
+    "CreatedUtc": "2025-12-11T02:31:04.257088Z",
+    "LastUpdateUtc": "2025-12-11T02:31:04.257088Z"
+  }
+]
+
+```
+
+## Read graph-level labels
+
+Retrieves label metadata associated with a specific graph using `GET: /v1.0/tenants/{tenant-guid}/graphs/{graph-guid}/labels`. Returns label metadata objects that are directly associated with the graph entity. Validates that the graph exists before returning results.
+
+```javascript
+import { LiteGraphSdk } from "litegraphdb";
+
+var api = new LiteGraphSdk(
+  "http://localhost:8701/",
+  "<Tenant-Guid>",
+  "*******"
+);
+
+const LabelReadManyGraph = async (tenantGuid, graphGuid) => {
+  try {
+    const data = await api.Label.readGraphLevelLabels('<graph-guid>);
+    console.log(data, 'chk data');
+  } catch (err) {
+    console.log('err:', JSON.stringify(err));
+  }
+};
+```
+
+### Response
+
+Upon successful retrieval, the API returns a 200 OK status code with an array of all label metadata objects in the response body.
+
+```json
+[
+  {
+    "GUID": "00000000-0000-0000-0000-000000000000",
+    "TenantGUID": "00000000-0000-0000-0000-000000000000",
+    "GraphGUID": "00000000-0000-0000-0000-000000000000",
+    "NodeGUID": "00000000-0000-0000-0000-000000000000",
+    "Label": "label",
+    "CreatedUtc": "2025-12-11T02:31:04.257088Z",
+    "LastUpdateUtc": "2025-12-11T02:31:04.257088Z"
+  }
+]
+
+```
+
+## Read many node
+
+Retrieves label metadata associated with a specific node using `GET: /v1.0/tenants/{tenant-guid}/graphs/{graph-guid}/nodes/{node-guid}/labels`. Returns label metadata objects that are directly associated with the specified node GUID within a graph. Validates that the graph exists before returning results.
+
+```javascript
+import { LiteGraphSdk } from "litegraphdb";
+
+var api = new LiteGraphSdk(
+  "http://localhost:8701/",
+  "<Tenant-Guid>",
+  "*******"
+);
+
+const LabelReadManyNodeLabels = async (tenantGuid, graphGuid, nodeGuid) => {
+  try {
+    const data = await api.Label.readManyNodeLabels('<graph-guid>', '<node-guid>);
+    console.log(data, 'chk data');
+  } catch (err) {
+    console.log('err:', JSON.stringify(err));
+  }
+};
+```
+
+### Response
+
+Upon successful retrieval, the API returns a 200 OK status code with an array of all label metadata objects in the response body.
+
+```json
+[
+  {
+    "GUID": "00000000-0000-0000-0000-000000000000",
+    "TenantGUID": "00000000-0000-0000-0000-000000000000",
+    "GraphGUID": "00000000-0000-0000-0000-000000000000",
+    "NodeGUID": "00000000-0000-0000-0000-000000000000",
+    "Label": "label",
+    "CreatedUtc": "2025-12-11T02:31:04.257088Z",
+    "LastUpdateUtc": "2025-12-11T02:31:04.257088Z"
+  }
+]
+```
+
+## Read Many Edge
+
+Retrieves label metadata associated with a specific edge. Returns label metadata objects that are directly associated with the specified edge GUID within a graph. Validates that the graph exists before returning results.
+
+```javascript
+import { LiteGraphSdk } from "litegraphdb";
+
+var api = new LiteGraphSdk(
+  "http://localhost:8701/",
+  "<Tenant-Guid>",
+  "*******"
+);
+
+const LabelReadManyEdgeLabels = async (tenantGuid, graphGuid, edgeGuid) => {   
+  try {
+    const data = await api.Label.readManyEdgeLabels('<graph-guid>', '<edge-guid>');
+    console.log(data, 'chk data');
+  } catch (err) {
+    console.log('err:', JSON.stringify(err));
+  }
+};
+```
+
+### Response
+
+Upon successful retrieval, the API returns a 200 OK status code with an array of all label metadata objects in the response body.
+
+```json
+[
+  {
+    "GUID": "00000000-0000-0000-0000-000000000000",
+    "TenantGUID": "00000000-0000-0000-0000-000000000000",
+    "GraphGUID": "00000000-0000-0000-0000-000000000000",
+    "NodeGUID": "00000000-0000-0000-0000-000000000000",
+    "Label": "label",
+    "CreatedUtc": "2025-12-11T02:31:04.257088Z",
+    "LastUpdateUtc": "2025-12-11T02:31:04.257088Z"
+  }
+]
+```
+
 ## Enumeration (GET)
 
 Perform label enumeration using `GET: /v2.0/tenants/{tenant-guid}/labels`. This v2.0 endpoint provides enhanced enumeration capabilities with built-in pagination support, making it ideal for handling large label datasets efficiently and systematically browsing through label collections.
