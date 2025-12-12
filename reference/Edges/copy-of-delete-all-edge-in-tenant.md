@@ -1,8 +1,10 @@
 ---
-title: Copy of Delete All Edge In Tenant
+title: Delete Node Edges (Single)
 excerpt: >-
-  Delete all edges within a specific tenant. This is a bulk deletion operation
-  that removes all edge records for the specified tenant GUID.
+  Deletes all edges connected to a specific node within a graph. This operation
+  removes all edges (both incoming and outgoing) associated with the specified
+  node GUID in the given graph. The graph is validated before the deletion
+  process begins.
 deprecated: false
 hidden: false
 metadata:
@@ -10,36 +12,35 @@ metadata:
 ---
 ## Overview
 
-The `Delete All Edge In Tenant` endpoint allows you to delete all edges associated with a tenant. This operation is useful when performing a complete cleanup of edges within a tenant or when resetting the graph structure without affecting the tenant's other data (such as nodes). The operation ensures that all edge relationships are removed and associated data is cleaned up.
+The `Delete Node Edges` endpoint allows you to delete all edges connected to a specific node within a graph. This includes both incoming and outgoing edges associated with that node. It is useful for cleaning up all relationships for a particular node within the graph, ensuring that the node is disconnected from all other nodes in the graph.
 
-**Important:** This operation requires administrative privileges. Once the edges are deleted, the operation is irreversible, and all relationships and associated data will be lost.
+**Important:** This operation requires valid administrative privileges. The operation checks if the graph exists before performing the deletion. Once the edges are deleted, the operation is irreversible, and the node will no longer have any connections to other nodes in the graph.
 
 Key capabilities include:
 
-* Deleting all edges within a tenant.
-* Cleaning up edge relationships and associated data.
-* Optimizing storage by removing obsolete or unnecessary edges
-* Maintaining graph integrity while performing cleanup.
+* Deleting both incoming and outgoing edges for a node.
+* Ensuring graph existence before performing the deletion.
+* Maintaining the integrity of the graph by cleaning up relationships.
 
-## Delete All Edge In Tenant
+## Delete Node Edges
 
-Delete all edges within a tenant using the following `DELETE request:
-DELETE: /v1.0/tenants/{tenant-guid}/edges/all`
-This operation removes all edge records for the specified tenant GUID, permanently deleting all relationships within that tenant.
+Delete all edges connected to a specific node in a graph using the following `DELETE request:
+DELETE: /v1.0/tenants/{tenant-guid}/graphs/{graph-guid}/nodes/{node-guid}/edges`
+This operation removes all edges (both incoming and outgoing) connected to the node, completely severing the node’s relationships with other nodes.
 
 ```javascript
 import { LiteGraphSdk } from "litegraphdb";
 
 var api = new LiteGraphSdk(
   "http://localhost:8701/",
-  "<Tenant-Guid>",  
-  "*******"  
+  "<Tenant-Guid>", 
+  "*******" 
 );
 
-const EdgeDeleteAllInTenant = async () => {
+const EdgeDeleteNodeEdges = async (nodeGuid, graphGuid) => {
   try {
-    const data = await api.Edge.deleteAllInTenant();  
-    console.log(data, 'All edges in tenant deleted');
+    const data = await api.Edge.deleteNodeEdges(nodeGuid, graphGuid); 
+    console.log(data, 'All edges for node deleted');
   } catch (err) {
     console.log('Error:', JSON.stringify(err));
   }
@@ -48,7 +49,7 @@ const EdgeDeleteAllInTenant = async () => {
 
 ## Response
 
-Upon successful edge deletion, the API returns a **200 No Content** status code, indicating that all edges have been successfully removed from the system. No response body is returned for successful deletions.
+Upon successful deletion, the API returns a **200 No Content** status code, indicating that all edges connected to the node have been successfully removed from the graph. No response body is returned for successful deletions.
 
 * **200 No Content:** All edges in the specified tenant have been successfully deleted.
 * **401 Unauthorized:** Admin authentication is required to perform this action.
@@ -58,21 +59,20 @@ Upon successful edge deletion, the API returns a **200 No Content** status code,
 
 When deleting edges, consider the following recommendations:
 
-* **Verify Before Deletion**: Always confirm the edges you intend to delete are correct
-* **Backup Important Data**: Consider backing up critical edge data before deletion
-* **Check Dependencies**: Ensure no critical systems depend on the edges being deleted
-* **Use Bulk Operations**: Leverage bulk deletion for multiple edges to improve performance
-* **Handle Errors Gracefully**: Implement proper error handling for failed deletions
-* **Monitor Impact**: Track the effects of edge deletions on related operations
-* **Maintain Audit Trail**: Keep records of deletion operations for compliance and debugging
+* **Verify Node and Graph GUIDs:** Ensure the node and graph GUIDs are correct before deletion to avoid unintended loss of data.
+* **Backup Important Data:** Consider backing up critical edge data before deletion
+* **Check Dependencies:** Ensure no critical systems or processes depend on the edges being deleted.
+* **Use Appropriate Authentication:** Only authorized users should be allowed to delete edges, as this is an irreversible operation.
+* **Handle Errors Gracefully:** Implement proper error handling in case the deletion process encounters issues.
+* **Monitor Impact:** Track the impact of edge deletions on graph integrity and related operations.
 
 ## Next Steps
 
-After successfully deleting edges, consider these next actions:
+After successfully deleting the edges for a node, consider these next actions:
 
-* **Verify Deletion**: Confirm edges have been removed by attempting to read them
-* **Update Dependencies**: Check if any dependent systems need to be updated
-* **Clean Up References**: Remove any local references to deleted edges
-* **Monitor System**: Watch for any issues that might arise from the deletions
-* **Document Changes**: Maintain documentation of deletion operations
-* **Optimize Storage**: Review storage usage improvements from the cleanup
+* **Verify Deletion:** Confirm edges have been removed by attempting to read the edges for the node
+* **Update Dependencies:** Check if any dependent systems need to be updated to reflect the changes in the node’s relationships.
+* **Clean Up References:** Remove any local references to deleted edges.
+* **Monitor System:** Watch for any issues that might arise from the deletions, especially related to graph structure.
+* **Document Changes:** Maintain documentation of deletion operations for future reference.
+* **Optimize Storage:** Review storage usage and ensure that removing the edges has optimized graph performance.
