@@ -1,10 +1,8 @@
 ---
-title: Copy of Delete Edge
+title: Delete All Edge In Tenant
 excerpt: >-
-  Comprehensive guide for deleting individual edges, performing bulk edge
-  deletion operations, and deleting all edges, including proper cleanup
-  procedures, data integrity considerations, and safe deletion practices for
-  effective edge management.
+  Delete all edges within a specific tenant. This is a bulk deletion operation
+  that removes all edge records for the specified tenant GUID.
 deprecated: false
 hidden: false
 metadata:
@@ -12,186 +10,49 @@ metadata:
 ---
 ## Overview
 
-Edge deletion operations provide the ability to remove edges from your graph database when they are no longer needed. These operations are essential for maintaining data cleanliness, removing obsolete relationships, and managing storage efficiently. Understanding edge deletion is crucial for proper edge lifecycle management and ensuring your graph structure remains organized and relevant.
+The `Delete All Edge In Tenant` endpoint allows you to delete all edges associated with a tenant. This operation is useful when performing a complete cleanup of edges within a tenant or when resetting the graph structure without affecting the tenant's other data (such as nodes). The operation ensures that all edge relationships are removed and associated data is cleaned up.
+
+**Important:** This operation requires administrative privileges. Once the edges are deleted, the operation is irreversible, and all relationships and associated data will be lost.
 
 Key capabilities include:
 
-* Deleting individual edges by their unique GUID
-* Performing bulk deletion of multiple edges
-* Deleting all edges within a graph for complete cleanup
-* Maintaining data integrity during deletion operations
-* Handling cleanup of edge associations and relationships
+* Deleting all edges within a tenant.
+* Cleaning up edge relationships and associated data.
+* Optimizing storage by removing obsolete or unnecessary edges
+* Maintaining graph integrity while performing cleanup.
 
-These operations support various use cases such as relationship cleanup, edge lifecycle management, storage optimization, and maintaining data quality standards.
+## Delete All Edge In Tenant
 
-## Delete Single Edge
+Delete all edges within a tenant using the following `DELETE request:
+DELETE: /v1.0/tenants/{tenant-guid}/edges/all`
+This operation removes all edge records for the specified tenant GUID, permanently deleting all relationships within that tenant.
 
-Delete a single edge using `DELETE: /v1.0/tenants/{tenant-guid}/graphs/{graph-guid}/edges/{edge-guid}`. This endpoint allows you to remove a specific edge by its unique identifier, permanently deleting it from the system and cleaning up any associated relationships.
-
-```curl
-curl --location --request DELETE 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/edges/00000000-0000-0000-0000-000000000000' \
---header 'content-type: application/json' \
---header 'Authorization: ••••••' \
---data ''
-```
 ```javascript
 import { LiteGraphSdk } from "litegraphdb";
 
 var api = new LiteGraphSdk(
   "http://localhost:8701/",
-  "<Tenant-Guid>",
-  "*******"
+  "<Tenant-Guid>",  
+  "*******"  
 );
 
-const deleteEdgeById = async () => {
+const EdgeDeleteAllInTenant = async () => {
   try {
-    const data = await api.Edge.delete(guid, edgeGuid);
-    console.log(data, "check data");
+    const data = await api.Edge.deleteAllInTenant();  
+    console.log(data, 'All edges in tenant deleted');
   } catch (err) {
-    console.log("err:", JSON.stringify(err));
+    console.log('Error:', JSON.stringify(err));
   }
 };
-```
-```python
-import litegraph
-
-sdk = litegraph.configure(
-    endpoint="http://localhost:8701",
-    tenant_guid="Tenant-Guid",
-    graph_guid="Graph-Guid",
-    access_key="******",
-)
-
-def delete_edge():
-    litegraph.Edge.delete(guid="edgeGuid")
-    print("Edge deleted")
-
-delete_edge()
-```
-```csharp
-using LiteGraph;
-using LiteGraph.GraphRepositories.Sqlite;
-
-LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
-liteGraph.InitializeRepository();
-liteGraph.Edge.DeleteByGuid(Guid.Parse("<tenant-guid>"), Guid.Parse("<graph-guid>"), Guid.Parse("<edge-guid>"));
-```
-
-## Delete Multiple Edges
-
-Delete multiple edges in a single operation using `DELETE: /v1.0/tenants/{tenant-guid}/graphs/{graph-guid}/edges/bulk`. This bulk operation allows you to efficiently remove multiple edges by providing an array of edge GUIDs, which is useful for batch cleanup operations and maintaining edge organization.
-
-```curl
-curl --location --request DELETE 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/edges/bulk' \
---header 'content-type: application/json' \
---header 'Authorization: ••••••' \
---data '[
-    "00000000-0000-0000-0000-000000000000"
-]'
-```
-```javascript
-import { LiteGraphSdk } from "litegraphdb";
-
-var api = new LiteGraphSdk(
-  "http://localhost:8701/",
-  "<Tenant-Guid>",
-  "*******"
-);
-
-const deleteMultipleEdges = async () => {
-  try {
-    const data = await api.Edge.deleteBulk(guid, [edge - guid]);
-    console.log(data, "check data");
-  } catch (err) {
-    console.log("err:", JSON.stringify(err));
-  }
-};
-```
-```python
-import litegraph
-
-sdk = litegraph.configure(
-    endpoint="http://localhost:8701",
-    tenant_guid="Tenant-Guid",
-    access_key="******",
-)
-
-def delete_multiple_edge():
-    litegraph.Edge.delete_multiple(guid=["edge-guid-1","edge-guid"])
-    print("Edges deleted")
-
-delete_multiple_edge()
-```
-```csharp
-using LiteGraph;
-using LiteGraph.GraphRepositories.Sqlite;
-
-LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
-liteGraph.InitializeRepository();
-liteGraph.Edge.DeleteMany(Guid.Parse("<tenant-guid>"), Guid.Parse("<graph-guid>"), new List<Guid>()
-{
-    Guid.Parse("<edge-guid-1>"),
-    Guid.Parse("<edge-guid-2>"),
-    Guid.Parse("<edge-guid-3>")
-});
-```
-
-## Delete All Edges
-
-Delete all edges within a graph using `DELETE: /v1.0/tenants/{tenant-guid}/graphs/{graph-guid}/edges/all`. This operation removes all edges from the specified graph, which is useful for complete graph cleanup or resetting edge relationships while preserving nodes.
-
-```curl
-curl --location --request DELETE 'http://localhost:8701/v1.0/tenants/00000000-0000-0000-0000-000000000000/graphs/00000000-0000-0000-0000-000000000000/edges/all' \
---header 'content-type: application/json' \
---header 'Authorization: ••••••' \
---data ''
-```
-```javascript
-import { LiteGraphSdk } from "litegraphdb";
-
-var api = new LiteGraphSdk(
-  "http://localhost:8701/",
-  "<Tenant-Guid>",
-  "*******"
-);
-
-const deleteAllEdges = async () => {
-  try {
-    const data = await api.Edge.deleteAll("<graph-guid>");
-    console.log(data, "check data");
-  } catch (err) {
-    console.log("err:", JSON.stringify(err), err);
-  }
-};
-```
-```python
-import litegraph
-
-sdk = litegraph.configure(
-    endpoint="http://localhost:8701",
-    tenant_guid="Tenant-Guid",
-    graph_guid="Graph-Guid",
-    access_key="******",
-)
-
-def delete_all_edge():
-    litegraph.Edge.delete_all()
-    print("Edges deleted")
-
-delete_all_edge()
-```
-```csharp
-using LiteGraph;
-using LiteGraph.GraphRepositories.Sqlite;
-
-LiteGraphClient liteGraph = new LiteGraphClient(new SqliteGraphRepository("litegraph.db"));
-liteGraph.InitializeRepository();
-liteGraph.Edge.DeleteAllInGraph(Guid.Parse("<tenant-guid>"), Guid.Parse("<graph-guid>"));
 ```
 
 ## Response
 
-Upon successful edge deletion, the API returns a `200 No Content` status code indicating the edge has been successfully removed from the system.
+Upon successful edge deletion, the API returns a **200 No Content** status code, indicating that all edges have been successfully removed from the system. No response body is returned for successful deletions.
+
+* **200 No Content:** All edges in the specified tenant have been successfully deleted.
+* **401 Unauthorized:** Admin authentication is required to perform this action.
+* **404 Not Found:** The specified tenant does not exist.
 
 ## Best Practices
 
